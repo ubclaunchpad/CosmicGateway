@@ -3,7 +3,19 @@ export async function load({ params }) {
 	const slug = params.slug;
 	console.log(`${params.slug}`);
 	try {
-		const post = await import('../' + slug + '.md');
+		const post = await import('../' + slug + '/1.md');
+		// const { title, date } = post.metadata;
+		const content = post.default;
+		return {
+			content
+			// date
+		};
+	} catch (error) {
+		console.log('ss');
+	}
+
+	try {
+		const post = await import('../' + slug + '/1.md');
 		// const { title, date } = post.metadata;
 		const content = post.default;
 		console.log(content);
@@ -13,6 +25,8 @@ export async function load({ params }) {
 			// date
 		};
 	} catch (error) {
-		return {};
+		return {
+			// date
+		};
 	}
 }

@@ -1,42 +1,14 @@
-# 🔖 Manifesto
+# Overview
 
 This document is the UBC Launch Pad manifesto: a high-level overview of our vision, what we do, our values, and how we work with our sponsors and partners.
 
+> As the leading software development club at UBC, Launch Pad prepares students for the future by providing a space for them to learn and practice industry-standard tools through building projects with like-minded individuals.
+
 If you have any questions, please do not hesitate to [get in touch](/introduction.md#get-in-touch)!
 
-::: warning
-These sections are a work in progress.
-:::
+## What We Did
 
-## Vision
-
-### Our Value Proposition
-
-Technical advancements have created enormous opportunities in the world, people are capable for more than ever before. In this fast changing world, we want to provide a space for students who are passionate about technologies to develop their skills, to explore new possibilities, to share their expertise and learn from others, and to gain hands-on experience in building out what they envision.
-
-Ranking 1st in Computer Science in Canada, UBC has many communities that help to connect students with industry leaders through events, workshops, and Hackathons. However, there is a lack of opportunity for students to apply their knowledge and skills and commit on a project they are passionate about.
-
-Therefore, as a software development club, Launch Pad aims to create the best space for students to learn and practice industry-standard tools and techniques, to develop multidisciplinary teamwork, and to figure out what they can do with technologies.
-
-#### One-liner
-
-As the leading software development club at UBC, Launch Pad prepares students for the future by providing a space for them to learn and practice industry-standard tools through building projects with like-minded individuals.
-
-#### Three-liner
-
-As the leading technology club at UBC, Launch Pad is devoted to create a collaborative and professional environment for software development. It is our goal to provide the best space for students to apply and develop their technical skills outside of classroom, to learn and practice industry-standard tools, and to build passion projects with like-minded individuals.
-
-### Software Engineering
-
-The phrase is in our club name, but what does it mean? "Software engineering" as a whole is pretty well summed up by this quote from a [blog post by Russ Cox](https://research.swtch.com/vgo-eng), one of the creators of the Go Programming Language:
-
-> Programming means getting a program working. You have a problem to solve, you write some code, you run it, you get your answer, you’re done. That’s programming, and that's difficult enough by itself. But what if that code has to keep working, day after day? What if five other programmers need to work on the code too? Then you start to think about version control systems, to track how the code changes over time and to coordinate with the other programmers. You add unit tests, to make sure bugs you fix are not reintroduced over time, not by you six months from now, and not by that new team member who’s unfamiliar with the code. You think about modularity and design patterns, to divide the program into parts that team members can work on mostly independently. You use tools to help you find bugs earlier. You look for ways to make programs as clear as possible, so that bugs are less likely. You make sure that small changes can be tested quickly, even in large programs. You're doing all of this because your programming has turned into **software engineering**.
-
-Our goal is that through what we do, we can provide our members with an experience that helps them learn important principles in software engineering.
-
-## What We Do
-
-Members in Launch Pad form into teams to work on an 8 month development project based on their interests and skill sets. Each team consists of a tech-lead, developers and designers, where they collaboratively go through the design thinking process to design and build a product.
+We are a project-based collaborative software engineering club at UBC. We realize projects at various stages from team ideation to external sponsor projects. We form and recurit teams to take on projects with various timelines to deliver impactiful products. To learn more about how we develop solutions, check here.
 
 As a club, Launch Pad supports every member’s experience through multiple ways:
 
@@ -45,7 +17,7 @@ As a club, Launch Pad supports every member’s experience through multiple ways
 3. We design team structure to enable mentorship and multidisciplinary teamwork from their peers
 4. We recruit with high standards to ensure everyone in Launch Pad is driven and dedicated in their own expertise
 
-### Club Structure
+## Club Structure
 
 #### Leadership Team
 

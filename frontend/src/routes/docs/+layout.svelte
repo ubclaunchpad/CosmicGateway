@@ -2,6 +2,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import '../styles.scss';
+	import './markdown.scss';
 	import { onMount } from 'svelte';
 	export let data;
 
@@ -30,12 +31,24 @@
 		<Sidebar>
 			<div class="sidebar-content">
 				<select>
-					<option value="all">LP Docs</option>
+					<!-- <option disabled selected>Select a file or directory</option> -->
 					{#each data.directories as directory}
-						<option value={directory.toLowerCase()}>{directory}</option>
+						<optgroup label={directory.name}>
+							{#each directory.files as file}
+								<option value={file}>{file}</option>
+							{/each}
+							{#if directory.directories.length > 0}
+								{#each directory.directories as subDirectory}
+									<optgroup label={subDirectory.name}>
+										{#each subDirectory.files as file}
+											<option value={file}>{file}</option>
+										{/each}
+									</optgroup>
+								{/each}
+							{/if}
+						</optgroup>
 					{/each}
 				</select>
-				<input placeholder="Search the docs" />
 
 				<ul class="index">
 					{#if headings.length > 0}
@@ -45,12 +58,16 @@
 						{/each}
 					{/if}
 				</ul>
-				<button>Edit This Page</button>
 			</div>
 		</Sidebar>
 		<article id="page-content">
 			<slot />
-			<Footer>See any problems, or have some feedback? Let us know!</Footer>
+			<Footer>
+				<div class="footer-content">
+					See any problems, or have some feedback? Let us know!
+					<button>Edit This Page</button>
+				</div>
+			</Footer>
 		</article>
 	</div>
 </main>
@@ -59,21 +76,41 @@
 	.sidebar-content {
 		display: flex;
 		flex-direction: column;
-		row-gap: 1rem;
+		justify-content: flex-start;
+		row-gap: 2rem;
+
+		select {
+			border: 2px solid var(--color-bg-1);
+			background: url("data:image/svg+xml,<svg height='10px' width='10px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>")
+				no-repeat;
+			background-position: calc(100% - 0.75rem) center !important;
+			-moz-appearance: none !important;
+			-webkit-appearance: none !important;
+			appearance: none !important;
+			padding-right: 2rem !important;
+		}
 	}
 	.index {
 		display: flex;
 		flex-direction: column;
-		padding: 1rem 0.5rem;
-
+		padding: 1rem 1rem;
+		border-bottom: 2px solid var(--color-bg-primary-faded);
+		border-top: 2px solid var(--color-bg-primary-faded);
 		display: flex;
 		row-gap: 1rem;
+
+		h3 {
+			font-size: 1rem;
+			font-weight: 500;
+			color: var(--color-text-1);
+			margin-bottom: 0.5rem;
+		}
 
 		li {
 			text-transform: capitalize;
 			list-style: none;
 			width: 100%;
-			padding-bottom: 10px;
+			padding-bottom: 4px;
 
 			a {
 				border-bottom: 1px solid transparent;
@@ -84,8 +121,8 @@
 				color: var(--color-text-1);
 				width: 100%;
 				&:hover {
-					color: var(--color-accent-0);
-					border-bottom: 2px solid var(--color-accent-0);
+					color: var(--color-link-0);
+					border-bottom: 2px solid var(--color-link-0);
 				}
 			}
 		}
