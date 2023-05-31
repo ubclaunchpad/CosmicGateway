@@ -1,6 +1,7 @@
 @import './variables.scss';
 html {
 	font-family: 'Inter', sans-serif;
+	background-color: var(--color-bg-primary-dark);
 }
 
 input {
@@ -9,7 +10,8 @@ input {
 	padding: 0.5rem 1rem;
 	border-radius: 7px;
 	font-size: 1rem;
-	width: 100%;
+	// width: 100%;
+	max-width: 100%;
 }
 
 a {
@@ -22,7 +24,17 @@ select {
 	padding: 0.5rem 1rem;
 	border-radius: 7px;
 	font-size: 1rem;
-	width: 100%;
+	text-overflow: ellipsis;
+	width: fit-content;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 200px;
+
+	option {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
 }
 
 label {
@@ -31,7 +43,7 @@ label {
 	font-weight: 300;
 	width: fit-content;
 	white-space: nowrap;
-	// overflow: hidden;
+	overflow: hidden;
 	// text-overflow: ellipsis;
 }
 
@@ -44,8 +56,8 @@ label {
 }
 
 body {
-	background-color: --color-bg-2;
-	color: --color-text-0;
+	background-color: var(--color-bg-0);
+	color: var(--color-text-0);
 	min-height: 100svh;
 }
 
@@ -63,4 +75,5 @@ h1 {
 button {
 	outline: none;
 	border: none;
+	cursor: pointer;
 }

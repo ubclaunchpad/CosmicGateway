@@ -7,9 +7,8 @@ interface Directory {
 	directories: Directory[];
 }
 
-async function getPaths(postfix?: string): Promise<Directory> {
+async function getPaths(): Promise<Directory> {
 	const currentDirectory = path.join(process.cwd(), 'src/routes/docs');
-	console.log(currentDirectory);
 
 	try {
 		const siblingEntries = await fsPromises.readdir(currentDirectory, { withFileTypes: true });
@@ -19,15 +18,18 @@ async function getPaths(postfix?: string): Promise<Directory> {
 			.map((entry) => path.basename(entry.name, '.md'));
 
 		const directories = siblingEntries
-			.filter((entry) => entry.isDirectory())
+			.filter(
+				(entry) =>
+					entry.isDirectory() &&
+					/^[A-Za-z]/.test(entry.name) &&
+					entry.name !== '[...slug]' &&
+					!entry.name.includes('...')
+			)
 			.map(async (entry) => ({
 				name: entry.name,
 				files: await getFilesInDirectory(path.join(currentDirectory, entry.name)),
 				directories: await getPathsInDirectory(path.join(currentDirectory, entry.name))
 			}));
-
-		console.log(directories);
-		console.log(files);
 
 		return {
 			name: currentDirectory,
@@ -59,7 +61,13 @@ async function getPathsInDirectory(directoryPath: string): Promise<Directory[]> 
 		const siblingEntries = await fsPromises.readdir(directoryPath, { withFileTypes: true });
 
 		const directories = siblingEntries
-			.filter((entry) => entry.isDirectory())
+			.filter(
+				(entry) =>
+					entry.isDirectory() &&
+					/^[A-Za-z]/.test(entry.name) &&
+					entry.name !== '[...slug]' &&
+					!entry.name.includes('...')
+			)
 			.map(async (entry) => ({
 				name: entry.name,
 				files: await getFilesInDirectory(path.join(directoryPath, entry.name)),
@@ -73,9 +81,5 @@ async function getPathsInDirectory(directoryPath: string): Promise<Directory[]> 
 }
 
 export const load = async ({ params }) => {
-	const r = await getPaths(params.slug);
-	console.log(r);
-	return {
-		...r
-	};
+	return await getPaths(params.slug);
 };
