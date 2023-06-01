@@ -23,6 +23,12 @@ import RouteIcon from '$lib/assets/icons/route.svg';
 import RocketIcon from '$lib/assets/icons/rocket.svg';
 import AlertIcon from '$lib/assets/icons/alert.svg';
 import InfoIcon from '$lib/assets/icons/info.svg';
+import GoogleIcon from '$lib/assets/icons/google.svg';
+import MediumIcon from '$lib/assets/icons/medium.svg';
+import orderIcon from '$lib/assets/icons/order.svg';
+import filterIcon from '$lib/assets/icons/filter.svg';
+import dotsVerticalIcon from '$lib/assets/icons/dots-vertical.svg';
+import expandIcon from '$lib/assets/icons/expand.svg';
 
 export {
 	UsersIcon,
@@ -49,5 +55,11 @@ export {
 	RouteIcon,
 	RocketIcon,
 	AlertIcon,
-	InfoIcon
+	InfoIcon,
+	GoogleIcon,
+	MediumIcon,
+	orderIcon,
+	filterIcon,
+	dotsVerticalIcon,
+	expandIcon
 };

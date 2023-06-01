@@ -12,8 +12,17 @@
 		InstagramIcon,
 		LinkExternalIcon,
 		LinkedinIcon,
+		MediumIcon,
 		UsersIcon
 	} from '$lib/util/icons';
+	import {
+		DISCORD_LINK,
+		FACEBOOK_LINK,
+		GITHUB_LINK,
+		INSTAGRAM_LINK,
+		LINKEDIN_LINK,
+		MEDIUM_LINK
+	} from '$lib/util/links';
 </script>
 
 <div class="side-nav">
@@ -89,45 +98,35 @@
 	<div class="bottom">
 		<ul class="links">
 			<li>
-				<a href="/">
+				<a href={DISCORD_LINK} target="_blank" referrerpolicy="no-referrer">
 					<img src={DiscordIcon} alt="Discord link" />
 				</a>
 			</li>
 			<li>
-				<a href="/">
+				<a href={FACEBOOK_LINK} target="_blank" referrerpolicy="no-referrer">
 					<img src={FacebookIcon} alt="Facebook link" />
 				</a>
 			</li>
 			<li>
-				<a href="/">
+				<a href={GITHUB_LINK} target="_blank" referrerpolicy="no-referrer">
 					<img src={GithubIcon} alt="Github link" />
 				</a>
 			</li>
 			<li>
-				<a href="/">
+				<a href={INSTAGRAM_LINK} target="_blank" referrerpolicy="no-referrer">
 					<img src={InstagramIcon} alt="Instagram link" />
 				</a>
 			</li>
-			<!-- <li>
-				<a href="#">
-					<img src={icons.figma} />
-				</a>
-			</li> -->
 			<li>
-				<a href="/">
+				<a href={LINKEDIN_LINK} target="_blank" referrerpolicy="no-referrer">
 					<img src={LinkedinIcon} alt="Linkedin link" />
 				</a>
 			</li>
-			<!-- <li>
-				<a href="#">
-					<img src={icons.dribble} />
+			<li>
+				<a href={MEDIUM_LINK} target="_blank" referrerpolicy="no-referrer">
+					<img src={MediumIcon} alt="Medium Link" />
 				</a>
-			</li> -->
-			<!-- <li>
-				<a href="#">
-					<img src={icons.youtube} />
-				</a>
-			</li> -->
+			</li>
 		</ul>
 	</div>
 </div>
@@ -147,21 +146,18 @@
 			padding: 0px;
 		}
 	}
-
 	.bottom {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		flex: 1;
 	}
-
 	.links {
 		display: flex;
-		gap: 10px;
-		pointer-events: none;
+		gap: 5px;
 		flex-wrap: wrap;
 		align-items: flex-end;
-		justify-content: center;
+		justify-content: space-between;
 		li {
 			list-style: none;
 			padding: 0;
@@ -171,11 +167,16 @@
 				justify-content: flex-start;
 				align-items: center;
 				column-gap: 0.4rem;
-				font-size: 0.8rem;
+				font-size: 0.7rem;
 				background-color: var(--color-bg-1);
 				font-weight: 500;
-				border-radius: 10px;
-				padding: 10px;
+				border-radius: 4px;
+				cursor: pointer;
+				padding: 1px;
+				img {
+					width: 24px;
+					cursor: pointer;
+				}
 			}
 		}
 	}

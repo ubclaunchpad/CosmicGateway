@@ -8,25 +8,27 @@
 		<slot name="main" class="content" />
 	</div>
 
-	<div id="side-content">
-		<button
-			id="collapser"
-			on:click={() => {
-				isOpen = !isOpen;
-			}}
-		>
+	{#if $$slots.side}
+		<div id="side-content">
+			<button
+				id="collapser"
+				on:click={() => {
+					isOpen = !isOpen;
+				}}
+			>
+				{#if isOpen}
+					<img src={AlignRightIcon} alt="align right" />
+				{:else}
+					<img src={AlignLeftIcon} alt="align left" />
+				{/if}
+			</button>
 			{#if isOpen}
-				<img src={AlignRightIcon} alt="align right" />
-			{:else}
-				<img src={AlignLeftIcon} alt="align left" />
+				<div id="side-div">
+					<slot name="side" />
+				</div>
 			{/if}
-		</button>
-		{#if isOpen}
-			<div id="side-div">
-				<slot name="side" />
-			</div>
-		{/if}
-	</div>
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -38,6 +40,7 @@
 		flex: 1;
 		display: flex;
 		flex-direction: row;
+		background-color: var(--color-bg-primary-faded);
 	}
 
 	.main-page {
@@ -49,6 +52,7 @@
 		overflow: scroll;
 		padding: 0.4rem 1rem;
 		flex: 1;
+		height: 100%;
 	}
 
 	#side-content {

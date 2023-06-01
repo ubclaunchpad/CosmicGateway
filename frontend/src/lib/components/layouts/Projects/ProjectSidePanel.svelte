@@ -1,7 +1,7 @@
 <script>
 	import InProgress from '$lib/components/blocks/InProgress.svelte';
-// import Apply from '../../../../routes/projects/Apply.svelte';
-// 	import Status from '../../../../routes/projects/Status.svelte';
+	// import Apply from '../../../../routes/projects/Apply.svelte';
+	// 	import Status from '../../../../routes/projects/Status.svelte';
 
 	let showStatus = true;
 
@@ -13,15 +13,15 @@
 <div id="slide">
 	<div class="content">
 		<InProgress
-		title="Project Application"
-		description="This page is still in development. Check back later!"
+			title="Project Application"
+			description="This page is still in development. Check back later!"
 		>
-		<!-- {#if showStatus}
+			<!-- {#if showStatus}
 			<Status on:message={panelDispatcher} />
 		{:else}
 			<Apply on:message={panelDispatcher} />
 		{/if} -->
-	</InProgress>
+		</InProgress>
 	</div>
 </div>
 
