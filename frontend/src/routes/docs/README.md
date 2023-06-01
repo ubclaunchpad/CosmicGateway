@@ -15,7 +15,7 @@ For this to work, **we need your help to keep the handbook up to date**! That me
 
 Our [**Manifesto**](manifesto.md) outlines our vision, what we do, and our code of conduct.
 
-## 🚀 Onboarding <Badge type="tip" text="new"/>
+## 🚀 Onboarding
 
 These pages helps you hit the ground running once you've joined us!
 
@@ -37,7 +37,7 @@ We use a variety of technology and tools at Launch Pad - these sections help you
 - [**Email**](./tools/email.md): Our email accounts and how to use them.
 - [**Other Tools**](../resources/tools.md): Our Resources section has a page on general tools you can leverage to help you build awesome stuff!
 
-## 👨‍💼 Project Management <Badge type="tip" text="updated"/>
+## 👨‍💼 Project Management
 
 These documents compile hard-won advice about the best way to run (and participate in) a Launch Pad team and build great software. This isn't just geared towards team leads - it should be useful for everyone!
 
@@ -63,7 +63,7 @@ These pages document Launch Pad design standards. For more about how the design 
 
 - [Branding](./design/branding.md): How to represent Launch Pad!
 
-## 🗳️ Recruitment <Badge type="tip" text="new"/>
+## 🗳️ Recruitment
 
 Launch Pad recruitment documentation and material lives in these pages!
 

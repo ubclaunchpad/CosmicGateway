@@ -1,26 +1,9 @@
 <script lang="ts">
-	import Footer from '$lib/components/Footer.svelte';
-	import Sidebar from '$lib/components/Sidebar.svelte';
+	import Footer from '$lib/components/layouts/Footer.svelte';
+	import Sidebar from '$lib/components/layouts/LeftPanel.svelte';
 	import '../styles.scss';
-	import { onMount } from 'svelte';
+	import '../markdown.scss';
 	export let data;
-
-	let url = '';
-	onMount(() => {
-		url = window.location.href;
-	});
-	let headings = [];
-
-	onMount(() => {
-		// Get all the headings with IDs in the document
-		headings = Array.from(
-			document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')
-		).map((heading) => ({
-			level: parseInt(heading.tagName.charAt(1)),
-			text: heading.textContent,
-			id: heading.id
-		}));
-	});
 </script>
 
 <main>
@@ -29,28 +12,47 @@
 	<div id="page">
 		<Sidebar>
 			<div class="sidebar-content">
-				<select>
-					<option value="all">LP Docs</option>
+				<h1>Launchpad Docs</h1>
+				<ul class="directory-list">
 					{#each data.directories as directory}
-						<option value={directory.toLowerCase()}>{directory}</option>
+						<li>
+							{directory.name}
+							{#if directory.files.length > 0}
+								<ul class="file-list">
+									{#each directory.files as file}
+										<li><a href="s">{file}dd</a></li>
+									{/each}
+								</ul>
+							{/if}
+							{#if directory.directories.length > 0}
+								<ul class="subdirectory-list">
+									{#each directory.directories as subDirectory}
+										<li>
+											{subDirectory.name}
+											{#if subDirectory.files.length > 0}
+												<ul class="file-list">
+													{#each subDirectory.files as file}
+														<li><a href="s">{file}dd</a></li>
+													{/each}
+												</ul>
+											{/if}
+										</li>
+									{/each}
+								</ul>
+							{/if}
+						</li>
 					{/each}
-				</select>
-				<input placeholder="Search the docs" />
-
-				<ul class="index">
-					{#if headings.length > 0}
-						<h3>On This Page</h3>
-						{#each headings as heading}
-							<li><a href={`#${heading.id}`}># {heading.text}</a></li>
-						{/each}
-					{/if}
 				</ul>
-				<button>Edit This Page</button>
 			</div>
 		</Sidebar>
 		<article id="page-content">
 			<slot />
-			<Footer>See any problems, or have some feedback? Let us know!</Footer>
+			<Footer>
+				<div class="footer-content">
+					See any problems, or have some feedback? Let us know!
+					<button>Edit</button>
+				</div>
+			</Footer>
 		</article>
 	</div>
 </main>
@@ -59,35 +61,51 @@
 	.sidebar-content {
 		display: flex;
 		flex-direction: column;
-		row-gap: 1rem;
-	}
-	.index {
-		display: flex;
-		flex-direction: column;
-		padding: 1rem 0.5rem;
+		justify-content: flex-start;
+		row-gap: 2rem;
+		color: var(--color-text-1);
 
-		display: flex;
-		row-gap: 1rem;
+		h1 {
+			background: linear-gradient(to right, var(--color-bg-primary), var(--color-bg-primary-dark));
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 
-		li {
+		.directory-list {
+			list-style-type: none;
+			font-weight: 500;
 			text-transform: capitalize;
-			list-style: none;
-			width: 100%;
-			padding-bottom: 10px;
+			padding-bottom: 1rem;
+			> li {
+				padding-bottom: 1rem;
+				border-bottom: 1px solid var(--color-bg-1);
+				font-weight: 400;
+			}
+		}
+
+		.subdirectory-list {
+			padding-left: 1rem;
+			list-style-type: none;
+			padding-bottom: 0.3rem;
+		}
+
+		.file-list {
+			padding-left: 1rem;
+			list-style-type: none;
+			margin: 4px;
 
 			a {
-				border-bottom: 1px solid transparent;
-				padding-bottom: 2px;
-				font-weight: 500;
-				font-size: 0.9rem;
 				text-decoration: none;
-				color: var(--color-text-1);
-				width: 100%;
+				color: var(--color-accent-1);
 				&:hover {
-					color: var(--color-accent-0);
-					border-bottom: 2px solid var(--color-accent-0);
+					text-decoration: underline;
 				}
 			}
+		}
+
+		li {
+			margin-bottom: 0.5rem;
 		}
 	}
 	main {
@@ -140,8 +158,7 @@
 				flex-direction: column;
 				flex: 1;
 				justify-content: space-between;
-
-				:global(:first-child) {
+				:global(> :first-child) {
 					flex: 1;
 				}
 			}

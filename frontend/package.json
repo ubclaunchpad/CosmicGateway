@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview",
+		"preview": "vite preview --port 5173",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
@@ -14,6 +14,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/google.accounts": "^0.0.7",
 		"@types/node": "^20.2.1",
 		"@types/three": "^0.152.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
@@ -34,7 +35,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@types/gapi": "^0.0.44",
 		"fs": "^0.0.1-security",
+		"jwt-decode": "^3.1.2",
 		"path": "^0.12.7",
 		"rehype-autolink-headings": "^6.1.1",
 		"rehype-slug": "^5.1.0"
