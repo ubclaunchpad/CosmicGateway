@@ -40,6 +40,7 @@
 		flex: 1;
 		display: flex;
 		flex-direction: row;
+		width: 100%;
 		background-color: var(--color-bg-primary-faded);
 	}
 

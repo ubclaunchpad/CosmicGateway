@@ -29,6 +29,21 @@ import orderIcon from '$lib/assets/icons/order.svg';
 import filterIcon from '$lib/assets/icons/filter.svg';
 import dotsVerticalIcon from '$lib/assets/icons/dots-vertical.svg';
 import expandIcon from '$lib/assets/icons/expand.svg';
+import faceSmileIcon from '$lib/assets/icons/face-smile.svg';
+import faceContentIcon from '$lib/assets/icons/face-content.svg';
+import cloudIcon from '$lib/assets/icons/cloud.svg';
+import asterickIcon from '$lib/assets/icons/asterick.svg';
+import linkIcon from '$lib/assets/icons/link.svg';
+import faceWinkIcon from '$lib/assets/icons/face-wink.svg';
+import giftIcon from '$lib/assets/icons/gift.svg';
+import listIcon from '$lib/assets/icons/list.svg';
+import gridIcon from '$lib/assets/icons/grid.svg';
+import menuIcon from '$lib/assets/icons/menu.svg';
+import paperClipIcon from '$lib/assets/icons/paper-clip.svg';
+import settingsIcon from '$lib/assets/icons/settings.svg';
+import starIcon from '$lib/assets/icons/star.svg';
+import heartHandIcon from '$lib/assets/icons/heart-hand.svg';
+import arrowRightIcon from '$lib/assets/icons/arrow-right.svg';
 
 export {
 	UsersIcon,
@@ -61,5 +76,20 @@ export {
 	orderIcon,
 	filterIcon,
 	dotsVerticalIcon,
-	expandIcon
+	expandIcon,
+	faceSmileIcon,
+	faceContentIcon,
+	cloudIcon,
+	asterickIcon,
+	linkIcon,
+	faceWinkIcon,
+	giftIcon,
+	listIcon,
+	gridIcon,
+	menuIcon,
+	paperClipIcon,
+	settingsIcon,
+	starIcon,
+	heartHandIcon,
+	arrowRightIcon
 };
