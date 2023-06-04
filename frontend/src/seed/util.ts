@@ -327,3 +327,77 @@ export const RESOURCE_TYPES = {
 		type: 'Cloud Document'
 	}
 };
+
+export const PROJECT_ROLES = {
+	'1': {
+		id: 1,
+		name: 'Tech Lead'
+	},
+	'2': {
+		id: 2,
+		name: 'Product Manager'
+	},
+	'3': {
+		id: 3,
+		name: 'Product Owner'
+	},
+	'4': {
+		id: 4,
+		name: 'Developer'
+	},
+	'5': {
+		id: 5,
+		name: 'Designer'
+	},
+	'6': {
+		id: 6,
+		name: 'Tester'
+	},
+	'7': {
+		id: 7,
+		name: 'Stakeholder'
+	},
+	'8': {
+		id: 8,
+		name: 'Other'
+	}
+};
+
+export const APPLICATION_STATUS = {
+	'1': {
+		id: 1,
+		status: 'Submitted'
+	},
+	'2': {
+		id: 2,
+		status: 'Under Review'
+	},
+	'3': {
+		id: 3,
+		status: 'Interviewing'
+	},
+	'4': {
+		id: 4,
+		status: 'Offered'
+	},
+	'5': {
+		id: 5,
+		status: 'Waitlisted'
+	},
+	'6': {
+		id: 6,
+		status: 'Declined'
+	},
+	'7': {
+		id: 7,
+		status: 'Accepted'
+	},
+	'8': {
+		id: 8,
+		status: 'Rejected'
+	},
+	'9': {
+		id: 9,
+		status: 'Withdrawn'
+	}
+};

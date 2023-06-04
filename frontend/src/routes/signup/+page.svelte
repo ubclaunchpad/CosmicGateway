@@ -6,7 +6,7 @@
 	import { STANDINGS_V2, PROGRAMS_V2, FACULTIES_V2 } from '../../seed/util';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
-	import { DiscordIcon, GithubIcon, GoogleIcon } from '$lib/util/icons';
+	import { DiscordIcon, GithubIcon, GoogleIcon } from '$lib/static/icons';
 	import { goto } from '$app/navigation';
 	let googleAuthUser: GoogleAuthUser | undefined;
 

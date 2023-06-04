@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { PUBLIC_API_URI } from '$env/static/public';
+	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import ProjectSidePanel from '$lib/components/layouts/Projects/ProjectSidePanel.svelte';
 	import { onMount } from 'svelte';
 	import type { ProjectInfo } from '../../seed/projects';
-	import ProjectCard from '$lib/components/layouts/Projects/ProjectCard.svelte';
+	import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
 	import {
 		filterIcon,
 		orderIcon,
@@ -16,23 +15,24 @@
 		arrowRightIcon,
 		giftIcon,
 		heartHandIcon
-	} from '$lib/util/icons';
+	} from '$lib/static/icons';
+	import Loader from '$lib/components/blocks/Loader.svelte';
 	let projects: ProjectInfo[] = [];
 	let featuredProjects: ProjectInfo[] = [];
 	const fetchProjects = async () => {
-		const res = await fetch(`${PUBLIC_API_URI}/projects`);
+		const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects`);
 		const data = (await res.json()) as ProjectInfo[];
 		projects = data;
 	};
 
 	const fetchFeaturedProjects = async () => {
-		const res = await fetch(`${PUBLIC_API_URI}/projects?limit=3&offset=0`);
+		const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects?limit=3&offset=0`);
 		const data = (await res.json()) as ProjectInfo[];
 		featuredProjects = data;
 	};
 	onMount(async () => {
-		await fetchProjects();
 		await fetchFeaturedProjects();
+		await fetchProjects();
 	});
 </script>
 
@@ -111,9 +111,15 @@
 		</div>
 
 		<div class="projects">
-			{#each featuredProjects as project}
-				<ProjectCard {project} />
-			{/each}
+			{#if featuredProjects.length === 0}
+				<Loader height={'15rem'} />
+				<Loader height={'15rem'} />
+				<Loader height={'15rem'} />
+			{:else}
+				{#each featuredProjects as project}
+					<ProjectCard {project} />
+				{/each}
+			{/if}
 		</div>
 
 		<div class="header-section">
@@ -142,18 +148,20 @@
 			</div>
 		</div>
 
-		<!-- <p>
-				Sign in to view more projects. You can also submit your own project idea or join an existing
-				project. If you are a project lead, you can also manage your project here.
-			</p> -->
-
 		<div class="projects">
-			{#each projects as project}
-				<ProjectCard {project} />
-			{/each}
+			{#if projects.length === 0}
+				<Loader height={'15rem'} />
+				<Loader height={'15rem'} />
+				<Loader height={'15rem'} />
+				<Loader height={'15rem'} />
+				<Loader height={'15rem'} />
+			{:else}
+				{#each projects as project}
+					<ProjectCard {project} />
+				{/each}
+			{/if}
 		</div>
 	</section>
-	<ProjectSidePanel slot="side" />
 </MainPage>
 
 <style lang="scss">
@@ -254,7 +262,7 @@
 	}
 
 	.projects {
-		padding: 0rem;
+		padding: 1rem 0;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 		grid-auto-rows: 1fr;

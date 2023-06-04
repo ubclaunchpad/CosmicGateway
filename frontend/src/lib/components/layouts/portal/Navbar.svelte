@@ -1,5 +1,5 @@
 <script>
-	import logo from '$lib/assets/rocket.png';
+	import logo from '$lib/static/assets/rocket.png';
 	import {
 		BookClosedIcon,
 		BoxIcon,
@@ -14,7 +14,7 @@
 		LinkedinIcon,
 		MediumIcon,
 		UsersIcon
-	} from '$lib/util/icons';
+	} from '$lib/static/icons';
 	import {
 		DISCORD_LINK,
 		FACEBOOK_LINK,
@@ -87,7 +87,7 @@
 			</li>
 
 			<li>
-				<a href="/">
+				<a href="/portal/recruitment">
 					<img src={InboxIcon} alt="Recruitment link" />
 					Recruitment
 				</a>

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
-	import { DiscordIcon, GithubIcon, GoogleIcon } from '$lib/util/icons';
+	import { DiscordIcon, GithubIcon, GoogleIcon } from '$lib/static/icons';
 	import { fetchUser, userStore } from '../../stores/auth';
 	import { goto } from '$app/navigation';
 

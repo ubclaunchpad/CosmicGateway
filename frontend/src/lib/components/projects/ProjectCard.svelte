@@ -1,7 +1,14 @@
 <script lang="ts">
-	import { FigmaIcon, GithubIcon, YoutubeIcon, asterickIcon, linkIcon } from '$lib/util/icons';
-	import type { ProjectInfo } from '../../../../seed/projects';
-	import MemberIndicator from './MemberIndicator.svelte';
+	import {
+		FigmaIcon,
+		GithubIcon,
+		YoutubeIcon,
+		arrowRightIcon,
+		asterickIcon,
+		linkIcon
+	} from '$lib/static/icons';
+	import type { ProjectInfo } from '../../../seed/projects';
+	// import MemberIndicator from './MemberIndicator.svelte';
 	import ProjectStatusIndicator from './ProjectStatusIndicator.svelte';
 	export let project: ProjectInfo;
 
@@ -32,8 +39,13 @@
 			</a>
 		{/each}
 	</div>
-	<MemberIndicator count={10} />
+	<!-- <MemberIndicator count={10} /> -->
 	<!-- <h3>{project.statusId}</h3> -->
+	<div class="refs">
+		<a href={`/projects/directory/${project.id}-${project.name.replace(' ', '-').toLowerCase()}`}>
+			<p>Learn more</p>
+		</a>
+	</div>
 </div>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getStatusColor } from '$lib/util/statusColours';
-	import { PROJECT_STATUS } from '../../../../seed/util';
+	import { PROJECT_STATUS } from '../../../seed/util';
 	export let statusId: number;
 	let projectStatus = {} as (typeof PROJECT_STATUS)[keyof typeof PROJECT_STATUS];
 	if (Object.keys(PROJECT_STATUS).includes(statusId.toString())) {

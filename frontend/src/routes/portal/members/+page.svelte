@@ -6,7 +6,7 @@
 	import MemberSearch from './MemberSearch.svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import { FACULTIES_V2, STANDINGS_V2 } from '../../../seed/util';
-	import { orderIcon, filterIcon, dotsVerticalIcon, expandIcon } from '$lib/util/icons';
+	import { orderIcon, filterIcon, dotsVerticalIcon, expandIcon } from '$lib/static/icons';
 	let users = [];
 	onMount(() => {
 		fetchUsers();

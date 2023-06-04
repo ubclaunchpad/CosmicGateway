@@ -1,6 +1,6 @@
 <script>
-	import { AlignLeftIcon, AlignRightIcon } from '$lib/util/icons';
-	let isOpen = true;
+	import { AlignLeftIcon, AlignRightIcon } from '$lib/static/icons';
+	let isOpen = false;
 </script>
 
 <div class="hero">
