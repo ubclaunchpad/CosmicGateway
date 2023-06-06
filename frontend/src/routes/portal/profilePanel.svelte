@@ -77,10 +77,6 @@
 				</section>
 			{/each}
 		{/if}
-		<InProgress
-			title="Edit Profile"
-			description="This page is still in development. Check back later!"
-		/>
 	</article>
 </SidePanel>
 

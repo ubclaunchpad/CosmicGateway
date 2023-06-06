@@ -4,7 +4,6 @@
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import MemberSearch from './MemberSearch.svelte';
-	import Info from '$lib/components/blocks/Info.svelte';
 	import { PROJECT_ROLES } from '../../../seed/util';
 	import {
 		orderIcon,
@@ -16,7 +15,6 @@
 		PinIcon,
 		InfoIcon
 	} from '$lib/static/icons';
-	import Loader from '$lib/components/blocks/Loader.svelte';
 	import Banner from '$lib/components/blocks/Banner.svelte';
 
 	let postings = [];
@@ -53,8 +51,7 @@
 
 		<Banner
 			title="How to use this page"
-			,
-			description="This page is used to manage recruitment for projects. You can create new postings, view applications, and accept or reject applicants."
+			description="This page is used to manage recruitment for projects. You can create new postings, view applications, and accept or reject applicants. You can also view the applications for each posting by clicking on the external link icon."
 			image={InfoIcon}
 			links={[
 				{
@@ -62,16 +59,14 @@
 					link: '/portal/recruitment/postings/new'
 				},
 				{
-					text: 'View applications',
+					text: 'View the docs about recruitment',
 					link: '/portal/recruitment/applications'
 				}
 			]}
 		/>
 
 		{#if querying}
-			<div class="table-wrapper">
-				<Loader />
-			</div>
+			<div class="table-wrapper" />
 		{:else}
 			<div class="table-wrapper">
 				<table>
@@ -81,7 +76,6 @@
 							<th>Project</th>
 							<th>Role</th>
 							<th>Submitted</th>
-							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -106,25 +100,6 @@
 										>{posting.applications}</a
 									>
 								</td>
-								<td>
-									<div class="buttons">
-										<a
-											target="_blank"
-											href={`/projects/directory/${posting.projectId}-${posting.projectName
-												.toLowerCase()
-												.replace(' ', '-')}/postings/${posting.id}`}
-										>
-											<button>
-												<img src={FolderIcon} alt="folder icon" />
-												View Posting
-											</button>
-										</a>
-										<button>
-											<img src={doneIcon} alt="check icon" />
-											Mark as done
-										</button>
-									</div>
-								</td>
 							</tr>
 						{/each}
 					</tbody>
@@ -132,8 +107,6 @@
 			</div>
 		{/if}
 	</div>
-
-	<MemberSearch slot="side" />
 </MainPage>
 
 <style lang="scss">

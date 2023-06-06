@@ -1,5 +1,4 @@
 export async function load({ params }) {
-	console.log(params);
 	const post = await import(`../${params.projectName}.md`);
 	const { title, date, id } = post.metadata;
 	const content = post.default;
@@ -11,3 +10,5 @@ export async function load({ params }) {
 		id
 	};
 }
+
+export const prerender = false;

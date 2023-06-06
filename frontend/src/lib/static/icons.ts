@@ -5,7 +5,7 @@ import BoxIcon from '$lib/static/assets/icons/box.svg';
 import CalendarIcon from '$lib/static/assets/icons/calendar.svg';
 import HomeIcon from '$lib/static/assets/icons/home.svg';
 import InboxIcon from '$lib/static/assets/icons/inbox.svg';
-import PinIcon from '$lib/static/assets/icons/profile.svg';
+import PinIcon from '$lib/static/assets/icons/pin.svg';
 import UserIcon from '$lib/static/assets/icons/pin.svg';
 import LinkExternalIcon from '$lib/static/assets/icons/link-external.svg';
 import FolderIcon from '$lib/static/assets/icons/folder.svg';
@@ -55,6 +55,9 @@ import saveIcon from '$lib/static/assets/icons/save.svg';
 import deleteIcon from '$lib/static/assets/icons/delete.svg';
 import archiveIcon from '$lib/static/assets/icons/archive.svg';
 import doneIcon from '$lib/static/assets/icons/done.svg';
+import closeIcon from '$lib/static/assets/icons/close.svg';
+import arrowCircleRightIcon from '$lib/static/assets/icons/arrow-circle-right.svg';
+import draggableIcon from '$lib/static/assets/icons/draggable.svg';
 
 export {
 	UsersIcon,
@@ -113,5 +116,8 @@ export {
 	saveIcon,
 	deleteIcon,
 	archiveIcon,
-	doneIcon
+	doneIcon,
+	closeIcon,
+	arrowCircleRightIcon,
+	draggableIcon
 };

@@ -13,7 +13,8 @@
 		LinkExternalIcon,
 		LinkedinIcon,
 		MediumIcon,
-		UsersIcon
+		UsersIcon,
+		listIcon
 	} from '$lib/static/icons';
 	import {
 		DISCORD_LINK,
@@ -51,10 +52,9 @@
 		<h3>Resources</h3>
 		<ul>
 			<li>
-				<a href="/projects" target="_blank">
+				<a href="/projects">
 					<img src={BoxIcon} alt="Projects link" />
 					<p>Projects</p>
-					<img src={LinkExternalIcon} alt="external link" />
 				</a>
 			</li>
 
@@ -80,8 +80,8 @@
 		<h3>Admin</h3>
 		<ul>
 			<li>
-				<a href="/">
-					<img src={InboxIcon} alt="Applications link" />
+				<a href="/portal/applications">
+					<img src={listIcon} alt="Applications link" />
 					Applications
 				</a>
 			</li>

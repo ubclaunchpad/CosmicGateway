@@ -4,9 +4,13 @@
 	export let description: string;
 	export let image: string;
 	export let links = [];
+	export let type = 0;
 </script>
 
 <div class="wrapper">
+	{#each Array(type) as _}
+		<div />
+	{/each}
 	<div class="welcome">
 		<div class="title">
 			<img src={image} alt="featured icon" />
@@ -29,7 +33,8 @@
 <style lang="scss">
 	.wrapper {
 		width: 100%;
-		padding: 1rem 0;
+		flex: 1;
+		height: 100%;
 	}
 	.welcome {
 		display: flex;
@@ -37,6 +42,7 @@
 		justify-content: flex-start;
 		align-items: flex-start;
 		width: 100%;
+		height: 100%;
 		.refs {
 			display: flex;
 			flex: 1;

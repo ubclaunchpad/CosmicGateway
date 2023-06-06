@@ -14,9 +14,9 @@
 		menuIcon,
 		arrowRightIcon,
 		giftIcon,
-		heartHandIcon
+		heartHandIcon,
+		PinIcon
 	} from '$lib/static/icons';
-	import Loader from '$lib/components/blocks/Loader.svelte';
 	let projects: ProjectInfo[] = [];
 	let featuredProjects: ProjectInfo[] = [];
 	const fetchProjects = async () => {
@@ -95,7 +95,7 @@
 					on Launchpad.
 				</p>
 				<div class="refs">
-					<a href="/portal" target="_blank">
+					<a data-sveltekit-preload-data="tap" href="/portal" target="_blank">
 						<p>Learn more</p>
 						<img src={arrowRightIcon} alt="arrow right" />
 					</a>
@@ -105,17 +105,13 @@
 
 		<div class="header-section">
 			<div class="title">
-				<img src={starIcon} alt="featured icon" />
+				<img src={PinIcon} alt="featured icon" />
 				<h3>Featured</h3>
 			</div>
 		</div>
 
 		<div class="projects">
-			{#if featuredProjects.length === 0}
-				<Loader height={'15rem'} />
-				<Loader height={'15rem'} />
-				<Loader height={'15rem'} />
-			{:else}
+			{#if featuredProjects.length !== 0}
 				{#each featuredProjects as project}
 					<ProjectCard {project} />
 				{/each}
@@ -149,13 +145,7 @@
 		</div>
 
 		<div class="projects">
-			{#if projects.length === 0}
-				<Loader height={'15rem'} />
-				<Loader height={'15rem'} />
-				<Loader height={'15rem'} />
-				<Loader height={'15rem'} />
-				<Loader height={'15rem'} />
-			{:else}
+			{#if projects.length !== 0}
 				{#each projects as project}
 					<ProjectCard {project} />
 				{/each}
@@ -265,6 +255,8 @@
 		padding: 1rem 0;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		border-top: 1px solid var(--color-bg-1);
+		border-bottom: 1px solid var(--color-bg-1);
 		grid-auto-rows: 1fr;
 		width: 100%;
 		gap: 1rem;
@@ -370,9 +362,7 @@
 				text-decoration: none;
 				border-bottom: 1px solid var(--color-text-0);
 				transition: all 0.2s ease-in-out;
-				&:hover {
-					transform: scale(1.05);
-				}
+
 				img {
 					width: 16px;
 				}
