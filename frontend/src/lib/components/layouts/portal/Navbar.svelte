@@ -1,5 +1,5 @@
 <script>
-	import logo from '$lib/assets/rocket.png';
+	import logo from '$lib/static/assets/rocket.png';
 	import {
 		BookClosedIcon,
 		BoxIcon,
@@ -13,8 +13,9 @@
 		LinkExternalIcon,
 		LinkedinIcon,
 		MediumIcon,
-		UsersIcon
-	} from '$lib/util/icons';
+		UsersIcon,
+		listIcon
+	} from '$lib/static/icons';
 	import {
 		DISCORD_LINK,
 		FACEBOOK_LINK,
@@ -51,10 +52,9 @@
 		<h3>Resources</h3>
 		<ul>
 			<li>
-				<a href="/projects" target="_blank">
+				<a href="/projects">
 					<img src={BoxIcon} alt="Projects link" />
 					<p>Projects</p>
-					<img src={LinkExternalIcon} alt="external link" />
 				</a>
 			</li>
 
@@ -80,14 +80,14 @@
 		<h3>Admin</h3>
 		<ul>
 			<li>
-				<a href="/">
-					<img src={InboxIcon} alt="Applications link" />
+				<a href="/portal/applications">
+					<img src={listIcon} alt="Applications link" />
 					Applications
 				</a>
 			</li>
 
 			<li>
-				<a href="/">
+				<a href="/portal/recruitment">
 					<img src={InboxIcon} alt="Recruitment link" />
 					Recruitment
 				</a>

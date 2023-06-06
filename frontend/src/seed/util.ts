@@ -260,3 +260,144 @@ export const SOCIALS = {
 		domain: null
 	}
 };
+
+export const PROJECT_STATUS = {
+	'1': {
+		id: 1,
+		status: 'Planning'
+	},
+	'2': {
+		id: 2,
+		status: 'Not Started'
+	},
+	'3': {
+		id: 3,
+		status: 'Awaiting Approval'
+	},
+	'4': {
+		id: 4,
+		status: 'On Hold'
+	},
+	'5': {
+		id: 5,
+		status: 'In Development'
+	},
+	'6': {
+		id: 6,
+		status: 'In Review'
+	},
+	'7': {
+		id: 7,
+		status: 'Awaiting Feedback'
+	},
+	'8': {
+		id: 8,
+		status: 'Completed'
+	},
+	'9': {
+		id: 9,
+		status: 'Archived'
+	},
+	'10': {
+		id: 10,
+		status: 'Other'
+	}
+};
+
+export const RESOURCE_TYPES = {
+	Link: {
+		type: 'Link'
+	},
+	Figma: {
+		type: 'Figma'
+	},
+	Other: {
+		type: 'Other'
+	},
+	Github: {
+		type: 'Github'
+	},
+	Website: {
+		type: 'Website'
+	},
+	Youtube: {
+		type: 'Youtube'
+	},
+	'Cloud Document': {
+		type: 'Cloud Document'
+	}
+};
+
+export const PROJECT_ROLES = {
+	'1': {
+		id: 1,
+		name: 'Tech Lead'
+	},
+	'2': {
+		id: 2,
+		name: 'Product Manager'
+	},
+	'3': {
+		id: 3,
+		name: 'Product Owner'
+	},
+	'4': {
+		id: 4,
+		name: 'Developer'
+	},
+	'5': {
+		id: 5,
+		name: 'Designer'
+	},
+	'6': {
+		id: 6,
+		name: 'Tester'
+	},
+	'7': {
+		id: 7,
+		name: 'Stakeholder'
+	},
+	'8': {
+		id: 8,
+		name: 'Other'
+	}
+};
+
+export const APPLICATION_STATUS = {
+	'1': {
+		id: 1,
+		status: 'Submitted'
+	},
+	'2': {
+		id: 2,
+		status: 'Under Review'
+	},
+	'3': {
+		id: 3,
+		status: 'Interviewing'
+	},
+	'4': {
+		id: 4,
+		status: 'Offered'
+	},
+	'5': {
+		id: 5,
+		status: 'Waitlisted'
+	},
+	'6': {
+		id: 6,
+		status: 'Declined'
+	},
+	'7': {
+		id: 7,
+		status: 'Accepted'
+	},
+	'8': {
+		id: 8,
+		status: 'Rejected'
+	},
+	'9': {
+		id: 9,
+		status: 'Withdrawn'
+	}
+};

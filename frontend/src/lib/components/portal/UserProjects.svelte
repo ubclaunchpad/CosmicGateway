@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LinkExternalIcon, RocketIcon, RouteIcon } from '$lib/util/icons';
+	import { LinkExternalIcon, RocketIcon, RouteIcon } from '$lib/static/icons';
 	import InProgress from '../blocks/InProgress.svelte';
 </script>
 

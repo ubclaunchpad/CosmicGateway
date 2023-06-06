@@ -1,27 +1,33 @@
-<script>
-	import InProgress from '$lib/components/blocks/InProgress.svelte';
-	// import Apply from '../../../../routes/projects/Apply.svelte';
-	// 	import Status from '../../../../routes/projects/Status.svelte';
-
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
+	import type { ProjectInfo } from '../../../../seed/projects';
+	import Status from '../../projects/Status.svelte';
+	import Apply from '$lib/components/application/Apply.svelte';
+	export let projectId: number;
+	export let apply = false;
+	let project: ProjectInfo;
 	let showStatus = true;
 
-	function panelDispatcher(event) {
-		showStatus = !showStatus;
-	}
+	const fetchProject = async () => {
+		const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects/${projectId}`);
+		const data = (await res.json()) as ProjectInfo;
+		project = data;
+	};
+	onMount(async () => {
+		await fetchProject();
+	});
 </script>
 
 <div id="slide">
 	<div class="content">
-		<InProgress
-			title="Project Application"
-			description="This page is still in development. Check back later!"
-		>
-			<!-- {#if showStatus}
-			<Status on:message={panelDispatcher} />
-		{:else}
-			<Apply on:message={panelDispatcher} />
-		{/if} -->
-		</InProgress>
+		{#if project}
+			{#if !apply}
+				<Status {project} on:message />
+			{:else}
+				<Apply />
+			{/if}
+		{/if}
 	</div>
 </div>
 

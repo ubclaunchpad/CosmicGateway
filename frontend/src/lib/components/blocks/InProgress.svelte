@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { InfoIcon } from '$lib/util/icons';
+	import { InfoIcon } from '$lib/static/icons';
 	export let title: string;
 	export let description: string;
 </script>
