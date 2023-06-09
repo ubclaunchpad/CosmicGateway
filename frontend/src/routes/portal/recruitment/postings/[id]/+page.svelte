@@ -1,13 +1,9 @@
 <script lang="ts">
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import { orderIcon, filterIcon, eyeIcon, eyeOffIcon, InfoIcon } from '$lib/static/icons';
 	import ApplicationCard from '$lib/components/recruitment/ApplicationCard.svelte';
 	import { PUBLIC_POSTING_API_URI, PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
-	import Info from '$lib/components/blocks/Info.svelte';
-	import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
 	import type { ProjectInfo } from '../../../../../seed/projects.js';
-	import Banner from '$lib/components/blocks/Banner.svelte';
 	export let data;
 	let posting: any;
 	let hideEmptyColumns = false;
@@ -50,16 +46,16 @@
 			</h1>
 			<div class="header-buttons">
 				<button>
-					<img src={filterIcon} alt="Filter" />
+					<!-- <img src={filterIcon} alt="Filter" /> -->
 				</button>
 				<button>
-					<img src={orderIcon} alt="Filter" />
+					<!-- <img src={orderIcon} alt="Filter" /> -->
 				</button>
 				<button on:click={toggleEmptyColumns}>
 					{#if hideEmptyColumns}
-						<img src={eyeIcon} alt="more options" />
+						<!-- <img src={eyeIcon} alt="more options" /> -->
 					{:else}
-						<img src={eyeOffIcon} alt="more options" />
+						<!-- <img src={eyeOffIcon} alt="more options" /> -->
 					{/if}
 				</button>
 			</div>

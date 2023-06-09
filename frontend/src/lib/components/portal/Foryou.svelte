@@ -3,7 +3,7 @@
 
 	let mouse = {
 		x: 0,
-		y: 0,
+		y: 0
 	};
 
 	let glowDiv: HTMLDivElement;
@@ -13,9 +13,12 @@
 	function handleMousemove(e) {
 		mouse.x = e.clientX;
 		mouse.y = e.clientY;
-		glowDiv.style.left = `${mouse.x - divWrapper.getBoundingClientRect().left - glowDiv.getBoundingClientRect().width / 2
+		glowDiv.style.left = `${
+			mouse.x - divWrapper.getBoundingClientRect().left - glowDiv.getBoundingClientRect().width / 2
 		}px`;
-		glowDiv.style.top = `${mouse.y - divWrapper.getBoundingClientRect().top -  glowDiv.getBoundingClientRect().height / 2}px`;
+		glowDiv.style.top = `${
+			mouse.y - divWrapper.getBoundingClientRect().top - glowDiv.getBoundingClientRect().height / 2
+		}px`;
 	}
 
 	function handleMouseleave(e) {
@@ -24,28 +27,20 @@
 </script>
 
 <div class="foryou">
-	<section  bind:this={divWrapper} on:mousemove={handleMousemove} on:mouseleave={handleMouseleave}>
-		<h2>
-			Mission Control
-		</h2>
-		<p>
-			Here's a quick overview of your profile.
-		</p>
-		<p>
-			You can edit your profile by clicking on the edit button on the top right.
+	<section bind:this={divWrapper} on:mousemove={handleMousemove} on:mouseleave={handleMouseleave}>
+		<h2>Mission Control</h2>
+		<p>Here's a quick overview of your profile.</p>
+		<p>You can edit your profile by clicking on the edit button on the top right.</p>
 
-		</p>
-
-		<div bind:this={glowDiv} class="glow"></div>
-		<div bind:this={horizontalLine} class="horizontal"></div>
-		<div bind:this={verticalLine} class="vertical"></div>
+		<div bind:this={glowDiv} class="glow" />
+		<div bind:this={horizontalLine} class="horizontal" />
+		<div bind:this={verticalLine} class="vertical" />
 	</section>
-	
+
 	<UserProjects />
 </div>
 
 <style lang="scss">
-
 	section {
 		display: flex;
 		flex-direction: column;
@@ -60,12 +55,11 @@
 		position: relative;
 		overflow: hidden;
 
-
 		.glow {
 			position: absolute;
 			width: 4rem;
-		height: 4rem;
-		left: -100%;
+			height: 4rem;
+			left: -100%;
 			border-radius: 0.5rem;
 			background-color: var(--color-text-1);
 			opacity: 0.4;
@@ -77,10 +71,10 @@
 		.horizontal {
 			position: absolute;
 			width: 100%;
-		height: 0.2rem;
-		left: 0;
-		top: 10px;
-			
+			height: 0.2rem;
+			left: 0;
+			top: 10px;
+
 			background-color: var(--color-border-2);
 			opacity: 0.4;
 			pointer-events: none;
@@ -90,16 +84,15 @@
 		.vertical {
 			position: absolute;
 			width: 0.2rem;
-		height: 100%;
-		top: 0;
-		left: 10px;
-			
+			height: 100%;
+			top: 0;
+			left: 10px;
+
 			background-color: var(--color-border-2);
 			opacity: 0.4;
 			pointer-events: none;
 			z-index: 20;
 		}
-
 	}
 	.foryou {
 		display: flex;

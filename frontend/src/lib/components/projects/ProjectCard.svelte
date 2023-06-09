@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import { FigmaIcon, GithubIcon, YoutubeIcon, asterickIcon, linkIcon } from '$lib/static/icons';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import ProjectStatusIndicator from './ProjectStatusIndicator.svelte';
 	export let project: ProjectInfo;
@@ -49,17 +48,20 @@
 		position: relative;
 		height: 18rem;
 		max-width: 100%;
-		box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
 		transition: all 0.3s ease-in-out;
-		border-radius: 4px;
+		border-radius: 9px;
+		border: 3px solid var(--color-border-2);
 		&:hover {
 			box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+			border-color: var(--color-text-1);
 		}
 		.banner {
 			height: 40%;
 			width: 100%;
+			position: absolute;
 			top: 0;
 			left: 0;
+			z-index: -1;
 			background: linear-gradient(to top right, var(--color-bg-1), var(--color-bg-1));
 		}
 

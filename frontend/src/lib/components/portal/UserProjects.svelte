@@ -25,26 +25,6 @@
 	<div class="topbar header">
 		<h2>Your Projects</h2>
 	</div>
-	<Info>
-		<p>
-			Here you can see all the projects you are currently leading. You can also create new projects
-			and lead them.
-		</p>
-	</Info>
-	<div class="wrapper header">
-		<button disabled>
-			<Icon>
-				<RocketIcon />
-			</Icon>
-			<p>New Project Idea</p>
-		</button>
-		<button disabled>
-			<Icon>
-				<RouteIcon />
-			</Icon>
-			<p>Lead a project</p>
-		</button>
-	</div>
 
 	<div class="projects">
 		{#if userProjects.length === 0}

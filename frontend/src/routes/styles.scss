@@ -18,6 +18,12 @@ a {
 	color: var(--color-text-0);
 }
 
+svg {
+	stroke: var(--color-text-0);
+	fill: none;
+	width: 18px;
+}
+
 select {
 	border: 1px solid var(--color-bg-1);
 	background-color: var(--color-bg-2);

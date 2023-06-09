@@ -6,7 +6,6 @@
 	import MemberSearch from './MemberSearch.svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import { FACULTIES_V2, STANDINGS_V2 } from '../../../seed/util';
-	import { orderIcon, filterIcon, dotsVerticalIcon, expandIcon } from '$lib/static/icons';
 	let users = [];
 	onMount(() => {
 		fetchUsers();
@@ -33,7 +32,7 @@
 			return `<a href="//mailto:${value}">${value}</a>`;
 		}
 		if (key === 'userId') {
-			return ` <button style="background-color:transparent;"><img src='${expandIcon}' alt='expand profile'/></button>`;
+			return ` <button style="background-color:transparent;"><img  alt='expand profile'/></button>`;
 		}
 
 		return value;
@@ -58,13 +57,13 @@
 			<h1>Members</h1>
 			<div class="header-buttons">
 				<button>
-					<img src={filterIcon} alt="Filter" />
+					<!-- <img src={filterIcon} alt="Filter" /> -->
 				</button>
 				<button>
-					<img src={orderIcon} alt="Filter" />
+					<!-- <img src={orderIcon} alt="Filter" /> -->
 				</button>
 				<button>
-					<img src={dotsVerticalIcon} alt="more options" />
+					<!-- <img src={dotsVerticalIcon} alt="more options" /> -->
 				</button>
 			</div>
 		</div>

@@ -4,19 +4,16 @@
 	import { onMount } from 'svelte';
 	import type { ProjectInfo } from '../../seed/projects';
 	import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
+	import Icon from '$lib/components/general/Icon.svelte';
 	import {
-		filterIcon,
-		orderIcon,
-		dotsVerticalIcon,
-		starIcon,
-		gridIcon,
-		listIcon,
-		menuIcon,
-		arrowRightIcon,
-		giftIcon,
-		heartHandIcon,
-		PinIcon
-	} from '$lib/static/icons';
+		ListIcon,
+		GridIcon,
+		OrderIcon,
+		SettingsIcon,
+		PinIcon,
+		VerticalDotsIcon
+	} from '$lib/components/general/icons';
+	import CircledDoodle from '$lib/components/general/icons/doodles/CircledDoodle.svelte';
 	let projects: ProjectInfo[] = [];
 	let featuredProjects: ProjectInfo[] = [];
 	const fetchProjects = async () => {
@@ -45,7 +42,6 @@
 		<div class="welcome-grid">
 			<div class="welcome">
 				<div class="title">
-					<img src={starIcon} alt="featured icon" />
 					<h3>Student Opportunities</h3>
 				</div>
 				<p>
@@ -56,18 +52,15 @@
 				<div class="refs">
 					<a href="/docs" target="_blank">
 						<p>See docs for more info and recruiting</p>
-						<img src={arrowRightIcon} alt="arrow right" />
 					</a>
 					<a href="/signup" target="_blank">
 						<p>Sign up and browse recruiting projects</p>
-						<img src={arrowRightIcon} alt="arrow right" />
 					</a>
 				</div>
 			</div>
 
 			<div class="welcome">
 				<div class="title">
-					<img src={heartHandIcon} alt="New project idea" />
 					<h3>Community and Sponsors</h3>
 				</div>
 				<p>
@@ -79,14 +72,12 @@
 				<div class="refs">
 					<a href="/sponsors" target="_blank">
 						<p>View sponsorship packages</p>
-						<img src={arrowRightIcon} alt="arrow right" />
 					</a>
 				</div>
 			</div>
 
 			<div class="welcome">
 				<div class="title">
-					<img src={giftIcon} alt="New project idea" />
 					<h3>Perks</h3>
 				</div>
 				<p>
@@ -97,16 +88,19 @@
 				<div class="refs">
 					<a data-sveltekit-preload-data="tap" href="/portal" target="_blank">
 						<p>Learn more</p>
-						<img src={arrowRightIcon} alt="arrow right" />
 					</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="header-section">
-			<div class="title">
-				<img src={PinIcon} alt="featured icon" />
-				<h3>Featured</h3>
+			<div class="title circle">
+				<div>
+					<h3>Featured</h3>
+					<Icon>
+						<CircledDoodle />
+					</Icon>
+				</div>
 			</div>
 		</div>
 
@@ -119,27 +113,42 @@
 		</div>
 
 		<div class="header-section">
-			<div class="title">
-				<img src={menuIcon} alt="menu icon" />
-				<h3>Project Directory</h3>
+			<div class="title circle">
+				<div>
+					<h3>Projects</h3>
+					<Icon>
+						<CircledDoodle />
+					</Icon>
+				</div>
 			</div>
 			<div class="header-buttons">
 				<button disabled>
-					<img src={gridIcon} alt="Filter" />
+					<Icon>
+						<GridIcon />
+					</Icon>
+					/>
 				</button>
 				<button disabled>
-					<img src={listIcon} alt="Filter" />
+					<Icon>
+						<ListIcon />
+					</Icon>
 				</button>
 			</div>
 			<div class="header-buttons">
 				<button>
-					<img src={filterIcon} alt="Filter" />
+					<Icon>
+						<SettingsIcon />
+					</Icon>
+				</button>
+				<button
+					><Icon>
+						<OrderIcon />
+					</Icon>
 				</button>
 				<button>
-					<img src={orderIcon} alt="Filter" />
-				</button>
-				<button>
-					<img src={dotsVerticalIcon} alt="more options" />
+					<Icon>
+						<VerticalDotsIcon />
+					</Icon>
 				</button>
 			</div>
 		</div>
@@ -163,6 +172,7 @@
 			font-size: 1rem;
 		}
 	}
+
 	.header-section {
 		display: flex;
 		justify-content: space-between;
@@ -170,6 +180,31 @@
 		align-items: center;
 		width: 100%;
 		column-gap: 2rem;
+
+		.title {
+			padding: 2rem;
+			width: 300px;
+			height: 5rem;
+		}
+
+		.circle {
+			:global(svg) {
+				top: 0;
+				left: 0;
+				position: absolute;
+				width: 180%;
+				transform: translate(-20%, -45%);
+			}
+		}
+
+		.title > div {
+			position: relative;
+			width: fit-content;
+			h3 {
+				width: fit-content;
+				font-size: 1.3rem;
+			}
+		}
 
 		.title {
 			display: flex;
@@ -255,8 +290,7 @@
 		padding: 1rem 0;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-		border-top: 1px solid var(--color-bg-1);
-		border-bottom: 1px solid var(--color-bg-1);
+
 		grid-auto-rows: 1fr;
 		width: 100%;
 		gap: 1rem;
@@ -335,6 +369,7 @@
 		grid-template-columns: 2fr 1fr 1fr;
 		width: 100%;
 		gap: 1rem;
+		padding: 1rem 0;
 	}
 	.welcome {
 		display: flex;

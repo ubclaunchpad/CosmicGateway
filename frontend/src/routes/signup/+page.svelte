@@ -6,7 +6,6 @@
 	import { STANDINGS_V2, PROGRAMS_V2, FACULTIES_V2 } from '../../seed/util';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
-	import { DiscordIcon, GithubIcon, GoogleIcon } from '$lib/static/icons';
 	import { goto } from '$app/navigation';
 	let googleAuthUser: GoogleAuthUser | undefined;
 
@@ -177,16 +176,16 @@
 				<div class="auth-wrapper">
 					<div class="social-auth">
 						<button class="google" id="google">
-							<img src={GoogleIcon} alt="Google" />
+							<!-- <img src={GoogleIcon} alt="Google" /> -->
 							Continue with Google
 							<div id={'signinDiv'} />
 						</button>
 						<button disabled>
-							<img src={GithubIcon} alt="github" />
+							<!-- <img src={GithubIcon} alt="github" /> -->
 							Continue with Github
 						</button>
 						<button disabled>
-							<img src={DiscordIcon} alt="Discord" />
+							<!-- <img src={DiscordIcon} alt="Discord" /> -->
 							Continue with Discord</button
 						>
 					</div>

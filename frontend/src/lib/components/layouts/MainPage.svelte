@@ -56,7 +56,6 @@
 		flex-direction: column;
 		height: 100%;
 		overflow: scroll;
-		padding: 0.4rem 1rem;
 		flex: 1;
 		height: 100%;
 	}

@@ -1,9 +1,8 @@
 /* font face configs */
 .markdown {
-	--side-bar-bg-color: #fff;
 	position: relative;
-	--control-text-color: #777;
 	--font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+
 	font-size: 16px;
 	#write {
 		max-width: 860px;
@@ -11,10 +10,15 @@
 		padding: 20px 30px 100px;
 	}
 
+	::selection {
+		background: var(--color-text-primary);
+		color : var(--color-text-0);
+	}
+
 	#write p {
-		line-height: 1.6rem;
+		line-height: 1.7rem;
 		word-spacing: 0.05rem;
-		color: var(--color-text-1);
+		color: var(--color-text-0);
 	}
 
 	#write ol li {
@@ -42,14 +46,15 @@
 	}
 
 	a {
-		color: var(--color-link-0);
+		color: var(--color-text-primary);
 		font-weight: 600;
 		padding: 0 2px;
 		text-decoration: none;
 	}
 
 	h1 {
-		color: var(--color-bg-primary-dark);
+		color: var(--color-text-primary);
+		padding: 0;
 	}
 
 	h1,
@@ -121,7 +126,7 @@
 		line-height: 1.225;
 		margin: 35px 0 15px;
 		padding-bottom: 0.5em;
-		border-bottom: 1px solid #ddd;
+		border-bottom: 1px solid var(--color-border-1);
 	}
 
 	h3 {
@@ -161,7 +166,7 @@
 		height: 2px;
 		padding: 0;
 		margin: 16px 0;
-		background-color: #e7e7e7;
+		background-color: var(--color-border-1);
 		border: 0 none;
 		overflow: hidden;
 		box-sizing: content-box;
@@ -228,11 +233,14 @@
 		margin-bottom: 0;
 	}
 
-	blockquote {
-		border-left: 4px solid var(--color-link-0);
+	#write blockquote {
+		border-left: 2px solid var(--color-text-primary);
 		padding: 10px 15px;
-		color: #777;
-		background-color: var(--color-accent-primary);
+		background-color: var(--color-bg-0-faded);
+
+		p {
+			color: var(--color-text-1);
+		}
 	}
 
 	table {
@@ -241,19 +249,19 @@
 	}
 
 	table tr {
-		border-top: 1px solid #dfe2e5;
+		border-top: 1px solid var(--color-border-1);
 		margin: 0;
 		padding: 0;
 	}
 
 	table tr:nth-child(2n),
 	thead {
-		background-color: #fafafa;
+		background-color: var(--color-bg-primary);
 	}
 
 	table tr th {
 		font-weight: bold;
-		border: 1px solid #dfe2e5;
+		border: 1px solid var(--color-border-1);
 		border-bottom: 0;
 		text-align: left;
 		margin: 0;
@@ -261,7 +269,7 @@
 	}
 
 	table tr td {
-		border: 1px solid #dfe2e5;
+		border: 1px solid var(--color-border-1);
 		text-align: left;
 		margin: 0;
 		padding: 6px 13px;
@@ -286,7 +294,7 @@
 	}
 
 	#write table thead th {
-		background-color: #f2f2f2;
+		background-color: var(--color-bg-0);
 	}
 
 	#write .CodeMirror-gutters {
@@ -310,14 +318,40 @@
 		padding-left: 12px;
 	}
 
-	#write code,
+	#write pre code {
+		padding: 8px 10px;
+		border-radius: 2px;
+		font-family: var(--font-monospace);
+		font-size: 0.92rem;
+		color: var(--color-text-secondary);
+		background-color: var(--color-bg-0);
+		width: 100px;
+		overflow: hidden;
+		display: block;
+		width: 100%;
+	}
+
+	#write pre {
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+
+	#write code {
+		padding: 2px 4px;
+		border-radius: 2px;
+		font-family: var(--font-monospace);
+		font-size: 0.92rem;
+		color: var(--color-text-secondary);
+		background-color: var(--color-bg-0);
+	}
+
 	tt {
 		padding: 2px 4px;
 		border-radius: 2px;
 		font-family: var(--font-monospace);
 		font-size: 0.92rem;
-		color: var(--color-accent-0);
-		background-color: #f8f8f8;
+		color: var(--color-text-secondary);
+		background-color: var(--color-bg-0);
 	}
 
 	tt {
@@ -414,70 +448,7 @@
 		top: 0.285714286rem;
 	}
 
-	.md-image > .md-meta {
-		border-radius: 3px;
-		font-family: var(--font-monospace);
-		padding: 2px 0 0 4px;
-		font-size: 0.9em;
-		color: inherit;
-	}
-
-	.md-tag {
-		color: inherit;
-	}
-
-	.md-toc {
-		margin-top: 20px;
-		padding-bottom: 20px;
-	}
-
-	.sidebar-tabs {
-		border-bottom: none;
-	}
-
-	#typora-quick-open {
-		border: 1px solid #ddd;
-		background-color: #f8f8f8;
-	}
-
-	#typora-quick-open-item {
-		background-color: #fafafa;
-		border-color: #fefefe #e5e5e5 #e5e5e5 #eee;
-		border-style: solid;
-		border-width: 1px;
-	}
-
-	#md-notification:before {
-		top: 10px;
-	}
-
-	/** focus mode */
-
-	.on-focus-mode blockquote {
-		border-left-color: rgba(85, 85, 85, 0.12);
-	}
-
-	header,
-	.context-menu,
-	.megamenu-content,
-	footer {
-		font-family: var(--font-sans-serif);
-	}
-
-	.file-node-content:hover .file-node-icon,
-	.file-node-content:hover .file-node-open-state {
-		visibility: visible;
-	}
-
-	.mac-seamless-mode #typora-sidebar {
-		background-color: var(--side-bar-bg-color);
-	}
-
 	.md-lang {
 		color: #b4654d;
-	}
-
-	.html-for-mac .context-menu {
-		--item-hover-bg-color: #e6f0fe;
 	}
 }

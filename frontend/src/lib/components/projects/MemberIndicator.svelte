@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { faceContentIcon, faceSmileIcon, faceWinkIcon } from '$lib/static/icons';
+	// import { faceContentIcon, faceSmileIcon, faceWinkIcon } from '$lib/static/icons';
 	export let count: number;
-	const MemberIcons = {
-		0: faceSmileIcon,
-		1: faceWinkIcon,
-		2: faceContentIcon
-	};
+	// const MemberIcons = {
+	// 	0: faceSmileIcon,
+	// 	1: faceWinkIcon,
+	// 	2: faceContentIcon
+	// };
 	count = 5;
 </script>
 
 <div class="members">
 	{#each { length: Math.min(count, 3) } as _, i}
 		<div class="member">
-			<img src={MemberIcons[i]} alt="user icon" />
+			<!-- <img src={MemberIcons[i]} alt="user icon" /> -->
 		</div>
 	{/each}
 	{#if count && count > 3}

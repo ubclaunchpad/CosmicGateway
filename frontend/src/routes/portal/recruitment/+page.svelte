@@ -9,7 +9,7 @@
 	import FilterIcon from '$lib/components/general/icons/FilterIcon.svelte';
 	import OrderIcon from '$lib/components/general/icons/OrderIcon.svelte';
 	import { VerticalDotsIcon } from '$lib/components/general/icons';
-	import InfoIcon from '$lib/components/general/icons/InfoIcon.svelte';
+	import BoxIcon from '$lib/components/general/icons/BoxIcon.svelte';
 
 	let postings = [];
 	const fetchPostings = async () => {
@@ -71,7 +71,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Review</th>
+							<th />
 							<th>Project</th>
 							<th>Role</th>
 							<th>Submitted</th>
@@ -82,7 +82,9 @@
 							<tr>
 								<td class="small">
 									<a target="_blank" href={`/portal/recruitment/postings/${posting.id}`}>
-										<img src={LinkExternalIcon} alt="application external link" /></a
+										<Icon>
+											<BoxIcon />
+										</Icon></a
 									>
 								</td>
 								<td>
@@ -140,9 +142,10 @@
 		display: flex;
 		justify-content: flex-start;
 		width: 100%;
-		padding: 0rem 0rem;
+		padding: 1rem 0rem;
 		overflow-x: scroll;
 		border-radius: 1%;
+
 		height: 100%;
 		border: 1px solid var(--color-bg-1);
 
@@ -199,10 +202,12 @@
 
 				.small {
 					width: fit-content;
-				}
-
-				img {
-					width: 18px;
+					width: 2rem;
+					text-align: center;
+					:global(svg) {
+						stroke: var(--color-text-1);
+						fill: none;
+					}
 				}
 
 				button {
