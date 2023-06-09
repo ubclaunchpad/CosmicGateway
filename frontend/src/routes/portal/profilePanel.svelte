@@ -1,13 +1,12 @@
-<script>
-	import InProgress from '$lib/components/blocks/InProgress.svelte';
+<script lang="ts">
 	import SidePanel from '$lib/components/layouts/RightPanel.svelte';
 	import { FACULTIES_V2, PROGRAMS_V2, SOCIALS, STANDINGS_V2 } from '../../seed/util';
-	import { signout, userStore } from '../../stores/auth';
-	let user = $userStore;
+	import { signout, userStore, type UserI } from '../../stores/auth';
+	let user: UserI = $userStore!;
 </script>
 
 <SidePanel>
-	<article slot="article">
+	<article slot="article" class="article">
 		<div class="header">
 			<h2>Profile</h2>
 			<button on:click={signout}>Sign out</button>
@@ -78,32 +77,51 @@
 			{/each}
 		{/if}
 	</article>
+	<footer slot="footer">
+		<p>Visit your settings page to update your profile.</p>
+	</footer>
 </SidePanel>
 
 <style lang="scss">
-	article section {
-		padding: 1rem 0;
-		border-bottom: 1px solid var(--color-bg-1);
-	}
-	article {
+	.article {
+		section {
+			padding: 1rem 0;
+			border-bottom: 1px solid var(--color-border-0);
+			display: flex;
+			flex-direction: column;
+			row-gap: 10px;
+			width: 100%;
+
+			:first-child {
+				font-weight: 500;
+				color: var(--color-text-2);
+			}
+
+			* {
+				color: var(--color-text-1);
+			}
+		}
 		.header {
 			padding: 0rem 0 1rem;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-between;
-			border-bottom: 1px solid var(--color-bg-1);
 
 			button {
 				color: var(--color-text-1);
 				cursor: pointer;
-				font-size: 1rem;
-				font-weight: 500;
+				font-size: 0.9rem;
+				font-weight: 400;
 				padding: 0.5rem 1rem;
+				background: var(--color-bg-0);
+				border: 1px solid var(--color-border-0);
+
 				border-radius: 0.5rem;
 				transition: all 0.2s ease-in-out;
 				&:hover {
-					background: var(--color-bg-1);
+					background: var(--color-bg-2);
+					border: 1px solid var(--color-border-2);
 				}
 			}
 		}
@@ -115,5 +133,12 @@
 		align-items: center;
 		justify-content: center;
 		column-gap: 1rem;
+		border-top: 1px solid var(--color-border-0);
+		padding: 0.4rem 0;
+		width: 100%;
+		* {
+			color: var(--color-text-2);
+			font-size: 0.9rem;
+		}
 	}
 </style>

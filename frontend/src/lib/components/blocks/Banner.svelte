@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { arrowRightIcon } from '$lib/static/icons';
+	import Icon from '../general/Icon.svelte';
+	import ArrowRightIcon from '../general/icons/ArrowRightIcon.svelte';
+
 	export let title: string;
 	export let description: string;
-	export let image: string;
+	// export let image: string;
 	export let links = [];
 	export let type = 0;
 </script>
@@ -13,7 +15,7 @@
 	{/each}
 	<div class="welcome">
 		<div class="title">
-			<img src={image} alt="featured icon" />
+			<!-- <img src={image} alt="featured icon" /> -->
 			<h3>{title}</h3>
 		</div>
 		<p>
@@ -23,7 +25,9 @@
 			{#each links as link}
 				<a href={link.link} target="_blank">
 					<p>{link.text}</p>
-					<img src={arrowRightIcon} alt="arrow right" />
+					<Icon>
+						<ArrowRightIcon />
+					</Icon>
 				</a>
 			{/each}
 		</div>

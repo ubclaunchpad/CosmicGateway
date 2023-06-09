@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { chevronLeftIcon, chevronRightIcon } from '$lib/static/icons';
 	import { FACULTIES_V2, STANDINGS_V2, PROGRAMS_V2 } from '../../../seed/util';
+	import Icon from '../general/Icon.svelte';
+	import ChevronLeftIcon from '../general/icons/ChevronLeftIcon.svelte';
+	import ChevronRightIcon from '../general/icons/ChevronRightIcon.svelte';
 	export let projectId: number = 1;
 	export let postId: number = 1;
 
@@ -36,12 +38,16 @@
 			<h3>{sectionName()}</h3>
 			<div class="step-nav">
 				<button disabled={step == 1} on:click={() => (step = step - 1)}>
-					<img src={chevronLeftIcon} />
+					<Icon>
+						<ChevronLeftIcon />
+					</Icon>
 				</button>
 
 				{step}
 				<button disabled={step == stages} on:click={() => (step = step + 1)}>
-					<img src={chevronRightIcon} />
+					<Icon>
+						<ChevronRightIcon />
+					</Icon>
 				</button>
 			</div>
 		</div>

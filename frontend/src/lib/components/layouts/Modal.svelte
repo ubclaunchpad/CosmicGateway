@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { closeIcon } from '$lib/static/icons';
 	import { fade, fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
+	import Icon from '../general/Icon.svelte';
+	import CloseIcon from '../general/icons/CloseIcon.svelte';
 
 	export let isModalOpen: boolean;
 	export let title: string;
@@ -18,7 +19,11 @@
 	<div class="modal-wrapper" out:fade={{ duration: 400 }}>
 		<div class="modal" in:fly={{ y: 200, duration: 400 }} out:fly={{ y: '100%', duration: 400 }}>
 			<div class="topbar">
-				<button on:click={sayHello}><img src={closeIcon} /></button>
+				<button on:click={sayHello}
+					><Icon>
+						<CloseIcon />
+					</Icon></button
+				>
 				<h3>{title}</h3>
 				<div />
 			</div>

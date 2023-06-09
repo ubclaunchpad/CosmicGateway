@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { PUBLIC_POSTING_API_URI, PUBLIC_PROJECT_API_URI } from '$env/static/public';
-	import { expandIcon } from '$lib/static/icons';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import {
 		APPLICATION_STATUS,
@@ -10,6 +9,8 @@
 		STANDINGS_V2
 	} from '../../../seed/util';
 	import Info from '../blocks/Info.svelte';
+	import Icon from '../general/Icon.svelte';
+	import ExpandIcon from '../general/icons/ExpandIcon.svelte';
 	import Modal from '../layouts/Modal.svelte';
 	import ProjectCard from '../projects/ProjectCard.svelte';
 	let project: ProjectInfo;
@@ -96,9 +97,11 @@
 										<td>{mapKey(key)}</td>
 										<td>
 											{#if key === 'userId'}
-												<button style="background-color:transparent;"
-													><img src={expandIcon} alt="expand profile" /></button
-												>
+												<button style="background-color:transparent;">
+													<Icon>
+														<ExpandIcon />
+													</Icon>
+												</button>
 											{:else if key === 'resumeLink'}
 												<a href={'/' + value.toString()} target="_blank">{value}</a>
 											{:else if key === 'email'}

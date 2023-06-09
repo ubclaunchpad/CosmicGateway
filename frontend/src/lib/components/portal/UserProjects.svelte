@@ -1,44 +1,60 @@
 <script lang="ts">
-	import { LinkExternalIcon, RocketIcon, RouteIcon } from '$lib/static/icons';
-	import InProgress from '../blocks/InProgress.svelte';
+	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
+	import type { ProjectInfo } from '../../../seed/projects';
+	import { userStore } from '../../../stores/auth';
+	import Info from '../blocks/Info.svelte';
+	import Loader from '../blocks/Loader.svelte';
+	import Icon from '../general/Icon.svelte';
+	import { RocketIcon, RouteIcon } from '../general/icons';
+	import ProjectCard from '../projects/ProjectCard.svelte';
+	let userProjects: ProjectInfo[] = [];
+
+	const fetchUserProjects = async () => {
+		const userId = $userStore?.userId;
+
+		const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects?userIds=${userId}`);
+		userProjects = (await res.json()) as ProjectInfo[];
+	};
+
+	$: if ($userStore && $userStore.userId) {
+		fetchUserProjects();
+	}
 </script>
 
 <section>
 	<div class="topbar header">
 		<h2>Your Projects</h2>
 	</div>
+	<Info>
+		<p>
+			Here you can see all the projects you are currently leading. You can also create new projects
+			and lead them.
+		</p>
+	</Info>
 	<div class="wrapper header">
 		<button disabled>
-			<img src={RocketIcon} alt="New project idea" />
+			<Icon>
+				<RocketIcon />
+			</Icon>
 			<p>New Project Idea</p>
 		</button>
 		<button disabled>
-			<img src={RouteIcon} alt="Lead project" />
+			<Icon>
+				<RouteIcon />
+			</Icon>
 			<p>Lead a project</p>
 		</button>
 	</div>
 
-	<InProgress
-		title="Projects Dashboard"
-		description="This page is still in development. Check back later!"
-	>
-		<div class="projects">
-			<div class="project">
-				<div class="topbar">
-					<h3>Project X</h3>
-					<div class="wrapper">
-						<a href="/">
-							<img src={LinkExternalIcon} alt="External Link" />
-						</a>
-					</div>
-				</div>
-				<section>
-					<h3>Members</h3>
-					<div class="members" />
-				</section>
-			</div>
-		</div>
-	</InProgress>
+	<div class="projects">
+		{#if userProjects.length === 0}
+			<Loader width={'100%'} height={'100%'} />
+		{:else}
+			{#each userProjects as project}
+				<ProjectCard {project} />
+			{/each}
+		{/if}
+	</div>
 </section>
 
 <style lang="scss">
@@ -77,9 +93,10 @@
 	}
 
 	.projects {
-		display: flex;
-		flex-direction: column;
+		display: grid;
 		width: 100%;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
 	}
 	.project {
 		display: flex;

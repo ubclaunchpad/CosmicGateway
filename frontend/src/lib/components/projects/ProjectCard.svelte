@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { FigmaIcon, GithubIcon, YoutubeIcon, asterickIcon, linkIcon } from '$lib/static/icons';
+	// import { FigmaIcon, GithubIcon, YoutubeIcon, asterickIcon, linkIcon } from '$lib/static/icons';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import ProjectStatusIndicator from './ProjectStatusIndicator.svelte';
 	export let project: ProjectInfo;
 
-	const resourceIconMapper = {
-		Github: GithubIcon,
-		Figma: FigmaIcon,
-		Link: linkIcon,
-		Other: asterickIcon,
-		Website: linkIcon,
-		Youtube: YoutubeIcon
-	};
+	// const resourceIconMapper = {
+	// 	Github: GithubIcon,
+	// 	Figma: FigmaIcon,
+	// 	Link: linkIcon,
+	// 	Other: asterickIcon,
+	// 	Website: linkIcon,
+	// 	Youtube: YoutubeIcon
+	// };
 </script>
 
 <div class="project">
@@ -28,7 +28,7 @@
 		<div class="resources">
 			{#each project.resources as resource}
 				<a href={resource.link} target="_blank">
-					<img src={resourceIconMapper[resource.typeId]} alt={resource.name} />
+					<!-- <img src={resourceIconMapper[resource.typeId]} alt={resource.name} /> -->
 					<p>{resource.name}</p>
 				</a>
 			{/each}

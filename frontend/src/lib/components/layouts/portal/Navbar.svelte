@@ -1,21 +1,21 @@
 <script>
-	import logo from '$lib/static/assets/rocket.png';
+	import Icon from '$lib/components/general/Icon.svelte';
 	import {
-		BookClosedIcon,
 		BoxIcon,
-		DiscordIcon,
-		FacebookIcon,
-		FolderIcon,
-		GithubIcon,
 		HomeIcon,
-		InboxIcon,
-		InstagramIcon,
-		LinkExternalIcon,
-		LinkedinIcon,
-		MediumIcon,
 		UsersIcon,
-		listIcon
-	} from '$lib/static/icons';
+		FolderIcon,
+		BookClosedIcon,
+		ListIcon,
+		DiscordIcon,
+		InstagramIcon,
+		MediumIcon,
+		GithubIcon,
+		LinkedInIcon,
+		SettingsIcon,
+		FacebookIcon
+	} from '$lib/components/general/icons';
+
 	import {
 		DISCORD_LINK,
 		FACEBOOK_LINK,
@@ -28,20 +28,24 @@
 
 <div class="side-nav">
 	<div class="top">
-		<img src={logo} alt="logo" width="36px" />
+		<!-- <img src={logo} alt="logo" width="36px" /> -->
 	</div>
 	<nav>
 		<h3>General</h3>
 		<ul>
 			<li>
 				<a href="/portal">
-					<img src={HomeIcon} alt="portal page icon" />
+					<Icon>
+						<HomeIcon />
+					</Icon>
 					Portal
 				</a>
 			</li>
 			<li>
 				<a href="/portal/members">
-					<img src={UsersIcon} alt="members page icon" />
+					<Icon>
+						<UsersIcon />
+					</Icon>
 					Members
 				</a>
 			</li>
@@ -53,24 +57,31 @@
 		<ul>
 			<li>
 				<a href="/projects">
-					<img src={BoxIcon} alt="Projects link" />
+					<Icon>
+						<BoxIcon />
+					</Icon>
+
 					<p>Projects</p>
 				</a>
 			</li>
 
 			<li>
 				<a href="/docs" target="_blank">
-					<img src={BookClosedIcon} alt="Docs link" />
+					<Icon>
+						<BookClosedIcon />
+					</Icon>
+					<!-- <img src={BookClosedIcon} alt="Docs link" /> -->
 					<p>Docs</p>
-					<img src={LinkExternalIcon} alt="external link" />
 				</a>
 			</li>
 
 			<li>
 				<a href="/docs" target="_blank">
-					<img src={FolderIcon} alt="Google drive link" />
+					<Icon>
+						<FolderIcon />
+					</Icon>
 					<p>Google Drive</p>
-					<img src={LinkExternalIcon} alt="external link" />
+					<!-- <img src={LinkExternalIcon} alt="external link" /> -->
 				</a>
 			</li>
 		</ul>
@@ -81,15 +92,27 @@
 		<ul>
 			<li>
 				<a href="/portal/applications">
-					<img src={listIcon} alt="Applications link" />
+					<Icon>
+						<ListIcon />
+					</Icon>
 					Applications
 				</a>
 			</li>
 
 			<li>
 				<a href="/portal/recruitment">
-					<img src={InboxIcon} alt="Recruitment link" />
+					<Icon>
+						<ListIcon />
+					</Icon>
 					Recruitment
+				</a>
+			</li>
+			<li>
+				<a href="/portal/recruitment">
+					<Icon>
+						<SettingsIcon />
+					</Icon>
+					Account
 				</a>
 			</li>
 		</ul>
@@ -99,32 +122,48 @@
 		<ul class="links">
 			<li>
 				<a href={DISCORD_LINK} target="_blank" referrerpolicy="no-referrer">
-					<img src={DiscordIcon} alt="Discord link" />
+					<Icon>
+						<DiscordIcon />
+					</Icon>
 				</a>
 			</li>
 			<li>
 				<a href={FACEBOOK_LINK} target="_blank" referrerpolicy="no-referrer">
-					<img src={FacebookIcon} alt="Facebook link" />
+					<Icon>
+						<FacebookIcon />
+					</Icon>
+					<!-- <img src={FacebookIcon} alt="Facebook link" /> -->
 				</a>
 			</li>
 			<li>
 				<a href={GITHUB_LINK} target="_blank" referrerpolicy="no-referrer">
-					<img src={GithubIcon} alt="Github link" />
+					<Icon>
+						<GithubIcon />
+					</Icon>
+					<!-- <img src={GithubIcon} alt="Github link" /> -->
 				</a>
 			</li>
 			<li>
 				<a href={INSTAGRAM_LINK} target="_blank" referrerpolicy="no-referrer">
-					<img src={InstagramIcon} alt="Instagram link" />
+					<Icon>
+						<InstagramIcon />
+					</Icon>
+					<!-- <img src={InstagramIcon} alt="Instagram link" /> -->
 				</a>
 			</li>
 			<li>
 				<a href={LINKEDIN_LINK} target="_blank" referrerpolicy="no-referrer">
-					<img src={LinkedinIcon} alt="Linkedin link" />
+					<Icon>
+						<LinkedInIcon />
+					</Icon>
+					<!-- <img src={LinkedinIcon} alt="Linkedin link" /> -->
 				</a>
 			</li>
 			<li>
 				<a href={MEDIUM_LINK} target="_blank" referrerpolicy="no-referrer">
-					<img src={MediumIcon} alt="Medium Link" />
+					<Icon>
+						<MediumIcon />
+					</Icon>
 				</a>
 			</li>
 		</ul>
@@ -141,6 +180,8 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
+		color: var(--color-text-1);
+
 		margin: 0;
 		.top {
 			padding: 0px;
@@ -169,14 +210,15 @@
 				column-gap: 0.4rem;
 				font-size: 0.7rem;
 				background-color: var(--color-bg-1);
+				color: var(--color-text-2);
+				stroke: var(--color-text-1);
+				fill: var(--color-text-1);
+
+				stroke-width: 0.5px;
 				font-weight: 500;
 				border-radius: 4px;
 				cursor: pointer;
 				padding: 1px;
-				img {
-					width: 24px;
-					cursor: pointer;
-				}
 			}
 		}
 	}
@@ -187,7 +229,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		// border-bottom: 1px solid var(--color-bg-1);
+		border-right: 1px solid var(--color-bg-1);
 
 		h3 {
 			padding: 0.5rem 0rem;
@@ -207,32 +249,36 @@
 			transition: all 0.3s ease-in-out;
 
 			li {
-				padding: 1rem 0.6rem;
+				padding: 0.7rem 0.6rem;
 				width: 100%;
 				border-radius: 10px;
-
 				display: flex;
+				transition: all 0.2s ease-in-out;
+				stroke: var(--color-text-0);
+				color: var(--color-text);
+				stroke-width: 2px;
+
+				:global(svg) {
+					width: 18px;
+					height: 18px;
+				}
 				a {
 					text-decoration: none;
 					display: flex;
 					justify-content: flex-start;
 					align-items: center;
 					column-gap: 0.8rem;
-					font-size: 1.1rem;
+					font-size: 1rem;
 					width: 100%;
 					font-weight: 500;
+					color: var(--color-text-1);
 
 					p {
 						flex: 1;
 					}
 				}
-				img {
-					width: 18px;
-				}
-
 				&:hover {
-					// transform: scale(1.05);
-					background-color: var(--color-bg-1);
+					background-color: var(--color-bg-2);
 				}
 			}
 		}

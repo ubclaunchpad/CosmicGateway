@@ -19,7 +19,7 @@ export const signout = () => {
 	goto('/signin');
 };
 
-interface UserI {
+export interface UserI {
 	userId: number;
 	email: string;
 	firstName: string;
@@ -32,7 +32,7 @@ interface UserI {
 	programs: number[];
 }
 
-export const userStore = writable<Partial<UserI> | undefined>(undefined);
+export const userStore = writable<UserI | undefined>(undefined);
 export const fetchUser = async (userToken: string) => {
 	console.log('fetching user');
 	const response = await fetch(`${PUBLIC_API_URI}/users/me`, {
@@ -42,7 +42,7 @@ export const fetchUser = async (userToken: string) => {
 		}
 	});
 	if (response.status === 200) {
-		const user = await response.json();
+		const user = (await response.json()) as UserI;
 		if (browser) {
 			userStore.set(user);
 			token.set(userToken);

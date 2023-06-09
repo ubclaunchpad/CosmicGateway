@@ -1,14 +1,23 @@
 html[data-theme='dark'] {
-	--color-bg-0: #1a1b23;
-	--color-bg-1: #2d2e31;
+	--color-bg-0: #1f232a;
+	--color-bg-1: #1b1f25;
 	--color-bg-2: #13101be5;
+
+
+	--color-bg-primary: #083bce;
+	
 
 	--color-text-0: #ffffff;
 	--color-text-1: #c8d1d9;
+	--color-text-2: #686868;
 	--color-link-0: #2137e0;
 
 	-color-accent-0: #f9826c;
 	--color-accent-1: #f9826c;
+
+	--color-border-0: #2f3336;
+	--color-border-1: #2f3336;
+	--color-border-2: #2f3336;
 }
 :root,
 html[data-theme='light'] {

@@ -1,5 +1,8 @@
 <script>
-	import { AlignLeftIcon, AlignRightIcon } from '$lib/static/icons';
+	import Icon from '../general/Icon.svelte';
+	import AlignLeftIcon from '../general/icons/AlignLeftIcon.svelte';
+	import AlignRightIcon from '../general/icons/AlignRightIcon.svelte';
+
 	let isOpen = true;
 </script>
 
@@ -16,12 +19,15 @@
 					isOpen = !isOpen;
 				}}
 			>
-				{#if isOpen}
-					<img src={AlignRightIcon} alt="align right" />
-				{:else}
-					<img src={AlignLeftIcon} alt="align left" />
-				{/if}
+				<Icon>
+					{#if isOpen}
+						<AlignRightIcon />
+					{:else}
+						<AlignLeftIcon />
+					{/if}
+				</Icon>
 			</button>
+
 			{#if isOpen}
 				<div id="side-div">
 					<slot name="side" />

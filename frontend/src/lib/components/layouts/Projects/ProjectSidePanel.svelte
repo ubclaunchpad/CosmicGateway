@@ -61,18 +61,18 @@
 		height: 100%;
 		overflow-y: hidden;
 
-		:global(article) {
+		article {
 			overflow: scroll;
 
-			> :global(div) {
+			> div {
 				padding: 1rem 0;
 			}
 		}
 
-		:global(footer) {
+		footer {
 			display: flex;
 			flex-direction: column;
-			:global(p) {
+			p {
 				padding: 0.5rem 0 0 0;
 				font-weight: 300;
 				font-size: 0.8rem;
@@ -80,18 +80,18 @@
 			}
 		}
 
-		> :global(div) {
+		div {
 			display: flex;
 			flex-direction: column;
 			row-gap: 10px;
 			flex: 1;
 		}
 
-		:global(p) {
+		p {
 			font-size: 0.9rem;
 		}
 
-		:global(section) {
+		section {
 			display: flex;
 			width: 100%;
 			justify-content: space-between;
@@ -99,21 +99,21 @@
 			flex-direction: row;
 			column-gap: 1.5rem;
 			padding: 0.5rem 0;
-			:global(label) {
+			label {
 				width: 200px;
 				max-width: 100%;
 				font-size: 0.9rem;
 			}
 
-			:global(input),
-			:global(option),
-			:global(select) {
+			input,
+			option,
+			select {
 				font-size: 0.9rem;
 			}
 		}
 	}
 
-	:global(button) {
+	button {
 		background-color: var(--color-bg-primary);
 		color: var(--color-text-0-light);
 		padding: 0.5rem;
@@ -122,17 +122,17 @@
 		font-size: 1.2rem;
 	}
 
-	:global(h1),
-	:global(h2),
-	:global(h3),
-	:global(h4),
-	:global(h5),
-	:global(h6) {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		padding: 1rem 0;
 	}
 
-	:global(h1),
-	:global(h2) {
+	h1,
+	h2 {
 		padding-top: 0;
 	}
 </style>

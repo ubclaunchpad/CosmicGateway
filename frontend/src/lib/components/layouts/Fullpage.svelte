@@ -6,7 +6,7 @@
 <main>
 	<div class="page">
 		<div class="side-bar-wrapper">
-			<button on:click={() => (showNav = !showNav)} />
+			<!-- <button on:click={() => (showNav = !showNav)} /> -->
 			{#if showNav}
 				<div class="sidebar">
 					<Navbar />
@@ -29,7 +29,7 @@
 		height: 100svh;
 		overflow: hidden;
 		background: linear-gradient(90deg, var(--color-bg-1) 0%, var(--color-bg-1) 100%);
-		padding: 0.5rem;
+		padding: 0rem;
 		.page {
 			display: flex;
 			flex-direction: row;
@@ -38,7 +38,7 @@
 			width: 100%;
 			height: 100%;
 			overflow: hidden;
-			column-gap: 1rem;
+			column-gap: 0rem;
 			.side-bar-wrapper {
 				position: relative;
 				height: 100%;
@@ -65,7 +65,7 @@
 			.sidebar {
 				width: 250px;
 				height: 100%;
-				background-color: var(--color-bg-0);
+				background-color: var(--color-bg-1);
 				border-radius: 4px;
 				box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 				padding: 0;

@@ -3,19 +3,13 @@
 	import { PUBLIC_POSTING_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import MemberSearch from './MemberSearch.svelte';
 	import { PROJECT_ROLES } from '../../../seed/util';
-	import {
-		orderIcon,
-		filterIcon,
-		dotsVerticalIcon,
-		LinkExternalIcon,
-		doneIcon,
-		FolderIcon,
-		PinIcon,
-		InfoIcon
-	} from '$lib/static/icons';
 	import Banner from '$lib/components/blocks/Banner.svelte';
+	import Icon from '$lib/components/general/Icon.svelte';
+	import FilterIcon from '$lib/components/general/icons/FilterIcon.svelte';
+	import OrderIcon from '$lib/components/general/icons/OrderIcon.svelte';
+	import { VerticalDotsIcon } from '$lib/components/general/icons';
+	import InfoIcon from '$lib/components/general/icons/InfoIcon.svelte';
 
 	let postings = [];
 	const fetchPostings = async () => {
@@ -38,13 +32,19 @@
 			<h1>Recruitment</h1>
 			<div class="header-buttons">
 				<button>
-					<img src={filterIcon} alt="Filter" />
+					<Icon>
+						<FilterIcon />
+					</Icon>
 				</button>
 				<button>
-					<img src={orderIcon} alt="Filter" />
+					<Icon>
+						<OrderIcon />
+					</Icon>
 				</button>
 				<button>
-					<img src={dotsVerticalIcon} alt="more options" />
+					<Icon>
+						<VerticalDotsIcon />
+					</Icon>
 				</button>
 			</div>
 		</div>
@@ -52,7 +52,6 @@
 		<Banner
 			title="How to use this page"
 			description="This page is used to manage recruitment for projects. You can create new postings, view applications, and accept or reject applicants. You can also view the applications for each posting by clicking on the external link icon."
-			image={InfoIcon}
 			links={[
 				{
 					text: 'Create a new posting',
