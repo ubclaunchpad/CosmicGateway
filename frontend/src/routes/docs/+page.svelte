@@ -26,5 +26,6 @@
 		padding: 0.3rem;
 		border-radius: 4px;
 		column-gap: 1rem;
+		justify-content: center;
 	}
 </style>

@@ -66,7 +66,7 @@
 			</li>
 
 			<li>
-				<a href="/docs" target="_blank">
+				<a href="/docs">
 					<Icon>
 						<BookClosedIcon />
 					</Icon>

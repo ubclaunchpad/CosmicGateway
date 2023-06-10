@@ -2,8 +2,7 @@
 .markdown {
 	position: relative;
 	--font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
-
-	font-size: 16px;
+	font-size: 15px;
 	#write {
 		max-width: 860px;
 		margin: 0 auto;
@@ -16,7 +15,7 @@
 	}
 
 	#write p {
-		line-height: 1.7rem;
+		line-height: 1.5rem;
 		word-spacing: 0.05rem;
 		color: var(--color-text-0);
 	}
@@ -53,8 +52,9 @@
 	}
 
 	h1 {
-		color: var(--color-text-primary);
+		color: var(--color-text-0);
 		padding: 0;
+		
 	}
 
 	h1,
@@ -69,8 +69,13 @@
 		font-weight: bold;
 		line-height: 1.4;
 		cursor: text;
+		width: fit-content;
 	}
 
+	h3 {
+		display: flex;
+		column-gap: 3px;
+	}
 	h1:hover a.anchor,
 	h2:hover a.anchor,
 	h3:hover a.anchor,
