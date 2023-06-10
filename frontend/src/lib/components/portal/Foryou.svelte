@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Timeline from './Timeline.svelte';
 	import UserProjects from './UserProjects.svelte';
 
 	let mouse = {
@@ -28,15 +29,11 @@
 
 <div class="foryou">
 	<section bind:this={divWrapper} on:mousemove={handleMousemove} on:mouseleave={handleMouseleave}>
-		<h2>Mission Control</h2>
-		<p>Here's a quick overview of your profile.</p>
-		<p>You can edit your profile by clicking on the edit button on the top right.</p>
-
 		<div bind:this={glowDiv} class="glow" />
 		<div bind:this={horizontalLine} class="horizontal" />
 		<div bind:this={verticalLine} class="vertical" />
+		<Timeline />
 	</section>
-
 	<UserProjects />
 </div>
 
@@ -49,7 +46,7 @@
 		padding: 2rem 1rem;
 		width: 100%;
 		column-gap: 1.5rem;
-		background-color: var(--color-bg-primary);
+		background-color: var(--color-bg-0-faded);
 		border-radius: 0.5rem;
 		height: 40vh;
 		position: relative;
@@ -73,7 +70,7 @@
 			width: 100%;
 			height: 0.2rem;
 			left: 0;
-			top: 10px;
+			top: 5px;
 
 			background-color: var(--color-border-2);
 			opacity: 0.4;
@@ -86,7 +83,7 @@
 			width: 0.2rem;
 			height: 100%;
 			top: 0;
-			left: 10px;
+			left: 5px;
 
 			background-color: var(--color-border-2);
 			opacity: 0.4;
