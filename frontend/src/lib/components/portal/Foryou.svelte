@@ -1,7 +1,5 @@
 <script lang="ts">
 	import UserProjects from './UserProjects.svelte';
-
-
 </script>
 
 <div class="foryou">
@@ -25,7 +23,7 @@
 			color: var(--color-text-1);
 		}
 	}
-	
+
 	.foryou {
 		display: flex;
 		flex-direction: column;

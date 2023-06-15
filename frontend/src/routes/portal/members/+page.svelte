@@ -6,6 +6,10 @@
 	import MemberSearch from './MemberSearch.svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import { FACULTIES_V2, STANDINGS_V2 } from '../../../seed/util';
+	import Icon from '$lib/components/general/Icon.svelte';
+	import FilterIcon from '$lib/components/general/icons/FilterIcon.svelte';
+	import OrderIcon from '$lib/components/general/icons/OrderIcon.svelte';
+	import VerticalDotsIcon from '$lib/components/general/icons/VerticalDotsIcon.svelte';
 	let users = [];
 	onMount(() => {
 		fetchUsers();
@@ -57,13 +61,19 @@
 			<h1>Members</h1>
 			<div class="header-buttons">
 				<button>
-					<!-- <img src={filterIcon} alt="Filter" /> -->
+					<Icon>
+						<FilterIcon />
+					</Icon>
 				</button>
 				<button>
-					<!-- <img src={orderIcon} alt="Filter" /> -->
+					<Icon>
+						<OrderIcon />
+					</Icon>
 				</button>
 				<button>
-					<!-- <img src={dotsVerticalIcon} alt="more options" /> -->
+					<Icon>
+						<VerticalDotsIcon />
+					</Icon>
 				</button>
 			</div>
 		</div>
@@ -105,7 +115,7 @@
 		{/if}
 	</div>
 
-	<MemberSearch slot="side" />
+	<!-- <MemberSearch slot="side" /> -->
 </MainPage>
 
 <style lang="scss">
@@ -125,10 +135,13 @@
 
 			button {
 				padding: 0.4rem;
-				border-radius: 10px;
+				border-radius: 5px;
 				transition: all 0.2s ease-in-out;
-				:hover {
-					background-color: var(--color-bg-2);
+				border: 1px solid var(--color-bg-1);
+
+				background-color: transparent;
+				&:hover {
+					background-color: var(--color-bg-1);
 				}
 				img {
 					width: 20px;

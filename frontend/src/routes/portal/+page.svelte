@@ -9,7 +9,6 @@
 		<h1>Dashboard</h1>
 		<Foryou />
 	</div>
-	<ProfilePanel slot="side" />
 </MainPage>
 
 <style lang="scss">

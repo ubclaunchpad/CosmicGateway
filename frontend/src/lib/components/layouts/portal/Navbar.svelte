@@ -1,36 +1,21 @@
 <script>
 	import Icon from '$lib/components/general/Icon.svelte';
+	import logo from '$lib/assets/logo.png';
 	import {
 		BoxIcon,
 		HomeIcon,
 		UsersIcon,
-		FolderIcon,
 		BookClosedIcon,
-		ListIcon,
-		DiscordIcon,
-		InstagramIcon,
-		MediumIcon,
-		GithubIcon,
-		LinkedInIcon,
-		SettingsIcon,
-		FacebookIcon
+		SettingsIcon
 	} from '$lib/components/general/icons';
-	import ApplicationsIcon from '$lib/components/general/icons/ApplicationsIcon.svelte';
 	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
-
-	import {
-		DISCORD_LINK,
-		FACEBOOK_LINK,
-		GITHUB_LINK,
-		INSTAGRAM_LINK,
-		LINKEDIN_LINK,
-		MEDIUM_LINK
-	} from '$lib/util/links';
 </script>
 
 <div class="side-nav">
 	<div class="top">
-		<!-- <img src={logo} alt="logo" width="36px" /> -->
+		<a href="/">
+			<img src={logo} alt="logo" width="36px" />
+		</a>
 	</div>
 	<nav>
 		<h3>General</h3>

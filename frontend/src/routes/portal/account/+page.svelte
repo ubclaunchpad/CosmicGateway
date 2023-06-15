@@ -9,7 +9,7 @@
 
 <MainPage>
 	<div slot="main" class="content">
-		<h1>Settings</h1>	
+		<h1>Settings</h1>
 
 		<div class="account-group">
 			<section class="account-section">
@@ -68,11 +68,10 @@
 							</select>
 						</label>
 
-							<label>
-								<p>Resume</p>
-								<input type="text" value={user.resumeLink} />
-							</label>
-					
+						<label>
+							<p>Resume</p>
+							<input type="text" value={user.resumeLink} />
+						</label>
 
 						{#if user.socialMedia}
 							<h2>Links</h2>
@@ -92,25 +91,19 @@
 				</section>
 			</section>
 
-			
-
 			<section class="account-section">
 				<h2>Account</h2>
-
-                <h3>Newsletter</h3>
-                <section class="section-content">
-               <form>
-                <label
-                ><p></p>
-                <div class="form-actions">
-                    <button type="submit">Request to delete account</button>
-                </div>
-            </label>
-            </form> 
-            </section>
-
-
-				
+				<section class="section-content">
+					<form>
+						<label
+							><p />
+							<div class="form-actions">
+								<button type="submit">Request to delete account</button>
+							</div>
+						</label>
+					</form>
+				</section>
+			</section>
 		</div>
 	</div>
 </MainPage>
@@ -147,6 +140,7 @@
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		flex-direction: row;
+		max-width: 800px;
 
 		gap: 1rem;
 	}
@@ -156,30 +150,30 @@
 		justify-content: flex-start;
 		row-gap: 1rem;
 		border-radius: 4px;
-        border-top-left-radius: 0.6rem;
-        min-width: 600px;
-        flex: 1;
-		
+		border-top-left-radius: 0.6rem;
+		min-width: 600px;
+		flex: 1;
+
 		background-color: var(--color-bg-1);
-        border: 3px solid var(--color-bg-1);
-        overflow: hidden;
+		border: 3px solid var(--color-bg-1);
+		overflow: hidden;
 		flex-wrap: wrap;
 
 		h2 {
 			font-size: 1.1rem;
-            padding: 0.5rem 1rem ;
-            width: 8rem;
-            font-weight: 500;
-            border-radius: 0 0 0.6rem 0;
+			padding: 0.5rem 1rem;
+			width: 8rem;
+			font-weight: 500;
+			border-radius: 0 0 0.6rem 0;
 			color: var(--color-text-1);
-            background-color: var(--color-bg-0);
+			background-color: var(--color-bg-0);
 		}
 		.section-content {
-            padding: 1.5rem 0rem 0rem;
+			padding: 1.5rem 0rem 0rem;
 			display: flex;
 			grid-gap: 1rem;
 			justify-content: flex-end;
-            align-items: center;
+			align-items: center;
 			flex-direction: column;
 			width: 100%;
 			flex: 1;
@@ -189,7 +183,7 @@
 				flex-direction: row;
 				align-items: center;
 				width: 100%;
-				padding:0rem 0 0;
+				padding: 0rem 0 0;
 				button {
 					max-width: fit-content;
 					padding: 0.5rem 1rem;
@@ -209,14 +203,13 @@
 
 			form {
 				padding: 1rem;
-				display: grid;
+				display: flex;
 				grid-gap: 1rem;
 				column-gap: 4rem;
-				grid-template-columns: repeat(auto-fit, minmax(300px, 500fr));
-				justify-content: center;
-				flex-direction: row;
-				align-items: center;
-				max-width: 100%;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: flex-start;
+				width: 100%;
 
 				label {
 					padding: 0rem;
@@ -243,6 +236,7 @@
 					select {
 						flex: 2;
 						border: none;
+						padding: 0.5rem 0.5rem;
 					}
 
 					* {
