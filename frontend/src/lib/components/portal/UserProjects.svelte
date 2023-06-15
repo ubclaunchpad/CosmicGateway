@@ -2,28 +2,40 @@
 	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import { userStore } from '../../../stores/auth';
+	import InProgress from '../blocks/InProgress.svelte';
+	import Info from '../blocks/Info.svelte';
 	import Loader from '../blocks/Loader.svelte';
 	import ProjectCard from '../projects/ProjectCard.svelte';
 	let userProjects: ProjectInfo[] = [];
 
-	const fetchUserProjects = async () => {
-		const userId = $userStore?.userId;
+	// const fetchUserProjects = async () => {
+	// 	const userId = $userStore?.userId;
 
-		const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects?userIds=${userId}`);
-		userProjects = (await res.json()) as ProjectInfo[];
-	};
+	// 	const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects?userIds=${userId}`);
+	// 	userProjects = (await res.json()) as ProjectInfo[];
+	// };
 
-	$: if ($userStore && $userStore.userId) {
-		fetchUserProjects();
-	}
+	// $: if ($userStore && $userStore.userId) {
+	// 	fetchUserProjects();
+	// }
 </script>
 
 <section>
 	<div class="topbar header">
-		<h2>Your Projects</h2>
+		<h2>Projects</h2>
+
 	</div>
 
-	<div class="projects">
+	<Info>
+		<p>Here are the projects you are currently working on.</p>
+	</Info>
+
+	<InProgress
+	title="Coming Soon"
+	description="This feature is coming soon. Stay tuned!"
+	 />
+
+	<!-- <div class="projects">
 		{#if userProjects.length === 0}
 			<Loader width={'100%'} height={'100%'} />
 		{:else}
@@ -31,7 +43,7 @@
 				<ProjectCard {project} />
 			{/each}
 		{/if}
-	</div>
+	</div> -->
 </section>
 
 <style lang="scss">
@@ -42,8 +54,8 @@
 		row-gap: 0.5rem;
 		padding-top: 1rem;
 		h2 {
-			font-size: 1.3rem;
-			font-weight: 600;
+			font-size: 1.1rem;
+			font-weight: 800;
 			color: var(--color-text-1);
 		}
 		flex: 1;

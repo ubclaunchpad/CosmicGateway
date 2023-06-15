@@ -57,6 +57,7 @@
 		overflow: scroll;
 		flex: 1;
 		height: 100%;
+		padding: 0.5rem;
 	}
 
 	#side-content {

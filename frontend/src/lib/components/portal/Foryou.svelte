@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Timeline from './Timeline.svelte';
+	import Info from '../blocks/Info.svelte';
+import Timeline from './Timeline.svelte';
 	import UserProjects from './UserProjects.svelte';
 
 	let mouse = {
@@ -28,6 +29,13 @@
 </script>
 
 <div class="foryou">
+	<div class="banner">
+		<p>
+			Welcome to your dashboard. Here you can see your projects, your timeline, and your progress.
+		</p>
+	</div>
+		
+
 	<!-- <section bind:this={divWrapper} on:mousemove={handleMousemove} on:mouseleave={handleMouseleave}>
 		<div bind:this={glowDiv} class="glow" />
 		<div bind:this={horizontalLine} class="horizontal" />
@@ -38,6 +46,17 @@
 </div>
 
 <style lang="scss">
+
+	.banner {
+		padding: 1rem;
+		width: 100%;
+		background-color: var(--color-bg-primary);
+		border-radius:5px;
+		p {
+			font-size: 1rem;
+			color: var(--color-text-1);
+		}
+	}
 	section {
 		display: flex;
 		flex-direction: column;
