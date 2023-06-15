@@ -26,8 +26,7 @@
 		flex-wrap: wrap;
 		align-items: center;
 		row-gap: 1rem;
-		background-color: var(--color-bg-0);
-		border: 1px solid var(--color-bg-1);
+		color: var(--color-text-2);
 	}
 
 	h3 {

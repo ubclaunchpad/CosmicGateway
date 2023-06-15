@@ -53,7 +53,6 @@
 
 <MainPage>
 	<div slot="main" class="content">
-	
 		<div class="header">
 			<h1>Members</h1>
 			<div class="header-buttons">
@@ -89,13 +88,11 @@
 									{#if typeof value === 'object'}
 										<td>
 											{#if value != null}
-											{#each Object.values(value) as val}{val}{/each}
+												{#each Object.values(value) as val}{val}{/each}
 											{:else}
-											{"N/A"}
+												{'N/A'}
 											{/if}
 										</td>
-											
-										
 									{:else}
 										<td>{@html attributeMapper(key, value)}</td>
 									{/if}

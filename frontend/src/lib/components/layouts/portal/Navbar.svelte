@@ -36,7 +36,7 @@
 		<h3>General</h3>
 		<ul>
 			<li>
-				<a href="/portal" >
+				<a href="/portal">
 					<Icon>
 						<HomeIcon />
 					</Icon>
@@ -44,7 +44,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/portal/members" >
+				<a href="/portal/members">
 					<Icon>
 						<UsersIcon />
 					</Icon>
@@ -75,19 +75,15 @@
 					<Icon>
 						<BookClosedIcon />
 					</Icon>
-				
+
 					<p>Docs</p>
 					<Icon>
 						<ExternalLinkIcon />
 					</Icon>
 				</a>
 			</li>
-
-	
 		</ul>
 	</nav>
-
-	
 
 	<div class="bottom">
 		<nav>
@@ -232,7 +228,6 @@
 			font-weight: 500;
 			color: var(--color-text-2);
 			border-top: 1px solid var(--color-bg-0);
-
 		}
 		ul {
 			border-bottom: 1px solid var(--color-bg-1);

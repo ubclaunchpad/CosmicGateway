@@ -23,17 +23,13 @@
 <section>
 	<div class="topbar header">
 		<h2>Projects</h2>
-
 	</div>
 
 	<Info>
 		<p>Here are the projects you are currently working on.</p>
 	</Info>
 
-	<InProgress
-	title="Coming Soon"
-	description="This feature is coming soon. Stay tuned!"
-	 />
+	<InProgress title="Coming Soon" description="This feature is coming soon. Stay tuned!" />
 
 	<!-- <div class="projects">
 		{#if userProjects.length === 0}

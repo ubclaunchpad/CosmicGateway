@@ -43,7 +43,7 @@
 				position: relative;
 				height: 100%;
 				background-color: var(--color-bg-0);
-				padding: 0.4rem;
+				padding: 0.3rem;
 
 				button {
 					position: absolute;
@@ -68,7 +68,7 @@
 				width: 250px;
 				height: 100%;
 				background-color: var(--color-bg-1);
-				border-radius: 1rem;
+				border-radius: 0.5rem;
 				box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 				padding: 0;
 				margin: 0;

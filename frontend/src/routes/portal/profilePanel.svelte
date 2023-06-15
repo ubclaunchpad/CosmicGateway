@@ -86,7 +86,7 @@
 	.article {
 		section {
 			padding: 1rem 0;
-			border-bottom: 1px solid var(--color-border-0);
+			border-bottom: 1px solid var(--color-border-1);
 			display: flex;
 			flex-direction: column;
 			row-gap: 10px;
@@ -98,6 +98,7 @@
 			}
 
 			* {
+				font-size: 0.9rem;
 				color: var(--color-text-1);
 			}
 		}
@@ -107,6 +108,11 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-between;
+
+			h2 {
+				font-size: 1.2rem;
+				color: var(--color-text-1);
+			}
 
 			button {
 				color: var(--color-text-1);
