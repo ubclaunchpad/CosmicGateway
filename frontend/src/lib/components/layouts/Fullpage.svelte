@@ -28,7 +28,7 @@
 		height: 100%;
 		height: 100svh;
 		overflow: hidden;
-		background: linear-gradient(90deg, var(--color-bg-1) 0%, var(--color-bg-1) 100%);
+		background: linear-gradient(90deg, var(--color-bg-0) 0%, var(--color-bg-0) 100%);
 		padding: 0rem;
 		.page {
 			display: flex;
@@ -42,6 +42,8 @@
 			.side-bar-wrapper {
 				position: relative;
 				height: 100%;
+				background-color: var(--color-bg-0);
+				padding: 0.4rem;
 
 				button {
 					position: absolute;
@@ -66,7 +68,7 @@
 				width: 250px;
 				height: 100%;
 				background-color: var(--color-bg-1);
-				border-radius: 4px;
+				border-radius: 1rem;
 				box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 				padding: 0;
 				margin: 0;

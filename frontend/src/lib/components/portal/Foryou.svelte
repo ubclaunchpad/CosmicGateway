@@ -28,12 +28,12 @@
 </script>
 
 <div class="foryou">
-	<section bind:this={divWrapper} on:mousemove={handleMousemove} on:mouseleave={handleMouseleave}>
+	<!-- <section bind:this={divWrapper} on:mousemove={handleMousemove} on:mouseleave={handleMouseleave}>
 		<div bind:this={glowDiv} class="glow" />
 		<div bind:this={horizontalLine} class="horizontal" />
 		<div bind:this={verticalLine} class="vertical" />
 		<Timeline />
-	</section>
+	</section> -->
 	<UserProjects />
 </div>
 

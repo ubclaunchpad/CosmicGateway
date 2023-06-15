@@ -15,6 +15,8 @@
 		SettingsIcon,
 		FacebookIcon
 	} from '$lib/components/general/icons';
+	import ApplicationsIcon from '$lib/components/general/icons/ApplicationsIcon.svelte';
+	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
 
 	import {
 		DISCORD_LINK,
@@ -34,7 +36,7 @@
 		<h3>General</h3>
 		<ul>
 			<li>
-				<a href="/portal">
+				<a href="/portal" >
 					<Icon>
 						<HomeIcon />
 					</Icon>
@@ -42,7 +44,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/portal/members">
+				<a href="/portal/members" >
 					<Icon>
 						<UsersIcon />
 					</Icon>
@@ -56,70 +58,69 @@
 		<h3>Resources</h3>
 		<ul>
 			<li>
-				<a href="/projects">
+				<a href="/projects" target="_blank">
 					<Icon>
 						<BoxIcon />
 					</Icon>
 
-					<p>Projects</p>
-				</a>
-			</li>
-
-			<li>
-				<a href="/docs">
+					<p>Project Directory</p>
 					<Icon>
-						<BookClosedIcon />
+						<ExternalLinkIcon />
 					</Icon>
-					<!-- <img src={BookClosedIcon} alt="Docs link" /> -->
-					<p>Docs</p>
 				</a>
 			</li>
 
 			<li>
 				<a href="/docs" target="_blank">
 					<Icon>
-						<FolderIcon />
+						<BookClosedIcon />
 					</Icon>
-					<p>Google Drive</p>
-					<!-- <img src={LinkExternalIcon} alt="external link" /> -->
-				</a>
-			</li>
-		</ul>
-	</nav>
-
-	<nav>
-		<h3>Admin</h3>
-		<ul>
-			<li>
-				<a href="/portal/applications">
+				
+					<p>Docs</p>
 					<Icon>
-						<ListIcon />
+						<ExternalLinkIcon />
 					</Icon>
-					Applications
 				</a>
 			</li>
 
-			<li>
-				<a href="/portal/recruitment">
-					<Icon>
-						<ListIcon />
-					</Icon>
-					Recruitment
-				</a>
-			</li>
-			<li>
-				<a href="/portal/recruitment">
-					<Icon>
-						<SettingsIcon />
-					</Icon>
-					Account
-				</a>
-			</li>
+	
 		</ul>
 	</nav>
+
+	
 
 	<div class="bottom">
-		<ul class="links">
+		<nav>
+			<h3>Account</h3>
+			<ul>
+				<!-- <li>
+					<a href="/portal/applications">
+						<Icon>
+							<ApplicationsIcon />
+						</Icon>
+						Applications
+					</a>
+				</li>
+	
+				<li>
+					<a href="/portal/recruitment">
+						<Icon>
+							<ListIcon />
+						</Icon>
+						Recruitment
+					</a>
+				</li> -->
+				<li>
+					<a href="/portal/account">
+						<Icon>
+							<SettingsIcon />
+						</Icon>
+						<p>Settings</p>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- <ul class="links">
 			<li>
 				<a href={DISCORD_LINK} target="_blank" referrerpolicy="no-referrer">
 					<Icon>
@@ -132,7 +133,6 @@
 					<Icon>
 						<FacebookIcon />
 					</Icon>
-					<!-- <img src={FacebookIcon} alt="Facebook link" /> -->
 				</a>
 			</li>
 			<li>
@@ -140,7 +140,6 @@
 					<Icon>
 						<GithubIcon />
 					</Icon>
-					<!-- <img src={GithubIcon} alt="Github link" /> -->
 				</a>
 			</li>
 			<li>
@@ -148,7 +147,6 @@
 					<Icon>
 						<InstagramIcon />
 					</Icon>
-					<!-- <img src={InstagramIcon} alt="Instagram link" /> -->
 				</a>
 			</li>
 			<li>
@@ -156,7 +154,6 @@
 					<Icon>
 						<LinkedInIcon />
 					</Icon>
-					<!-- <img src={LinkedinIcon} alt="Linkedin link" /> -->
 				</a>
 			</li>
 			<li>
@@ -166,7 +163,7 @@
 					</Icon>
 				</a>
 			</li>
-		</ul>
+		</ul> -->
 	</div>
 </div>
 
@@ -213,7 +210,6 @@
 				color: var(--color-text-2);
 				stroke: var(--color-text-1);
 				fill: var(--color-text-1);
-
 				stroke-width: 0.5px;
 				font-weight: 500;
 				border-radius: 4px;
@@ -229,16 +225,16 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		border-right: 1px solid var(--color-bg-1);
 
 		h3 {
 			padding: 0.5rem 0rem;
-			font-size: 1rem;
+			font-size: 0.9rem;
 			font-weight: 500;
-			color: var(--color-text-1);
+			color: var(--color-text-2);
+			border-top: 1px solid var(--color-bg-0);
+
 		}
 		ul {
-			border-top: 1px solid var(--color-bg-1);
 			border-bottom: 1px solid var(--color-bg-1);
 			display: flex;
 			flex-direction: column;
@@ -257,6 +253,8 @@
 				stroke: var(--color-text-0);
 				color: var(--color-text);
 				stroke-width: 2px;
+				justify-content: center;
+				align-items: center;
 
 				:global(svg) {
 					width: 18px;
@@ -268,7 +266,7 @@
 					justify-content: flex-start;
 					align-items: center;
 					column-gap: 0.8rem;
-					font-size: 1rem;
+					font-size: 0.9rem;
 					width: 100%;
 					font-weight: 500;
 					color: var(--color-text-1);

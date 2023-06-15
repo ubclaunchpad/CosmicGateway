@@ -32,7 +32,7 @@
 			return `<a href="//mailto:${value}">${value}</a>`;
 		}
 		if (key === 'userId') {
-			return ` <button style="background-color:transparent;"><img  alt='expand profile'/></button>`;
+			return ` <button style="background-color:transparent;"></button>`;
 		}
 
 		return value;
@@ -53,6 +53,7 @@
 
 <MainPage>
 	<div slot="main" class="content">
+	
 		<div class="header">
 			<h1>Members</h1>
 			<div class="header-buttons">
@@ -87,8 +88,14 @@
 								{#each Object.entries(user) as [key, value]}
 									{#if typeof value === 'object'}
 										<td>
+											{#if value != null}
 											{#each Object.values(value) as val}{val}{/each}
+											{:else}
+											{"N/A"}
+											{/if}
 										</td>
+											
+										
 									{:else}
 										<td>{@html attributeMapper(key, value)}</td>
 									{/if}
@@ -170,8 +177,9 @@
 
 			tr {
 				th {
-					font-weight: 600;
-					background-color: var(--color-bg-2);
+					font-weight: 400;
+					background-color: var(--color-bg-0);
+					font-size: 0.9rem;
 				}
 				td,
 				th {
@@ -195,7 +203,7 @@
 					background-color: var(--color-bg-1);
 				}
 				tr:nth-of-type(even) {
-					background-color: var(--color-bg-2);
+					background-color: var(--color-bg-0);
 				}
 			}
 		}

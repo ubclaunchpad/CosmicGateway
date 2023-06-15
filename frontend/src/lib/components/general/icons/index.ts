@@ -51,7 +51,7 @@ import YoutubeIcon from './YoutubeIcon.svelte';
 import FigmaIcon from './FigmaIcon.svelte';
 import DiscordIcon from './DiscordIcon.svelte';
 import FacebookIcon from './FacebookIcon.svelte';
-
+import ApplicationsIcon from './ApplicationsIcon.svelte';
 import CircledDoodle from './doodles/CircledDoodle.svelte';
 
 export {
@@ -108,5 +108,6 @@ export {
 	FacebookIcon,
 	FigmaIcon,
 	DiscordIcon,
-	CircledDoodle
+	CircledDoodle,
+	ApplicationsIcon
 };

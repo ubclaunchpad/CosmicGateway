@@ -2,10 +2,7 @@
 	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import { userStore } from '../../../stores/auth';
-	import Info from '../blocks/Info.svelte';
 	import Loader from '../blocks/Loader.svelte';
-	import Icon from '../general/Icon.svelte';
-	import { RocketIcon, RouteIcon } from '../general/icons';
 	import ProjectCard from '../projects/ProjectCard.svelte';
 	let userProjects: ProjectInfo[] = [];
 
@@ -75,7 +72,7 @@
 	.projects {
 		display: grid;
 		width: 100%;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
 		gap: 1rem;
 	}
 	.project {

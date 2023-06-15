@@ -48,7 +48,7 @@
 		</section>
 	</article>
 
-	<ProjectSidePanel on:message={panelDispatcher} projectId={data.id} slot="side" />
+	<ProjectSidePanel projectId={data.id} slot="side" />
 </MainPage>
 
 <style lang="scss">

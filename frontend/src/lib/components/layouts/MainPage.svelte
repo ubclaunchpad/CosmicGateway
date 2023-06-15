@@ -40,7 +40,6 @@
 <style lang="scss">
 	.hero {
 		height: 100%;
-		border-radius: 4px;
 		box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 		overflow: hidden;
 		flex: 1;

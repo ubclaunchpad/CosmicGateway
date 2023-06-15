@@ -12,7 +12,6 @@
 	function verifyGoogleLogin(request) {
 		console.log(request);
 		googleAuthUser = jwt_decode(request.credential) as GoogleAuthUser;
-		console.log('ss');
 		firstName = googleAuthUser.given_name;
 		lastName = googleAuthUser.family_name;
 		prefName = googleAuthUser.given_name;
@@ -25,10 +24,10 @@
 			firstName: firstName,
 			prefName: prefName,
 			lastName: lastName,
-			facultyId: facultyId,
-			standingId: standingId,
+			facultyId: Number(facultyId),
+			standingId: Number(standingId),
 			resumeLink: resumeLink,
-			programId: [programId]
+			programId: Number(programId)
 		};
 
 		const response = await fetch(`${PUBLIC_API_URI}/users`, {

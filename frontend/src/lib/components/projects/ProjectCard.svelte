@@ -49,11 +49,12 @@
 		height: 18rem;
 		max-width: 100%;
 		transition: all 0.3s ease-in-out;
-		border-radius: 9px;
-		border: 3px solid var(--color-border-2);
+		border-radius: 4px;
+		border: 1px solid var(--color-border-1);
+		background-color: var(--color-bg-1);
 		&:hover {
 			box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
-			border-color: var(--color-text-1);
+			// border-color: var(--color-text-1);
 		}
 		.banner {
 			height: 40%;

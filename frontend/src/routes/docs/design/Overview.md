@@ -18,8 +18,6 @@ At Launch Pad, designers play a crucial role to our development. As a designer, 
 
 ## What you will learn
 
-
-
 As a member of the Launch Pad Club, you will have the opportunity to learn and enhance various design skills, including:
 
 1. User Experience (UX) Design: You will gain practical experience in creating user-centered designs that prioritize usability and enhance the overall user experience.
