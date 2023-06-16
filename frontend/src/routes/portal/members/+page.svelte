@@ -1,6 +1,6 @@
 <script lang="ts">
 	let querying = true;
-	import { PUBLIC_API_URI } from '$env/static/public';
+	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import MemberSearch from './MemberSearch.svelte';
@@ -15,7 +15,7 @@
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
-		const response = await fetch(`${PUBLIC_API_URI}/users`, {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
 			method: 'GET'
 		});
 		users = await response.json();

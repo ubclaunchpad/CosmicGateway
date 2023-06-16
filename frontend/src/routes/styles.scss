@@ -5,13 +5,15 @@ html {
 }
 
 input {
-	border: 1px solid var(--color-bg-1);
+	border: 1px solid var(--color-border-1);
 	background-color: var(--color-bg-2);
 	padding: 0.5rem 1rem;
 	border-radius: 7px;
-	font-size: 1rem;
-	// width: 100%;
+	font-size: 0.9rem;
 	max-width: 100%;
+	&::placeholder {
+		color: var(--color-text-2);
+	}
 }
 
 a {
@@ -25,21 +27,30 @@ svg {
 }
 
 select {
-	border: 1px solid var(--color-bg-1);
+	border: 1px solid var(--color-border-1);
+	font-family: inherit;
 	background-color: var(--color-bg-2);
 	padding: 0.5rem 1rem;
 	border-radius: 7px;
-	font-size: 1rem;
+	font-size: 0.9rem;
+	appearance: none;
 	text-overflow: ellipsis;
 	width: fit-content;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	width: 200px;
+	position: relative;
+	display: block;
 
 	option {
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
+		font-size: 0.9rem;
+	}
+
+	&::placeholder {
+		color: var(--color-text-2);
 	}
 }
 

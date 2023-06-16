@@ -1,17 +1,18 @@
 import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
-import { PUBLIC_API_URI } from '$env/static/public';
+import { PUBLIC_USERS_API_URI } from '$env/static/public';
 import { writable } from 'svelte/store';
 const stored = browser ? localStorage.token : null;
 export const token = writable(stored || null);
-export const setLocalToken = (value: string) => {
+export const setLocalToken = (value: string | undefined) => {
 	if (browser) {
+		if (!value) return localStorage.removeItem('token');
 		localStorage.setItem('token', value);
 	}
 };
 token.subscribe(setLocalToken);
 export const signout = () => {
-	token.set(null);
+	token.set(undefined);
 	userStore.set(undefined);
 	if (browser) {
 		localStorage.removeItem('token');
@@ -35,7 +36,7 @@ export interface UserI {
 export const userStore = writable<UserI | undefined>(undefined);
 export const fetchUser = async (userToken: string) => {
 	console.log('fetching user');
-	const response = await fetch(`${PUBLIC_API_URI}/users/me`, {
+	const response = await fetch(`${PUBLIC_USERS_API_URI}/users/me`, {
 		method: 'GET',
 		headers: {
 			Authorization: 'Bearer ' + userToken

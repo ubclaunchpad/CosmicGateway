@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_API_URI } from '$env/static/public';
+	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import InProgress from '$lib/components/blocks/InProgress.svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SidePanel from '$lib/components/layouts/RightPanel.svelte';

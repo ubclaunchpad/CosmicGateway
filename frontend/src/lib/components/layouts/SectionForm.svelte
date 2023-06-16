@@ -23,11 +23,13 @@
 			align-items: flex-start;
 			height: 100%;
 			width: 100%;
-			max-width: 600px;
-			max-height: 800px;
+			max-width: 650px;
+
+			max-height: 750px;
 			background-color: var(--color-bg-0);
 			border-radius: 10px;
 			box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+			overflow-y: scroll;
 
 			.separator {
 				width: 100%;
