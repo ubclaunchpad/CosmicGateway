@@ -1,4 +1,3 @@
-
 # Contributing Guide
 
 Thank you for considering contributing to our project! We welcome contributions from the community to help make our project even better.
@@ -23,12 +22,12 @@ To get started with contributing, please follow these steps:
 
 4. Install the project dependencies:
 
-    - make sure you have node and npm installed
+   - make sure you have node and npm installed
 
-        ```bash
-        node -v
-        npm -v
-        ```
+     ```bash
+     node -v
+     npm -v
+     ```
 
    ```bash
    npm install
