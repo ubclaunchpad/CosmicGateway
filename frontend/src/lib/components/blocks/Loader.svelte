@@ -5,6 +5,7 @@
 
 	onMount(() => {
 		const bar = document.getElementById('loader-wrapper');
+		if (bar === null) return;
 		bar.style.height = height;
 		bar.style.width = width;
 	});

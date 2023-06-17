@@ -354,9 +354,6 @@
 				}
 				button {
 					background-color: transparent;
-					img {
-						width: 20px;
-					}
 				}
 
 				td {

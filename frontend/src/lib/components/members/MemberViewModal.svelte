@@ -150,23 +150,6 @@
 				font-size: 1.2rem;
 				color: var(--color-text-1);
 			}
-
-			button {
-				color: var(--color-text-1);
-				cursor: pointer;
-				font-size: 0.9rem;
-				font-weight: 400;
-				padding: 0.5rem 1rem;
-				background: var(--color-bg-0);
-				border: 1px solid var(--color-border-0);
-
-				border-radius: 0.5rem;
-				transition: all 0.2s ease-in-out;
-				&:hover {
-					background: var(--color-bg-2);
-					border: 1px solid var(--color-border-2);
-				}
-			}
 		}
 	}
 

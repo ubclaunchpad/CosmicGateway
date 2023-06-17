@@ -7,7 +7,7 @@
 	export let projectId: number;
 	export let apply = false;
 	let project: ProjectInfo;
-	let showStatus = true;
+	// let showStatus = true;
 
 	const fetchProject = async () => {
 		const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects/${projectId}`);

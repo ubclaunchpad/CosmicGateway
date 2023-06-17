@@ -20,7 +20,7 @@
 		if (!collapse) collapse = true;
 	};
 
-	const onNavigation = (event) => {
+	const onNavigation = () => {
 		collapseNav();
 	};
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Sidebar from '$lib/components/layouts/LeftPanel.svelte';
+	import LeftPanel from '$lib/components/layouts/LeftPanel.svelte';
 	import '../styles.scss';
 	import '../markdown.scss';
 	export let data;
@@ -8,7 +8,7 @@
 <main>
 	<!-- <SearchModal /> -->
 	<div id="page">
-		<Sidebar>
+		<LeftPanel>
 			<div class="sidebar-content">
 				<a href="/docs"><h1>Launch Pad Docs</h1></a>
 				<input placeholder="search" />
@@ -43,7 +43,7 @@
 					{/each}
 				</ul>
 			</div>
-		</Sidebar>
+		</LeftPanel>
 		<article id="page-content">
 			<slot />
 		</article>

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
+	// import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import type { ProjectInfo } from '../../../seed/projects';
-	import { userStore } from '../../../stores/auth';
+	// import { userStore } from '../../../stores/auth';
 	import InProgress from '../blocks/InProgress.svelte';
 	import Info from '../blocks/Info.svelte';
-	import Loader from '../blocks/Loader.svelte';
-	import ProjectCard from '../projects/ProjectCard.svelte';
+	// import Loader from '../blocks/Loader.svelte';
+	// import ProjectCard from '../projects/ProjectCard.svelte';
 	let userProjects: ProjectInfo[] = [];
 
 	// const fetchUserProjects = async () => {

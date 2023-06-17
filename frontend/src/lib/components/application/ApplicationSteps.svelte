@@ -3,8 +3,8 @@
 	import Icon from '../general/Icon.svelte';
 	import ChevronLeftIcon from '../general/icons/ChevronLeftIcon.svelte';
 	import ChevronRightIcon from '../general/icons/ChevronRightIcon.svelte';
-	export let projectId: number = 1;
-	export let postId: number = 1;
+	export const projectId: number = 1;
+	export const postId: number = 1;
 
 	let firstName: string;
 	let lastName: string;
@@ -116,8 +116,6 @@
 						</label>
 					</section>
 				{/if}
-
-				{#if step == 3}{/if}
 			</form>
 		</article>
 	</section>
@@ -136,11 +134,6 @@
 			align-items: center;
 			column-gap: 4px;
 			padding: 0;
-
-			img {
-				width: 20px;
-				height: 20px;
-			}
 
 			button {
 				display: flex;
@@ -201,9 +194,7 @@
 			border-radius: 4px;
 			padding: 0 10px 0;
 			width: 100%;
-			.done {
-				background-color: var(--color-primary);
-			}
+
 			h3 {
 				width: fit-content;
 				padding: 10px;
