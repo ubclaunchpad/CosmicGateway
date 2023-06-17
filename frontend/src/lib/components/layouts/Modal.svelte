@@ -16,8 +16,8 @@
 </script>
 
 {#if isModalOpen}
-	<div class="modal-wrapper" out:fade={{ duration: 400 }}>
-		<div class="modal" in:fly={{ y: 200, duration: 400 }} out:fly={{ y: '100%', duration: 400 }}>
+	<div class="modal-wrapper" out:fade={{ duration: 300 }}>
+		<div class="modal" in:fly={{ y: 200, duration: 300 }} out:fly={{ y: '100%', duration: 400 }}>
 			<div class="topbar">
 				<button on:click={sayHello}
 					><Icon>
@@ -73,6 +73,10 @@
 			width: 100%;
 			padding: 0.5rem 1rem;
 			border-bottom: 1px solid var(--color-bg-1);
+
+			button {
+				background-color: inherit;
+			}
 		}
 
 		:global(.bottombar) {

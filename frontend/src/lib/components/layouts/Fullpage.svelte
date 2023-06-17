@@ -19,6 +19,10 @@
 	const collapseNav = () => {
 		if (!collapse) collapse = true;
 	};
+
+	const onNavigation = (event) => {
+		collapseNav();
+	};
 </script>
 
 <div
@@ -35,14 +39,14 @@
 			<div class="item" class:open={showNav}>
 				{#if isCompact}
 					<button on:click={() => (collapse = !collapse)}>
-						<MenuIcon width={'1.5rem'} />
+						<MenuIcon width={'1rem'} />
 					</button>
 				{/if}
 			</div>
 
 			{#if showNav}
-				<div class="content" transition:slide={{ axis: 'x', duration: 400 }}>
-					<Navbar />
+				<div class="content" transition:slide={{ axis: 'x', duration: 300 }}>
+					<Navbar on:navigate={onNavigation} />
 				</div>
 			{/if}
 

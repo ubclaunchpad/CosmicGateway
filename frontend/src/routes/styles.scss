@@ -4,6 +4,11 @@ html {
 	background-color: var(--color-bg-primary-dark);
 }
 
+:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 input {
 	border: 1px solid transparent;
 	background-color: var(--color-bg-3);

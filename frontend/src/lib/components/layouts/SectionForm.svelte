@@ -32,7 +32,6 @@
 			.separator {
 				width: 100%;
 				height: 1rem;
-			
 			}
 		}
 	}

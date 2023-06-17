@@ -1,16 +1,10 @@
 <script lang="ts">
-	import Icon from '../general/Icon.svelte';
-	import InfoIcon from '../general/icons/InfoIcon.svelte';
-
 	export let title: string;
 	export let description: string;
 </script>
 
 <div class="wrapper">
 	<h3>
-		<Icon>
-			<InfoIcon />
-		</Icon>
 		{title}
 	</h3>
 	<p>{description}</p>

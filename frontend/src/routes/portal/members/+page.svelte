@@ -3,7 +3,6 @@
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import MemberSearch from './MemberSearch.svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import { FACULTIES_V2, STANDINGS_V2 } from '../../../seed/util';
 	import Icon from '$lib/components/general/Icon.svelte';
@@ -11,8 +10,12 @@
 	import OrderIcon from '$lib/components/general/icons/OrderIcon.svelte';
 	import VerticalDotsIcon from '$lib/components/general/icons/VerticalDotsIcon.svelte';
 	import type { UserI } from '../../../stores/auth';
+	import MemberViewModal from '$lib/components/members/MemberViewModal.svelte';
+	import { ExpandIcon, UsersIcon } from '$lib/components/general/icons';
+	import InProgress from '$lib/components/blocks/InProgress.svelte';
+	import Loader from '$lib/components/blocks/Loader.svelte';
 	let users = [];
-	let shownUser: UserI = null;
+	let shownUser: UserI | null = null;
 	onMount(() => {
 		fetchUsers();
 	});
@@ -63,17 +66,17 @@
 		<div class="header">
 			<h1>Members</h1>
 			<div class="header-buttons">
-				<button>
+				<button disabled>
 					<Icon>
 						<FilterIcon />
 					</Icon>
 				</button>
-				<button>
+				<button disabled>
 					<Icon>
 						<OrderIcon />
 					</Icon>
 				</button>
-				<button>
+				<button disabled>
 					<Icon>
 						<VerticalDotsIcon />
 					</Icon>
@@ -81,10 +84,19 @@
 			</div>
 		</div>
 
-		{#if querying}
-			<Info>Getting Member Info</Info>
-		{:else}
-			<div class="table-wrapper">
+		<div class="cards">
+			<div class="c1">
+				<InProgress title="Total Members" description="Total number of members in the system" />
+			</div>
+			<div class="c2">
+				<InProgress title="pinned" description="pinned" />
+			</div>
+		</div>
+
+		<div class="table-wrapper">
+			{#if true}
+				<Loader height={'100%'} width={'100%'} />
+			{:else}
 				<table>
 					<thead>
 						<tr>
@@ -103,7 +115,10 @@
 										on:click={() => {
 											shownUser = user;
 										}}
-										>Open
+									>
+										<Icon>
+											<ExpandIcon />
+										</Icon>
 									</button></td
 								>
 								{#each Object.entries(user) as [key, value]}
@@ -123,14 +138,35 @@
 						{/each}
 					</tbody>
 				</table>
-			</div>
-		{/if}
+			{/if}
+		</div>
 	</div>
-
-	<MemberSearch slot="side" user={shownUser} />
 </MainPage>
 
+<MemberViewModal
+	on:modalevent={() => {
+		console.log('closing');
+		shownUser = null;
+	}}
+	isOpen={shownUser != null}
+	user={shownUser}
+/>
+
 <style lang="scss">
+	.cards {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		width: 100%;
+		height: 20rem;
+		gap: 1rem;
+		padding: 1rem 0;
+
+		> div {
+			border-radius: var(--border-radius-xlarge);
+			background-color: var(--color-bg-2);
+			box-shadow: var(--box-shadow-small);
+		}
+	}
 	.header {
 		display: flex;
 		justify-content: space-between;
@@ -170,6 +206,7 @@
 		overflow-x: scroll;
 		border-radius: var(--border-radius-xlarge);
 		border: 1px solid var(--color-border-1);
+		flex: 1;
 
 		table {
 			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 2px;
@@ -228,7 +265,7 @@
 					background-color: var(--color-bg-2);
 				}
 				tr:nth-of-type(even) {
-					background-color: var(--color-bg-0);
+					background-color: var(--color-bg-3);
 				}
 			}
 		}

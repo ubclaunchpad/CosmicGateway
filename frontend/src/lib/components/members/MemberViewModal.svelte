@@ -1,18 +1,19 @@
 <script lang="ts">
-	import SidePanel from '$lib/components/layouts/RightPanel.svelte';
+	import Modal from '../layouts/Modal.svelte';
 	import { STANDINGS_V2, FACULTIES_V2, PROGRAMS_V2, SOCIALS, USER_ROLES } from '../../../seed/util';
 	import type { UserI } from '../../../stores/auth';
-	export let user: UserI;
+	export let user: UserI | undefined | null;
 	let userRef = undefined;
 	$: isEqual = JSON.stringify(user) === JSON.stringify(userRef);
-	$: if (!userRef && user) {
+	$: if (!userRef && user && user !== null) {
 		userRef = Object.assign({}, user);
 	}
+	export let isOpen: boolean;
 </script>
 
-{#if userRef !== undefined}
-	<SidePanel>
-		<article slot="article" class="article">
+<Modal title={'View Member'} on:modalevent isModalOpen={isOpen}>
+	<div class="modal-content" slot="modal-content">
+		<article class="article">
 			<div class="header">
 				<h2>Profile</h2>
 			</div>
@@ -103,15 +104,18 @@
 				{/each}
 			{/if}
 		</article>
-		<footer slot="footer">
-			<p>Visit your settings page to update your profile.</p>
+	</div>
+
+	<div class="bottombar" slot="bottom-bar">
+		<footer>
 			<button disabled={isEqual}>Save</button>
 		</footer>
-	</SidePanel>
-{/if}
+	</div>
+</Modal>
 
 <style lang="scss">
 	.article {
+		padding: 1rem;
 		section {
 			padding: 1rem 0;
 			border-bottom: 1px solid var(--color-border-1);
@@ -182,7 +186,8 @@
 			border-radius: 0.3rem;
 			background-color: var(--color-bg-primary);
 			&:disabled {
-				background: var(--color-bg-0);
+				background: var(--color-bg-2);
+				cursor: not-allowed;
 			}
 		}
 		* {
