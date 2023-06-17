@@ -1,75 +1,129 @@
-<script>
+<script lang="ts">
+	import { slide } from 'svelte/transition';
+	import MenuIcon from '../general/icons/MenuIcon.svelte';
+	import logo from '$lib/assets/logo.png';
 	import Navbar from './portal/Navbar.svelte';
-	let showNav = true;
+	import { onMount } from 'svelte';
+	let pageWidth: number;
+	let collapse = true;
+	const cutoff = 800;
+	$: showNav = pageWidth > cutoff || !collapse;
+	$: isCompact = pageWidth < cutoff;
+	onMount(() => {
+		pageWidth = document.body.clientWidth;
+		window.addEventListener('resize', () => {
+			pageWidth = document.body.clientWidth;
+		});
+	});
+
+	const collapseNav = () => {
+		if (!collapse) collapse = true;
+	};
+
+	const onNavigation = () => {
+		collapseNav();
+	};
 </script>
 
-<main>
-	<div class="page">
-		<div class="side-bar-wrapper">
-			<button on:click={() => (showNav = !showNav)} />
+<div
+	id="page"
+	on:keyup={(e) => {
+		console.log(e.key);
+		if (e.key === 'Escape') {
+			collapseNav();
+		}
+	}}
+>
+	<aside>
+		<div class="sidebar" class:compact={isCompact}>
+			<div class="item" class:open={showNav}>
+				{#if isCompact}
+					<button on:click={() => (collapse = !collapse)}>
+						<MenuIcon width={'1rem'} />
+					</button>
+				{/if}
+			</div>
+
 			{#if showNav}
-				<div class="sidebar">
-					<Navbar />
+				<div class="content" transition:slide={{ axis: 'x', duration: 300 }}>
+					<Navbar on:navigate={onNavigation} />
 				</div>
 			{/if}
-		</div>
 
+			<div class="item bottom" class:open={showNav}>
+				<a href="/">
+					<img src={logo} alt="logo" width="36px" />
+				</a>
+			</div>
+		</div>
+	</aside>
+
+	<main class:blur={!collapse && isCompact} on:keyup={(e) => {}} on:click={collapseNav}>
 		<slot />
-	</div>
-</main>
+	</main>
+</div>
 
 <style lang="scss">
-	main {
+	#page {
 		display: flex;
-		justify-content: space-between;
+		flex-direction: row;
+		justify-content: flex-start;
 		align-items: flex-start;
-		flex-direction: column;
-		width: 100%;
-		height: 100%;
-		height: 100svh;
 		overflow: hidden;
-		background: linear-gradient(90deg, var(--color-bg-1) 0%, var(--color-bg-1) 100%);
-		padding: 0.5rem;
-		.page {
+		padding: 0;
+		height: 100svh;
+		.blur {
+			filter: blur(10px);
+			:global(*) {
+				pointer-events: none;
+			}
+		}
+		main {
 			display: flex;
-			flex-direction: row;
-			justify-content: flex-start;
+			justify-content: space-between;
 			align-items: flex-start;
-			width: 100%;
+			flex-direction: column;
+			flex: 1;
 			height: 100%;
 			overflow: hidden;
-			column-gap: 1rem;
-			.side-bar-wrapper {
-				position: relative;
-				height: 100%;
+			padding: 0rem;
+		}
 
-				button {
-					position: absolute;
-					top: 50%;
-					left: 100%;
-					transform: translate(-50%, -50%);
-					z-index: 100;
-					height: 5rem;
-					border-radius: 4px;
-
-					background-color: var(--color-bg-primary-faded);
-					width: 12px;
-
-					&:hover {
-						cursor: pointer;
-						border: 3px solid var(--color-bg-primary-faded);
-					}
-				}
+		aside {
+			position: relative;
+			min-width: 2.4rem;
+			height: 100%;
+			background-color: var(--color-bg-1);
+			z-index: 100;
+			.compact {
+				position: absolute;
+				top: 0;
+				left: 0;
 			}
 
 			.sidebar {
-				width: 250px;
+				.item {
+					width: 2.4rem;
+					padding: 1rem 0.4rem;
+					display: flex;
+					justify-content: center;
+					button {
+						background-color: inherit;
+					}
+				}
+				z-index: 200;
+				border: 1px solid var(--color-border-1);
+				background-color: var(--color-bg-1);
 				height: 100%;
-				background-color: var(--color-bg-0);
-				border-radius: 4px;
-				box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-				padding: 0;
-				margin: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: flex-start;
+				.content {
+					width: 15rem;
+					max-width: 100%;
+					flex: 1;
+				}
 			}
 		}
 	}

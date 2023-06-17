@@ -1,36 +1,18 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import ProfilePanel from './profilePanel.svelte';
-	import { userStore } from '../../stores/auth';
 	import Foryou from '$lib/components/portal/Foryou.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	let user = $userStore;
-	let greeting: string;
-
-	onMount(() => {
-		var today = new Date();
-		var curHr = today.getHours();
-		if (curHr < 12) {
-			greeting = 'Good morning';
-		} else if (curHr < 18) {
-			greeting = 'Good afternoon';
-		} else {
-			greeting = 'Good evening';
-		}
-	});
 </script>
 
 <MainPage>
 	<div slot="main" class="content">
-		<h1>{greeting}, {user.firstName}</h1>
+		<h1>Dashboard</h1>
 		<Foryou />
 	</div>
-	<ProfilePanel slot="side" />
 </MainPage>
 
 <style lang="scss">
 	h1 {
-		padding-bottom: 2rem;
+		padding-bottom: 0rem;
 	}
 	div {
 		display: flex;

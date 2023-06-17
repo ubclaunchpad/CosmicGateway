@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { InfoIcon } from '$lib/static/icons';
 	export let title: string;
 	export let description: string;
 </script>
 
 <div class="wrapper">
 	<h3>
-		<img src={InfoIcon} alt="alert" width="24px" height="24px" />
 		{title}
 	</h3>
 	<p>{description}</p>
@@ -22,8 +20,7 @@
 		flex-wrap: wrap;
 		align-items: center;
 		row-gap: 1rem;
-		background-color: var(--color-bg-0);
-		border: 1px solid var(--color-bg-1);
+		color: var(--color-text-2);
 	}
 
 	h3 {

@@ -2,13 +2,12 @@
 	import { onMount } from 'svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
-	import { DiscordIcon, GithubIcon, GoogleIcon } from '$lib/static/icons';
 	import { fetchUser, userStore } from '../../stores/auth';
 	import { goto } from '$app/navigation';
+	import PageForm from '$lib/components/layouts/PageForm.svelte';
 
 	async function verifyGoogleLogin(request) {
 		try {
-			console.log('WOO');
 			await fetchUser(request.credential);
 			goto('/portal');
 		} catch (e) {
@@ -48,45 +47,43 @@
 	});
 </script>
 
-<main>
-	<div class="page">
-		<SectionForm>
-			<div slot="header">
-				<h2>Sign In</h2>
-			</div>
+<PageForm>
+	<SectionForm>
+		<div slot="header">
+			<h2>Sign In</h2>
+		</div>
 
-			<div class="auth-wrapper">
-				<div class="social-auth">
-					<button class="google" id="google">
-						<img src={GoogleIcon} alt="Google" />
-						Continue with Google
-						<div id={'signinDiv'} />
-					</button>
-					<button disabled>
-						<img src={GithubIcon} alt="github" />
-						Continue with Github
-					</button>
-					<button disabled>
-						<img src={DiscordIcon} alt="Discord" />
-						Continue with Discord</button
-					>
-					<Info
-						><p>
-							Having issues signing in? <span>
-								<a href="mailto:strategy@ubclaunchpad.com">email us</a>
-							</span>
-						</p></Info
-					>
-				</div>
+		<div class="auth-wrapper">
+			<div class="social-auth">
+				<button class="google" id="google">
+					<!-- <img src={GoogleIcon} alt="Google" /> -->
+					Continue with Google
+					<div id={'signinDiv'} />
+				</button>
+				<button disabled>
+					<!-- <img src={GithubIcon} alt="github" /> -->
+					Continue with Github
+				</button>
+				<button disabled>
+					<!-- <img src={DiscordIcon} alt="Discord" /> -->
+					Continue with Discord</button
+				>
+				<Info
+					><p>
+						Having issues signing in? <span>
+							<a href="mailto:strategy@ubclaunchpad.com">email us</a>
+						</span>
+					</p></Info
+				>
 			</div>
-			<Info>
-				<p>
-					Don't have an account? <a href="/signup">Sign up</a>
-				</p>
-			</Info>
-		</SectionForm>
-	</div>
-</main>
+		</div>
+		<Info>
+			<p>
+				Don't have an account? <a href="/signup">Sign up</a>
+			</p>
+		</Info>
+	</SectionForm>
+</PageForm>
 
 <style lang="scss">
 	.auth-wrapper {
@@ -133,36 +130,6 @@
 				&:hover {
 					background: var(--color-bg-primary-faded);
 				}
-			}
-		}
-	}
-	main {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		flex-direction: column;
-		width: 100%;
-		height: 100%;
-		height: 100svh;
-		overflow: hidden;
-		background: linear-gradient(
-			90deg,
-			var(--color-bg-primary-faded) 0%,
-			var(--color-bg-primary-faded) 100%
-		);
-		padding: 0.5rem;
-		.page {
-			display: flex;
-			flex-direction: row;
-			justify-content: flex-start;
-			align-items: flex-start;
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-			gap: 1rem;
-			p {
-				font-size: 0.8rem;
-				font-weight: 400;
 			}
 		}
 	}

@@ -1,44 +1,45 @@
 <script lang="ts">
-	import { LinkExternalIcon, RocketIcon, RouteIcon } from '$lib/static/icons';
+	// import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
+	import type { ProjectInfo } from '../../../seed/projects';
+	// import { userStore } from '../../../stores/auth';
 	import InProgress from '../blocks/InProgress.svelte';
+	import Info from '../blocks/Info.svelte';
+	// import Loader from '../blocks/Loader.svelte';
+	// import ProjectCard from '../projects/ProjectCard.svelte';
+	let userProjects: ProjectInfo[] = [];
+
+	// const fetchUserProjects = async () => {
+	// 	const userId = $userStore?.userId;
+
+	// 	const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects?userIds=${userId}`);
+	// 	userProjects = (await res.json()) as ProjectInfo[];
+	// };
+
+	// $: if ($userStore && $userStore.userId) {
+	// 	fetchUserProjects();
+	// }
 </script>
 
 <section>
 	<div class="topbar header">
-		<h2>Your Projects</h2>
-	</div>
-	<div class="wrapper header">
-		<button disabled>
-			<img src={RocketIcon} alt="New project idea" />
-			<p>New Project Idea</p>
-		</button>
-		<button disabled>
-			<img src={RouteIcon} alt="Lead project" />
-			<p>Lead a project</p>
-		</button>
+		<h2>Projects</h2>
 	</div>
 
-	<InProgress
-		title="Projects Dashboard"
-		description="This page is still in development. Check back later!"
-	>
-		<div class="projects">
-			<div class="project">
-				<div class="topbar">
-					<h3>Project X</h3>
-					<div class="wrapper">
-						<a href="/">
-							<img src={LinkExternalIcon} alt="External Link" />
-						</a>
-					</div>
-				</div>
-				<section>
-					<h3>Members</h3>
-					<div class="members" />
-				</section>
-			</div>
-		</div>
-	</InProgress>
+	<Info>
+		<p>Here are the projects you are currently working on.</p>
+	</Info>
+
+	<InProgress title="Coming Soon" description="This feature is coming soon. Stay tuned!" />
+
+	<!-- <div class="projects">
+		{#if userProjects.length === 0}
+			<Loader width={'100%'} height={'100%'} />
+		{:else}
+			{#each userProjects as project}
+				<ProjectCard {project} />
+			{/each}
+		{/if}
+	</div> -->
 </section>
 
 <style lang="scss">
@@ -49,8 +50,8 @@
 		row-gap: 0.5rem;
 		padding-top: 1rem;
 		h2 {
-			font-size: 1.3rem;
-			font-weight: 600;
+			font-size: 1.1rem;
+			font-weight: 800;
 			color: var(--color-text-1);
 		}
 		flex: 1;
@@ -77,9 +78,10 @@
 	}
 
 	.projects {
-		display: flex;
-		flex-direction: column;
+		display: grid;
 		width: 100%;
+		grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+		gap: 1rem;
 	}
 	.project {
 		display: flex;

@@ -22,6 +22,7 @@
 		max-width: 100%;
 		display: flex;
 		flex-direction: row;
+		justify-content: center;
 		flex: 1;
 		padding: 0.3rem;
 		border-radius: 4px;

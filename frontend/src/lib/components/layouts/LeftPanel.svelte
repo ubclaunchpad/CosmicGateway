@@ -6,10 +6,10 @@
 
 <style lang="scss">
 	.sidebar {
-		border-right: 1px solid var(--color-bg-1);
+		border-right: 1px solid var(--color-border-1);
 		position: sticky;
+		background-color: var(--color-bg-1);
 		top: 0;
-		// background-color: var(--color-bg-0);
 		overflow-y: hidden;
 		overflow-x: hidden;
 		height: 100svh;

@@ -1,18 +1,17 @@
 <script lang="ts">
-	import Footer from '$lib/components/layouts/Footer.svelte';
-	import Sidebar from '$lib/components/layouts/LeftPanel.svelte';
+	import LeftPanel from '$lib/components/layouts/LeftPanel.svelte';
 	import '../styles.scss';
 	import '../markdown.scss';
 	export let data;
 </script>
 
 <main>
-	<nav />
-
+	<!-- <SearchModal /> -->
 	<div id="page">
-		<Sidebar>
+		<LeftPanel>
 			<div class="sidebar-content">
-				<h1>Launchpad Docs</h1>
+				<a href="/docs"><h1>Launch Pad Docs</h1></a>
+				<input placeholder="search" />
 				<ul class="directory-list">
 					{#each data.directories as directory}
 						<li>
@@ -20,7 +19,7 @@
 							{#if directory.files.length > 0}
 								<ul class="file-list">
 									{#each directory.files as file}
-										<li><a href="s">{file}dd</a></li>
+										<li><a href={`/docs/${directory.name}/${file}`}>{file}</a></li>
 									{/each}
 								</ul>
 							{/if}
@@ -32,7 +31,7 @@
 											{#if subDirectory.files.length > 0}
 												<ul class="file-list">
 													{#each subDirectory.files as file}
-														<li><a href="s">{file}dd</a></li>
+														<li><a href={subDirectory.name}>{file}</a></li>
 													{/each}
 												</ul>
 											{/if}
@@ -44,15 +43,9 @@
 					{/each}
 				</ul>
 			</div>
-		</Sidebar>
+		</LeftPanel>
 		<article id="page-content">
 			<slot />
-			<Footer>
-				<div class="footer-content">
-					See any problems, or have some feedback? Let us know!
-					<button>Edit</button>
-				</div>
-			</Footer>
 		</article>
 	</div>
 </main>
@@ -64,12 +57,33 @@
 		justify-content: flex-start;
 		row-gap: 2rem;
 		color: var(--color-text-1);
+		padding: 2rem 1rem;
+
+		> a {
+			text-decoration: none;
+		}
 
 		h1 {
-			background: linear-gradient(to right, var(--color-bg-primary), var(--color-bg-primary-dark));
+			background: linear-gradient(to right, var(--color-text-primary), var(--color-text-secondary));
 			-webkit-background-clip: text;
 			background-clip: text;
 			-webkit-text-fill-color: transparent;
+			font-size: 1.6rem;
+			font-weight: 800;
+			padding: 0;
+		}
+
+		input {
+			background: var(--color-border-1);
+			border: 1px solid var(--color-border-1);
+			border-radius: 0.5rem;
+			padding: 0.6rem;
+			color: var(--color-text-1);
+			font-size: 1rem;
+			&:focus {
+				outline: none;
+				border: 1px solid var(--color-text-primary);
+			}
 		}
 
 		.directory-list {
@@ -79,8 +93,9 @@
 			padding-bottom: 1rem;
 			> li {
 				padding-bottom: 1rem;
-				border-bottom: 1px solid var(--color-bg-1);
-				font-weight: 400;
+				border-bottom: 1px solid var(--color-border-1);
+				font-weight: 600;
+				color: var(--color-text-2);
 			}
 		}
 
@@ -97,7 +112,8 @@
 
 			a {
 				text-decoration: none;
-				color: var(--color-accent-1);
+				color: var(--color-text-1);
+				padding: 1rem 0;
 				&:hover {
 					text-decoration: underline;
 				}
@@ -105,7 +121,7 @@
 		}
 
 		li {
-			margin-bottom: 0.5rem;
+			padding: 0.4rem 0;
 		}
 	}
 	main {
@@ -115,36 +131,6 @@
 		align-items: center;
 		height: 100%;
 		min-height: 100svh;
-
-		nav {
-			position: sticky;
-			top: 0;
-			background-color: var(--color-bg-0);
-			border-bottom: 1px solid var(--color-bg-1);
-			h1 {
-				flex: 1;
-			}
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			padding: 0 0.4rem;
-			z-index: 1000;
-
-			ul {
-				display: flex;
-				column-gap: 1.5rem;
-
-				li {
-					text-transform: uppercase;
-					list-style: none;
-					a {
-						text-decoration: none;
-					}
-				}
-			}
-		}
 
 		#page {
 			display: flex;

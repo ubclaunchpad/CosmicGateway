@@ -1,17 +1,16 @@
 <script lang="ts">
-	import { FigmaIcon, GithubIcon, YoutubeIcon, asterickIcon, linkIcon } from '$lib/static/icons';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import ProjectStatusIndicator from './ProjectStatusIndicator.svelte';
 	export let project: ProjectInfo;
 
-	const resourceIconMapper = {
-		Github: GithubIcon,
-		Figma: FigmaIcon,
-		Link: linkIcon,
-		Other: asterickIcon,
-		Website: linkIcon,
-		Youtube: YoutubeIcon
-	};
+	// const resourceIconMapper = {
+	// 	Github: GithubIcon,
+	// 	Figma: FigmaIcon,
+	// 	Link: linkIcon,
+	// 	Other: asterickIcon,
+	// 	Website: linkIcon,
+	// 	Youtube: YoutubeIcon
+	// };
 </script>
 
 <div class="project">
@@ -28,7 +27,7 @@
 		<div class="resources">
 			{#each project.resources as resource}
 				<a href={resource.link} target="_blank">
-					<img src={resourceIconMapper[resource.typeId]} alt={resource.name} />
+					<!-- <img src={resourceIconMapper[resource.typeId]} alt={resource.name} /> -->
 					<p>{resource.name}</p>
 				</a>
 			{/each}
@@ -49,17 +48,21 @@
 		position: relative;
 		height: 18rem;
 		max-width: 100%;
-		box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
 		transition: all 0.3s ease-in-out;
 		border-radius: 4px;
+		border: 1px solid var(--color-border-1);
+		background-color: var(--color-bg-1);
 		&:hover {
 			box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+			// border-color: var(--color-text-1);
 		}
 		.banner {
 			height: 40%;
 			width: 100%;
+			position: absolute;
 			top: 0;
 			left: 0;
+			z-index: -1;
 			background: linear-gradient(to top right, var(--color-bg-1), var(--color-bg-1));
 		}
 

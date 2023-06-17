@@ -1,5 +1,4 @@
 <script>
-	import { AlignLeftIcon, AlignRightIcon } from '$lib/static/icons';
 	let isOpen = true;
 </script>
 
@@ -15,13 +14,8 @@
 				on:click={() => {
 					isOpen = !isOpen;
 				}}
-			>
-				{#if isOpen}
-					<img src={AlignRightIcon} alt="align right" />
-				{:else}
-					<img src={AlignLeftIcon} alt="align left" />
-				{/if}
-			</button>
+			/>
+
 			{#if isOpen}
 				<div id="side-div">
 					<slot name="side" />
@@ -34,7 +28,6 @@
 <style lang="scss">
 	.hero {
 		height: 100%;
-		border-radius: 4px;
 		box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 		overflow: hidden;
 		flex: 1;
@@ -50,9 +43,9 @@
 		flex-direction: column;
 		height: 100%;
 		overflow: scroll;
-		padding: 0.4rem 1rem;
 		flex: 1;
 		height: 100%;
+		padding: 0.5rem;
 	}
 
 	#side-content {
@@ -75,8 +68,7 @@
 			overflow: hidden;
 			height: 100%;
 			background-color: var(--color-bg-0);
-			border-right: 3px double var(--color-bg-1);
-			border-left: 3px double var(--color-bg-1);
+			border-left: 3px double var(--color-border-1);
 			opacity: 0.8;
 		}
 		#side-div {

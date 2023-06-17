@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { draggableIcon } from '$lib/static/icons';
-	import { onMount } from 'svelte';
 	import { APPLICATION_STATUS, FACULTIES_V2, PROGRAMS_V2, STANDINGS_V2 } from '../../../seed/util';
 	import Info from '../blocks/Info.svelte';
 	import { PUBLIC_POSTING_API_URI } from '$env/static/public';
@@ -59,7 +57,7 @@
 												showApplication = true;
 											}}
 										>
-											<img src={draggableIcon} alt="more options" />
+											<!-- <img src={draggableIcon} alt="more options" /> -->
 										</button>
 										<button
 											class="bottom-right"

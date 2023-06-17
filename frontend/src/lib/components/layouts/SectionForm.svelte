@@ -11,7 +11,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
 		height: 100%;
 		width: 100%;
 
@@ -23,17 +23,15 @@
 			align-items: flex-start;
 			height: 100%;
 			width: 100%;
-			max-width: 600px;
-			max-height: 800px;
-			background-color: var(--color-bg-0);
+			max-width: 650px;
+
+			background-color: var(--color-bg-2);
 			border-radius: 10px;
-			box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+			overflow-y: scroll;
 
 			.separator {
 				width: 100%;
-				height: 1px;
-				background-color: var(--color-bg-1);
-				margin: 1rem 0;
+				height: 1rem;
 			}
 		}
 	}

@@ -1,7 +1,6 @@
 <script>
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import ProjectSidePanel from '$lib/components/layouts/Projects/ProjectSidePanel.svelte';
-	import { editIcon } from '$lib/static/icons';
 	export let data;
 	let body = '';
 
@@ -17,7 +16,7 @@
 		<section class="body">
 			<div class="topbar">
 				<button disabled>
-					<img src={editIcon} />
+					<!-- <img src={editIcon} /> -->
 					<p>Edit this posting</p>
 				</button>
 			</div>

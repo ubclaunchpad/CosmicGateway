@@ -3,19 +3,13 @@
 	import { PUBLIC_POSTING_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import MemberSearch from './MemberSearch.svelte';
 	import { PROJECT_ROLES } from '../../../seed/util';
-	import {
-		orderIcon,
-		filterIcon,
-		dotsVerticalIcon,
-		LinkExternalIcon,
-		doneIcon,
-		FolderIcon,
-		PinIcon,
-		InfoIcon
-	} from '$lib/static/icons';
 	import Banner from '$lib/components/blocks/Banner.svelte';
+	import Icon from '$lib/components/general/Icon.svelte';
+	import FilterIcon from '$lib/components/general/icons/FilterIcon.svelte';
+	import OrderIcon from '$lib/components/general/icons/OrderIcon.svelte';
+	import { VerticalDotsIcon } from '$lib/components/general/icons';
+	import BoxIcon from '$lib/components/general/icons/BoxIcon.svelte';
 
 	let postings = [];
 	const fetchPostings = async () => {
@@ -38,13 +32,19 @@
 			<h1>Recruitment</h1>
 			<div class="header-buttons">
 				<button>
-					<img src={filterIcon} alt="Filter" />
+					<Icon>
+						<FilterIcon />
+					</Icon>
 				</button>
 				<button>
-					<img src={orderIcon} alt="Filter" />
+					<Icon>
+						<OrderIcon />
+					</Icon>
 				</button>
 				<button>
-					<img src={dotsVerticalIcon} alt="more options" />
+					<Icon>
+						<VerticalDotsIcon />
+					</Icon>
 				</button>
 			</div>
 		</div>
@@ -52,7 +52,6 @@
 		<Banner
 			title="How to use this page"
 			description="This page is used to manage recruitment for projects. You can create new postings, view applications, and accept or reject applicants. You can also view the applications for each posting by clicking on the external link icon."
-			image={InfoIcon}
 			links={[
 				{
 					text: 'Create a new posting',
@@ -72,7 +71,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Review</th>
+							<th />
 							<th>Project</th>
 							<th>Role</th>
 							<th>Submitted</th>
@@ -83,7 +82,9 @@
 							<tr>
 								<td class="small">
 									<a target="_blank" href={`/portal/recruitment/postings/${posting.id}`}>
-										<img src={LinkExternalIcon} alt="application external link" /></a
+										<Icon>
+											<BoxIcon />
+										</Icon></a
 									>
 								</td>
 								<td>
@@ -141,9 +142,10 @@
 		display: flex;
 		justify-content: flex-start;
 		width: 100%;
-		padding: 0rem 0rem;
+		padding: 1rem 0rem;
 		overflow-x: scroll;
 		border-radius: 1%;
+
 		height: 100%;
 		border: 1px solid var(--color-bg-1);
 
@@ -200,10 +202,12 @@
 
 				.small {
 					width: fit-content;
-				}
-
-				img {
-					width: 18px;
+					width: 2rem;
+					text-align: center;
+					:global(svg) {
+						stroke: var(--color-text-1);
+						fill: none;
+					}
 				}
 
 				button {
