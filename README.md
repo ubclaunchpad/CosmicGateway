@@ -1,38 +1,27 @@
-# create-svelte
+# Launch Pad's Cosmic-Gateway
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Cosmic-Gateway is Launch pad's central clien-facing codebase. It serves as the club's landing website, docs/resources, and new internal user portal for members and recruitment.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Landing Page** - A landing page for the club, with information about the club, and links to the docs and resources.
+- **Docs** - A documentation page for the club, with information about the club, and links to the docs and resources.
+- **Portal** - A portal for members to access internal resources, and for new members to apply to the club.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+**View backend repo [here](https://github.com/ubclaunchpad/StarPort)**
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+**View complete changelog [here](./CHANGELOG.md)**
 
-## Developing
+## Contributing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- [Contributing Guide](./CONTRIBUTING.md)
+- [Developer Guide](./developers/DEVELOPER.md)
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
 
-```bash
-npm run dev
+## Roadmap
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+(coming soon)
 
-## Building
+## License
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+(c) 2023 UBC Launch Pad
