@@ -1,8 +1,4 @@
 <script>
-	import Icon from '../general/Icon.svelte';
-	import AlignLeftIcon from '../general/icons/AlignLeftIcon.svelte';
-	import AlignRightIcon from '../general/icons/AlignRightIcon.svelte';
-
 	let isOpen = true;
 </script>
 
@@ -18,15 +14,7 @@
 				on:click={() => {
 					isOpen = !isOpen;
 				}}
-			>
-				<Icon>
-					{#if isOpen}
-						<AlignRightIcon />
-					{:else}
-						<AlignLeftIcon />
-					{/if}
-				</Icon>
-			</button>
+			/>
 
 			{#if isOpen}
 				<div id="side-div">
@@ -80,8 +68,7 @@
 			overflow: hidden;
 			height: 100%;
 			background-color: var(--color-bg-0);
-			border-right: 3px double var(--color-bg-1);
-			border-left: 3px double var(--color-bg-1);
+			border-left: 3px double var(--color-border-1);
 			opacity: 0.8;
 		}
 		#side-div {

@@ -10,7 +10,9 @@
 	import FilterIcon from '$lib/components/general/icons/FilterIcon.svelte';
 	import OrderIcon from '$lib/components/general/icons/OrderIcon.svelte';
 	import VerticalDotsIcon from '$lib/components/general/icons/VerticalDotsIcon.svelte';
+	import type { UserI } from '../../../stores/auth';
 	let users = [];
+	let shownUser: UserI = null;
 	onMount(() => {
 		fetchUsers();
 	});
@@ -50,7 +52,8 @@
 		faculty: 'Faculty',
 		program: 'Program',
 		standing: 'Standing',
-		resumeLink: 'Resume Link',
+		resumeLink: 'Resume',
+		role: 'Role',
 		userId: ''
 	};
 </script>
@@ -85,6 +88,7 @@
 				<table>
 					<thead>
 						<tr>
+							<th />
 							{#each Object.keys(users[0]) as key}
 								<th>{COLUMN_MAPPER[key]}</th>
 							{/each}
@@ -94,6 +98,14 @@
 					<tbody>
 						{#each users as user}
 							<tr>
+								<td
+									><button
+										on:click={() => {
+											shownUser = user;
+										}}
+										>Open
+									</button></td
+								>
 								{#each Object.entries(user) as [key, value]}
 									{#if typeof value === 'object'}
 										<td>
@@ -115,7 +127,7 @@
 		{/if}
 	</div>
 
-	<!-- <MemberSearch slot="side" /> -->
+	<MemberSearch slot="side" user={shownUser} />
 </MainPage>
 
 <style lang="scss">
@@ -124,6 +136,7 @@
 		justify-content: space-between;
 		flex-direction: row;
 		align-items: center;
+		padding: 0;
 		width: 100%;
 		.header-buttons {
 			display: flex;
@@ -155,8 +168,8 @@
 		width: 100%;
 		padding: 0rem 0rem;
 		overflow-x: scroll;
-		border-radius: 1%;
-		border: 1px solid var(--color-bg-1);
+		border-radius: var(--border-radius-xlarge);
+		border: 1px solid var(--color-border-1);
 
 		table {
 			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 2px;
@@ -188,12 +201,14 @@
 			tr {
 				th {
 					font-weight: 400;
-					background-color: var(--color-bg-0);
+					background-color: var(--color-bg-primary);
 					font-size: 0.9rem;
+					white-space: nowrap;
 				}
 				td,
 				th {
 					padding: 1rem;
+					white-space: nowrap;
 				}
 			}
 
@@ -210,7 +225,7 @@
 					}
 				}
 				tr:nth-of-type(odd) {
-					background-color: var(--color-bg-1);
+					background-color: var(--color-bg-2);
 				}
 				tr:nth-of-type(even) {
 					background-color: var(--color-bg-0);
@@ -230,6 +245,7 @@
 		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
+		padding: 0;
 
 		h1 {
 			font-size: 1.4rem;

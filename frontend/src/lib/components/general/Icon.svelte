@@ -1,15 +1,21 @@
 <script lang="ts">
+	export let width = '1rem';
 </script>
 
-<div class="icon">
+<div class="icon" style={`width: ${width}`}>
 	<div class="icon-wrapper">
 		<slot />
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.icon {
 		display: inline-block;
+
+		:global(svg) {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.icon-wrapper {

@@ -1,24 +1,12 @@
 <script>
 	import Icon from '$lib/components/general/Icon.svelte';
-	import logo from '$lib/assets/logo.png';
-	import {
-		BoxIcon,
-		HomeIcon,
-		UsersIcon,
-		BookClosedIcon,
-		SettingsIcon
-	} from '$lib/components/general/icons';
+	import { HomeIcon, UsersIcon, BookClosedIcon, SettingsIcon } from '$lib/components/general/icons';
 	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
+	import { signout } from '../../../../stores/auth';
 </script>
 
-<div class="side-nav">
-	<div class="top">
-		<a href="/">
-			<img src={logo} alt="logo" width="36px" />
-		</a>
-	</div>
+<div class="navigation-panel">
 	<nav>
-		<h3>General</h3>
 		<ul>
 			<li>
 				<a href="/portal">
@@ -40,21 +28,7 @@
 	</nav>
 
 	<nav>
-		<h3>Resources</h3>
 		<ul>
-			<li>
-				<a href="/projects" target="_blank">
-					<Icon>
-						<BoxIcon />
-					</Icon>
-
-					<p>Project Directory</p>
-					<Icon>
-						<ExternalLinkIcon />
-					</Icon>
-				</a>
-			</li>
-
 			<li>
 				<a href="/docs" target="_blank">
 					<Icon>
@@ -71,26 +45,9 @@
 	</nav>
 
 	<div class="bottom">
+		<button on:click={signout}>Sign out</button>
 		<nav>
-			<h3>Account</h3>
 			<ul>
-				<!-- <li>
-					<a href="/portal/applications">
-						<Icon>
-							<ApplicationsIcon />
-						</Icon>
-						Applications
-					</a>
-				</li>
-	
-				<li>
-					<a href="/portal/recruitment">
-						<Icon>
-							<ListIcon />
-						</Icon>
-						Recruitment
-					</a>
-				</li> -->
 				<li>
 					<a href="/portal/account">
 						<Icon>
@@ -101,118 +58,49 @@
 				</li>
 			</ul>
 		</nav>
-		<!-- <ul class="links">
-			<li>
-				<a href={DISCORD_LINK} target="_blank" referrerpolicy="no-referrer">
-					<Icon>
-						<DiscordIcon />
-					</Icon>
-				</a>
-			</li>
-			<li>
-				<a href={FACEBOOK_LINK} target="_blank" referrerpolicy="no-referrer">
-					<Icon>
-						<FacebookIcon />
-					</Icon>
-				</a>
-			</li>
-			<li>
-				<a href={GITHUB_LINK} target="_blank" referrerpolicy="no-referrer">
-					<Icon>
-						<GithubIcon />
-					</Icon>
-				</a>
-			</li>
-			<li>
-				<a href={INSTAGRAM_LINK} target="_blank" referrerpolicy="no-referrer">
-					<Icon>
-						<InstagramIcon />
-					</Icon>
-				</a>
-			</li>
-			<li>
-				<a href={LINKEDIN_LINK} target="_blank" referrerpolicy="no-referrer">
-					<Icon>
-						<LinkedInIcon />
-					</Icon>
-				</a>
-			</li>
-			<li>
-				<a href={MEDIUM_LINK} target="_blank" referrerpolicy="no-referrer">
-					<Icon>
-						<MediumIcon />
-					</Icon>
-				</a>
-			</li>
-		</ul> -->
 	</div>
 </div>
 
 <style lang="scss">
-	.side-nav {
+	.navigation-panel {
 		top: 0;
 		left: 0;
-		width: 100%;
 		height: 100%;
 		padding: 10px;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		color: var(--color-text-1);
-
-		margin: 0;
-		.top {
-			padding: 0px;
-		}
 	}
 	.bottom {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		flex: 1;
-	}
-	.links {
-		display: flex;
-		gap: 5px;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		justify-content: space-between;
-		li {
-			list-style: none;
-			padding: 0;
-			a {
-				text-decoration: none;
-				display: flex;
-				justify-content: flex-start;
-				align-items: center;
-				column-gap: 0.4rem;
-				font-size: 0.7rem;
-				background-color: var(--color-bg-1);
-				color: var(--color-text-2);
-				stroke: var(--color-text-1);
-				fill: var(--color-text-1);
-				stroke-width: 0.5px;
-				font-weight: 500;
-				border-radius: 4px;
-				cursor: pointer;
-				padding: 1px;
+		row-gap: 1rem;
+
+		button {
+			background-color: var(--color-bg-1);
+			color: var(--color-text-1);
+			border: 1px solid var(--color-border-1);
+			border-radius: var(--border-radius-medium);
+			padding: 0.5rem 1rem;
+			&:hover {
+				background-color: var(--color-bg-2);
 			}
 		}
 	}
 
 	nav {
-		padding: 1rem 0;
+		padding: 0.5rem 0;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		border-top: 1px solid var(--color-border-0);
 
-		h3 {
-			padding: 0.5rem 0rem;
-			font-size: 0.9rem;
-			font-weight: 500;
-			color: var(--color-text-2);
-			border-top: 1px solid var(--color-bg-0);
+		&:last-child {
+			border-bottom: 1px solid var(--color-border-0);
 		}
 		ul {
 			border-bottom: 1px solid var(--color-bg-1);
@@ -246,7 +134,7 @@
 					justify-content: flex-start;
 					align-items: center;
 					column-gap: 0.8rem;
-					font-size: 0.9rem;
+					font-size: 0.8rem;
 					width: 100%;
 					font-weight: 500;
 					color: var(--color-text-1);

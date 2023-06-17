@@ -2,7 +2,7 @@
 // 	let githubCredentials = {};
 // 	const githubCode = url.searchParams.get('code');
 // 	if (url.searchParams.get('code')) {
-		
+
 // 		// if (githubCode) {
 // 		// 	githubCredentials = verifyGithubLogin(githubCode);
 // 		// }

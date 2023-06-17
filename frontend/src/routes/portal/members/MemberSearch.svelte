@@ -1,104 +1,169 @@
 <script lang="ts">
-	import { PUBLIC_USERS_API_URI } from '$env/static/public';
-	import InProgress from '$lib/components/blocks/InProgress.svelte';
-	import Info from '$lib/components/blocks/Info.svelte';
 	import SidePanel from '$lib/components/layouts/RightPanel.svelte';
-	import { FACULTIES, PROGRAMS, STANDINGS } from '../../../seed/util';
-	let firstName: string;
-	let lastName: string;
-	let prefName: string;
-	let email: string;
-	let standingId: number;
-	let facultyId: number;
-	let programId: number;
-
-	let standings = STANDINGS;
-	let programs = PROGRAMS;
-	let faculties = FACULTIES;
+	import { STANDINGS_V2, FACULTIES_V2, PROGRAMS_V2, SOCIALS, USER_ROLES } from '../../../seed/util';
+	import type { UserI } from '../../../stores/auth';
+	export let user: UserI;
+	let userRef = undefined;
+	$: isEqual = JSON.stringify(user) === JSON.stringify(userRef);
+	$: if (!userRef && user) {
+		userRef = Object.assign({}, user);
+	}
 </script>
 
-<InProgress title="Search" description="This section is still in progress.">
+{#if userRef !== undefined}
 	<SidePanel>
-		<article slot="article" class="content">
-			<h2>Search</h2>
-			<Info>
-				<p>Querying is done by sending a POST request to the server with the following body:</p>
-			</Info>
-
-			<div>
-				<section>
-					<label for="firstName">First Name</label>
-					<input bind:value={firstName} required type="text" placeholder="name" />
-				</section>
-
-				<section>
-					<label for="lastName">Last Name</label>
-					<input bind:value={lastName} required type="text" placeholder="last name" />
-				</section>
-
-				<section>
-					<label for="prefName">Preferred Name</label>
-					<input bind:value={prefName} required type="text" placeholder="preferred name" />
-				</section>
-
-				<section>
-					<label for="email">Email</label>
-					<input bind:value={email} required type="text" placeholder="email" />
-				</section>
+		<article slot="article" class="article">
+			<div class="header">
+				<h2>Profile</h2>
 			</div>
 
-			<div>
-				<section>
-					<label>Faculty</label>
-					<select name="Faculty" id="Faculty">
-						{#each faculties as f}
-							<option value={f.id}>{f.faculty_name}</option>
-						{/each}
-					</select>
-				</section>
+			<section>
+				<p>Preferred name</p>
+				<input type="text" bind:value={userRef.prefName} />
+			</section>
+			<section>
+				<p>First name</p>
+				<input type="text" bind:value={userRef.firstName} />
+			</section>
 
-				<section>
-					<label>Specialization</label>
-					<select name="Specialization" id="Specialization">
-						{#each programs as p}
-							<option value={p.program_id}>{p.program_name}</option>
-						{/each}
-					</select>
-				</section>
+			<section>
+				<p>Last name</p>
+				<input type="text" bind:value={userRef.lastName} />
+			</section>
 
+			{#if userRef.role}
 				<section>
-					<label>Standing</label>
-					<select name="Standing" id="Standing">
-						{#each standings as s}
-							<option value={s.standing_id}>{s.standing_name}</option>
+					<p>Role</p>
+					<select name="Faculty" id="Faculty" multiple>
+						{#each Object.entries(USER_ROLES) as [roleId, roleName]}
+							<option value={Number(roleId)}>{roleName}</option>
 						{/each}
 					</select>
 				</section>
-			</div>
+			{/if}
+
+			<section>
+				<p>Email</p>
+				<a href={`mailto:${userRef.email}`} referrerpolicy="no-referrer" target="_blank"
+					>{userRef.email}</a
+				>
+			</section>
+
+			{#if userRef.standing}
+				<section>
+					<p>Standing</p>
+					<select bind:value={userRef.standing} name="Standing" id="Standing">
+						{#each Object.entries(STANDINGS_V2) as [standingId, standingName]}
+							<option value={Number(standingId)}>{standingName}</option>
+						{/each}
+					</select>
+				</section>
+			{/if}
+
+			{#if userRef.faculty}
+				<section>
+					<select bind:value={userRef.faculty} name="Faculty" id="Faculty">
+						{#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
+							<option value={Number(facultyId)}>{facultyName}</option>
+						{/each}
+					</select>
+				</section>
+			{/if}
+
+			{#if userRef.programs}
+				<section>
+					<p>Specialization</p>
+					<select bind:value={userRef.programs} name="Specialization" id="Specialization">
+						{#each Object.entries(PROGRAMS_V2) as [programId, programName]}
+							<option value={Number(programId)}>{programName}</option>
+						{/each}
+					</select>
+				</section>
+			{/if}
+
+			{#if userRef.resumeLink}
+				<section>
+					<p>Resume</p>
+					<a href={userRef.resumeLink} referrerpolicy="no-referrer" target="_blank"
+						>{user.resumeLink}</a
+					>
+				</section>
+			{/if}
+			<br />
+
+			{#if userRef.socialMedia}
+				<h2>Links</h2>
+				{#each user.socialMedia as socialMedia}
+					<section>
+						<p>{SOCIALS[socialMedia.id].name}</p>
+						<a href={socialMedia.url} referrerpolicy="no-referrer" target="_blank"
+							>{socialMedia.handle || socialMedia.url}</a
+						>
+					</section>
+				{/each}
+			{/if}
 		</article>
-
 		<footer slot="footer">
-			<button>Query</button>
+			<p>Visit your settings page to update your profile.</p>
+			<button disabled={isEqual}>Save</button>
 		</footer>
 	</SidePanel>
-</InProgress>
+{/if}
 
 <style lang="scss">
-	article section {
-		// padding: 1rem 0;
-		border-bottom: 1px solid var(--color-bg-1);
-	}
+	.article {
+		section {
+			padding: 1rem 0;
+			border-bottom: 1px solid var(--color-border-1);
+			display: flex;
+			flex-direction: column;
+			row-gap: 10px;
+			width: 100%;
 
-	.content {
-		// display: flex;
-		// justify-content: center;
-		// align-items: center;
-		// flex-direction: column;
-		// row-gap: 1rem;
-		// padding: 2rem 1rem;
-		// width: fit-content;
-		// height: 100%;
-		overflow: hidden;
+			:first-child {
+				font-weight: 500;
+				color: var(--color-text-2);
+			}
+
+			input,
+			select {
+				width: 100%;
+			}
+
+			* {
+				font-size: 0.9rem;
+				color: var(--color-text-1);
+			}
+		}
+		.header {
+			padding: 0rem 0 1rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+
+			h2 {
+				font-size: 1.2rem;
+				color: var(--color-text-1);
+			}
+
+			button {
+				color: var(--color-text-1);
+				cursor: pointer;
+				font-size: 0.9rem;
+				font-weight: 400;
+				padding: 0.5rem 1rem;
+				background: var(--color-bg-0);
+				border: 1px solid var(--color-border-0);
+
+				border-radius: 0.5rem;
+				transition: all 0.2s ease-in-out;
+				&:hover {
+					background: var(--color-bg-2);
+					border: 1px solid var(--color-border-2);
+				}
+			}
+		}
 	}
 
 	footer {
@@ -107,5 +172,22 @@
 		align-items: center;
 		justify-content: center;
 		column-gap: 1rem;
+		border-top: 1px solid var(--color-border-0);
+		padding: 0.4rem 0;
+		width: 100%;
+
+		button {
+			padding: 0.5rem 1rem;
+			color: var(--color-text-1);
+			border-radius: 0.3rem;
+			background-color: var(--color-bg-primary);
+			&:disabled {
+				background: var(--color-bg-0);
+			}
+		}
+		* {
+			color: var(--color-text-2);
+			font-size: 0.9rem;
+		}
 	}
 </style>

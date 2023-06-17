@@ -401,3 +401,18 @@ export const APPLICATION_STATUS = {
 		status: 'Withdrawn'
 	}
 };
+
+export const UnsetRole = 1;
+
+export const USER_ROLES = {
+	[UnsetRole]: 'Explorer',
+	2: 'Admin',
+	3: 'Member',
+	4: 'Lead',
+	5: 'Tech Leadd',
+	6: 'Design Lead',
+	7: 'Marketing Lead',
+	8: 'Co-president',
+	9: 'Developer',
+	10: 'Designer'
+};

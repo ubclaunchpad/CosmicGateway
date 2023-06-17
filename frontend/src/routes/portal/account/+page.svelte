@@ -1,10 +1,70 @@
 <script lang="ts">
-	import InProgress from '$lib/components/blocks/InProgress.svelte';
+	import { PUBLIC_USERS_API_URI } from '$env/static/public';
+	import Info from '$lib/components/blocks/Info.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
+	import { STRATEGY_EMAIL } from '$lib/util/links';
 	import { STANDINGS_V2, FACULTIES_V2, PROGRAMS_V2, SOCIALS } from '../../../seed/util';
-	import { type UserI, userStore } from '../../../stores/auth';
+	import { type UserI, userStore, signout } from '../../../stores/auth';
+	import { notificationStore } from '../../../stores/notification';
+	let user: UserI = { ...$userStore, ...(!$userStore?.resumeLink && { resumeLink: null }) };
 
-	let user: UserI = $userStore!;
+	async function updateRequest(): Promise<void> {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${user.userId}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		});
+
+		if (response.ok) {
+			notificationStore.update((n) => {
+				return {
+					title: 'Account Updated',
+					message: 'User account has been updated.',
+					type: 'success'
+				};
+			});
+		} else {
+			const error = await response.json();
+			notificationStore.update((n) => {
+				return {
+					title: 'Oops!',
+					message: `${error}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
+					type: 'warning'
+				};
+			});
+		}
+	}
+
+	async function deleteRequest(): Promise<void> {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${user.userId}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		if (response.ok) {
+			notificationStore.update((n) => {
+				return {
+					title: 'Account deleted',
+					message: 'User account has been deleted.',
+					type: 'info'
+				};
+			});
+			signout();
+		} else {
+			const error = await response.json();
+			notificationStore.update((n) => {
+				return {
+					title: 'Account deleted',
+					message: `${error}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
+					type: 'error'
+				};
+			});
+		}
+	}
 </script>
 
 <MainPage>
@@ -12,7 +72,7 @@
 		<h1>Settings</h1>
 
 		<div class="account-group">
-			<section class="account-section">
+			<section class="account-section profile">
 				<h2>Profile</h2>
 
 				<section class="section-content">
@@ -33,7 +93,7 @@
 
 						<label>
 							<p>Email</p>
-							<input type="text" value={user.email} />
+							<input type="text" disabled value={user.email} />
 						</label>
 
 						{#if user.standing}
@@ -41,7 +101,7 @@
 								<p>Standing</p>
 								<select bind:value={user.standing} name="Standing" id="Standing">
 									{#each Object.entries(STANDINGS_V2) as [standingId, standingName]}
-										<option value={standingId}>{standingName}</option>
+										<option value={Number(standingId)}>{standingName}</option>
 									{/each}
 								</select>
 							</label>
@@ -50,10 +110,8 @@
 						<label>
 							<p>Faculty</p>
 							<select bind:value={user.faculty} name="Faculty" id="Faculty">
-								<option value="" disabled hidden selected>Your faculty</option>
-
 								{#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
-									<option value={facultyId}>{facultyName}</option>
+									<option value={Number(facultyId)}>{facultyName}</option>
 								{/each}
 							</select>
 						</label>
@@ -61,16 +119,15 @@
 						<label
 							><p>Specialization</p>
 							<select bind:value={user.programs} name="Specialization" id="Specialization">
-								<option value="" disabled hidden selected>Your (intended) major</option>
 								{#each Object.entries(PROGRAMS_V2) as [programId, programName]}
-									<option value={programId}>{programName}</option>
+									<option value={Number(programId)}>{programName}</option>
 								{/each}
 							</select>
 						</label>
 
 						<label>
 							<p>Resume</p>
-							<input type="text" value={user.resumeLink} />
+							<input type="text" value={user.resumeLink} placeholder="Add your resume link" />
 						</label>
 
 						{#if user.socialMedia}
@@ -91,14 +148,36 @@
 				</section>
 			</section>
 
-			<section class="account-section">
+			<section class="account-section integration">
+				<h2>Integrations</h2>
+
+				<section class="section-content">
+					<Info>
+						<p>
+							Manage your integrations with external services. You can revoke access to any of these
+							at any time.
+						</p>
+					</Info>
+				</section>
+			</section>
+
+			<section class="account-section account">
 				<h2>Account</h2>
+
 				<section class="section-content">
 					<form>
+						<Info>
+							<p>
+								Deleting your account will remove all your data from our servers. This action is
+								irreversible.
+							</p>
+						</Info>
 						<label
 							><p />
 							<div class="form-actions">
-								<button type="submit">Request to delete account</button>
+								<button type="submit" on:click={() => deleteRequest()}
+									>Request to delete account</button
+								>
 							</div>
 						</label>
 					</form>
@@ -135,47 +214,53 @@
 	}
 
 	.account-group {
-		display: flex;
-		width: 100%;
-		flex-wrap: wrap;
-		justify-content: flex-start;
-		flex-direction: row;
-		max-width: 800px;
+		display: grid;
 
-		gap: 1rem;
+		grid-template-areas: 'profile integration' 'profile account';
+		grid-template-columns: 1fr 1fr;
+		width: 100%;
+		width: 100%;
+		padding: 0;
+		grid-gap: 1rem;
+
+		.profile {
+			grid-area: profile;
+		}
+		.integration {
+			grid-area: integration;
+		}
+		.account {
+			grid-area: account;
+		}
 	}
 	.account-section {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		row-gap: 1rem;
-		border-radius: 4px;
-		border-top-left-radius: 0.6rem;
-		min-width: 600px;
 		flex: 1;
-
-		background-color: var(--color-bg-1);
-		border: 3px solid var(--color-bg-1);
-		overflow: hidden;
+		border: 0.8px solid var(--color-border-1);
+		background-color: var(--color-bg-2);
+		border-radius: var(--border-radius-xlarge);
+		box-shadow: var(--box-shadow-small);
 		flex-wrap: wrap;
+		padding: 0.5rem 0.5rem 0.6rem;
 
 		h2 {
 			font-size: 1.1rem;
 			padding: 0.5rem 1rem;
 			width: 8rem;
 			font-weight: 500;
-			border-radius: 0 0 0.6rem 0;
 			color: var(--color-text-1);
-			background-color: var(--color-bg-0);
 		}
 		.section-content {
-			padding: 1.5rem 0rem 0rem;
+			padding: 1rem;
 			display: flex;
 			grid-gap: 1rem;
-			justify-content: flex-end;
+			justify-content: flex-start;
 			align-items: center;
 			flex-direction: column;
 			width: 100%;
+			height: 100%;
 			flex: 1;
 			.form-actions {
 				display: flex;
@@ -202,14 +287,20 @@
 			}
 
 			form {
-				padding: 1rem;
-				display: flex;
+				display: grid;
+				grid-template-columns: 1fr;
 				grid-gap: 1rem;
 				column-gap: 4rem;
 				flex-direction: column;
 				justify-content: space-between;
 				align-items: flex-start;
 				width: 100%;
+
+				@media screen and (max-width: 900px) {
+					grid-template-columns: 1fr;
+					grid-gap: 1rem;
+					column-gap: 0rem;
+				}
 
 				label {
 					padding: 0rem;
@@ -235,8 +326,11 @@
 					input,
 					select {
 						flex: 2;
-						border: none;
 						padding: 0.5rem 0.5rem;
+
+						&:disabled {
+							color: var(--color-text-primary);
+						}
 					}
 
 					* {

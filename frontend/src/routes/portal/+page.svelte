@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ProfilePanel from './profilePanel.svelte';
 	import Foryou from '$lib/components/portal/Foryou.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 </script>
