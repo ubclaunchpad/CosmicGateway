@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition';
+	import { fade, fly, scale } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import Icon from '../general/Icon.svelte';
 	import CloseIcon from '../general/icons/CloseIcon.svelte';
+	import { sineOut } from 'svelte/easing';
 
 	export let isModalOpen: boolean;
 	export let title: string;
@@ -16,8 +17,12 @@
 </script>
 
 {#if isModalOpen}
-	<div class="modal-wrapper" out:fade={{ duration: 300 }}>
-		<div class="modal" in:fly={{ y: 200, duration: 300 }} out:fly={{ y: '100%', duration: 400 }}>
+	<div class="modal-wrapper" out:fade={{ duration: 400, easing: sineOut }}>
+		<div
+			class="modal"
+			in:fly={{ y: 500, duration: 400, easing: sineOut }}
+			out:fly={{ y: 1000, duration: 400, easing: sineOut }}
+		>
 			<div class="topbar">
 				<button on:click={sayHello}
 					><Icon>
@@ -45,7 +50,7 @@
 
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-end;
 	}
 
 	.modal {
@@ -53,7 +58,7 @@
 		padding: 0rem;
 		border-radius: 0.3rem;
 		width: 100%;
-		max-width: 700px;
+		max-width: 750px;
 		height: 100%;
 		max-height: 800px;
 		overflow: hidden;

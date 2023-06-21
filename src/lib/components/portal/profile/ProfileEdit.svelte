@@ -2,13 +2,40 @@
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import ProfileView from '$lib/components/portal/profile/ProfileView.svelte';
 	import { STRATEGY_EMAIL } from '$lib/util/links';
-	import { userStore, signout } from '../../../stores/auth';
+	import { getFaculties, getRoles, getSpecializations, getStandings } from '$lib/util/user';
+	import { type UserI, userStore, signout } from '../../../stores/auth';
 	import { notificationStore } from '../../../stores/notification';
+	let user: UserI = { ...$userStore, ...(!$userStore?.resumeLink && { resumeLink: null }) };
 
-	let isOnEdit = false;
-	let updateProfile;
+	async function updateRequest(): Promise<void> {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${user.userId}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		});
+
+		if (response.ok) {
+			notificationStore.update((n) => {
+				return {
+					title: 'Account Updated',
+					message: 'User account has been updated.',
+					type: 'success'
+				};
+			});
+		} else {
+			const error = await response.json();
+			notificationStore.update((n) => {
+				return {
+					title: 'Oops!',
+					message: `${error}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
+					type: 'warning'
+				};
+			});
+		}
+	}
 
 	async function deleteRequest(): Promise<void> {
 		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${user.userId}`, {
@@ -39,43 +66,94 @@
 		}
 	}
 
-	async function modifyProfile() {
-		await updateProfile();
-		isOnEdit = false;
+	let edit = false;
+	let faculties;
+	let specializations;
+	let standings;
+	let roles;
+
+	$: if (edit) {
+		faculties = getFaculties();
+		standings = getStandings();
+		specializations = getSpecializations();
+		roles = getRoles();
 	}
+
+	// const
 </script>
 
 <MainPage>
 	<div slot="main" class="content">
 		<h1>Settings</h1>
+		<button
+			on:click={() => {
+				edit = !edit;
+			}}>Edit</button
+		>
 
 		<div class="account-group">
 			<section class="account-section profile">
-				<div class="header">
-					<h2>Profile</h2>
-					<div class="buttons">
-						{#if isOnEdit}
-							<button
-								on:click={() => {
-									isOnEdit = false;
-								}}>Cancel</button
-							>
-							<button
-								on:click={() => {
-									modifyProfile();
-								}}>Save</button
-							>
-						{:else}
-							<button
-								on:click={() => {
-									isOnEdit = true;
-								}}>Edit</button
-							>
-						{/if}
-					</div>
-				</div>
+				<h2>Profile</h2>
 
-				<ProfileView id={$userStore?.id} editView={isOnEdit} bind:updateProfile />
+				<section class="section-content">
+					<form>
+						<label>
+							<p>Preferred name</p>
+							<input type="text" value={user.prefName} />
+						</label>
+						<label>
+							<p>First name</p>
+							<input type="text" value={user.firstName} />
+						</label>
+
+						<label>
+							<p>Last name</p>
+							<input type="text" value={user.lastName} />
+						</label>
+
+						<label>
+							<p>Email</p>
+							<input type="text" disabled value={user.email} />
+						</label>
+
+						<!-- {#if user.standing} -->
+						<label>
+							<p>Standing</p>
+							<select bind:value={user.standing} name="Standing" id="Standing">
+								{#each standings as standing}
+									<option value={Number(standing.id)}>{standing.name}</option>
+								{/each}
+							</select>
+						</label>
+						<!-- {/if} -->
+
+						<label>
+							<p>Faculty</p>
+							<select bind:value={user.faculty} name="Faculty" id="Faculty">
+								<!-- {#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
+									<option value={Number(facultyId)}>{facultyName}</option>
+								{/each} -->
+							</select>
+						</label>
+
+						<label
+							><p>Specialization</p>
+							<select bind:value={user.programs} name="Specialization" id="Specialization">
+								<!-- {#each Object.entries(PROGRAMS_V2) as [programId, programName]}
+									<option value={Number(programId)}>{programName}</option>
+								{/each} -->
+							</select>
+						</label>
+
+						<label>
+							<p>Resume</p>
+							<input type="text" value={user.resumeLink} placeholder="Add your resume link" />
+						</label>
+					</form>
+					<div class="form-actions">
+						<button type="submit">Save</button>
+					</div>
+				</section>
 			</section>
 
 			<section class="account-section integration">
@@ -145,19 +223,13 @@
 
 	.account-group {
 		display: grid;
+
 		grid-template-areas: 'profile integration' 'profile account';
 		grid-template-columns: 1fr 1fr;
 		width: 100%;
-		height: 100%;
+		width: 100%;
 		padding: 0;
 		grid-gap: 1rem;
-		overflow-y: scroll;
-
-		@media screen and (max-width: 1000px) {
-			grid-template-columns: 1fr;
-			grid-template-rows: auto;
-			grid-template-areas: 'profile' 'integration' 'account';
-		}
 
 		.profile {
 			grid-area: profile;
@@ -173,44 +245,13 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
+		flex: 1;
 		border: 0.8px solid var(--color-border-1);
 		background-color: var(--color-bg-2);
 		border-radius: var(--border-radius-xlarge);
 		box-shadow: var(--box-shadow-small);
-		flex-wrap: nowrap;
-		min-width: 0;
+		flex-wrap: wrap;
 		padding: 0.5rem 0.5rem 0.6rem;
-		width: 100%;
-
-		.header {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			flex-direction: row;
-
-			.buttons {
-				display: flex;
-				flex-direction: row;
-				column-gap: 0.4rem;
-			}
-
-			button {
-				max-width: fit-content;
-				padding: 0.5rem 1rem;
-				border-radius: var(--border-radius-medium);
-				background-color: var(--color-bg-0-faded);
-				color: var(--color-text-1);
-				border: 1px solid var(--color-border-2);
-				font-size: 0.8rem;
-				font-weight: 600;
-				height: fit-content;
-				cursor: pointer;
-				transition: all 0.2s ease-in-out;
-				&:hover {
-					background-color: var(--color-bg-primary);
-				}
-			}
-		}
 
 		h2 {
 			font-size: 1.1rem;

@@ -3,19 +3,18 @@
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import Info from '$lib/components/blocks/Info.svelte';
-	import { FACULTIES_V2, STANDINGS_V2 } from '../../../seed/util';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import FilterIcon from '$lib/components/general/icons/FilterIcon.svelte';
 	import OrderIcon from '$lib/components/general/icons/OrderIcon.svelte';
 	import VerticalDotsIcon from '$lib/components/general/icons/VerticalDotsIcon.svelte';
-	import type { UserI } from '../../../stores/auth';
 	import MemberViewModal from '$lib/components/members/MemberViewModal.svelte';
 	import { ExpandIcon, UsersIcon } from '$lib/components/general/icons';
 	import InProgress from '$lib/components/blocks/InProgress.svelte';
 	import Loader from '$lib/components/blocks/Loader.svelte';
+	import type { IUser } from '$lib/types/User';
+	import { getDate } from '$lib/util/user';
 	let users = [];
-	let shownUser: UserI | null = null;
+	let shownUser: IUser | null = null;
 	onMount(() => {
 		fetchUsers();
 	});
@@ -27,37 +26,19 @@
 		querying = false;
 	};
 
-	function attributeMapper(key, value) {
-		if (key === 'standing') {
-			return STANDINGS_V2[value];
-		}
-		if (key === 'faculty') {
-			return FACULTIES_V2[value];
-		}
-		if (key === 'resumeLink') {
-			return `<a href="//${value}" target='_blank'>External Link</a>`;
-		}
-		if (key === 'email') {
-			return `<a href="//mailto:${value}">${value}</a>`;
-		}
-		if (key === 'userId') {
-			return ` <button style="background-color:transparent;"></button>`;
-		}
-
-		return value;
-	}
-
 	const COLUMN_MAPPER = {
 		firstName: 'First Name',
 		lastName: 'Last Name',
 		prefName: 'Preferred Name',
 		email: 'Email',
 		faculty: 'Faculty',
-		program: 'Program',
+		specialization: 'Specialization',
 		standing: 'Standing',
-		resumeLink: 'Resume',
-		role: 'Role',
-		userId: ''
+		roles: 'Roles',
+		id: '',
+		createdAt: 'Created At',
+		updatedAt: 'Updated At',
+		memberSince: 'Member since'
 	};
 </script>
 
@@ -94,7 +75,7 @@
 		</div>
 
 		<div class="table-wrapper">
-			{#if true}
+			{#if querying}
 				<Loader height={'100%'} width={'100%'} />
 			{:else}
 				<table>
@@ -102,7 +83,9 @@
 						<tr>
 							<th />
 							{#each Object.keys(users[0]) as key}
-								<th>{COLUMN_MAPPER[key]}</th>
+								{#if COLUMN_MAPPER[key]}
+									<th>{COLUMN_MAPPER[key]}</th>
+								{/if}
 							{/each}
 						</tr>
 					</thead>
@@ -122,16 +105,28 @@
 									</button></td
 								>
 								{#each Object.entries(user) as [key, value]}
-									{#if typeof value === 'object'}
-										<td>
-											{#if value != null}
-												{#each Object.values(value) as val}{val}{/each}
+									{#if COLUMN_MAPPER[key]}
+										{#if ['standing', 'faculty', 'specialization'].includes(key)}
+											<td>
+												{#if value != null}
+													{JSON.parse(value).name}
+												{:else}
+													{'N/A'}
+												{/if}
+											</td>
+										{:else if key === 'roles'}
+											<td>
+												{#each JSON.parse(value) as role}{role.name} {/each}
+											</td>
+										{:else if ['createdAt', 'updatedAt', 'MemberSince'].includes(key)}
+											{#if value !== null}
+												<td>{getDate(value)}</td>
 											{:else}
-												{'N/A'}
+												<td />
 											{/if}
-										</td>
-									{:else}
-										<td>{@html attributeMapper(key, value)}</td>
+										{:else}
+											<td>{value}</td>
+										{/if}
 									{/if}
 								{/each}
 							</tr>

@@ -21,16 +21,15 @@ export const signout = () => {
 };
 
 export interface UserI {
-	userId: number;
+	id: number;
 	email: string;
 	firstName: string;
 	prefName: string;
 	lastName: string;
 	resumeLink: string;
-	standing: number;
-	faculty: number;
-	socialMedia: number[];
-	programs: number[];
+	standing: any;
+	faculty: any;
+	specialization: any;
 }
 
 export const userStore = writable<UserI | undefined>(undefined);

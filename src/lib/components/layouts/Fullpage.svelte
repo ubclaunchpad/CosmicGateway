@@ -6,7 +6,8 @@
 	import { onMount } from 'svelte';
 	let pageWidth: number;
 	let collapse = true;
-	const cutoff = 800;
+	const cutoff = 1200;
+	$: transitionDuration = isCompact ? 300 : 0;
 	$: showNav = pageWidth > cutoff || !collapse;
 	$: isCompact = pageWidth < cutoff;
 	onMount(() => {
@@ -45,7 +46,7 @@
 			</div>
 
 			{#if showNav}
-				<div class="content" transition:slide={{ axis: 'x', duration: 300 }}>
+				<div class="content" transition:slide={{ axis: 'x', duration: transitionDuration }}>
 					<Navbar on:navigate={onNavigation} />
 				</div>
 			{/if}

@@ -3,7 +3,6 @@
 	import jwt_decode from 'jwt-decode';
 	import { onMount } from 'svelte';
 	import type { GoogleAuthUser } from '$lib/types/googleAuth.js';
-	import { STANDINGS_V2, PROGRAMS_V2, FACULTIES_V2 } from '../../seed/util';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
 	import { goto } from '$app/navigation';
@@ -45,7 +44,7 @@
 			facultyId: Number(facultyId),
 			standingId: Number(standingId),
 			resumeLink: resumeLink,
-			programId: Number(programId)
+			specializationId: Number(programId)
 		};
 
 		try {
