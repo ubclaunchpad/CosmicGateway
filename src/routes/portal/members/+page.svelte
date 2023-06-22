@@ -109,14 +109,14 @@
 										{#if ['standing', 'faculty', 'specialization'].includes(key)}
 											<td>
 												{#if value != null}
-													{JSON.parse(value).name}
+													{value.name}
 												{:else}
 													{'N/A'}
 												{/if}
 											</td>
 										{:else if key === 'roles'}
 											<td>
-												{#each JSON.parse(value) as role}{role.name} {/each}
+												{#each value as role}{role.name} {/each}
 											</td>
 										{:else if ['createdAt', 'updatedAt', 'MemberSince'].includes(key)}
 											{#if value !== null}

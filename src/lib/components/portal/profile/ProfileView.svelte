@@ -1,118 +1,89 @@
 <script lang="ts">
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import Loader from '$lib/components/blocks/Loader.svelte';
-	import type { IUser } from '$lib/types/User';
-	import { getDate, getFaculties, getSpecializations, getStandings } from '$lib/util/user';
-	import { onMount } from 'svelte';
+	import type {
+		IFaculty,
+		IRole,
+		ISpecialization,
+		IStanding,
+		IUser,
+		IUserPatchRequest
+	} from '$lib/types/User';
+	import { getDate } from '$lib/util/user';
 	import { notificationStore } from '../../../../stores/notification';
 	import { STRATEGY_EMAIL } from '$lib/util/links';
 	export let id: number;
-	let user: IUser;
-	let referenceCopy: IUser;
-	let copy: IUser;
+	export let user: IUser;
 	export let editView: boolean = false;
-	
+	let referenceUser: IUser;
+	let listOfFaculties: IFaculty = [];
+	let listOfSpecializations: ISpecialization = [];
+	let listOfStandings: IStanding = [];
+	let listOfRoles: IRole = [];
+	let changedFields = {};
+	$: if (user && referenceUser) {
+		changedFields = getChangedFields(user, referenceUser);
+	}
 	$: if (editView) {
 		fetchFormDetails();
 	}
 
-	let listOfFaculties: { id: number; name: string }[] = [];
-	let listOfSpecializations: { id: number; name: string }[] = [];
-	let listOfStandings: { id: number; name: string }[] = [];
+	function getChangedFields(originalRef: IUser, modifiedRef: IUser) {
+		const changedFields: Partial<Record<keyof IUserPatchRequest, string | undefined>> = {};
+		for (const key in originalRef) {
+			const fieldKey = key as keyof IUser;
+			if (originalRef[fieldKey] !== modifiedRef[fieldKey]) {
+				const partialkey = key as keyof IUserPatchRequest;
 
-	const fetchFormDetails = async () => {
-		listOfFaculties = await getFaculties();
-		listOfSpecializations = await getSpecializations();
-		listOfStandings = await getStandings();
-	};
-
-
-
-	onMount(async () => {
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${id}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json'
+				if (typeof modifiedRef[fieldKey] === typeof changedFields[partialkey]) {
+					changedFields[partialkey] = modifiedRef[fieldKey] as string | undefined;
+				}
 			}
-		});
-
-	 referenceCopy = await response.json();
-		user = getUserFields(referenceCopy);
-		copy = getUserFields(referenceCopy);
-	});
-
-	const attributeMapper = (key, value) => {
-		switch (key) {
-			case 'firstName':
-			case 'lastName':
-			case 'PrefName':
-			case 'username':
-				return value;
-			case 'createdAt':
-			case 'updatedAt':
-				return getDate(value);
-			case 'faculty':
-			case 'standing':
-			case 'specialization':
-				return value.name;
-			case 'roles':
-				return JSON.parse(value).map((role) => role.name);
-			default:
-				return value;
-		}
-	};
-
-	const fieldVisibility = (key) => {
-		switch (key) {
-			case 'firstName':
-			case 'lastName':
-			case 'PrefName':
-			case 'username':
-			case 'standing':
-			case 'faculty':
-			case 'roles':
-			case 'specialization':
-				return true;
-			default:
-				return false;
-		}
-	};
-
-	const getUserFields = (userInfo: IUser) => {
-		return {
-			firstName: userInfo.firstName,
-			lastName: userInfo.firstName,
-			prefName: userInfo.prefName,
-			email: userInfo.email,
-			username: userInfo.username,
-			resumeLink: userInfo.resumeLink,
-			facultyId: userInfo.faculty.id,
-			standingId: userInfo.standing.id,
-			specializationId: userInfo.specialization.id,
-		}
-	}
-
-		
-	let changedFields = {}
-	$: if (user && copy) {
-		changedFields =  getChangedFields(user, copy);
-	}
-
-
-	function getChangedFields(changed, copy) {
-		const changedFields = {};
-		for (const key in changed) {
-			if (changed[key] !== copy[key]) {
-				changedFields[key] = changed[key];
-			} 
 		}
 		return changedFields;
 	}
 
-	
+	async function getUserInfo() {
+		if (!user) {
+			const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${id}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			referenceUser = await response.json();
+			user = Object.assign({}, referenceUser);
+		}
+	}
+
+	const fetchFormDetails = async () => {
+		const response = await fetch('/api/resources', {
+			method: 'GET'
+		});
+
+		const resources = await response.json();
+		listOfFaculties = resources.listOfFaculties;
+		listOfSpecializations = resources.listOfSpecializations;
+		listOfStandings = resources.listOfStandings;
+		listOfRoles = resources.listOfRoles;
+	};
+
+	// const getUserFields = (userInfo: IUser) => {
+	// 	return {
+	// 		firstName: userInfo.firstName,
+	// 		lastName: userInfo.firstName,
+	// 		prefName: userInfo.prefName,
+	// 		email: userInfo.email,
+	// 		username: userInfo.username,
+	// 		resumeLink: userInfo.resumeLink,
+	// 		facultyId: userInfo.faculty.id,
+	// 		standingId: userInfo.standing.id,
+	// 		specializationId: userInfo.specialization.id
+	// 	};
+	// };
 
 	export const updateProfile = async () => {
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${referenceCopy.id}`, {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${referenceUser.id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
@@ -133,40 +104,41 @@
 			notificationStore.update((n) => {
 				return {
 					title: 'Oops!',
-					message: `${JSON.stringify(error)}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
+					message: `${JSON.stringify(
+						error
+					)}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
 					type: 'warning'
 				};
 			});
 		}
 	};
-
-
 </script>
 
-{#if user}
+{#await getUserInfo()}
+	<Loader width={'100%'} height={'100%'} />
+{:then _}
 	<div class="profile-content">
 		<section class="profile">
-
 			<h3>Personal Info</h3>
 			<section class="grid-row">
 				<section class="attribute">
 					<p>Preferred Name</p>
 					{#if !editView}
-						<p>{referenceCopy.prefName}</p>
+						<p>{referenceUser.prefName}</p>
 					{:else}
-						<input bind:value={user.prefName}   />
+						<input bind:value={user.prefName} />
 					{/if}
 				</section>
 				<section class="attribute">
 					<p>Member Since</p>
-					{#if referenceCopy.memberSince}
-						<p class="info">{getDate(referenceCopy.memberSince)}</p>
+					{#if referenceUser.memberSince}
+						<p class="info">{getDate(referenceUser.memberSince)}</p>
 					{:else}
 						<p class="info">Hopefully soon</p>
 					{/if}
 				</section>
 
-				{#if referenceCopy.memberSince}
+				{#if referenceUser.memberSince}
 					<section class="attribute">
 						<p>Roles</p>
 						<p>{user.prefName}</p>
@@ -178,18 +150,18 @@
 				<section class="attribute">
 					<p>Name</p>
 					{#if !editView}
-						<p>{referenceCopy.firstName}</p>
+						<p>{referenceUser.firstName}</p>
 					{:else}
-						<input bind:value={user.firstName}  />
+						<input bind:value={user.firstName} />
 					{/if}
 				</section>
 
 				<section class="attribute">
 					<p>Last name</p>
 					{#if !editView}
-						<p>{referenceCopy.lastName}</p>
+						<p>{referenceUser.lastName}</p>
 					{:else}
-						<input bind:value={user.lastName}   />
+						<input bind:value={user.lastName} />
 					{/if}
 				</section>
 			</section>
@@ -201,9 +173,9 @@
 			<section class="attribute">
 				<p>Username</p>
 				{#if !editView}
-					<p>{referenceCopy.username}</p>
+					<p>{referenceUser.username}</p>
 				{:else}
-					<input bind:value={user.username}   />
+					<input bind:value={user.username} />
 				{/if}
 			</section>
 
@@ -213,11 +185,11 @@
 				<section class="attribute">
 					<p>Faculty</p>
 					{#if !editView}
-						<p>{referenceCopy.faculty.name}</p>
+						<p>{referenceUser.faculty.name}</p>
 					{:else}
-						<select  value={user.facultyId}  >
+						<select value={user.faculty.id}>
 							{#each listOfFaculties as field}
-								<option selected={user.facultyId === field.id} value={field.id}
+								<option selected={user.faculty.id === field.id} value={field.id}
 									>{field.name}</option
 								>
 							{/each}
@@ -228,13 +200,13 @@
 				<section class="attribute">
 					<p>Specialization</p>
 					{#if !editView}
-						<p>{referenceCopy.specialization.name}</p>
+						<p>{referenceUser.specialization.name}</p>
 					{:else}
-						<select bind:value={user.specializationId}  >
+						<select bind:value={user.specialization.id}>
 							{#each listOfSpecializations as field}
-								<option selected={user.specializationId === field.id} value={field.id}
-									>{field.name}</option
-								>
+								<option selected={user.specialization.id === field.id} value={field.id}
+									>{field.name}
+								</option>
 							{/each}
 						</select>
 					{/if}
@@ -244,12 +216,11 @@
 			<section class="attribute">
 				<p>Standing</p>
 				{#if !editView}
-					<p>{referenceCopy.standing.name}</p>
+					<p>{referenceUser.standing.name}</p>
 				{:else}
-				{user.standingId}
-					<select bind:value={user.standingId} >
+					<select bind:value={user.standing.id}>
 						{#each listOfStandings as field}
-							<option selected={user.standingId === field.id} value={field.id}>{field.name}</option
+							<option selected={user.standing.id === field.id} value={field.id}>{field.name}</option
 							>
 						{/each}
 					</select>
@@ -258,27 +229,25 @@
 
 			<section class="attribute">
 				<p>Resume</p>
-				<!-- <p>{referenceCopy.resumeLink}</p> -->
+				<p>{referenceUser.resumeLink}</p>
 			</section>
 
-			<h3 />
+			<br />
 
 			<section class="grid-row">
 				<section class="attribute">
 					<p>Created At</p>
-					<p class="stamp">{getDate(referenceCopy.createdAt)}</p>
+					<p class="stamp">{getDate(referenceUser.createdAt)}</p>
 				</section>
 
 				<section class="attribute">
 					<p>Updated At</p>
-					<p class="stamp">{getDate(referenceCopy.updatedAt)}</p>
+					<p class="stamp">{getDate(referenceUser.updatedAt)}</p>
 				</section>
 			</section>
 		</section>
 	</div>
-{:else}
-	<Loader width={'100%'} height={'100%'} />
-{/if}
+{/await}
 
 <style lang="scss">
 	.profile {
