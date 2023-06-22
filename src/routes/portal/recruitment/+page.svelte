@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	let querying = true;
 	import { PUBLIC_POSTING_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
@@ -267,4 +267,4 @@
 		flex: 1;
 		overflow: scroll;
 	}
-</style>
+</style> -->

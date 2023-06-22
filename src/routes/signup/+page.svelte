@@ -9,8 +9,22 @@
 	import { token } from '../../stores/auth';
 	import { notificationStore } from '../../stores/notification';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
+	import type { IFaculty, ISpecialization, IStanding, IRole } from '$lib/types/User';
 	let googleAuthUser: GoogleAuthUser | undefined;
 	$: googleConnected = $token !== null && $token !== undefined;
+	let listOfFaculties: IFaculty = [];
+	let listOfSpecializations: ISpecialization = [];
+	let listOfStandings: IStanding = [];
+	const fetchFormDetails = async () => {
+		const response = await fetch('/api/resources', {
+			method: 'GET'
+		});
+
+		const resources = await response.json();
+		listOfFaculties = resources.listOfFaculties;
+		listOfSpecializations = resources.listOfSpecializations;
+		listOfStandings = resources.listOfStandings;
+	};
 
 	function verifyGoogleLogin(request: { credential: string }) {
 		googleAuthUser = jwt_decode(request.credential) as GoogleAuthUser;
@@ -33,6 +47,7 @@
 
 	onMount(() => {
 		fillOutFields();
+		fetchFormDetails();
 	});
 
 	async function register() {
@@ -44,7 +59,7 @@
 			facultyId: Number(facultyId),
 			standingId: Number(standingId),
 			resumeLink: resumeLink,
-			specializationId: Number(programId)
+			specializationId: Number(specializationId)
 		};
 
 		try {
@@ -85,7 +100,7 @@
 	let email: string;
 	let standingId: number;
 	let facultyId: number;
-	let programId: number;
+	let specializationId: number;
 	let resumeLink: string;
 
 	onMount(async () => {
@@ -172,18 +187,18 @@
 					<p class="required">Faculty</p>
 					<select required bind:value={facultyId} name="Faculty" id="Faculty">
 						<option value="" disabled hidden selected>Your faculty</option>
-						{#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
-							<option value={facultyId}>{facultyName}</option>
+						{#each listOfFaculties as field}
+							<option value={field.id}>{field.name}</option>
 						{/each}
 					</select>
 				</label>
 
 				<label>
 					<p class="required">Specialization</p>
-					<select bind:value={programId} name="Specialization" id="Specialization">
+					<select bind:value={specializationId} name="Specialization" id="Specialization">
 						<option value="" disabled hidden selected>Your (intended) major</option>
-						{#each Object.entries(PROGRAMS_V2) as [programId, programName]}
-							<option value={programId}>{programName}</option>
+						{#each listOfSpecializations as field}
+							<option value={field.id}>{field.name}</option>
 						{/each}
 					</select>
 				</label>
@@ -192,8 +207,8 @@
 					<p class="required">Standing</p>
 					<select required bind:value={standingId} name="Standing" id="Standing">
 						<option value="" disabled hidden selected>Your current standing</option>
-						{#each Object.entries(STANDINGS_V2) as [standingId, standingName]}
-							<option value={standingId}>{standingName}</option>
+						{#each listOfStandings as field}
+							<option value={field.id}>{field.name}</option>
 						{/each}
 					</select>
 				</label>

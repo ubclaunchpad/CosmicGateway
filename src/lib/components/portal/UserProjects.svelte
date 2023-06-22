@@ -1,45 +1,8 @@
-<script lang="ts">
-	// import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
-	import type { ProjectInfo } from '../../../seed/projects';
-	// import { userStore } from '../../../stores/auth';
-	import InProgress from '../blocks/InProgress.svelte';
-	import Info from '../blocks/Info.svelte';
-	// import Loader from '../blocks/Loader.svelte';
-	// import ProjectCard from '../projects/ProjectCard.svelte';
-	let userProjects: ProjectInfo[] = [];
-
-	// const fetchUserProjects = async () => {
-	// 	const userId = $userStore?.userId;
-
-	// 	const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects?userIds=${userId}`);
-	// 	userProjects = (await res.json()) as ProjectInfo[];
-	// };
-
-	// $: if ($userStore && $userStore.userId) {
-	// 	fetchUserProjects();
-	// }
-</script>
-
 <section>
 	<div class="topbar header">
 		<h2>Projects</h2>
 	</div>
-
-	<Info>
-		<p>Here are the projects you are currently working on.</p>
-	</Info>
-
-	<InProgress title="Coming Soon" description="This feature is coming soon. Stay tuned!" />
-
-	<!-- <div class="projects">
-		{#if userProjects.length === 0}
-			<Loader width={'100%'} height={'100%'} />
-		{:else}
-			{#each userProjects as project}
-				<ProjectCard {project} />
-			{/each}
-		{/if}
-	</div> -->
+	<div class="content" />
 </section>
 
 <style lang="scss">
@@ -56,6 +19,17 @@
 		}
 		flex: 1;
 		width: 100%;
+		height: 100%;
+
+		.content {
+			background-color: var(--color-bg-2);
+			border-radius: var(--color-border-1);
+			border-radius: var(--border-radius-xlarge);
+			box-shadow: var(--box-shadow-small);
+			width: 100%;
+			height: 100%;
+			flex: 1;
+		}
 	}
 
 	.wrapper {

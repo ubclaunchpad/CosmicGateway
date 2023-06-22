@@ -29,7 +29,6 @@
 <div
 	id="page"
 	on:keyup={(e) => {
-		console.log(e.key);
 		if (e.key === 'Escape') {
 			collapseNav();
 		}
@@ -59,7 +58,7 @@
 		</div>
 	</aside>
 
-	<main class:blur={!collapse && isCompact} on:keyup={(e) => {}} on:click={collapseNav}>
+	<main class:blur={!collapse && isCompact} on:click={collapseNav}>
 		<slot />
 	</main>
 </div>

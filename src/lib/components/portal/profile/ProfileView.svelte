@@ -1,50 +1,52 @@
 <script lang="ts">
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import Loader from '$lib/components/blocks/Loader.svelte';
-	import type {
-		IFaculty,
-		IRole,
-		ISpecialization,
-		IStanding,
-		IUser,
-		IUserPatchRequest
+	import {
+		type IFaculty,
+		type IRole,
+		type ISpecialization,
+		type IStanding,
+		type IUser,
+		type IUserPatchRequest,
+		UserRequestMapper
 	} from '$lib/types/User';
 	import { getDate } from '$lib/util/user';
 	import { notificationStore } from '../../../../stores/notification';
 	import { STRATEGY_EMAIL } from '$lib/util/links';
 	export let id: number;
-	export let user: IUser;
-	export let editView: boolean = false;
-	let referenceUser: IUser;
+	let user: IUser;
+	export let editView = false;
+	export let referenceUser: IUser;
 	let listOfFaculties: IFaculty = [];
 	let listOfSpecializations: ISpecialization = [];
 	let listOfStandings: IStanding = [];
 	let listOfRoles: IRole = [];
 	let changedFields = {};
 	$: if (user && referenceUser) {
-		changedFields = getChangedFields(user, referenceUser);
+		changedFields = getChangedFields(referenceUser, user);
 	}
 	$: if (editView) {
 		fetchFormDetails();
 	}
 
 	function getChangedFields(originalRef: IUser, modifiedRef: IUser) {
-		const changedFields: Partial<Record<keyof IUserPatchRequest, string | undefined>> = {};
-		for (const key in originalRef) {
-			const fieldKey = key as keyof IUser;
-			if (originalRef[fieldKey] !== modifiedRef[fieldKey]) {
-				const partialkey = key as keyof IUserPatchRequest;
+		const originalFields: IUserPatchRequest = UserRequestMapper(originalRef);
+		const modifiedFields: IUserPatchRequest = UserRequestMapper(modifiedRef);
+		const changedFields: IUserPatchRequest = {};
 
-				if (typeof modifiedRef[fieldKey] === typeof changedFields[partialkey]) {
-					changedFields[partialkey] = modifiedRef[fieldKey] as string | undefined;
-				}
+		for (const key in originalFields) {
+			const fieldKey = key as keyof IUserPatchRequest;
+			if (JSON.stringify(originalFields[fieldKey]) !== JSON.stringify(modifiedFields[fieldKey])) {
+				const partialkey = key as keyof IUserPatchRequest;
+				// TODO: fix TS error
+				changedFields[partialkey] = modifiedFields[fieldKey];
 			}
 		}
 		return changedFields;
 	}
 
-	async function getUserInfo() {
-		if (!user) {
+	async function getUserInfo(refresh = false) {
+		if (!referenceUser || refresh) {
 			const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${id}`, {
 				method: 'GET',
 				headers: {
@@ -52,7 +54,10 @@
 				}
 			});
 			referenceUser = await response.json();
-			user = Object.assign({}, referenceUser);
+			user = structuredClone(referenceUser);
+		} else if (!user) {
+			user = structuredClone(referenceUser);
+			return;
 		}
 	}
 
@@ -68,21 +73,16 @@
 		listOfRoles = resources.listOfRoles;
 	};
 
-	// const getUserFields = (userInfo: IUser) => {
-	// 	return {
-	// 		firstName: userInfo.firstName,
-	// 		lastName: userInfo.firstName,
-	// 		prefName: userInfo.prefName,
-	// 		email: userInfo.email,
-	// 		username: userInfo.username,
-	// 		resumeLink: userInfo.resumeLink,
-	// 		facultyId: userInfo.faculty.id,
-	// 		standingId: userInfo.standing.id,
-	// 		specializationId: userInfo.specialization.id
-	// 	};
-	// };
-
 	export const updateProfile = async () => {
+		if (Object.keys(changedFields).length === 0) {
+			notificationStore.set({
+				title: 'Nothing to update',
+				message: 'Please change one or more fields',
+				type: 'warning'
+			});
+			return;
+		}
+
 		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${referenceUser.id}`, {
 			method: 'PATCH',
 			headers: {
@@ -92,58 +92,48 @@
 		});
 
 		if (response.ok) {
-			notificationStore.update((n) => {
-				return {
-					title: 'Account Updated',
-					message: 'User account has been updated.',
-					type: 'success'
-				};
+			notificationStore.set({
+				title: 'Account Updated',
+				message: 'User account has been updated.',
+				type: 'success'
 			});
 		} else {
 			const error = await response.json();
-			notificationStore.update((n) => {
-				return {
-					title: 'Oops!',
-					message: `${JSON.stringify(
-						error
-					)}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
-					type: 'warning'
-				};
+			notificationStore.set({
+				title: 'Oops!',
+				message: `${JSON.stringify(
+					error
+				)}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
+				type: 'warning'
 			});
 		}
+
+		await getUserInfo(true);
 	};
 </script>
 
-{#await getUserInfo()}
-	<Loader width={'100%'} height={'100%'} />
-{:then _}
-	<div class="profile-content">
-		<section class="profile">
-			<h3>Personal Info</h3>
+<div class="profile-content">
+	<section class="profile">
+		{#await getUserInfo()}
+			<Loader width={'100%'} height={'100%'} />
+		{:then _}
+			<h2>{user.prefName}</h2>
+
 			<section class="grid-row">
-				<section class="attribute">
-					<p>Preferred Name</p>
-					{#if !editView}
-						<p>{referenceUser.prefName}</p>
-					{:else}
+				{#if editView}
+					<section class="attribute">
+						<p>Preferred Name</p>
 						<input bind:value={user.prefName} />
-					{/if}
-				</section>
+					</section>
+				{/if}
 				<section class="attribute">
-					<p>Member Since</p>
+					<p>Roles</p>
 					{#if referenceUser.memberSince}
-						<p class="info">{getDate(referenceUser.memberSince)}</p>
+						<p>{user.roles.map((role) => role.name).join(', ')}</p>
 					{:else}
 						<p class="info">Hopefully soon</p>
 					{/if}
 				</section>
-
-				{#if referenceUser.memberSince}
-					<section class="attribute">
-						<p>Roles</p>
-						<p>{user.prefName}</p>
-					</section>
-				{/if}
 			</section>
 
 			<section class="grid-row">
@@ -165,18 +155,20 @@
 					{/if}
 				</section>
 			</section>
-			<section class="attribute">
-				<p>Email</p>
-				<p>{user.email}</p>
-			</section>
+			<section class="grid-row">
+				<section class="attribute">
+					<p>Email</p>
+					<p>{user.email}</p>
+				</section>
 
-			<section class="attribute">
-				<p>Username</p>
-				{#if !editView}
-					<p>{referenceUser.username}</p>
-				{:else}
-					<input bind:value={user.username} />
-				{/if}
+				<section class="attribute">
+					<p>Username</p>
+					{#if !editView}
+						<p>{referenceUser.username}</p>
+					{:else}
+						<input bind:value={user.username} />
+					{/if}
+				</section>
 			</section>
 
 			<h3>Background</h3>
@@ -211,28 +203,31 @@
 						</select>
 					{/if}
 				</section>
-			</section>
 
-			<section class="attribute">
-				<p>Standing</p>
-				{#if !editView}
-					<p>{referenceUser.standing.name}</p>
-				{:else}
-					<select bind:value={user.standing.id}>
-						{#each listOfStandings as field}
-							<option selected={user.standing.id === field.id} value={field.id}>{field.name}</option
-							>
-						{/each}
-					</select>
-				{/if}
+				<section class="attribute">
+					<p>Standing</p>
+					{#if !editView}
+						<p>{referenceUser.standing.name}</p>
+					{:else}
+						<select bind:value={user.standing.id}>
+							{#each listOfStandings as field}
+								<option selected={user.standing.id === field.id} value={field.id}
+									>{field.name}</option
+								>
+							{/each}
+						</select>
+					{/if}
+				</section>
 			</section>
 
 			<section class="attribute">
 				<p>Resume</p>
-				<p>{referenceUser.resumeLink}</p>
+				{#if !editView}
+					<p>{referenceUser.resumeLink}</p>
+				{:else}
+					<input bind:value={user.resumeLink} />
+				{/if}
 			</section>
-
-			<br />
 
 			<section class="grid-row">
 				<section class="attribute">
@@ -245,24 +240,35 @@
 					<p class="stamp">{getDate(referenceUser.updatedAt)}</p>
 				</section>
 			</section>
-		</section>
-	</div>
-{/await}
+		{/await}
+	</section>
+</div>
 
 <style lang="scss">
+	.profile-content {
+		width: 100%;
+		height: 100%;
+		padding: 1rem;
+	}
 	.profile {
 		display: grid;
 		grid-template-columns: 1fr;
-		padding: 0 1rem;
+
 		gap: 0.5rem;
 		border-radius: 1rem;
 		overflow-y: scroll;
 		width: 100%;
 		height: 100%;
 
-		h3 {
+		h2 {
 			padding: 1rem 0 1rem;
-			border-bottom: 1px solid var(--color-border-1);
+			font-size: 1rem;
+			border-bottom: 2px dotted var(--color-border-0);
+		}
+
+		h3 {
+			font-size: 0.9rem;
+			padding: 1rem 0 1rem;
 		}
 
 		.grid-row {
@@ -291,9 +297,8 @@
 				}
 
 				&:last-child {
-					border: 1px solid var(--color-border-1);
-					color: var(--color-text-2);
-					background-color: var(--color-bg-1);
+					border: 1px solid var(--color-border-2);
+					color: var(--color-text-1);
 					border-radius: var(--border-radius-medium);
 				}
 
@@ -314,7 +319,7 @@
 			input,
 			select {
 				padding: 0.5rem 0.4rem;
-				border: 1px solid var(--color-border-1);
+				border: 2px solid var(--color-border-2);
 				color: var(--color-text-2);
 				background-color: var(--color-bg-3);
 				border-radius: var(--border-radius-medium);

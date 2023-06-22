@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import { onMount } from 'svelte';
@@ -452,4 +452,4 @@
 			z-index: 2;
 		}
 	}
-</style>
+</style> -->

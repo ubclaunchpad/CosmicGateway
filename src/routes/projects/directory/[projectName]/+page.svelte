@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import Icon from '$lib/components/general/Icon.svelte';
 	import EditIcon from '$lib/components/general/icons/EditIcon.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
@@ -108,4 +108,4 @@
 			align-items: center;
 		}
 	}
-</style>
+</style> -->

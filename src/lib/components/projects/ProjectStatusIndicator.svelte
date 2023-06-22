@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { getStatusColor } from '$lib/util/statusColours';
 	export let statusId: number;
 	let projectStatus = {} as (typeof PROJECT_STATUS)[keyof typeof PROJECT_STATUS];
@@ -35,4 +35,4 @@
 			}
 		}
 	}
-</style>
+</style> -->

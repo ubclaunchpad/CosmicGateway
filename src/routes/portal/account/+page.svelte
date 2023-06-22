@@ -6,12 +6,19 @@
 	import { STRATEGY_EMAIL } from '$lib/util/links';
 	import { userStore, signout } from '../../../stores/auth';
 	import { notificationStore } from '../../../stores/notification';
-
+	import { getUserInfo, type IUser } from '$lib/types/User';
+	import { onMount } from 'svelte';
 	let isOnEdit = false;
-	let updateProfile;
+	let updateProfile: Function;
+	let user: IUser;
+
+	console.log($userStore);
+	onMount(async () => {
+		user = await getUserInfo($userStore.id);
+	});
 
 	async function deleteRequest(): Promise<void> {
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${user.userId}`, {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${$userStore.id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -23,7 +30,7 @@
 				return {
 					title: 'Account deleted',
 					message: 'User account has been deleted.',
-					type: 'info'
+					type: response.status === 200 ? 'info' : 'error'
 				};
 			});
 			signout();
@@ -75,7 +82,9 @@
 					</div>
 				</div>
 
-				<ProfileView id={$userStore?.id} editView={isOnEdit} bind:updateProfile />
+				{#if user}
+					<ProfileView referenceUser={user} id={user.id} editView={isOnEdit} bind:updateProfile />
+				{/if}
 			</section>
 
 			<section class="account-section integration">

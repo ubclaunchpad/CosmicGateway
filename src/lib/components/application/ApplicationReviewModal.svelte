@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { PUBLIC_POSTING_API_URI, PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import Info from '../blocks/Info.svelte';
@@ -371,4 +371,4 @@
 			border-radius: 5px;
 		}
 	}
-</style>
+</style> -->

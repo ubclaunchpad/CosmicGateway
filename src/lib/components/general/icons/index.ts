@@ -53,6 +53,7 @@ import DiscordIcon from './DiscordIcon.svelte';
 import FacebookIcon from './FacebookIcon.svelte';
 import ApplicationsIcon from './ApplicationsIcon.svelte';
 import CircledDoodle from './doodles/CircledDoodle.svelte';
+import FilterIcon from './FilterIcon.svelte';
 
 export {
 	HomeIcon,
@@ -109,5 +110,6 @@ export {
 	FigmaIcon,
 	DiscordIcon,
 	CircledDoodle,
-	ApplicationsIcon
+	ApplicationsIcon,
+	FilterIcon
 };

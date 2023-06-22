@@ -3,23 +3,17 @@
 	import Modal from '../layouts/Modal.svelte';
 	import ProfileView from '../portal/profile/ProfileView.svelte';
 	export let user: IUser | undefined | null;
-	let userRef: IUser = undefined;
-
-	$: isEqual = JSON.stringify(user) === JSON.stringify(userRef);
-	$: if (!userRef && user && user !== null) {
-		userRef = Object.assign({}, user);
-	}
 	export let isOpen: boolean;
 </script>
 
 <Modal title={'View Member'} on:modalevent isModalOpen={isOpen}>
 	<div class="modal-content" slot="modal-content">
-		<ProfileView id={userRef.id} />
+		<ProfileView id={user.id} referenceUser={user} />
 	</div>
 
 	<div class="bottombar" slot="bottom-bar">
 		<footer>
-			<button disabled={isEqual}>Save</button>
+			<!-- <button disabled={isEqual}>Save</button> -->
 		</footer>
 	</div>
 </Modal>

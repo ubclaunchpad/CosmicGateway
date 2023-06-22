@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { INotification } from '$lib/types/INotification';
-	import { fade, slide, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { notificationStore } from '../../../stores/notification';
 	let notification: INotification | undefined;
-	let width: number = 0;
+	let width = 0;
 
 	notificationStore.subscribe((value) => {
 		notification = value;

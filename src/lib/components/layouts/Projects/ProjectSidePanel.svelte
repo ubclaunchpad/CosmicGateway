@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { onMount } from 'svelte';
 	import { PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import type { ProjectInfo } from '../../../../seed/projects';
@@ -135,4 +135,4 @@
 	h2 {
 		padding-top: 0;
 	}
-</style>
+</style> -->

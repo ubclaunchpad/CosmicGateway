@@ -2,8 +2,8 @@
 	import Icon from '../general/Icon.svelte';
 	import ChevronLeftIcon from '../general/icons/ChevronLeftIcon.svelte';
 	import ChevronRightIcon from '../general/icons/ChevronRightIcon.svelte';
-	export const projectId: number = 1;
-	export const postId: number = 1;
+	export const projectId = 1;
+	export const postId = 1;
 
 	let firstName: string;
 	let lastName: string;

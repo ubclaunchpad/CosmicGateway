@@ -5,12 +5,18 @@
 	import { fetchUser, userStore } from '../../stores/auth';
 	import { goto } from '$app/navigation';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
+	import { notificationStore } from '../../stores/notification';
 
 	async function verifyGoogleLogin(request) {
 		try {
 			await fetchUser(request.credential);
 			goto('/portal');
 		} catch (e) {
+			notificationStore.set({
+				title: 'Cannot sign in',
+				message: (e as Error).message,
+				type: 'error'
+			});
 			console.log(e);
 		}
 	}
@@ -55,6 +61,9 @@
 
 		<div class="auth-wrapper">
 			<div class="social-auth">
+				<Info>
+					<p>Currently only allow Google sign in. We will add more ways to sign in soon.</p>
+				</Info>
 				<button class="google" id="google">
 					<!-- <img src={GoogleIcon} alt="Google" /> -->
 					Continue with Google
@@ -116,9 +125,9 @@
 				width: 100%;
 				padding: 0.5rem 1rem;
 				border-radius: 0.5rem;
-				background: var(--color-bg-1);
-				color: var(--color-text-primary);
-				border: 2px solid var(--color-text-1);
+				background: var(--color-bg-3);
+				color: var(--color-text-1);
+				border: 2px solid var(--color-bg-primary);
 				font-size: 1rem;
 				font-weight: 500;
 				cursor: pointer;
@@ -128,7 +137,7 @@
 					opacity: 0.5;
 				}
 				&:hover {
-					background: var(--color-bg-primary-faded);
+					background: var(--color-bg-primary);
 				}
 			}
 		}

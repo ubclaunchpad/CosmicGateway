@@ -1,6 +1,8 @@
 <section class="wrapper">
-	<div class="content">
+	<div class="header">
 		<slot name="header" />
+	</div>
+	<div class="content">
 		<div class="separator" />
 		<slot />
 	</div>
@@ -14,6 +16,21 @@
 		align-items: flex-start;
 		height: 100%;
 		width: 100%;
+		padding: 0;
+
+		row-gap: 1rem;
+		.header {
+			padding: 1rem;
+			background: var(--color-bg-2);
+			box-shadow: var(--box-shadow-small);
+			width: 100%;
+			border-radius: var(--border-radius-medium);
+
+			:global(h2) {
+				font-size: 1.3rem;
+				font-weight: 500;
+			}
+		}
 
 		.content {
 			display: flex;
