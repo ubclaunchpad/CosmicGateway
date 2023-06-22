@@ -18,7 +18,7 @@
 		height: 100svh;
 		overflow: hidden;
 		background: var(--color-bg-0);
-		padding: 0.5rem;
+		padding: 0rem;
 
 		.page {
 			display: flex;

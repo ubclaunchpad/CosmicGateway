@@ -17,6 +17,9 @@
 </div>
 
 <style lang="scss">
+	.page {
+		overflow-y: scroll;
+	}
 	article {
 		width: 100%;
 		max-width: 100%;

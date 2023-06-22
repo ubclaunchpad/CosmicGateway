@@ -22,7 +22,7 @@
 <div class="blog">
 	<slot />
 	<div class="right-bar">
-		<ul class="index">
+		<!-- <ul class="index">
 			{#if headings.length > 0}
 				{#each headings as heading}
 					<li class={`h${heading.level}`}>
@@ -30,7 +30,7 @@
 					</li>
 				{/each}
 			{/if}
-		</ul>
+		</ul> -->
 	</div>
 </div>
 
@@ -38,7 +38,6 @@
 	.blog {
 		display: flex;
 		flex-direction: row;
-
 		.right-bar {
 			display: flex;
 			flex-direction: column;
@@ -47,8 +46,8 @@
 			top: 0;
 			padding: 1rem;
 			height: 100svh;
-			width: 25rem;
-			border-left: 2px solid var(--color-border-1);
+			width: 400px;
+			border-left: 1px solid var(--color-border-1);
 			background-color: var(--color-bg-1);
 		}
 	}

@@ -24,7 +24,7 @@
 		.content {
 			background-color: var(--color-bg-2);
 			border-radius: var(--color-border-1);
-			border-radius: var(--border-radius-xlarge);
+			border-radius: var(--border-radius-medium);
 			box-shadow: var(--box-shadow-small);
 			width: 100%;
 			height: 100%;

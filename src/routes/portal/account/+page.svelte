@@ -11,8 +11,6 @@
 	let isOnEdit = false;
 	let updateProfile: Function;
 	let user: IUser;
-
-	console.log($userStore);
 	onMount(async () => {
 		user = await getUserInfo($userStore.id);
 	});
@@ -184,7 +182,7 @@
 		justify-content: flex-start;
 		border: 0.8px solid var(--color-border-1);
 		background-color: var(--color-bg-2);
-		border-radius: var(--border-radius-xlarge);
+		border-radius: var(--border-radius-medium);
 		box-shadow: var(--box-shadow-small);
 		flex-wrap: nowrap;
 		min-width: 0;

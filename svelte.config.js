@@ -1,5 +1,4 @@
 import adapter from '@sveltejs/adapter-auto';
-// import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex } from 'mdsvex';
 import sveltePreprocess from 'svelte-preprocess';
 import rehypeSlug from 'rehype-slug';

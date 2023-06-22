@@ -11,6 +11,7 @@
 <style lang="scss">
 	.icon {
 		display: inline-block;
+		background-color: transparent;
 
 		:global(svg) {
 			width: 100%;
@@ -22,6 +23,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		background-color: transparent;
 	}
 
 	.icon-wrapper > * {

@@ -117,7 +117,7 @@
 		{#await getUserInfo()}
 			<Loader width={'100%'} height={'100%'} />
 		{:then _}
-			<h2>{user.prefName}</h2>
+			<h2>{editView ? '' : user.prefName}</h2>
 
 			<section class="grid-row">
 				{#if editView}
@@ -125,15 +125,12 @@
 						<p>Preferred Name</p>
 						<input bind:value={user.prefName} />
 					</section>
-				{/if}
-				<section class="attribute">
-					<p>Roles</p>
-					{#if referenceUser.memberSince}
+				{:else}
+					<section class="attribute role">
+						<p />
 						<p>{user.roles.map((role) => role.name).join(', ')}</p>
-					{:else}
-						<p class="info">Hopefully soon</p>
-					{/if}
-				</section>
+					</section>
+				{/if}
 			</section>
 
 			<section class="grid-row">
@@ -203,21 +200,20 @@
 						</select>
 					{/if}
 				</section>
+			</section>
 
-				<section class="attribute">
-					<p>Standing</p>
-					{#if !editView}
-						<p>{referenceUser.standing.name}</p>
-					{:else}
-						<select bind:value={user.standing.id}>
-							{#each listOfStandings as field}
-								<option selected={user.standing.id === field.id} value={field.id}
-									>{field.name}</option
-								>
-							{/each}
-						</select>
-					{/if}
-				</section>
+			<section class="attribute">
+				<p>Standing</p>
+				{#if !editView}
+					<p>{referenceUser.standing.name}</p>
+				{:else}
+					<select bind:value={user.standing.id}>
+						{#each listOfStandings as field}
+							<option selected={user.standing.id === field.id} value={field.id}>{field.name}</option
+							>
+						{/each}
+					</select>
+				{/if}
 			</section>
 
 			<section class="attribute">
@@ -249,6 +245,8 @@
 		width: 100%;
 		height: 100%;
 		padding: 1rem;
+		display: flex;
+		overflow: hidden;
 	}
 	.profile {
 		display: grid;
@@ -257,13 +255,13 @@
 		gap: 0.5rem;
 		border-radius: 1rem;
 		overflow-y: scroll;
+		overflow-x: hidden;
 		width: 100%;
 		height: 100%;
 
 		h2 {
-			padding: 1rem 0 1rem;
+			padding: 1rem 0 0rem;
 			font-size: 1rem;
-			border-bottom: 2px dotted var(--color-border-0);
 		}
 
 		h3 {
@@ -275,6 +273,7 @@
 			display: flex;
 			justify-content: space-between;
 			column-gap: 0.5rem;
+			flex-wrap: wrap;
 
 			> section {
 				flex: 1;
@@ -285,7 +284,22 @@
 			display: flex;
 			flex-direction: column;
 
-			gap: 0.2rem;
+			&.role {
+				border-top: 1px solid var(--color-border-1);
+
+				> p {
+					&:not(:first-child) {
+						background-color: var(--color-bg-primary-faded);
+						color: var(--color-text-2);
+						font-weight: 600;
+						font-size: 0.8rem;
+						width: fit-content;
+						padding: 0.4rem 1rem;
+
+						border: 1px solid transparent;
+					}
+				}
+			}
 			> p {
 				padding: 0.5rem 0.4rem;
 				font-size: 0.9rem;
@@ -295,7 +309,6 @@
 					font-weight: 400;
 					font-size: 0.8rem;
 				}
-
 				&:last-child {
 					border: 1px solid var(--color-border-2);
 					color: var(--color-text-1);

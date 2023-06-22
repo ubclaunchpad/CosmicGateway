@@ -2,7 +2,6 @@
 	import { slide } from 'svelte/transition';
 	import MenuIcon from '../general/icons/MenuIcon.svelte';
 	import logo from '$lib/assets/logo.png';
-	import Navbar from './portal/Navbar.svelte';
 	import { onMount } from 'svelte';
 	let pageWidth: number;
 	let collapse = true;
@@ -46,7 +45,7 @@
 
 			{#if showNav}
 				<div class="content" transition:slide={{ axis: 'x', duration: transitionDuration }}>
-					<Navbar on:navigate={onNavigation} />
+					<slot name="nav" />
 				</div>
 			{/if}
 

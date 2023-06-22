@@ -5,7 +5,6 @@
 	import { signout } from '../../../../stores/auth';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
-
 	function triggerNavEffect() {
 		dispatch('navigate');
 	}

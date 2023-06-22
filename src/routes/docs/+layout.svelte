@@ -2,53 +2,54 @@
 	import LeftPanel from '$lib/components/layouts/LeftPanel.svelte';
 	import '../styles.scss';
 	import '../markdown.scss';
+	import Fullpage from '$lib/components/layouts/Fullpage.svelte';
 	export let data;
 </script>
 
-<main>
-	<!-- <SearchModal /> -->
+<Fullpage>
+	<LeftPanel slot="nav">
+		<div class="sidebar-content">
+			<a href="/docs"><h1>Launch Pad Docs</h1></a>
+			<!-- <input placeholder="search" />
+			<ul class="directory-list">
+				{#each data.directories as directory}
+					<li>
+						{directory.name}
+						{#if directory.files.length > 0}
+							<ul class="file-list">
+								{#each directory.files as file}
+									<li><a href={`/docs/${directory.name}/${file}`}>{file}</a></li>
+								{/each}
+							</ul>
+						{/if}
+						{#if directory.directories.length > 0}
+							<ul class="subdirectory-list">
+								{#each directory.directories as subDirectory}
+									<li>
+										{subDirectory.name}
+										{#if subDirectory.files.length > 0}
+											<ul class="file-list">
+												{#each subDirectory.files as file}
+													<li><a href={subDirectory.name}>{file}</a></li>
+												{/each}
+											</ul>
+										{/if}
+									</li>
+								{/each}
+							</ul>
+						{/if}
+					</li>
+				{/each}
+			</ul> -->
+		</div>
+	</LeftPanel>
+	<slot />
 	<div id="page">
-		<LeftPanel>
-			<div class="sidebar-content">
-				<a href="/docs"><h1>Launch Pad Docs</h1></a>
-				<input placeholder="search" />
-				<ul class="directory-list">
-					{#each data.directories as directory}
-						<li>
-							{directory.name}
-							{#if directory.files.length > 0}
-								<ul class="file-list">
-									{#each directory.files as file}
-										<li><a href={`/docs/${directory.name}/${file}`}>{file}</a></li>
-									{/each}
-								</ul>
-							{/if}
-							{#if directory.directories.length > 0}
-								<ul class="subdirectory-list">
-									{#each directory.directories as subDirectory}
-										<li>
-											{subDirectory.name}
-											{#if subDirectory.files.length > 0}
-												<ul class="file-list">
-													{#each subDirectory.files as file}
-														<li><a href={subDirectory.name}>{file}</a></li>
-													{/each}
-												</ul>
-											{/if}
-										</li>
-									{/each}
-								</ul>
-							{/if}
-						</li>
-					{/each}
-				</ul>
-			</div>
-		</LeftPanel>
 		<article id="page-content">
 			<slot />
 		</article>
 	</div>
-</main>
+</Fullpage>
 
 <style lang="scss">
 	.sidebar-content {
@@ -57,7 +58,7 @@
 		justify-content: flex-start;
 		row-gap: 2rem;
 		color: var(--color-text-1);
-		padding: 2rem 1rem;
+		padding: 0rem 1rem;
 
 		> a {
 			text-decoration: none;
@@ -68,7 +69,7 @@
 			-webkit-background-clip: text;
 			background-clip: text;
 			-webkit-text-fill-color: transparent;
-			font-size: 1.6rem;
+			font-size: 1.4rem;
 			font-weight: 800;
 			padding: 0;
 		}
@@ -124,29 +125,22 @@
 			padding: 0.4rem 0;
 		}
 	}
-	main {
-		width: 100%;
+
+	#page {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		height: 100%;
-		min-height: 100svh;
+		flex-direction: row;
+		justify-content: flex-start;
+		flex: 1;
+		width: 100%;
+		overflow-y: scroll;
 
-		#page {
+		#page-content {
 			display: flex;
-			flex-direction: row;
-			justify-content: flex-start;
+			flex-direction: column;
 			flex: 1;
-			width: 100%;
-
-			#page-content {
-				display: flex;
-				flex-direction: column;
+			justify-content: space-between;
+			:global(> :first-child) {
 				flex: 1;
-				justify-content: space-between;
-				:global(> :first-child) {
-					flex: 1;
-				}
 			}
 		}
 	}

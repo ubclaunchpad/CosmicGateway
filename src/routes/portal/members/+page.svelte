@@ -130,7 +130,7 @@
 		padding: 1rem 0;
 
 		> div {
-			border-radius: var(--border-radius-xlarge);
+			border-radius: var(--border-radius-medium);
 			background-color: var(--color-bg-2);
 			box-shadow: var(--box-shadow-small);
 		}
@@ -172,7 +172,7 @@
 		width: 100%;
 		padding: 0rem 0rem;
 		overflow-x: scroll;
-		border-radius: var(--border-radius-xlarge);
+		border-radius: var(--border-radius-medium);
 		border: 1px solid var(--color-border-1);
 		flex: 1;
 
@@ -205,7 +205,7 @@
 			tr {
 				th {
 					font-weight: 400;
-					background-color: var(--color-bg-primary);
+					background-color: var(--color-bg-primary-faded);
 					font-size: 0.9rem;
 					white-space: nowrap;
 				}

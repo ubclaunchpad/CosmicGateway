@@ -6,7 +6,7 @@
 	export let isOpen: boolean;
 </script>
 
-<Modal title={'View Member'} on:modalevent isModalOpen={isOpen}>
+<Modal title={'View Member'} on:modalevent isModalOpen={isOpen} type="side">
 	<div class="modal-content" slot="modal-content">
 		<ProfileView id={user.id} referenceUser={user} />
 	</div>
