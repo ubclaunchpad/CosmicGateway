@@ -44,7 +44,7 @@
 			</div>
 
 			{#if showNav}
-				<div class="content" transition:slide={{ axis: 'x', duration: transitionDuration }}>
+				<div class="content" transition:slide|global={{ axis: 'x', duration: transitionDuration }}>
 					<slot name="nav" />
 				</div>
 			{/if}

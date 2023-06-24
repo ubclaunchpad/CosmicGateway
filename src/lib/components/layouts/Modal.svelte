@@ -16,10 +16,10 @@
 
 {#if isModalOpen}
 	{#if type === 'side'}
-		<div class="modal-wrapper side" out:fade={{ duration: 300, easing: sineOut }}>
+		<div class="modal-wrapper side" out:fade|global={{ duration: 300, easing: sineOut }}>
 			<div
-				in:fly={{ x: 400, duration: 300, easing: sineOut }}
-				out:fly={{ x: 500, duration: 300, easing: sineOut }}
+				in:fly|global={{ x: 400, duration: 300, easing: sineOut }}
+				out:fly|global={{ x: 500, duration: 300, easing: sineOut }}
 				class="modal"
 			>
 				<div class="topbar">
@@ -36,10 +36,10 @@
 			</div>
 		</div>
 	{:else}
-		<div class={'modal-wrapper'} out:fade={{ duration: 300, easing: sineOut }}>
+		<div class={'modal-wrapper'} out:fade|global={{ duration: 300, easing: sineOut }}>
 			<div
-				in:fade={{ duration: 300, easing: sineOut }}
-				out:fly={{ y: 1000, duration: 300, easing: sineOut }}
+				in:fade|global={{ duration: 300, easing: sineOut }}
+				out:fly|global={{ y: 1000, duration: 300, easing: sineOut }}
 				class="modal"
 			>
 				<div class="topbar">

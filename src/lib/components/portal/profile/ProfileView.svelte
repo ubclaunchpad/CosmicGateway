@@ -21,6 +21,8 @@
 	let listOfSpecializations: ISpecialization = [];
 	let listOfStandings: IStanding = [];
 	let listOfRoles: IRole = [];
+	let querying = true;
+	let hide = false;
 	let changedFields = {};
 	$: if (user && referenceUser) {
 		changedFields = getChangedFields(referenceUser, user);
@@ -82,6 +84,7 @@
 			});
 			return;
 		}
+		hide = true;
 
 		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${referenceUser.id}`, {
 			method: 'PATCH',
@@ -107,16 +110,20 @@
 				type: 'warning'
 			});
 		}
-
-		await getUserInfo(true);
+		querying = true;
+		hide = false;
 	};
+
+	$: if (querying) {
+		getUserInfo(true).then(() => (querying = false));
+	}
 </script>
 
 <div class="profile-content">
 	<section class="profile">
-		{#await getUserInfo()}
+		{#if querying || hide}
 			<Loader width={'100%'} height={'100%'} />
-		{:then _}
+		{:else}
 			<h2>{editView ? '' : user.prefName}</h2>
 
 			<section class="grid-row">
@@ -236,7 +243,7 @@
 					<p class="stamp">{getDate(referenceUser.updatedAt)}</p>
 				</section>
 			</section>
-		{/await}
+		{/if}
 	</section>
 </div>
 

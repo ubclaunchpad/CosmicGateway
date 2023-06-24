@@ -31,8 +31,8 @@
 {#if notification}
 	<div
 		class="notificaiton-wrapper"
-		in:fly={{ x: 1000, duration: 500 }}
-		out:fly={{ x: width, duration: 600 }}
+		in:fly|global={{ x: 1000, duration: 500 }}
+		out:fly|global={{ x: width, duration: 600 }}
 		bind:clientWidth={width}
 	>
 		<div class="notification" style={`background-color: ${color}`}>
