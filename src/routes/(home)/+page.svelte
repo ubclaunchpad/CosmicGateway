@@ -1,7 +1,7 @@
 <script lang="ts">
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import logo from '$lib/assets/logo.png';
-	import background from '$lib/assets/background.jpg';
+	import background from '$lib/assets/background.jpeg';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import GithubIcon from '$lib/components/general/icons/GithubIcon.svelte';
 	import FacebookIcon from '$lib/components/general/icons/FacebookIcon.svelte';
@@ -19,7 +19,6 @@
 	let stars;
 
 	onMount(() => {
-		console.log(document.querySelector('.stars'));
 		stars = document.querySelector('.stars').querySelectorAll('svg');
 	});
 
@@ -146,6 +145,8 @@
 				animation: twirl 5s linear;
 				animation-iteration-count: infinite;
 				animation-fill-mode: both;
+				width: 1em;
+				opacity: 0.8;
 
 				&:nth-child(odd) {
 					animation-direction: reverse;
@@ -246,6 +247,7 @@
 			width: 100%;
 			flex: 1;
 			row-gap: 2rem;
+			padding: 1rem;
 
 			h1 {
 				font-size: 5em;
