@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { arc } from 'd3-shape';
 	export let segments = [
 		{ size: 380, color: 'blue', label: 'Members' },
@@ -34,7 +34,7 @@
 	<svg viewBox="0 0 100 100">
 		<g transform="translate(50,50)">
 			{#each arcs as arc}
-				<!-- arc -->
+				<!== arc ==>
 				<path d={arc.d} fill={arc.color} />
 				<text x={arc.centroid[0]} y={arc.centroid[1]}>{arc.label}</text>
 			{/each}
@@ -82,4 +82,7 @@
 			stroke-width: 0;
 		}
 	}
-</style>
+</style> -->
+
+
+<div></div>
