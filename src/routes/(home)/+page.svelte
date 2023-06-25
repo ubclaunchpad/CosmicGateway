@@ -1,7 +1,7 @@
 <script lang="ts">
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import logo from '$lib/assets/logo.png';
-	import background from '$lib/assets/background.png';
+	import background from '$lib/assets/background.jpg';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import GithubIcon from '$lib/components/general/icons/GithubIcon.svelte';
 	import FacebookIcon from '$lib/components/general/icons/FacebookIcon.svelte';
