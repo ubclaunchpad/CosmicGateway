@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	// import { faceContentIcon, faceSmileIcon, faceWinkIcon } from '$lib/static/icons';
 	export let count: number;
 	// const MemberIcons = {
@@ -12,7 +12,7 @@
 <div class="members">
 	{#each { length: Math.min(count, 3) } as _, i}
 		<div class="member">
-			<!-- <img src={MemberIcons[i]} alt="user icon" /> -->
+			<!== <img src={MemberIcons[i]} alt="user icon" /> ==>
 		</div>
 	{/each}
 	{#if count && count > 3}
@@ -77,4 +77,4 @@
 			border-radius: 4px;
 		}
 	}
-</style>
+</style> -->

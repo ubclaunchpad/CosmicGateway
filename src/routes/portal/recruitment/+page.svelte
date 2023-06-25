@@ -1,9 +1,8 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	let querying = true;
 	import { PUBLIC_POSTING_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import { PROJECT_ROLES } from '../../../seed/util';
 	import Banner from '$lib/components/blocks/Banner.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import FilterIcon from '$lib/components/general/icons/FilterIcon.svelte';
@@ -268,4 +267,4 @@
 		flex: 1;
 		overflow: scroll;
 	}
-</style>
+</style> -->

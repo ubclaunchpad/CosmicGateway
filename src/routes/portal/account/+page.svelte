@@ -2,43 +2,21 @@
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
+	import ProfileView from '$lib/components/portal/profile/ProfileView.svelte';
 	import { STRATEGY_EMAIL } from '$lib/util/links';
-	import { STANDINGS_V2, FACULTIES_V2, PROGRAMS_V2, SOCIALS } from '../../../seed/util';
-	import { type UserI, userStore, signout } from '../../../stores/auth';
+	import { userStore, signout } from '../../../stores/auth';
 	import { notificationStore } from '../../../stores/notification';
-	let user: UserI = { ...$userStore, ...(!$userStore?.resumeLink && { resumeLink: null }) };
-
-	async function updateRequest(): Promise<void> {
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${user.userId}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(user)
-		});
-
-		if (response.ok) {
-			notificationStore.update((n) => {
-				return {
-					title: 'Account Updated',
-					message: 'User account has been updated.',
-					type: 'success'
-				};
-			});
-		} else {
-			const error = await response.json();
-			notificationStore.update((n) => {
-				return {
-					title: 'Oops!',
-					message: `${error}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
-					type: 'warning'
-				};
-			});
-		}
-	}
+	import { getUserInfo, type IUser } from '$lib/types/User';
+	import { onMount } from 'svelte';
+	let isOnEdit = false;
+	let updateProfile: Function;
+	let user: IUser;
+	onMount(async () => {
+		user = await getUserInfo($userStore.id);
+	});
 
 	async function deleteRequest(): Promise<void> {
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${user.userId}`, {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${$userStore.id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -50,7 +28,7 @@
 				return {
 					title: 'Account deleted',
 					message: 'User account has been deleted.',
-					type: 'info'
+					type: response.status === 200 ? 'info' : 'error'
 				};
 			});
 			signout();
@@ -65,6 +43,11 @@
 			});
 		}
 	}
+
+	async function modifyProfile() {
+		await updateProfile();
+		isOnEdit = false;
+	}
 </script>
 
 <MainPage>
@@ -73,79 +56,33 @@
 
 		<div class="account-group">
 			<section class="account-section profile">
-				<h2>Profile</h2>
-
-				<section class="section-content">
-					<form>
-						<label>
-							<p>Preferred name</p>
-							<input type="text" value={user.prefName} />
-						</label>
-						<label>
-							<p>First name</p>
-							<input type="text" value={user.firstName} />
-						</label>
-
-						<label>
-							<p>Last name</p>
-							<input type="text" value={user.lastName} />
-						</label>
-
-						<label>
-							<p>Email</p>
-							<input type="text" disabled value={user.email} />
-						</label>
-
-						{#if user.standing}
-							<label>
-								<p>Standing</p>
-								<select bind:value={user.standing} name="Standing" id="Standing">
-									{#each Object.entries(STANDINGS_V2) as [standingId, standingName]}
-										<option value={Number(standingId)}>{standingName}</option>
-									{/each}
-								</select>
-							</label>
+				<div class="header">
+					<h2>Profile</h2>
+					<div class="buttons">
+						{#if isOnEdit}
+							<button
+								on:click={() => {
+									isOnEdit = false;
+								}}>Cancel</button
+							>
+							<button
+								on:click={() => {
+									modifyProfile();
+								}}>Save</button
+							>
+						{:else}
+							<button
+								on:click={() => {
+									isOnEdit = true;
+								}}>Edit</button
+							>
 						{/if}
-
-						<label>
-							<p>Faculty</p>
-							<select bind:value={user.faculty} name="Faculty" id="Faculty">
-								{#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
-									<option value={Number(facultyId)}>{facultyName}</option>
-								{/each}
-							</select>
-						</label>
-
-						<label
-							><p>Specialization</p>
-							<select bind:value={user.programs} name="Specialization" id="Specialization">
-								{#each Object.entries(PROGRAMS_V2) as [programId, programName]}
-									<option value={Number(programId)}>{programName}</option>
-								{/each}
-							</select>
-						</label>
-
-						<label>
-							<p>Resume</p>
-							<input type="text" value={user.resumeLink} placeholder="Add your resume link" />
-						</label>
-
-						{#if user.socialMedia}
-							<h2>Links</h2>
-							{#each user.socialMedia as socialMedia}
-								<section>
-									<p>{SOCIALS[socialMedia.id].name}</p>
-									<a href={socialMedia.url} referrerpolicy="no-referrer" target="_blank"
-										>{socialMedia.handle || socialMedia.url}</a
-									>
-								</section>
-							{/each}
-						{/if}
-					</form>
-					<div class="form-actions">
-						<button type="submit">Save</button>
 					</div>
-				</section>
+				</div>
+
+				{#if user}
+					<ProfileView referenceUser={user} id={user.id} editView={isOnEdit} bind:updateProfile />
+				{/if}
 			</section>
 
 			<section class="account-section integration">
@@ -215,13 +152,19 @@
 
 	.account-group {
 		display: grid;
-
 		grid-template-areas: 'profile integration' 'profile account';
 		grid-template-columns: 1fr 1fr;
 		width: 100%;
-		width: 100%;
+		height: 100%;
 		padding: 0;
 		grid-gap: 1rem;
+		overflow-y: scroll;
+
+		@media screen and (max-width: 1000px) {
+			grid-template-columns: 1fr;
+			grid-template-rows: auto;
+			grid-template-areas: 'profile' 'integration' 'account';
+		}
 
 		.profile {
 			grid-area: profile;
@@ -237,13 +180,44 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		flex: 1;
 		border: 0.8px solid var(--color-border-1);
 		background-color: var(--color-bg-2);
-		border-radius: var(--border-radius-xlarge);
+		border-radius: var(--border-radius-medium);
 		box-shadow: var(--box-shadow-small);
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
+		min-width: 0;
 		padding: 0.5rem 0.5rem 0.6rem;
+		width: 100%;
+
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row;
+
+			.buttons {
+				display: flex;
+				flex-direction: row;
+				column-gap: 0.4rem;
+			}
+
+			button {
+				max-width: fit-content;
+				padding: 0.5rem 1rem;
+				border-radius: var(--border-radius-medium);
+				background-color: var(--color-bg-0-faded);
+				color: var(--color-text-1);
+				border: 1px solid var(--color-border-2);
+				font-size: 0.8rem;
+				font-weight: 600;
+				height: fit-content;
+				cursor: pointer;
+				transition: all 0.2s ease-in-out;
+				&:hover {
+					background-color: var(--color-bg-primary);
+				}
+			}
+		}
 
 		h2 {
 			font-size: 1.1rem;

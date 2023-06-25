@@ -1,5 +1,4 @@
-<script lang="ts">
-	import { APPLICATION_STATUS, FACULTIES_V2, PROGRAMS_V2, STANDINGS_V2 } from '../../../seed/util';
+<!-- <script lang="ts">
 	import Info from '../blocks/Info.svelte';
 	import { PUBLIC_POSTING_API_URI } from '$env/static/public';
 	import ApplicationReviewModal from '../application/ApplicationReviewModal.svelte';
@@ -42,7 +41,7 @@
 			{#each Object.entries(applications) as [key, value]}
 				{#if !hideEmptyColumns || value.length !== 0}
 					<div class="column">
-						<h2>{APPLICATION_STATUS[key].status}</h2>
+						<!== <h2>{APPLICATION_STATUS[key].status}</h2> ==>
 						{#if value.length === 0}
 							<Info>No Applications</Info>
 						{:else}
@@ -57,7 +56,7 @@
 												showApplication = true;
 											}}
 										>
-											<!-- <img src={draggableIcon} alt="more options" /> -->
+											<!== <img src={draggableIcon} alt="more options" /> ==>
 										</button>
 										<button
 											class="bottom-right"
@@ -83,9 +82,9 @@
 										<a href="mailto:{app.email}">{app.email}</a>
 									</div>
 									<div class="other">
-										<p>{FACULTIES_V2[app.faculty]}</p>
+										<!== <p>{FACULTIES_V2[app.faculty]}</p>
 										<p>{PROGRAMS_V2[app.program]}</p>
-										<p>{STANDINGS_V2[app.standing]}</p>
+										<p>{STANDINGS_V2[app.standing]}</p> ==>
 									</div>
 								</div>
 							{/each}
@@ -226,4 +225,4 @@
 			}
 		}
 	}
-</style>
+</style> -->

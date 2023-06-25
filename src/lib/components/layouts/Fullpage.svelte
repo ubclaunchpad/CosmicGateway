@@ -2,11 +2,11 @@
 	import { slide } from 'svelte/transition';
 	import MenuIcon from '../general/icons/MenuIcon.svelte';
 	import logo from '$lib/assets/logo.png';
-	import Navbar from './portal/Navbar.svelte';
 	import { onMount } from 'svelte';
 	let pageWidth: number;
 	let collapse = true;
-	const cutoff = 800;
+	const cutoff = 1200;
+	$: transitionDuration = isCompact ? 300 : 0;
 	$: showNav = pageWidth > cutoff || !collapse;
 	$: isCompact = pageWidth < cutoff;
 	onMount(() => {
@@ -28,7 +28,6 @@
 <div
 	id="page"
 	on:keyup={(e) => {
-		console.log(e.key);
 		if (e.key === 'Escape') {
 			collapseNav();
 		}
@@ -45,8 +44,8 @@
 			</div>
 
 			{#if showNav}
-				<div class="content" transition:slide={{ axis: 'x', duration: 300 }}>
-					<Navbar on:navigate={onNavigation} />
+				<div class="content" transition:slide|global={{ axis: 'x', duration: transitionDuration }}>
+					<slot name="nav" />
 				</div>
 			{/if}
 
@@ -58,7 +57,7 @@
 		</div>
 	</aside>
 
-	<main class:blur={!collapse && isCompact} on:keyup={(e) => {}} on:click={collapseNav}>
+	<main class:blur={!collapse && isCompact} on:click={collapseNav}>
 		<slot />
 	</main>
 </div>

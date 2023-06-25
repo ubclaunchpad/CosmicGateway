@@ -3,15 +3,28 @@
 	import jwt_decode from 'jwt-decode';
 	import { onMount } from 'svelte';
 	import type { GoogleAuthUser } from '$lib/types/googleAuth.js';
-	import { STANDINGS_V2, PROGRAMS_V2, FACULTIES_V2 } from '../../seed/util';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
 	import { goto } from '$app/navigation';
 	import { token } from '../../stores/auth';
 	import { notificationStore } from '../../stores/notification';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
+	import type { IFaculty, ISpecialization, IStanding, IRole } from '$lib/types/User';
 	let googleAuthUser: GoogleAuthUser | undefined;
 	$: googleConnected = $token !== null && $token !== undefined;
+	let listOfFaculties: IFaculty = [];
+	let listOfSpecializations: ISpecialization = [];
+	let listOfStandings: IStanding = [];
+	const fetchFormDetails = async () => {
+		const response = await fetch('/api/resources', {
+			method: 'GET'
+		});
+
+		const resources = await response.json();
+		listOfFaculties = resources.listOfFaculties;
+		listOfSpecializations = resources.listOfSpecializations;
+		listOfStandings = resources.listOfStandings;
+	};
 
 	function verifyGoogleLogin(request: { credential: string }) {
 		googleAuthUser = jwt_decode(request.credential) as GoogleAuthUser;
@@ -34,6 +47,7 @@
 
 	onMount(() => {
 		fillOutFields();
+		fetchFormDetails();
 	});
 
 	async function register() {
@@ -44,8 +58,7 @@
 			lastName: lastName,
 			facultyId: Number(facultyId),
 			standingId: Number(standingId),
-			resumeLink: resumeLink,
-			programId: Number(programId)
+			specializationId: Number(specializationId)
 		};
 
 		try {
@@ -86,8 +99,7 @@
 	let email: string;
 	let standingId: number;
 	let facultyId: number;
-	let programId: number;
-	let resumeLink: string;
+	let specializationId: number;
 
 	onMount(async () => {
 		if (google) {
@@ -97,30 +109,15 @@
 				callback: verifyGoogleLogin
 			});
 
-			google.accounts.id.renderButton(document.getElementById('signinDiv'), {
-				width: '200',
-				theme: 'filled_black',
-				size: 'large',
-				type: 'standard',
-				text: 'continue_with',
-				shape: 'rectangular',
-				logo_alignment: 'left'
-			});
-		}
-		const googleAuthBtn = document.getElementById('signinDiv');
-
-		if (googleAuthBtn) {
-			const googlebutton = document.getElementById('google');
-			if (googlebutton) {
-				googlebutton.addEventListener('click', () => {
-					const googleAuthBtn = document.getElementById('signinDiv');
-
-					if (googleAuthBtn) {
-						const signInBtn = googleAuthBtn.querySelector('div[role=button]');
-						if (signInBtn) {
-							signInBtn.click();
-						}
-					}
+			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
+			if (googleAuthBtn) {
+				google.accounts.id.renderButton(googleAuthBtn, {
+					width: '300',
+					theme: 'outline',
+					size: 'large',
+					type: 'standard',
+					text: 'continue_with',
+					shape: 'square'
 				});
 			}
 		}
@@ -128,7 +125,6 @@
 </script>
 
 <PageForm>
-	<div id={'signinDiv'} />
 	<SectionForm>
 		<div slot="header">
 			<h2>Sign up</h2>
@@ -142,6 +138,15 @@
 		</Info>
 
 		<form method="POST">
+			<div class="rich-input">
+				{#if googleConnected}
+					<div class="approved">{email}</div>
+				{:else}
+					<button class="google" id="googleBtn" type="button">
+						<div id={'signinDiv'} />
+					</button>
+				{/if}
+			</div>
 			<section>
 				<label for="firstName">
 					<p class="required">First Name</p>
@@ -157,15 +162,6 @@
 					<p class="required">Preferred Name</p>
 					<input bind:value={prefName} required type="text" placeholder="preferred name" />
 				</label>
-
-				<div class="rich-input">
-					<p class="required">Email</p>
-					{#if googleConnected}
-						<div class="approved">{email}</div>
-					{:else}
-						<button class="google" id="google" type="button"> Connect Google </button>
-					{/if}
-				</div>
 			</section>
 
 			<section>
@@ -173,18 +169,18 @@
 					<p class="required">Faculty</p>
 					<select required bind:value={facultyId} name="Faculty" id="Faculty">
 						<option value="" disabled hidden selected>Your faculty</option>
-						{#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
-							<option value={facultyId}>{facultyName}</option>
+						{#each listOfFaculties as field}
+							<option value={field.id}>{field.name}</option>
 						{/each}
 					</select>
 				</label>
 
 				<label>
 					<p class="required">Specialization</p>
-					<select bind:value={programId} name="Specialization" id="Specialization">
+					<select bind:value={specializationId} name="Specialization" id="Specialization">
 						<option value="" disabled hidden selected>Your (intended) major</option>
-						{#each Object.entries(PROGRAMS_V2) as [programId, programName]}
-							<option value={programId}>{programName}</option>
+						{#each listOfSpecializations as field}
+							<option value={field.id}>{field.name}</option>
 						{/each}
 					</select>
 				</label>
@@ -193,14 +189,10 @@
 					<p class="required">Standing</p>
 					<select required bind:value={standingId} name="Standing" id="Standing">
 						<option value="" disabled hidden selected>Your current standing</option>
-						{#each Object.entries(STANDINGS_V2) as [standingId, standingName]}
-							<option value={standingId}>{standingName}</option>
+						{#each listOfStandings as field}
+							<option value={field.id}>{field.name}</option>
 						{/each}
 					</select>
-				</label>
-				<label
-					>Resume Link
-					<input bind:value={resumeLink} placeholder="resume link" />
 				</label>
 			</section>
 		</form>
@@ -225,9 +217,6 @@
 </PageForm>
 
 <style lang="scss">
-	#signinDiv {
-		display: none;
-	}
 	.bottombar {
 		display: flex;
 		justify-content: space-between;
@@ -247,9 +236,10 @@
 			flex-direction: row;
 			gap: 1rem;
 			width: 100%;
-			padding: 0.3rem 0.6rem;
+			padding: 0.5rem 0.6rem;
 			border-radius: var(--border-radius-small);
-			background: var(--color-bg-primary);
+			border: 1px solid var(--color-border-1);
+			background: var(--color-bg-3);
 			color: var(--color-text-0);
 			box-shadow: var(--box-shadow-small);
 			font-size: 1rem;
@@ -262,7 +252,7 @@
 			}
 			&:hover {
 				background: var(--color-bg-primary);
-				transform: scale(1.01);
+				transform: scale(1.1);
 			}
 		}
 	}
@@ -275,6 +265,54 @@
 		width: 100%;
 		padding: 0rem 0;
 
+		.rich-input {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex: 1;
+			flex-direction: row;
+			width: 100%;
+			height: 100%;
+			border-bottom: 1px solid var(--color-border-1);
+			button,
+			.approved {
+				display: flex;
+
+				width: 100%;
+				justify-content: center;
+				align-items: center;
+				flex-direction: row;
+				padding: 0.5rem;
+
+				color: var(--color-text-1);
+
+				font-size: 0.8rem;
+				font-weight: 500;
+				cursor: pointer;
+				transition: all 0.2s ease-in-out;
+
+				&:disabled {
+					cursor: not-allowed;
+					opacity: 0.5;
+				}
+			}
+
+			button {
+				background: none;
+			}
+
+			#googleBtn {
+				// background-color: red;
+				padding: 1rem;
+				overflow: hidden;
+				border: 1px solid transparent;
+			}
+
+			.approved {
+				color: var(--color-text-primary);
+			}
+		}
+
 		section {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
@@ -283,47 +321,6 @@
 			flex-direction: column;
 			width: 100%;
 			border-bottom: 1px solid var(--color-border-1);
-
-			.rich-input {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex: 1;
-				flex-direction: row;
-				width: 100%;
-				height: 100%;
-				button,
-				.approved {
-					display: flex;
-
-					width: 100%;
-					justify-content: center;
-					align-items: center;
-					flex-direction: row;
-					padding: 0.5rem;
-					border-radius: 0.5rem;
-
-					color: var(--color-text-1);
-					border: 1px solid var(--color-border-1);
-					font-size: 0.8rem;
-					font-weight: 500;
-					cursor: pointer;
-					transition: all 0.2s ease-in-out;
-
-					&:disabled {
-						cursor: not-allowed;
-						opacity: 0.5;
-					}
-				}
-
-				button {
-					background: var(--color-bg-1);
-				}
-
-				.approved {
-					color: var(--color-text-primary);
-				}
-			}
 
 			.required {
 				&::after {

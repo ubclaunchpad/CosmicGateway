@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { INotification } from '$lib/types/INotification';
-	import { fade, slide, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { notificationStore } from '../../../stores/notification';
 	let notification: INotification | undefined;
-	let width: number = 0;
+	let width = 0;
 
 	notificationStore.subscribe((value) => {
 		notification = value;
@@ -31,8 +31,8 @@
 {#if notification}
 	<div
 		class="notificaiton-wrapper"
-		in:fly={{ x: 1000, duration: 500 }}
-		out:fly={{ x: width, duration: 600 }}
+		in:fly|global={{ x: 1000, duration: 500 }}
+		out:fly|global={{ x: width, duration: 600 }}
 		bind:clientWidth={width}
 	>
 		<div class="notification" style={`background-color: ${color}`}>

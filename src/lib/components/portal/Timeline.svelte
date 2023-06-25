@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	const date = new Date();
 	const year = date.getFullYear();
 	const month = date.getMonth();
@@ -117,4 +117,4 @@
 			}
 		}
 	}
-</style>
+</style> -->

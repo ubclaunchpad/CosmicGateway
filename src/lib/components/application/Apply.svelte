@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Info from '$lib/components/blocks/Info.svelte';
 	import ApplicationSteps from './ApplicationSteps.svelte';
-	export const projectId: number = 1;
-	export const postId: number = 1;
+	export const projectId = 1;
+	export const postId = 1;
 </script>
 
 <article>

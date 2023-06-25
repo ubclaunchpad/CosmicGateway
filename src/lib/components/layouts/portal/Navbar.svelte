@@ -5,7 +5,6 @@
 	import { signout } from '../../../../stores/auth';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
-
 	function triggerNavEffect() {
 		dispatch('navigate');
 	}
@@ -54,6 +53,14 @@
 		<button on:click={signout}>Sign out</button>
 		<nav>
 			<ul>
+				<li>
+					<a href="/portal/admin" on:click={triggerNavEffect}>
+						<Icon>
+							<SettingsIcon />
+						</Icon>
+						<p>Admin</p>
+					</a>
+				</li>
 				<li>
 					<a href="/portal/account" on:click={triggerNavEffect}>
 						<Icon>

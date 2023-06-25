@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import ApplicationCard from '$lib/components/recruitment/ApplicationCard.svelte';
 	import { PUBLIC_POSTING_API_URI, PUBLIC_PROJECT_API_URI } from '$env/static/public';
@@ -46,22 +46,22 @@
 			</h1>
 			<div class="header-buttons">
 				<button>
-					<!-- <img src={filterIcon} alt="Filter" /> -->
+					<!== <img src={filterIcon} alt="Filter" /> ==>
 				</button>
 				<button>
-					<!-- <img src={orderIcon} alt="Filter" /> -->
+					<!== <img src={orderIcon} alt="Filter" /> ==>
 				</button>
 				<button on:click={toggleEmptyColumns}>
 					{#if hideEmptyColumns}
-						<!-- <img src={eyeIcon} alt="more options" /> -->
+						<!== <img src={eyeIcon} alt="more options" /> ==>
 					{:else}
-						<!-- <img src={eyeOffIcon} alt="more options" /> -->
+						<!== <img src={eyeOffIcon} alt="more options" /> ==>
 					{/if}
 				</button>
 			</div>
 		</div>
 
-		<!-- <div class="info-section">	
+		<!== <div class="info-section">	
 		{#if project}
 		<ProjectCard project={project}/>
 		{:else}
@@ -95,7 +95,7 @@
 			}
 		]}
 		/>
-	</div> -->
+	</div> ==>
 
 		<ApplicationCard {posting} {hideEmptyColumns} />
 	</div>
@@ -168,4 +168,4 @@
 		flex: 1;
 		overflow: scroll;
 	}
-</style>
+</style> -->

@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { FACULTIES_V2, STANDINGS_V2, PROGRAMS_V2 } from '../../../seed/util';
 	import Icon from '../general/Icon.svelte';
 	import ChevronLeftIcon from '../general/icons/ChevronLeftIcon.svelte';
 	import ChevronRightIcon from '../general/icons/ChevronRightIcon.svelte';
-	export const projectId: number = 1;
-	export const postId: number = 1;
+	export const projectId = 1;
+	export const postId = 1;
 
 	let firstName: string;
 	let lastName: string;
@@ -85,9 +84,9 @@
 							<select bind:value={facultyId} name="Faculty" id="Faculty">
 								<option value="" disabled hidden selected>Your faculty</option>
 
-								{#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
+								<!-- {#each Object.entries(FACULTIES_V2) as [facultyId, facultyName]}
 									<option value={facultyId}>{facultyName}</option>
-								{/each}
+								{/each} -->
 							</select>
 						</label>
 
@@ -95,9 +94,9 @@
 							>Specialization
 							<select bind:value={programId} name="Specialization" id="Specialization">
 								<option value="" disabled hidden selected>Your (intended) major</option>
-								{#each Object.entries(PROGRAMS_V2) as [programId, programName]}
+								<!-- {#each Object.entries(PROGRAMS_V2) as [programId, programName]}
 									<option value={programId}>{programName}</option>
-								{/each}
+								{/each} -->
 							</select>
 						</label>
 
@@ -105,9 +104,9 @@
 							>Standing
 							<select bind:value={standingId} name="Standing" id="Standing">
 								<option value="" disabled hidden selected>Your current standing</option>
-								{#each Object.entries(STANDINGS_V2) as [standingId, standingName]}
+								<!-- {#each Object.entries(STANDINGS_V2) as [standingId, standingName]}
 									<option value={standingId}>{standingName}</option>
-								{/each}
+								{/each} -->
 							</select>
 						</label>
 						<label

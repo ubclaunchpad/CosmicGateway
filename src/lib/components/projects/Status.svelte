@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
 	import type { ProjectInfo } from '../../../seed/projects';
 	import ProjectStatusIndicator from './ProjectStatusIndicator.svelte';
@@ -46,7 +46,7 @@
 	<div class="resources">
 		{#each project.resources as resource}
 			<a href={resource.link} target="_blank">
-				<!-- <img src={resourceIconMapper[resource.typeId]} alt={resource.name} /> -->
+				<!== <img src={resourceIconMapper[resource.typeId]} alt={resource.name} /> ==>
 				<p>{resource.name}</p>
 			</a>
 		{/each}
@@ -115,7 +115,7 @@
 
 <footer>
 	<button>See open roles</button>
-	<!-- <p>After submitting an application you should recieve an automated email from us</p> -->
+	<!== <p>After submitting an application you should recieve an automated email from us</p> ==>
 </footer>
 
 <style lang="scss">
@@ -240,4 +240,4 @@
 			}
 		}
 	}
-</style>
+</style> -->

@@ -16,7 +16,6 @@
 	.banner {
 		padding: 1rem;
 		width: 100%;
-		background-color: var(--color-bg-primary);
 		border-radius: 5px;
 		p {
 			font-size: 1rem;
@@ -31,6 +30,7 @@
 		align-items: flex-start;
 		padding: 2rem 0.4rem;
 		width: 100%;
+		flex: 1;
 		row-gap: 1.5rem;
 	}
 </style>

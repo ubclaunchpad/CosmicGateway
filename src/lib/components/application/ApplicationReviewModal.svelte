@@ -1,13 +1,6 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { PUBLIC_POSTING_API_URI, PUBLIC_PROJECT_API_URI } from '$env/static/public';
 	import type { ProjectInfo } from '../../../seed/projects';
-	import {
-		APPLICATION_STATUS,
-		FACULTIES_V2,
-		PROGRAMS_V2,
-		PROJECT_ROLES,
-		STANDINGS_V2
-	} from '../../../seed/util';
 	import Info from '../blocks/Info.svelte';
 	import Icon from '../general/Icon.svelte';
 	import ExpandIcon from '../general/icons/ExpandIcon.svelte';
@@ -378,4 +371,4 @@
 			border-radius: 5px;
 		}
 	}
-</style>
+</style> -->
