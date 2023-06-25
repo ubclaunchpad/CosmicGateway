@@ -79,7 +79,9 @@
 				max-width: 100%;
 				height: 100%;
 				max-height: 100%;
-				border-radius: 0rem;
+				border-radius: 0;
+				border-bottom-left-radius: var(--border-radius-xlarge);
+				border-top-left-radius: var(--border-radius-xlarge);
 			}
 		}
 		:global(svg) {
@@ -92,7 +94,7 @@
 	.modal {
 		background-color: var(--color-bg-1);
 		padding: 0rem;
-		border-radius: 0.3rem;
+		border-radius: var(--border-radius-xlarge);
 		width: 100%;
 		max-width: 750px;
 		height: 100%;
@@ -101,6 +103,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		box-shadow: var(--box-shadow-sm);
 
 		:global(.modal-content) {
 			flex: 1;
@@ -112,12 +115,13 @@
 			justify-content: space-between;
 			align-items: center;
 			width: 100%;
-			padding: 0.5rem 1rem;
+			padding: 0.9rem 1rem;
 			border-bottom: 1px solid var(--color-border-1);
-			background-color: var(--color-bg-primary-faded);
+			// background-color: var(--color-bg-primary-faded);
 
 			h3 {
 				font-size: 1rem;
+				font-weight: 600;
 			}
 
 			button {

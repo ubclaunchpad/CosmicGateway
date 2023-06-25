@@ -14,15 +14,15 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/portal" on:click={triggerNavEffect}>
+				<a href="/" on:click={triggerNavEffect}>
 					<Icon>
 						<HomeIcon />
 					</Icon>
-					Portal
+					Dashboard
 				</a>
 			</li>
 			<li>
-				<a href="/portal/members" on:click={triggerNavEffect}>
+				<a href="/members" on:click={triggerNavEffect}>
 					<Icon>
 						<UsersIcon />
 					</Icon>
@@ -54,7 +54,7 @@
 		<nav>
 			<ul>
 				<li>
-					<a href="/portal/admin" on:click={triggerNavEffect}>
+					<a href="/admin" on:click={triggerNavEffect}>
 						<Icon>
 							<SettingsIcon />
 						</Icon>
@@ -62,7 +62,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="/portal/account" on:click={triggerNavEffect}>
+					<a href="/account" on:click={triggerNavEffect}>
 						<Icon>
 							<SettingsIcon />
 						</Icon>
