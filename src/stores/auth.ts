@@ -20,21 +20,13 @@ export const signout = () => {
 	goto('/signin');
 };
 
-export interface UserI {
+export interface IUserMeta {
 	id: number;
 	email: string;
-	firstName: string;
-	prefName: string;
-	lastName: string;
-	resumeLink: string;
-	standing: any;
-	faculty: any;
-	specialization: any;
 }
 
-export const userStore = writable<UserI | undefined>(undefined);
+export const userStore = writable<IUserMeta | undefined>(undefined);
 export const fetchUser = async (userToken: string) => {
-	console.log('fetching user');
 	const response = await fetch(`${PUBLIC_USERS_API_URI}/users/me`, {
 		method: 'GET',
 		headers: {
@@ -42,7 +34,7 @@ export const fetchUser = async (userToken: string) => {
 		}
 	});
 	if (response.status === 200) {
-		const user = (await response.json()) as UserI;
+		const user = (await response.json()) as IUserMeta;
 		if (browser) {
 			userStore.set(user);
 			token.set(userToken);

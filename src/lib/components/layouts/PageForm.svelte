@@ -14,11 +14,10 @@
 		align-items: flex-start;
 		flex-direction: column;
 		width: 100%;
-		height: 100%;
 		height: 100svh;
 		overflow: hidden;
 		background: var(--color-bg-0);
-		padding: 0rem;
+		padding: 0;
 
 		.page {
 			display: flex;

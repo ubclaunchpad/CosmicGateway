@@ -58,7 +58,7 @@
 			flex-direction: column;
 			border-radius: 4px;
 			padding: 1rem;
-			box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+			box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
 			h2 {
 				margin: 0;
 				font-size: 0.9rem;

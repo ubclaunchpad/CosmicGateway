@@ -18,8 +18,8 @@
 	{#if type === 'side'}
 		<div class="modal-wrapper side" out:fade|global={{ duration: 300, easing: sineOut }}>
 			<div
-				in:fly|global={{ x: 400, duration: 300, easing: sineOut }}
-				out:fly|global={{ x: 500, duration: 300, easing: sineOut }}
+				in:fly|global={{ x: 400, duration: 400, easing: sineOut }}
+				out:fly|global={{ x: 400, duration: 400, easing: sineOut }}
 				class="modal"
 			>
 				<div class="topbar">
@@ -29,7 +29,6 @@
 						</Icon></button
 					>
 					<h3>{title}</h3>
-					<div />
 				</div>
 				<slot name="modal-content" />
 				<slot name="bottom-bar" />
@@ -49,7 +48,6 @@
 						</Icon></button
 					>
 					<h3>{title}</h3>
-					<div />
 				</div>
 				<slot name="modal-content" />
 				<slot name="bottom-bar" />
@@ -74,14 +72,13 @@
 		&.side {
 			justify-content: flex-end;
 			align-items: center;
+			padding: 0.4rem;
 			.modal {
 				width: 400px;
 				max-width: 100%;
 				height: 100%;
 				max-height: 100%;
-				border-radius: 0;
-				border-bottom-left-radius: var(--border-radius-xlarge);
-				border-top-left-radius: var(--border-radius-xlarge);
+				border-radius: var(--border-radius-small);
 			}
 		}
 		:global(svg) {
@@ -93,7 +90,7 @@
 
 	.modal {
 		background-color: var(--color-bg-1);
-		padding: 0rem;
+		padding: 0;
 		border-radius: var(--border-radius-xlarge);
 		width: 100%;
 		max-width: 750px;

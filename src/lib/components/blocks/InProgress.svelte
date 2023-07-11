@@ -28,14 +28,4 @@
 		column-gap: 10px;
 		align-items: center;
 	}
-
-	.info {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		padding: 0.7rem 0.9rem;
-		row-gap: 10px;
-		border: 1px solid var(--color-bg-1);
-		border-radius: 6px;
-	}
 </style>

@@ -1,15 +1,15 @@
 import { PUBLIC_USERS_API_URI } from '$env/static/public';
 import { json } from '@sveltejs/kit';
 
-interface Dict<T> {
-	id: number;
-	name: T;
+interface IDict<T> {
+	id: string;
+	label: T;
 }
 
-let listOfFaculties: Dict<string>[] = [];
-let listOfSpecializations: Dict<string>[] = [];
-let listOfStandings: Dict<string>[] = [];
-let listOfRoles: Dict<string>[] = [];
+let listOfFaculties: IDict<string>[] = [];
+let listOfSpecializations: IDict<string>[] = [];
+let listOfStandings: IDict<string>[] = [];
+let listOfRoles: IDict<string>[] = [];
 let outOfSync = true;
 let isUpdating = false; // Lock variable
 
@@ -53,7 +53,7 @@ async function updateResourceInfo() {
 	outOfSync = false;
 }
 
-const getFaculties = async (): Promise<{ id: number; name: string }[]> => {
+const getFaculties = async (): Promise<{ id: string; label: string }[]> => {
 	const response = await fetch(`${PUBLIC_USERS_API_URI}/faculties`, {
 		method: 'GET'
 	});
@@ -61,7 +61,7 @@ const getFaculties = async (): Promise<{ id: number; name: string }[]> => {
 	return await response.json();
 };
 
-const getSpecializations = async (): Promise<{ id: number; name: string }[]> => {
+const getSpecializations = async (): Promise<{ id: string; label: string }[]> => {
 	const response = await fetch(`${PUBLIC_USERS_API_URI}/specializations`, {
 		method: 'GET'
 	});
@@ -77,7 +77,7 @@ const getRoles = async () => {
 	return await response.json();
 };
 
-const getStandings = async (): Promise<{ id: number; name: string }[]> => {
+const getStandings = async (): Promise<{ id: string; label: string }[]> => {
 	const response = await fetch(`${PUBLIC_USERS_API_URI}/standings`, {
 		method: 'GET'
 	});

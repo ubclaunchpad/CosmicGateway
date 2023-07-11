@@ -9,7 +9,7 @@
 	import { token } from '../../stores/auth';
 	import { notificationStore } from '../../stores/notification';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
-	import type { IFaculty, ISpecialization, IStanding, IRole } from '$lib/types/User';
+	import type { IFaculty, ISpecialization, IStanding } from '$lib/types/User';
 	let googleAuthUser: GoogleAuthUser | undefined;
 	$: googleConnected = $token !== null && $token !== undefined;
 	let listOfFaculties: IFaculty = [];
@@ -53,12 +53,12 @@
 	async function register() {
 		const body = {
 			email: email,
-			firstName: firstName,
-			prefName: prefName,
-			lastName: lastName,
-			facultyId: Number(facultyId),
-			standingId: Number(standingId),
-			specializationId: Number(specializationId)
+			first_name: firstName,
+			pref_name: prefName,
+			last_name: lastName,
+			faculty_id: facultyId,
+			standing_id: standingId,
+			specialization_id: specializationId
 		};
 
 		try {
@@ -71,7 +71,7 @@
 			});
 
 			if (response.ok) {
-				goto('/portal');
+				await goto('/portal');
 			} else {
 				const error = await response.json();
 				notificationStore.update(() => {
@@ -148,17 +148,17 @@
 				{/if}
 			</div>
 			<section>
-				<label for="firstName">
+				<label>
 					<p class="required">First Name</p>
 					<input bind:value={firstName} required type="text" placeholder="name" />
 				</label>
 
-				<label for="lastName">
+				<label>
 					<p class="required">Last Name</p>
 					<input bind:value={lastName} required type="text" placeholder="last name" />
 				</label>
 
-				<label for="prefName">
+				<label>
 					<p class="required">Preferred Name</p>
 					<input bind:value={prefName} required type="text" placeholder="preferred name" />
 				</label>
@@ -170,7 +170,7 @@
 					<select required bind:value={facultyId} name="Faculty" id="Faculty">
 						<option value="" disabled hidden selected>Your faculty</option>
 						{#each listOfFaculties as field}
-							<option value={field.id}>{field.name}</option>
+							<option value={field.id}>{field.label}</option>
 						{/each}
 					</select>
 				</label>
@@ -180,7 +180,7 @@
 					<select bind:value={specializationId} name="Specialization" id="Specialization">
 						<option value="" disabled hidden selected>Your (intended) major</option>
 						{#each listOfSpecializations as field}
-							<option value={field.id}>{field.name}</option>
+							<option value={field.id}>{field.label}</option>
 						{/each}
 					</select>
 				</label>
@@ -190,7 +190,7 @@
 					<select required bind:value={standingId} name="Standing" id="Standing">
 						<option value="" disabled hidden selected>Your current standing</option>
 						{#each listOfStandings as field}
-							<option value={field.id}>{field.name}</option>
+							<option value={field.id}>{field.label}</option>
 						{/each}
 					</select>
 				</label>
@@ -263,7 +263,7 @@
 		flex-direction: column;
 		row-gap: 1rem;
 		width: 100%;
-		padding: 0rem 0;
+		padding: 0;
 
 		.rich-input {
 			display: flex;

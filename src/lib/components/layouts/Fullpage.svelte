@@ -20,9 +20,9 @@
 		if (!collapse) collapse = true;
 	};
 
-	const onNavigation = () => {
-		collapseNav();
-	};
+	// const onNavigation = () => {
+	// 	collapseNav();
+	// };
 </script>
 
 <div
@@ -85,7 +85,7 @@
 			flex: 1;
 			height: 100%;
 			overflow: hidden;
-			padding: 0rem;
+			padding: 0;
 		}
 
 		aside {

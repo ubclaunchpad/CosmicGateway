@@ -12,7 +12,7 @@
 
 <style lang="scss">
 	h1 {
-		padding-bottom: 0rem;
+		padding-bottom: 0;
 	}
 	div {
 		display: flex;

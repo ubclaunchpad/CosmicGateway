@@ -3,7 +3,6 @@
 		<div class="header">
 			<slot name="header" />
 		</div>
-		<div class="separator" />
 		<slot />
 	</div>
 	<div class="banner" />

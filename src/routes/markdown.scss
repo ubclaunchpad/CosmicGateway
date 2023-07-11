@@ -21,12 +21,10 @@
 	}
 
 	#write ol li {
-		padding-left: 0.5rem;
 		padding: 0.5rem;
 	}
 
 	#write li {
-		padding-left: 0.5rem;
 		padding: 0.2rem;
 		color: var(--color-text-1);
 	}
@@ -329,7 +327,6 @@
 		font-size: 0.92rem;
 		color: var(--color-text-secondary);
 		background-color: var(--color-bg-0);
-		width: 100px;
 		overflow: hidden;
 		display: block;
 		width: 100%;

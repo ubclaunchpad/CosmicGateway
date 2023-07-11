@@ -13,23 +13,30 @@
 	} from '$lib/components/general/icons';
 	import Loader from '$lib/components/blocks/Loader.svelte';
 	import { userFieldMapper, type IUser } from '$lib/types/User';
+	import { token } from '../../../stores/auth';
 	let users: IUser[] = [];
 	let shownUser: IUser | null = null;
 	onMount(() => {
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
+		let userToken;
+		token.subscribe((value) => {
+			userToken = value;
+		});
 		const response = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
-			method: 'GET'
+			method: 'GET',
+			headers: {
+				Authorization: 'Bearer ' + userToken
+			}
 		});
 		users = await response.json();
 		querying = false;
 	};
 
 	const COLUMN_MAPPER = {
-		lastName: 'Last Name',
-		prefName: 'Preferred Name',
-		email: 'Email',
+		pref_name: 'Preferred Name',
+		last_name: 'Last Name',
 		faculty: 'Faculty',
 		specialization: 'Specialization',
 		standing: 'Standing',
@@ -59,11 +66,6 @@
 					</Icon>
 				</button>
 			</div>
-		</div>
-
-		<div class="cards">
-			<div class="c1" />
-			<div class="c2" />
 		</div>
 
 		<div class="table-wrapper">
@@ -121,20 +123,6 @@
 />
 
 <style lang="scss">
-	.cards {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
-		width: 100%;
-		height: 20rem;
-		gap: 1rem;
-		padding: 1rem 0;
-
-		> div {
-			border-radius: var(--border-radius-medium);
-			background-color: var(--color-bg-2);
-			box-shadow: var(--box-shadow-small);
-		}
-	}
 	.header {
 		display: flex;
 		justify-content: space-between;
@@ -160,9 +148,6 @@
 				&:hover {
 					background-color: var(--color-bg-1);
 				}
-				img {
-					width: 20px;
-				}
 			}
 		}
 	}
@@ -170,32 +155,29 @@
 		display: flex;
 		justify-content: flex-start;
 		width: 100%;
-		padding: 0rem 0rem;
+		padding: 0;
 		overflow-x: scroll;
-		border-radius: var(--border-radius-medium);
-		border: 1px solid var(--color-border-1);
+		border-radius: var(--border-radius-small);
 		flex: 1;
 
 		table {
-			padding: 0rem;
+			padding: 0;
 			border-collapse: separate;
-			border-spacing: 0px;
-			border-radius: 1rem;
-
+			border-spacing: 0;
+			border-radius: var(--border-radius-small);
 			thead > :first-child > :last-child {
-				border-top-right-radius: 5px;
+				border-top-right-radius: var(--border-radius-small);
 			}
-
 			thead th:first-of-type {
-				border-top-left-radius: 5px;
+				border-top-left-radius: var(--border-radius-small);
 			}
 
 			tbody > :last-child > :last-child {
-				border-bottom-right-radius: 5px;
+				border-bottom-right-radius: var(--border-radius-small);
 			}
 
 			tbody > :last-child > :first-child {
-				border-bottom-left-radius: 5px;
+				border-bottom-left-radius: var(--border-radius-small);
 			}
 
 			thead tr {
@@ -219,15 +201,8 @@
 
 			tbody {
 				font-size: 0.8rem;
-
-				a {
-					background-color: transparent;
-				}
 				button {
 					background-color: transparent;
-					img {
-						width: 20px;
-					}
 				}
 				tr:nth-of-type(odd) {
 					background-color: var(--color-bg-2);

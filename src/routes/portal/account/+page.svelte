@@ -4,44 +4,43 @@
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import ProfileView from '$lib/components/portal/profile/ProfileView.svelte';
 	import { STRATEGY_EMAIL } from '$lib/util/links';
-	import { userStore, signout } from '../../../stores/auth';
-	import { notificationStore } from '../../../stores/notification';
+	import { userStore, signout, token } from '../../../stores/auth';
 	import { getUserInfo, type IUser } from '$lib/types/User';
 	import { onMount } from 'svelte';
+	import { fetcher } from '$lib/util/fetcher';
 	let isOnEdit = false;
 	let updateProfile: Function;
 	let user: IUser;
-	onMount(async () => {
-		user = await getUserInfo($userStore.id);
+	onMount(() => {
+		getUserInfo($userStore.id).then((res) => {
+			user = res;
+		});
 	});
 
 	async function deleteRequest(): Promise<void> {
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${$userStore.id}`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json'
+		await fetcher({
+			URI: `${PUBLIC_USERS_API_URI}/users/${$userStore.id}`,
+			requestInit: {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer  ${$token}`
+				}
+			},
+			onSuccess() {
+				signout();
+			},
+			notifySuccess: {
+				title: 'Account deleted',
+				message: 'User account has been deleted.',
+				type: 'info'
+			},
+			notifyError: {
+				title: 'Account deleted',
+				message: `Account could not be deleted. if error persists, please contact us at ${STRATEGY_EMAIL}`,
+				type: 'error'
 			}
 		});
-
-		if (response.ok) {
-			notificationStore.update((n) => {
-				return {
-					title: 'Account deleted',
-					message: 'User account has been deleted.',
-					type: response.status === 200 ? 'info' : 'error'
-				};
-			});
-			signout();
-		} else {
-			const error = await response.json();
-			notificationStore.update((n) => {
-				return {
-					title: 'Account deleted',
-					message: `${error}. if error persists, please contact us at ${STRATEGY_EMAIL}`,
-					type: 'error'
-				};
-			});
-		}
 	}
 
 	async function modifyProfile() {
@@ -109,14 +108,12 @@
 								irreversible.
 							</p>
 						</Info>
-						<label
-							><p />
-							<div class="form-actions">
-								<button type="submit" on:click={() => deleteRequest()}
-									>Request to delete account</button
-								>
-							</div>
-						</label>
+
+						<div class="form-actions">
+							<button type="submit" on:click={() => deleteRequest()}
+								>Request to delete account</button
+							>
+						</div>
 					</form>
 				</section>
 			</section>
@@ -142,7 +139,7 @@
 	}
 
 	h1 {
-		padding-bottom: 0rem;
+		padding-bottom: 0;
 		width: 100%;
 	}
 	div {
@@ -182,7 +179,7 @@
 		justify-content: flex-start;
 		border: 0.8px solid var(--color-border-1);
 		background-color: var(--color-bg-2);
-		border-radius: var(--border-radius-medium);
+		border-radius: var(--border-radius-small);
 		box-shadow: var(--box-shadow-small);
 		flex-wrap: nowrap;
 		min-width: 0;
@@ -242,7 +239,7 @@
 				flex-direction: row;
 				align-items: center;
 				width: 100%;
-				padding: 0rem 0 0;
+				padding: 0;
 				button {
 					max-width: fit-content;
 					padding: 0.5rem 1rem;
@@ -273,44 +270,7 @@
 				@media screen and (max-width: 900px) {
 					grid-template-columns: 1fr;
 					grid-gap: 1rem;
-					column-gap: 0rem;
-				}
-
-				label {
-					padding: 0rem;
-					display: flex;
-
-					flex-direction: row;
-					row-gap: 10px;
-					border-radius: 4px;
-					justify-content: space-between;
-					align-items: center;
-					width: 100%;
-
-					:first-child {
-						font-weight: 500;
-						color: var(--color-text-2);
-					}
-
-					p {
-						width: 10rem;
-						padding: 0.5rem 0.5rem;
-					}
-
-					input,
-					select {
-						flex: 2;
-						padding: 0.5rem 0.5rem;
-
-						&:disabled {
-							color: var(--color-text-primary);
-						}
-					}
-
-					* {
-						font-size: 0.9rem;
-						color: var(--color-text-1);
-					}
+					column-gap: 0;
 				}
 			}
 		}

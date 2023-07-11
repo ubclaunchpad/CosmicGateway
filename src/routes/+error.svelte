@@ -40,8 +40,7 @@
 			right: 0;
 			width: 40svw;
 			height: 40svh;
-			top: 0px;
-			right: 0;
+			top: 0;
 			img {
 				width: 100%;
 				height: 100%;
@@ -167,12 +166,9 @@
 					height: 100%;
 					position: absolute;
 					z-index: 1;
-					transition: all 0.3s ease-in-out;
 					object-fit: cover;
 					transition: all 0.5s ease-in-out;
-
 					animation: zoom 15s infinite;
-
 					@keyframes zoom {
 						0% {
 							transform: scale(1) rotate(0deg);

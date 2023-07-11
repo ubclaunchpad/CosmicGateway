@@ -3,26 +3,10 @@
 </script>
 
 <div class="foryou">
-	<div class="banner">
-		<p>
-			Welcome to your dashboard. Here you can see your projects, your timeline, and your progress.
-		</p>
-	</div>
-
 	<UserProjects />
 </div>
 
 <style lang="scss">
-	.banner {
-		padding: 1rem;
-		width: 100%;
-		border-radius: 5px;
-		p {
-			font-size: 1rem;
-			color: var(--color-text-1);
-		}
-	}
-
 	.foryou {
 		display: flex;
 		flex-direction: column;

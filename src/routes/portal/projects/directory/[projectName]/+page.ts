@@ -1,4 +1,4 @@
-export async function load({ params }) {
+export async function load({ params }: { params: { projectName: string } }) {
 	const post = await import(`../${params.projectName}.md`);
 	const { title, date, id } = post.metadata;
 	const content = post.default;

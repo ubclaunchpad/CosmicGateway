@@ -64,14 +64,6 @@
 						<div id={'signinDiv'} />
 					</button>
 				</div>
-				<!-- <button disabled>
-					<!== <img src={GithubIcon} alt="github" /> ==>
-					Continue with Github
-				</button>
-				<button disabled>
-					<!== <img src={DiscordIcon} alt="Discord" /> ==>
-					Continue with Discord</button
-				> -->
 			</div>
 		</div>
 		<Info
@@ -167,9 +159,6 @@
 				&:disabled {
 					cursor: not-allowed;
 					opacity: 0.5;
-				}
-				&:hover {
-					// background: var(--color-bg-primary);
 				}
 			}
 		}

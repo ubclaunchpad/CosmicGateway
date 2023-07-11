@@ -126,21 +126,6 @@
 		border-top: 1px solid var(--color-border-0);
 		padding: 0.4rem 0;
 		width: 100%;
-
-		button {
-			padding: 0.5rem 1rem;
-			color: var(--color-text-1);
-			border-radius: 0.3rem;
-			background-color: var(--color-bg-primary);
-			&:disabled {
-				background: var(--color-bg-2);
-				cursor: not-allowed;
-			}
-		}
-		* {
-			color: var(--color-text-2);
-			font-size: 0.9rem;
-		}
 	}
 
 	.modal-content {

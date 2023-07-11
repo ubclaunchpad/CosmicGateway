@@ -4,9 +4,10 @@
 	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
 	import { signout } from '../../../../stores/auth';
 	import { createEventDispatcher } from 'svelte';
+	import { DOCS_LINK } from '$lib/util/links';
 	const dispatch = createEventDispatcher();
 	function triggerNavEffect() {
-		dispatch('navigate');
+		dispatch('navigate', {});
 	}
 </script>
 
@@ -14,7 +15,7 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/" on:click={triggerNavEffect}>
+				<a href="/portal" on:click={triggerNavEffect}>
 					<Icon>
 						<HomeIcon />
 					</Icon>
@@ -22,7 +23,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/members" on:click={triggerNavEffect}>
+				<a href="/portal/members" on:click={triggerNavEffect}>
 					<Icon>
 						<UsersIcon />
 					</Icon>
@@ -35,7 +36,7 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/docs" target="_blank" on:click={triggerNavEffect}>
+				<a href={DOCS_LINK} target="_blank" on:click={triggerNavEffect}>
 					<Icon>
 						<BookClosedIcon />
 					</Icon>
@@ -53,16 +54,16 @@
 		<button on:click={signout}>Sign out</button>
 		<nav>
 			<ul>
+				<!--				<li>-->
+				<!--					<a href="/portal/admin" on:click={triggerNavEffect}>-->
+				<!--						<Icon>-->
+				<!--							<SettingsIcon />-->
+				<!--						</Icon>-->
+				<!--						<p>Admin</p>-->
+				<!--					</a>-->
+				<!--				</li>-->
 				<li>
-					<a href="/admin" on:click={triggerNavEffect}>
-						<Icon>
-							<SettingsIcon />
-						</Icon>
-						<p>Admin</p>
-					</a>
-				</li>
-				<li>
-					<a href="/account" on:click={triggerNavEffect}>
+					<a href="/portal/account" on:click={triggerNavEffect}>
 						<Icon>
 							<SettingsIcon />
 						</Icon>
