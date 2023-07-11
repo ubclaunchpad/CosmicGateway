@@ -10,7 +10,6 @@
 	import Starfilled from '$lib/components/general/icons/decorative/starfilled.svelte';
 	import { onMount } from 'svelte';
 	import { FACEBOOK_LINK, GITHUB_LINK, INSTAGRAM_LINK, LINKEDIN_LINK } from '$lib/util/links';
-
 	const newsletterURI = 'https://buttondown.email/api/emails/embed-subscribe/ubclaunchpad';
 	const subscribe = () => {
 		animate();

@@ -4,20 +4,22 @@ import { PUBLIC_USERS_API_URI } from '$env/static/public';
 import { writable } from 'svelte/store';
 const stored = browser ? localStorage.token : null;
 export const token = writable(stored || null);
+
 export const setLocalToken = (value: string | undefined) => {
 	if (browser) {
 		if (!value) return localStorage.removeItem('token');
 		localStorage.setItem('token', value);
 	}
 };
+
 token.subscribe(setLocalToken);
-export const signout = () => {
+export const signout = async () => {
 	token.set(undefined);
 	userStore.set(undefined);
 	if (browser) {
 		localStorage.removeItem('token');
 	}
-	goto('/signin');
+	await goto('/auth');
 };
 
 export interface IUserMeta {

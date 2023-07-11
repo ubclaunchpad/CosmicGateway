@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
-	import { fetchUser, userStore } from '../../stores/auth';
+	import { fetchUser, userStore } from '../../../../stores/auth';
 	import { goto } from '$app/navigation';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
-	import { notificationStore } from '../../stores/notification';
+	import { notificationStore } from '../../../../stores/notification';
 
 	async function verifyGoogleLogin(request) {
 		try {
@@ -25,15 +25,14 @@
 		if ($userStore !== undefined) {
 			goto('/portal');
 		}
-
 		if (google) {
 			google.accounts.id.initialize({
 				client_id: '1008030581052-4p078no9tkl28689oakraltpk3clju2r.apps.googleusercontent.com',
 				ux_mode: 'popup',
 				callback: verifyGoogleLogin
 			});
-
 			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
+			console.log(googleAuthBtn);
 			if (googleAuthBtn) {
 				google.accounts.id.renderButton(googleAuthBtn, {
 					width: '300',

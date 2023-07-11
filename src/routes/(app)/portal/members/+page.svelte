@@ -13,7 +13,7 @@
 	} from '$lib/components/general/icons';
 	import Loader from '$lib/components/blocks/Loader.svelte';
 	import { userFieldMapper, type IUser } from '$lib/types/User';
-	import { token } from '../../../stores/auth';
+	import { token } from '../../../../stores/auth';
 	let users: IUser[] = [];
 	let shownUser: IUser | null = null;
 	onMount(() => {

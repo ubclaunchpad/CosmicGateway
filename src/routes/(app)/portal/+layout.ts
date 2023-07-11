@@ -1,4 +1,4 @@
-import { token, fetchUser } from '../../stores/auth';
+import { token, fetchUser } from '../../../stores/auth';
 import { redirect } from '@sveltejs/kit';
 
 export const load = async () => {
@@ -7,12 +7,12 @@ export const load = async () => {
 		userToken = value;
 	});
 	if (null === userToken || undefined === userToken || '' === userToken) {
-		throw redirect(307, '/signin');
+		throw redirect(307, '/auth');
 	} else {
 		try {
 			await fetchUser(userToken);
 		} catch (e) {
-			throw redirect(307, '/signin');
+			throw redirect(307, '/auth');
 		}
 	}
 	return {};

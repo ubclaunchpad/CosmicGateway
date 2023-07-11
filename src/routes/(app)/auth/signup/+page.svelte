@@ -6,8 +6,8 @@
 	import Info from '$lib/components/blocks/Info.svelte';
 	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
 	import { goto } from '$app/navigation';
-	import { token } from '../../stores/auth';
-	import { notificationStore } from '../../stores/notification';
+	import { token } from '../../../../stores/auth';
+	import { notificationStore } from '../../../../stores/notification';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
 	import type { IFaculty, ISpecialization, IStanding } from '$lib/types/User';
 	let googleAuthUser: GoogleAuthUser | undefined;

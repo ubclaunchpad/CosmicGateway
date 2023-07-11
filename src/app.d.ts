@@ -12,6 +12,7 @@ declare global {
 			caches: CacheStorage & { default: Cache };
 		}
 	}
+	const google: typeof import('google-one-tap');
 }
 
 export {};
