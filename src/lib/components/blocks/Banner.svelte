@@ -3,7 +3,7 @@
 	import ArrowRightIcon from '../general/icons/ArrowRightIcon.svelte';
 	export let title: string;
 	export let description: string;
-	export let links = [];
+	export let links: { link: string; text: string }[] = [];
 	export let type = 0;
 </script>
 

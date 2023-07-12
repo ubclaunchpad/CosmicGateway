@@ -57,7 +57,7 @@
 		</div>
 	</aside>
 
-	<main class:blur={!collapse && isCompact} on:click={collapseNav}>
+	<main class:blur={!collapse && isCompact}>
 		<slot />
 	</main>
 </div>

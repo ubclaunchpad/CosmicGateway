@@ -118,3 +118,43 @@ export const userFieldMapper = <K extends keyof IUser>(key: K, value: IUser[K]):
 			return value as string;
 	}
 };
+
+export const userFieldVisibilityMapper = <K extends keyof IUser>(key: K): boolean => {
+	switch (key) {
+		case 'created_at':
+		case 'updated_at':
+		case 'id':
+			return false;
+		default:
+			return true;
+	}
+};
+
+export const userFieldLabelMapper = <K extends keyof IUser>(key: K): string => {
+	switch (key) {
+		case 'created_at':
+			return 'Created';
+		case 'updated_at':
+			return 'Updated';
+		case 'member_since':
+			return 'Member Since';
+		case 'pref_name':
+			return 'Preferred Name';
+		case 'resume_link':
+			return 'Resume Link';
+		case 'faculty':
+			return 'Faculty';
+		case 'standing':
+			return 'Standing';
+		case 'specialization':
+			return 'Specialization';
+		case 'username':
+			return 'Username';
+		case 'last_name':
+			return 'Last Name';
+		case 'roles':
+			return 'Roles';
+		default:
+			return key as string;
+	}
+};

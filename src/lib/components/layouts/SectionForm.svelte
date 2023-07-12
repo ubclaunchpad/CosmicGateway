@@ -49,11 +49,6 @@
 			background-color: var(--color-bg-2);
 			box-shadow: var(--box-shadow-small);
 			overflow-y: scroll;
-
-			.separator {
-				width: 100%;
-				height: 1rem;
-			}
 		}
 	}
 </style>

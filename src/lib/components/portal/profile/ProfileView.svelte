@@ -44,7 +44,6 @@
 			const fieldKey = key as keyof IUserPatchRequest;
 			if (JSON.stringify(originalFields[fieldKey]) !== JSON.stringify(modifiedFields[fieldKey])) {
 				const partialkey = key as keyof IUserPatchRequest;
-				// TODO: fix TS error
 				changedFields[partialkey] = modifiedFields[fieldKey];
 			}
 		}
@@ -56,6 +55,7 @@
 			const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${id}`, {
 				method: 'GET',
 				headers: {
+					Authorization: `Bearer  ${$token}`,
 					'Content-Type': 'application/json'
 				}
 			});
@@ -121,7 +121,7 @@
 
 <div class="profile-content">
 	<section class="profile">
-		{#if querying || hide}
+		{#if hide}
 			<Loader width={'100%'} height={'100%'} />
 		{:else}
 			<h2>{editView ? '' : user.pref_name}</h2>
@@ -267,7 +267,7 @@
 		height: 100%;
 
 		h2 {
-			padding: 1rem 0 0rem;
+			padding: 1rem 0 0;
 			font-size: 1rem;
 		}
 
@@ -293,9 +293,6 @@
 
 			&.role {
 				border-top: 1px solid var(--color-border-1);
-
-				> p {
-				}
 			}
 			> p {
 				padding: 0.5rem 0.4rem;

@@ -54,7 +54,7 @@ import FacebookIcon from './FacebookIcon.svelte';
 import ApplicationsIcon from './ApplicationsIcon.svelte';
 import CircledDoodle from './doodles/CircledDoodle.svelte';
 import FilterIcon from './FilterIcon.svelte';
-import StarFilledIcon from './decorative/starfilled.svelte';
+import StarFilledIcon from './decorative/StarFilledIcon.svelte';
 
 export {
 	HomeIcon,

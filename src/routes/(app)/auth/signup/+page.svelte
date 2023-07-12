@@ -26,7 +26,7 @@
 		listOfStandings = resources.listOfStandings;
 	};
 
-	function verifyGoogleLogin(request: { credential: string }) {
+	function verifyGoogleLogin(request: { credential: string }): void {
 		googleAuthUser = jwt_decode(request.credential) as GoogleAuthUser;
 		firstName = googleAuthUser.given_name;
 		lastName = googleAuthUser.family_name;
@@ -65,6 +65,7 @@
 			const response = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
 				method: 'POST',
 				headers: {
+					Authorization: `Bearer ${$token}`,
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(body)
@@ -73,11 +74,11 @@
 			if (response.ok) {
 				await goto('/portal');
 			} else {
-				const error = await response.json();
+				const body = await response.json();
 				notificationStore.update(() => {
 					return {
-						title: 'Error',
-						message: error.message,
+						title: body.error.name,
+						message: body.error.message,
 						type: 'error'
 					};
 				});
@@ -112,8 +113,8 @@
 			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
 			if (googleAuthBtn) {
 				google.accounts.id.renderButton(googleAuthBtn, {
-					width: '300',
-					theme: 'outline',
+					width: '400',
+					theme: 'filled_black',
 					size: 'large',
 					type: 'standard',
 					text: 'continue_with',
@@ -147,70 +148,77 @@
 					</button>
 				{/if}
 			</div>
-			<section>
-				<label>
-					<p class="required">First Name</p>
-					<input bind:value={firstName} required type="text" placeholder="name" />
-				</label>
+			{#if googleConnected}
+				<section>
+					<label>
+						<p class="required">First Name</p>
+						<input bind:value={firstName} required type="text" placeholder="name" />
+					</label>
 
-				<label>
-					<p class="required">Last Name</p>
-					<input bind:value={lastName} required type="text" placeholder="last name" />
-				</label>
+					<label>
+						<p class="required">Last Name</p>
+						<input bind:value={lastName} required type="text" placeholder="last name" />
+					</label>
 
-				<label>
-					<p class="required">Preferred Name</p>
-					<input bind:value={prefName} required type="text" placeholder="preferred name" />
-				</label>
-			</section>
+					<label>
+						<p class="required">Preferred Name</p>
+						<input bind:value={prefName} required type="text" placeholder="preferred name" />
+					</label>
+				</section>
 
-			<section>
-				<label>
-					<p class="required">Faculty</p>
-					<select required bind:value={facultyId} name="Faculty" id="Faculty">
-						<option value="" disabled hidden selected>Your faculty</option>
-						{#each listOfFaculties as field}
-							<option value={field.id}>{field.label}</option>
-						{/each}
-					</select>
-				</label>
+				<section>
+					<label>
+						<p class="required">Faculty</p>
+						<select required bind:value={facultyId} name="Faculty" id="Faculty">
+							<option value="" disabled hidden selected>Your faculty</option>
+							{#each listOfFaculties as field}
+								<option value={field.id}>{field.label}</option>
+							{/each}
+						</select>
+					</label>
 
-				<label>
-					<p class="required">Specialization</p>
-					<select bind:value={specializationId} name="Specialization" id="Specialization">
-						<option value="" disabled hidden selected>Your (intended) major</option>
-						{#each listOfSpecializations as field}
-							<option value={field.id}>{field.label}</option>
-						{/each}
-					</select>
-				</label>
+					<label>
+						<p class="required">Specialization</p>
+						<select bind:value={specializationId} name="Specialization" id="Specialization">
+							<option value="" disabled hidden selected>Your (intended) major</option>
+							{#each listOfSpecializations as field}
+								<option value={field.id}>{field.label}</option>
+							{/each}
+						</select>
+					</label>
 
-				<label>
-					<p class="required">Standing</p>
-					<select required bind:value={standingId} name="Standing" id="Standing">
-						<option value="" disabled hidden selected>Your current standing</option>
-						{#each listOfStandings as field}
-							<option value={field.id}>{field.label}</option>
-						{/each}
-					</select>
-				</label>
-			</section>
+					<label>
+						<p class="required">Standing</p>
+						<select required bind:value={standingId} name="Standing" id="Standing">
+							<option value="" disabled hidden selected>Your current standing</option>
+							{#each listOfStandings as field}
+								<option value={field.id}>{field.label}</option>
+							{/each}
+						</select>
+					</label>
+				</section>
+				<div class="action">
+					<button type="button" on:submit|preventDefault={register} on:click={register}
+						>Register</button
+					>
+				</div>
+			{/if}
 		</form>
 		<div class="bottombar">
-			<button type="submit" on:submit|preventDefault={register} on:click={register}>Register</button
-			>
-			<Info
-				><p>You can update your profile later as your information changes.</p>
-				<p>
-					Having issues setting up? Contact <span>
-						<a href="mailt:strategy@ubclaunchpad.com">strategy@ubclaunchpad.com</a>
-					</span>
-				</p>
-			</Info>
+			{#if googleConnected}
+				<Info
+					><p>You can update your profile later as your information changes.</p>
+					<p>
+						Having issues setting up? Contact <span>
+							<a href="mailt:strategy@ubclaunchpad.com">strategy@ubclaunchpad.com</a>
+						</span>
+					</p>
+				</Info>
+			{/if}
 		</div>
 		<Info
 			><p>
-				Already have an account? <a href="/signin">Sign in</a>
+				Already have an account? <a href="/auth/signin">Sign in</a>
 			</p>
 		</Info>
 	</SectionForm>
@@ -219,42 +227,12 @@
 <style lang="scss">
 	.bottombar {
 		display: flex;
-		justify-content: space-between;
-
-		align-items: flex-end;
+		align-items: center;
 		flex-direction: column;
 		width: 100%;
 		padding: 1rem 0;
 		gap: 0.5rem;
 		flex: 1;
-
-		button {
-			max-width: 150px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: row;
-			gap: 1rem;
-			width: 100%;
-			padding: 0.5rem 0.6rem;
-			border-radius: var(--border-radius-small);
-			border: 1px solid var(--color-border-1);
-			background: var(--color-bg-3);
-			color: var(--color-text-0);
-			box-shadow: var(--box-shadow-small);
-			font-size: 1rem;
-			font-weight: 500;
-			cursor: pointer;
-			transition: all 0.2s ease-in-out;
-			&:disabled {
-				cursor: not-allowed;
-				opacity: 0.5;
-			}
-			&:hover {
-				background: var(--color-bg-primary);
-				transform: scale(1.1);
-			}
-		}
 	}
 	form {
 		display: flex;
@@ -263,7 +241,44 @@
 		flex-direction: column;
 		row-gap: 1rem;
 		width: 100%;
-		padding: 0;
+		padding: 1rem 0;
+		border-bottom: 1px solid var(--color-bg-1);
+		border-top: 1px solid var(--color-bg-1);
+
+		.action {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			flex-direction: row;
+			gap: 1rem;
+			width: 100%;
+			button {
+				width: 150px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: row;
+				gap: 1rem;
+				max-width: 100%;
+				padding: 0.5rem 0.4rem;
+				border-radius: var(--border-radius-small);
+				border: 1px solid var(--color-border-1);
+				background: var(--color-bg-1);
+				color: var(--color-text-0);
+				box-shadow: var(--box-shadow-small);
+				font-size: 1rem;
+				font-weight: 500;
+				cursor: pointer;
+				transition: all 0.2s ease-in-out;
+				&:disabled {
+					cursor: not-allowed;
+					opacity: 0.5;
+				}
+				&:hover {
+					background: var(--color-bg-primary-faded);
+				}
+			}
+		}
 
 		.rich-input {
 			display: flex;

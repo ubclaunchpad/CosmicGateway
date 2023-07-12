@@ -4,7 +4,6 @@
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
-	import MemberViewModal from '$lib/components/members/MemberViewModal.svelte';
 	import {
 		ExpandIcon,
 		FilterIcon,
@@ -12,10 +11,15 @@
 		VerticalDotsIcon
 	} from '$lib/components/general/icons';
 	import Loader from '$lib/components/blocks/Loader.svelte';
-	import { userFieldMapper, type IUser } from '$lib/types/User';
+	import {
+		userFieldMapper,
+		type IUser,
+		userFieldLabelMapper,
+		userFieldVisibilityMapper
+	} from '$lib/types/User';
 	import { token } from '../../../../stores/auth';
 	let users: IUser[] = [];
-	let shownUser: IUser | null = null;
+	// const shownUser: IUser | null = null;
 	onMount(() => {
 		fetchUsers();
 	});
@@ -32,16 +36,6 @@
 		});
 		users = await response.json();
 		querying = false;
-	};
-
-	const COLUMN_MAPPER = {
-		pref_name: 'Preferred Name',
-		last_name: 'Last Name',
-		faculty: 'Faculty',
-		specialization: 'Specialization',
-		standing: 'Standing',
-		roles: 'Roles',
-		id: ''
 	};
 </script>
 
@@ -77,8 +71,8 @@
 						<tr>
 							<th />
 							{#each Object.keys(users[0]) as key}
-								{#if COLUMN_MAPPER[key]}
-									<th>{COLUMN_MAPPER[key]}</th>
+								{#if userFieldVisibilityMapper(key)}
+									<th>{userFieldLabelMapper(key)}</th>
 								{/if}
 							{/each}
 						</tr>
@@ -88,18 +82,14 @@
 						{#each users as user}
 							<tr>
 								<td
-									><button
-										on:click={() => {
-											shownUser = user;
-										}}
-									>
+									><button disabled={true}>
 										<Icon>
 											<ExpandIcon />
 										</Icon>
 									</button></td
 								>
 								{#each Object.entries(user) as [key, value]}
-									{#if COLUMN_MAPPER[key]}
+									{#if userFieldVisibilityMapper(key)}
 										<td>
 											{userFieldMapper(key, value)}
 										</td>
@@ -114,13 +104,13 @@
 	</div>
 </MainPage>
 
-<MemberViewModal
-	on:modalevent={() => {
-		shownUser = null;
-	}}
-	isOpen={shownUser != null}
-	user={shownUser}
-/>
+<!--<MemberViewModal-->
+<!--	on:modalevent={() => {-->
+<!--		shownUser = null;-->
+<!--	}}-->
+<!--	isOpen={shownUser != null}-->
+<!--	user={shownUser}-->
+<!--/>-->
 
 <style lang="scss">
 	.header {

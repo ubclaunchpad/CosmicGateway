@@ -7,7 +7,7 @@
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
 	import { notificationStore } from '../../../../stores/notification';
 
-	async function verifyGoogleLogin(request) {
+	async function verifyGoogleLogin(request: { credential: string }): Promise<void> {
 		try {
 			await fetchUser(request.credential);
 			goto('/portal');
@@ -35,8 +35,8 @@
 			console.log(googleAuthBtn);
 			if (googleAuthBtn) {
 				google.accounts.id.renderButton(googleAuthBtn, {
-					width: '300',
-					theme: 'outline',
+					width: '400',
+					theme: 'filled_black',
 					size: 'large',
 					type: 'standard',
 					text: 'continue_with',
@@ -74,7 +74,7 @@
 		>
 		<Info>
 			<p>
-				Don't have an account? <a href="/signup">Sign up</a>
+				Don't have an account? <a href="/auth/signup">Sign up</a>
 			</p>
 		</Info>
 	</SectionForm>

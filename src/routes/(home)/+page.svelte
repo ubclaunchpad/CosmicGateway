@@ -7,18 +7,19 @@
 	import FacebookIcon from '$lib/components/general/icons/FacebookIcon.svelte';
 	import InstagramIcon from '$lib/components/general/icons/InstagramIcon.svelte';
 	import LinkedInIcon from '$lib/components/general/icons/LinkedInIcon.svelte';
-	import Starfilled from '$lib/components/general/icons/decorative/starfilled.svelte';
 	import { onMount } from 'svelte';
 	import { FACEBOOK_LINK, GITHUB_LINK, INSTAGRAM_LINK, LINKEDIN_LINK } from '$lib/util/links';
+	import StarFilledIcon from '$lib/components/general/icons/decorative/StarFilledIcon.svelte';
 	const newsletterURI = 'https://buttondown.email/api/emails/embed-subscribe/ubclaunchpad';
 	const subscribe = () => {
 		animate();
 	};
 
-	let stars;
+	let stars: NodeListOf<SVGElement> = {} as NodeListOf<SVGElement>;
 
 	onMount(() => {
-		stars = document.querySelector('.stars').querySelectorAll('svg');
+		stars =
+			document.querySelector('.stars')?.querySelectorAll('svg') || ({} as NodeListOf<SVGElement>);
 	});
 
 	const animate = () => {
@@ -33,20 +34,20 @@
 		<img src={background} alt="logo" width="360px" />
 
 		<div class="stars">
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
-			<Starfilled />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
+			<StarFilledIcon />
 		</div>
 
 		<div class="content">
@@ -87,7 +88,7 @@
 			<div class="coming-soon">
 				<h1>Coming Soon</h1>
 				<p>
-					Sign up for our newseletter to be the first to know about recruitment, events and when our
+					Sign up for our newsletter to be the first to know about recruitment, events and when our
 					new website launches
 				</p>
 

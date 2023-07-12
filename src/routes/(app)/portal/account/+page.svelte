@@ -8,18 +8,22 @@
 	import { getUserInfo, type IUser } from '$lib/types/User';
 	import { onMount } from 'svelte';
 	import { fetcher } from '$lib/util/fetcher';
+	import Loader from '$lib/components/blocks/Loader.svelte';
 	let isOnEdit = false;
-	let updateProfile: Function;
+	let updating = false;
+	let updateProfile: () => Promise<void>;
 	let user: IUser;
 	onMount(() => {
-		getUserInfo($userStore.id).then((res) => {
-			user = res;
-		});
+		if ($userStore && 'id' in $userStore) {
+			getUserInfo($userStore.id).then((res) => {
+				user = res;
+			});
+		}
 	});
 
 	async function deleteRequest(): Promise<void> {
 		await fetcher({
-			URI: `${PUBLIC_USERS_API_URI}/users/${$userStore.id}`,
+			URI: `${PUBLIC_USERS_API_URI}/users/${$userStore?.id}`,
 			requestInit: {
 				method: 'DELETE',
 				headers: {
@@ -44,80 +48,91 @@
 	}
 
 	async function modifyProfile() {
+		updating = true;
 		await updateProfile();
 		isOnEdit = false;
+
+		if ($userStore && 'id' in $userStore) {
+			getUserInfo($userStore.id).then((res) => {
+				user = res;
+				updating = false;
+			});
+		}
 	}
 </script>
 
 <MainPage>
 	<div slot="main" class="content">
 		<h1>Settings</h1>
-
-		<div class="account-group">
-			<section class="account-section profile">
-				<div class="header">
-					<h2>Profile</h2>
-					<div class="buttons">
-						{#if isOnEdit}
-							<button
-								on:click={() => {
-									isOnEdit = false;
-								}}>Cancel</button
-							>
-							<button
-								on:click={() => {
-									modifyProfile();
-								}}>Save</button
-							>
-						{:else}
-							<button
-								on:click={() => {
-									isOnEdit = true;
-								}}>Edit</button
-							>
-						{/if}
+		{#if updating}
+			<Loader width={'100%'} height={'100%'} />
+		{:else}
+			<div class="account-group">
+				<section class="account-section profile">
+					<div class="header">
+						<h2>Profile</h2>
+						<div class="buttons">
+							{#if isOnEdit}
+								<button
+									on:click={() => {
+										isOnEdit = false;
+									}}>Cancel</button
+								>
+								<button
+									on:click={() => {
+										modifyProfile();
+									}}>Save</button
+								>
+							{:else}
+								<button
+									on:click={() => {
+										isOnEdit = true;
+									}}>Edit</button
+								>
+							{/if}
+						</div>
 					</div>
-				</div>
 
-				{#if user}
-					<ProfileView referenceUser={user} id={user.id} editView={isOnEdit} bind:updateProfile />
-				{/if}
-			</section>
-
-			<section class="account-section integration">
-				<h2>Integrations</h2>
-
-				<section class="section-content">
-					<Info>
-						<p>
-							Manage your integrations with external services. You can revoke access to any of these
-							at any time.
-						</p>
-					</Info>
+					{#if user}
+						<ProfileView referenceUser={user} id={user.id} editView={isOnEdit} bind:updateProfile />
+					{/if}
 				</section>
-			</section>
 
-			<section class="account-section account">
-				<h2>Account</h2>
+				<section class="account-section integration">
+					<h2>Integrations</h2>
 
-				<section class="section-content">
-					<form>
+					<section class="section-content">
 						<Info>
 							<p>
-								Deleting your account will remove all your data from our servers. This action is
-								irreversible.
+								Manage your integrations with external services. You can revoke access to any of
+								these at any time.
 							</p>
 						</Info>
-
-						<div class="form-actions">
-							<button type="submit" on:click={() => deleteRequest()}
-								>Request to delete account</button
-							>
-						</div>
-					</form>
+					</section>
 				</section>
-			</section>
-		</div>
+
+				<section class="account-section account">
+					<h2>Account</h2>
+
+					<section class="section-content">
+						<form>
+							<Info>
+								<p>
+									Deleting your account will remove all your data from our servers. This action is
+									irreversible.
+								</p>
+							</Info>
+
+							<div class="form-actions">
+								<button type="submit" on:click={() => deleteRequest()}
+									>Request to delete account</button
+								>
+							</div>
+						</form>
+					</section>
+				</section>
+			</div>
+		{/if}
 	</div>
 </MainPage>
 
