@@ -70,11 +70,11 @@ const getSpecializations = async (): Promise<{ id: string; label: string }[]> =>
 };
 
 const getRoles = async () => {
-	const response = await fetch(`${PUBLIC_USERS_API_URI}/roles`, {
-		method: 'GET'
-	});
+	// const response = await fetch(`${PUBLIC_USERS_API_URI}/roles`, {
+	// 	method: 'GET'
+	// });
 
-	return await response.json();
+	return [];
 };
 
 const getStandings = async (): Promise<{ id: string; label: string }[]> => {
