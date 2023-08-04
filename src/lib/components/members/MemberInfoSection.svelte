@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Modal from '../layouts/Modal.svelte';
     import {userScopes} from "../../../stores/scopes";
-	export let isOpen: boolean;
     const scopes = $userScopes;
     import { PUBLIC_USERS_API_URI } from '$env/static/public';
     import Loader from '$lib/components/blocks/Loader.svelte';
@@ -19,11 +17,6 @@
     import { fetcher } from '$lib/util/fetcher';
     import {token} from "../../../stores/auth";
     import {notificationStore} from "../../../stores/notification";
-    import Dropdown from "$lib/components/layouts/Dropdown.svelte";
-    import RoleViewModal from "$lib/components/members/RoleViewModal.svelte";
-    import MemberInfoSection from "$lib/components/members/MemberInfoSection.svelte";
-
-    let showRoles = false;
     let user: IUser;
     export let editView = false;
     export let referenceUser: IUser;
@@ -61,16 +54,6 @@
         return changedFields;
     }
 
-    async function getRoles() {
-        const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${id}/roles`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer  ${$token}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        roles =  await response.json();
-    }
 
     async function getUserInfo(refresh = false) {
         if (!referenceUser || refresh) {
@@ -140,37 +123,152 @@
     }
 </script>
 
+<div class="profile">
 
-<Modal title={user.pref_name} on:modalevent isModalOpen={isOpen} type="side">
-	<div class="modal-content" slot="modal-content">
-        <div class="profile-content">
-            <div class="profile">
+                {#if hide}
+                    <Loader width={'100%'} height={'100%'} />
+                {:else}
+
+                    <section class="grid-row">
+                        {#if editView}
+                            <section class="attribute">
+                                <p>Preferred Name</p>
+                                <input bind:value={user.pref_name} />
+                            </section>
+                        {/if}
+                    </section>
+
+                    <section class="grid-row">
+                        <section class="attribute">
+                            <p>Name</p>
+                            {#if !editView}
+                                <p>{referenceUser.first_name}</p>
+                            {:else}
+                                <input bind:value={user.first_name} />
+                            {/if}
+                        </section>
+                    </section>
+
+                    <section class="grid-row">
+                        <section class="attribute">
+                            <p>Last name</p>
+                            {#if !editView}
+                                <p>{referenceUser.last_name}</p>
+                            {:else}
+                                <input bind:value={user.last_name} />
+                            {/if}
+                        </section>
+                    </section>
 
 
-            <section class="attribute role">
-<!--            <button on:click={()=> {showRoles = true}}>-->
-<!--                Club Roles-->
-<!--            </button>-->
-            </section>
-           <MemberInfoSection referenceUser={referenceUser}/>
-            </div>
-        </div>
+                    <section class="grid-row">
+                        <section class="attribute">
+                            <p>Email</p>
+                            <p>{user.email}</p>
+                        </section>
 
-	</div>
+                    </section>
+                    <section class="grid-row">
 
-	<div class="bottombar" slot="bottom-bar">
+                        <section class="attribute">
+                            <p>Username</p>
+                            {#if !editView}
+                                <p>{referenceUser.username}</p>
+                            {:else}
+                                <input bind:value={user.username} />
+                            {/if}
+                        </section>
 
-		<footer>
-            {#if scopes.has('admin:write')}
+                    </section>
 
-                <button class="btn btn-primary" >Edit user information</button>
-                <button class="btn btn-primary" >Delete user</button>
-            {/if}
 
-        </footer>
 
-	</div>
-</Modal>
+                    <h3>Background</h3>
+
+                    <section class="grid-row">
+                        <section class="attribute">
+                            <p>Faculty</p>
+                            {#if !editView}
+                                <p>{referenceUser.faculty.label}</p>
+                            {:else}
+                                <select bind:value={user.faculty.id}>
+                                    {#each listOfFaculties as field}
+                                        <option selected={user.faculty.id === field.id} value={field.id}
+                                        >{field.label}</option
+                                        >
+                                    {/each}
+                                </select>
+                            {/if}
+                        </section>
+                    </section>
+                    <section class="grid-row">
+
+                        <section class="attribute">
+                            <p>Specialization</p>
+                            {#if !editView}
+                                <p>{referenceUser.specialization.label}</p>
+                            {:else}
+                                <select bind:value={user.specialization.id}>
+                                    {#each listOfSpecializations as field}
+                                        <option selected={user.specialization.id === field.id} value={field.id}
+                                        >{field.label}
+                                        </option>
+                                    {/each}
+                                </select>
+                            {/if}
+                        </section>
+                    </section>
+
+                    <section class="attribute">
+                        <p>Standing</p>
+                        {#if !editView}
+                            <p>{referenceUser.standing.label}</p>
+                        {:else}
+                            <select bind:value={user.standing.id}>
+                                {#each listOfStandings as field}
+                                    <option selected={user.standing.id === field.id} value={field.id}
+                                    >{field.label}</option
+                                    >
+                                {/each}
+                            </select>
+                        {/if}
+                    </section>
+
+                    <section class="attribute">
+                        <p>Resume</p>
+                        {#if !editView}
+                            <p>{referenceUser.resume_link}</p>
+                        {:else}
+                            <input bind:value={user.resume_link} />
+                        {/if}
+                    </section>
+
+                    <section class="grid-row">
+                        <section class="attribute">
+                            <p>Created At</p>
+                            <p class="stamp">{getDate(referenceUser.created_at)}</p>
+                        </section>
+
+                        <section class="attribute">
+                            <p>Updated At</p>
+                            <p class="stamp">{getDate(referenceUser.updated_at)}</p>
+                        </section>
+                    </section>
+                {/if}
+</div>
+
+<!--    <div class="bottombar" slot="bottom-bar">-->
+
+<!--        <footer>-->
+<!--            {#if scopes.has('admin:write')}-->
+
+<!--                <button class="btn btn-primary" >Edit user information</button>-->
+<!--                <button class="btn btn-primary" >Delete user</button>-->
+<!--            {/if}-->
+
+<!--        </footer>-->
+
+<!--    </div>-->
 
 
 
@@ -200,9 +298,9 @@
     padding: 0.5rem;
     gap: 0.5rem;
     button {
-    padding: 0.3rem 0.6rem;
-    border-radius: var(--border-radius-small);
-  }
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--border-radius-small);
+    }
 
 
   }
@@ -250,7 +348,7 @@
         position: relative;
         display: flex;
         flex: 1;
-       width: 100%;
+        width: 100%;
 
         justify-content: flex-end;
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {userScopes} from "../../../../stores/scopes";
 	let querying = true;
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
@@ -18,8 +19,10 @@
 		userFieldVisibilityMapper
 	} from '$lib/types/User';
 	import { token } from '../../../../stores/auth';
+	import MemberViewModal from "$lib/components/members/MemberViewModal.svelte";
 	let users: IUser[] = [];
-	// const shownUser: IUser | null = null;
+	let shownUser: IUser | null = null;
+	$: scopes = $userScopes
 	onMount(() => {
 		fetchUsers();
 	});
@@ -37,6 +40,10 @@
 		users = await response.json();
 		querying = false;
 	};
+
+	const showUser = (user: IUser) => {
+		shownUser = user
+	}
 </script>
 
 <MainPage>
@@ -82,12 +89,21 @@
 						{#each users as user}
 							<tr>
 								<td
-									><button disabled={true}>
-										<Icon>
-											<ExpandIcon />
-										</Icon>
-									</button></td
-								>
+									>
+
+									{#if scopes.has("admin:read")}
+										<button
+												on:click={() => {
+													showUser(user)
+												}}
+											>
+											<Icon>
+												<ExpandIcon />
+											</Icon>
+										</button>
+									{/if}
+
+									</td>
 								{#each Object.entries(user) as [key, value]}
 									{#if userFieldVisibilityMapper(key)}
 										<td>
@@ -104,13 +120,17 @@
 	</div>
 </MainPage>
 
-<!--<MemberViewModal-->
-<!--	on:modalevent={() => {-->
-<!--		shownUser = null;-->
-<!--	}}-->
-<!--	isOpen={shownUser != null}-->
-<!--	user={shownUser}-->
-<!--/>-->
+{#if shownUser != null}
+<MemberViewModal
+	on:modalevent={() => {
+		shownUser = null;
+	}}
+	isOpen={shownUser != null}
+	referenceUser={shownUser}
+/>
+{/if}
+
+
 
 <style lang="scss">
 	.header {

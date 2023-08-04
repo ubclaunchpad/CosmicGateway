@@ -6,11 +6,11 @@ interface IDict<T> {
 	label: T;
 }
 
-let listOfFaculties: IDict<string>[] = [];
-let listOfSpecializations: IDict<string>[] = [];
-let listOfStandings: IDict<string>[] = [];
-let listOfRoles: IDict<string>[] = [];
-let outOfSync = true;
+ let listOfFaculties: IDict<string>[] = [];
+ let listOfSpecializations: IDict<string>[] = [];
+ let listOfStandings: IDict<string>[] = [];
+ let listOfRoles: IDict<string>[] = [];
+ let outOfSync = true;
 let isUpdating = false; // Lock variable
 
 export const GET = async () => {
@@ -70,11 +70,11 @@ const getSpecializations = async (): Promise<{ id: string; label: string }[]> =>
 };
 
 const getRoles = async () => {
-	// const response = await fetch(`${PUBLIC_USERS_API_URI}/roles`, {
-	// 	method: 'GET'
-	// });
+	const response = await fetch(`${PUBLIC_USERS_API_URI}/roles`, {
+		method: 'GET'
+	});
 
-	return [];
+	return await response.json();
 };
 
 const getStandings = async (): Promise<{ id: string; label: string }[]> => {

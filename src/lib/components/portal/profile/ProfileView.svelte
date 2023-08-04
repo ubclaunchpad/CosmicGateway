@@ -3,6 +3,7 @@
 	import Loader from '$lib/components/blocks/Loader.svelte';
 	import {
 		type IFaculty,
+		type IRole,
 		type ISpecialization,
 		type IStanding,
 		type IUser,
@@ -21,6 +22,7 @@
 	let listOfFaculties: IFaculty = [];
 	let listOfSpecializations: ISpecialization = [];
 	let listOfStandings: IStanding = [];
+	let roles: IRole[] = [];
 	let querying = false;
 	let hide = false;
 	let changedFields = {};
@@ -48,6 +50,17 @@
 			}
 		}
 		return changedFields;
+	}
+
+	async function getRoles() {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${id}/roles`, {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer  ${$token}`,
+				'Content-Type': 'application/json'
+			}
+		});
+		roles =  await response.json();
 	}
 
 	async function getUserInfo(refresh = false) {
@@ -109,7 +122,6 @@
 				type: 'warning'
 			}
 		});
-
 		querying = true;
 		hide = false;
 	};
@@ -124,17 +136,30 @@
 		{#if hide}
 			<Loader width={'100%'} height={'100%'} />
 		{:else}
+			{#if !editView}
+			<section class="top grid-row">
 			<h2>{editView ? '' : user.pref_name}</h2>
+
+			<section class="attribute role">
+				{#await getRoles()}
+					<p></p>
+				{:then _}
+					<p>
+						{roles.map(role => role.label).join(', ')}
+					</p>
+				{:catch error}
+					<p>{error.message}</p>
+				{/await}
+
+			</section>
+			</section>
+				{/if}
 
 			<section class="grid-row">
 				{#if editView}
 					<section class="attribute">
 						<p>Preferred Name</p>
 						<input bind:value={user.pref_name} />
-					</section>
-				{:else}
-					<section class="attribute role">
-						<!--						<p>{user.roles.map((role) => role.label).join(', ')}</p>-->
 					</section>
 				{/if}
 			</section>
@@ -172,7 +197,10 @@
 						<input bind:value={user.username} />
 					{/if}
 				</section>
+
 			</section>
+
+
 
 			<h3>Background</h3>
 
@@ -258,17 +286,15 @@
 	.profile {
 		display: grid;
 		grid-template-columns: 1fr;
-
 		gap: 0.5rem;
-		border-radius: 1rem;
 		overflow-y: scroll;
 		overflow-x: hidden;
 		width: 100%;
 		height: 100%;
 
 		h2 {
-			padding: 1rem 0 0;
 			font-size: 1rem;
+
 		}
 
 		h3 {
@@ -282,8 +308,16 @@
 			column-gap: 0.5rem;
 			flex-wrap: wrap;
 
+
 			> section {
 				flex: 1;
+			}
+
+			&.top {
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+
 			}
 		}
 
@@ -292,7 +326,14 @@
 			flex-direction: column;
 
 			&.role {
-				border-top: 1px solid var(--color-border-1);
+				width: fit-content;
+				display: flex;
+				flex: 0;
+				min-width: fit-content;
+				justify-content: flex-end;
+				> p {
+					width: fit-content;
+				}
 			}
 			> p {
 				padding: 0.5rem 0.4rem;

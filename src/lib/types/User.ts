@@ -13,12 +13,21 @@ export interface IUser {
 	faculty: IDict<string>;
 	standing: IDict<string>;
 	specialization: IDict<string>;
-	roles: IDict<string>[];
+	roles: IRole[];
 	username: string;
 	created_at: string;
 	updated_at: string;
 	member_since: string | undefined;
 }
+
+export interface IRole extends IDict<string> {
+	scopes: string[];
+}
+//
+// export interface IScope {
+// 	label: string;
+// 	description: string;
+// }
 
 export interface IUserRequest {
 	first_name: string;
@@ -63,7 +72,7 @@ export async function getUserInfo(id: number) {
 		return;
 	}
 
-	const response = await fetcher({
+	return await fetcher({
 		URI: `${PUBLIC_USERS_API_URI}/users/${id}`,
 		requestInit: {
 			method: 'GET',
@@ -78,8 +87,6 @@ export async function getUserInfo(id: number) {
 			type: 'warning'
 		}
 	});
-
-	return response;
 }
 
 function removeUndefinedKeys<T extends { [s: string]: unknown }>(obj: T): Partial<T> {
@@ -99,7 +106,6 @@ export interface IDict<T> {
 export type IFaculty = IDict<string>[];
 export type ISpecialization = IDict<string>[];
 export type IStanding = IDict<string>[];
-export type IRole = IDict<string>[];
 
 export const userFieldMapper = <K extends keyof IUser>(key: K, value: IUser[K]): string => {
 	switch (key) {
@@ -113,7 +119,7 @@ export const userFieldMapper = <K extends keyof IUser>(key: K, value: IUser[K]):
 		case 'specialization':
 			return (value as { label: string }).label;
 		case 'roles':
-			return (value as IRole).map((role: { label: string }) => role.label).join(', ');
+			return (value as IRole[]).map((role: { label: string }) => role.label).join(', ');
 		default:
 			return value as string;
 	}

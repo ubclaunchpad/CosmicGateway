@@ -15,7 +15,7 @@
 <PageForm>
 	<SectionForm>
 		<div slot="header">
-			<h2>Portal</h2>
+			<h2>UBC Launch Pad Portal</h2>
 		</div>
 		<div>
 			<Info>
@@ -42,7 +42,7 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		row-gap: 1rem;
+		gap: 2rem;
 		width: 100%;
 		height: 100%;
 		padding: 1rem;
@@ -50,11 +50,12 @@
 			transition: all 0.2s ease-in-out;
 			width: 240px;
 			text-align: center;
-			padding: 0.4rem 1rem;
-			background-color: var(--color-bg-primary-faded);
+			padding: 0.5rem 1rem;
+			background-color: var(--color-bg-5);
 			border-radius: var(--border-radius-small);
 			color: var(--color-text-1);
-			font-size: 0.9rem;
+			font-size: 1rem;
+			font-weight: 600;
 			text-decoration: none;
 			&:hover {
 				background-color: var(--color-bg-primary);

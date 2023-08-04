@@ -34,7 +34,7 @@
 <style lang="scss">
 	.wrapper {
 		width: 100%;
-		flex: 1;
+		flex: 0;
 		height: 100%;
 	}
 	.welcome {
@@ -44,6 +44,10 @@
 		align-items: flex-start;
 		width: 100%;
 		height: 100%;
+		gap: 1rem;
+		border-radius: var(--border-radius-medium);
+		box-shadow: var(--box-shadow-small);
+		padding: 1rem;
 		.refs {
 			display: flex;
 			flex: 1;
@@ -100,12 +104,6 @@
 				var(--color-bg-tertiary)
 			);
 		}
-
-		gap: 1rem;
-
-		border-radius: 10px;
-		box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-		padding: 1rem;
 
 		> p {
 			// max-width: 750px;

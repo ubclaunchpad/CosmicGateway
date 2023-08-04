@@ -1,111 +1,126 @@
-<!--<script lang="ts">-->
-<!--	import ResourceViewModal from '$lib/components/admin/ResourceViewModal.svelte';-->
-<!--	import MainPage from '$lib/components/layouts/MainPage.svelte';-->
-<!--	let showResources = false;-->
-<!--</script>-->
+<script lang="ts">
+	import ResourceViewModal from '$lib/components/admin/ResourceViewModal.svelte';
+	import MainPage from '$lib/components/layouts/MainPage.svelte';
+    import RoleOverview from "$lib/components/admin/RoleOverview.svelte";
+	let showResources = false;
+	let resourcesType = 'roles'
+</script>
 
-<!--<ResourceViewModal-->
-<!--	on:modalevent={() => {-->
-<!--		showResources = false;-->
-<!--	}}-->
-<!--	isOpen={showResources}-->
-<!--/>-->
+<ResourceViewModal
+	on:modalevent={() => {
+		showResources = false;
+	}}
+	isOpen={showResources}
+	type={resourcesType}
+/>
 
-<!--<MainPage>-->
-<!--	<div slot="main" class="content">-->
-<!--		<h1>Admin</h1>-->
+<MainPage>
+	<div slot="main" class="content">
+		<h1>Admin</h1>
 
-<!--		<div class="cards">-->
+		<div class="cards">
 
-<!--			<div class="card-sm">-->
-<!--				<div class="button-list">-->
-<!--					<button-->
-<!--						on:click={() => {-->
-<!--							showResources = true;-->
-<!--						}}>Roles</button-->
-<!--					>-->
-<!--					<button>Standings</button>-->
-<!--					<button>Faculties</button>-->
-<!--					<button>Specializations</button>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
+			<div class="card-sm">
+                <h3>User Attributes</h3>
+				<div class="button-list">
+					<button
+						on:click={() => {
+							resourcesType= 'roles';
+							showResources = true;
+						}}>Roles</button
+					>
+					<button
+                            on:click={() => {
+							resourcesType = 'standings'
+							showResources = true;
+						}}
+                    >Standings</button>
+					<button
 
-<!--		<div class="cards">-->
-<!--			<div class="card-lg">-->
-<!--				<h2>Funding</h2>-->
-<!--			</div>-->
-<!--			<div class="card-lg">-->
-<!--				<h2>Sponsors</h2>-->
-<!--			</div>-->
+                            on:click={() => {
+								resourcesType = 'faculties'
+							showResources = true;
+						}}
+                    >Faculties</button>
+					<button
+                            on:click={() => {
+								resourcesType = 'specializations'
+							showResources = true;
+						}}
+                    >Specializations</button>
+				</div>
+			</div>
 
-<!--			<div class="card-lg">-->
-<!--				<h2>Logistics</h2>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</MainPage>-->
+            <div class="card-lg">
+                <h3>Role Overview</h3>
+                <RoleOverview/>
+            </div>
+		</div>
 
-<!--<style lang="scss">-->
-<!--	.cards {-->
-<!--		display: flex;-->
-<!--		gap: 1rem;-->
-<!--		padding: 0.5rem 0;-->
-<!--		flex-wrap: wrap;-->
-<!--		overflow: hidden;-->
-<!--		border-bottom: 1px solid var(&#45;&#45;color-border-1);-->
 
-<!--		> div {-->
-<!--			background-color: var(&#45;&#45;color-bg-2);-->
-<!--			border-radius: var(&#45;&#45;border-radius-medium);-->
-<!--			box-shadow: var(&#45;&#45;box-shadow-sm);-->
-<!--			padding: 1rem;-->
-<!--			gap: 1rem;-->
-<!--			max-width: 100%;-->
+	</div>
+</MainPage>
 
-<!--			h2 {-->
-<!--				font-size: 1.2rem;-->
-<!--			}-->
+<style lang="scss">
+	.cards {
+		display: flex;
+		gap: 1rem;
+		padding: 0.5rem 0;
+		flex-wrap: wrap;
+		overflow: hidden;
+		border-bottom: 1px solid var(--color-border-1);
 
-<!--			.button-list {-->
-<!--				display: flex;-->
-<!--				flex-direction: column;-->
-<!--				justify-content: center;-->
-<!--				flex: 1;-->
-<!--				height: 100%;-->
-<!--				gap: 1rem;-->
-<!--				padding: 0.5rem 0;-->
+		> div {
+			background-color: var(--color-bg-2);
+			border-radius: var(--border-radius-medium);
+			box-shadow: var(--box-shadow-sm);
+			padding: 1rem;
+			gap: 1rem;
+			max-width: 100%;
 
-<!--				button {-->
-<!--					width: 100%;-->
-<!--					height: 3rem;-->
-<!--					padding: 0.5rem 0.8rem;-->
-<!--					background-color: var(&#45;&#45;color-bg-3);-->
-<!--					border-radius: var(&#45;&#45;border-radius-large);-->
-<!--					color: var(&#45;&#45;color-text-2);-->
-<!--					transition: all 0.2s ease-in-out;-->
+			h2 {
+				font-size: 1.2rem;
+			}
 
-<!--					&:hover {-->
-<!--						background-color: var(&#45;&#45;color-bg-primary);-->
-<!--					}-->
-<!--				}-->
-<!--			}-->
-<!--		}-->
-<!--	}-->
+			.button-list {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				flex: 1;
+				height: 100%;
+				gap: 1rem;
+				padding: 0.5rem 0;
 
-<!--	.card-lg {-->
-<!--		flex: 1;-->
-<!--		min-width: 20rem;-->
-<!--		min-height: 20rem;-->
-<!--	}-->
+				button {
+					width: 100%;
+					height: 3rem;
+					padding: 0.5rem 0.8rem;
+					background-color: var(--color-bg-3);
+					border-radius: var(--border-radius-large);
+					color: var(--color-text-2);
+					transition: all 0.2s ease-in-out;
 
-<!--	.card-sm {-->
-<!--		min-width: 20rem;-->
-<!--		min-height: 20rem;-->
-<!--	}-->
+					&:hover {
+						background-color: var(--color-bg-primary);
+					}
+				}
+			}
+		}
+	}
 
-<!--	.content {-->
-<!--		width: 100%;-->
-<!--		height: 100%;-->
-<!--	}-->
-<!--</style>-->
+	.card-lg {
+		flex: 1;
+		min-width: 20rem;
+		min-height: 20rem;
+	}
+
+	.card-sm {
+		min-width: 20rem;
+		min-height: 20rem;
+	}
+
+	.content {
+		width: 100%;
+		height: 100%;
+	}
+</style>

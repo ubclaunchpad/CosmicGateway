@@ -10,6 +10,7 @@
 	import { notificationStore } from '../../../../stores/notification';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
 	import type { IFaculty, ISpecialization, IStanding } from '$lib/types/User';
+	import Banner from "$lib/components/blocks/Banner.svelte";
 	let googleAuthUser: GoogleAuthUser | undefined;
 	$: googleConnected = $token !== null && $token !== undefined;
 	let listOfFaculties: IFaculty = [];
@@ -113,8 +114,7 @@
 			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
 			if (googleAuthBtn) {
 				google.accounts.id.renderButton(googleAuthBtn, {
-					width: '400',
-					theme: 'filled_black',
+					width: 400,
 					size: 'large',
 					type: 'standard',
 					text: 'continue_with',
@@ -129,7 +129,19 @@
 	<SectionForm>
 		<div slot="header">
 			<h2>Sign up</h2>
+
+
+
 		</div>
+
+		<Banner
+				title="Portal is in testing phase"
+				description="Sign up is limited to only certain users. If you are testing the portal message one of the admins to get access."
+				links={[]}
+
+		/>
+
+
 		<Info>
 			<p>
 				Open to all current and former students/staff at <span class="bold"
@@ -137,6 +149,8 @@
 				>
 			</p>
 		</Info>
+
+
 
 		<form method="POST">
 			<div class="rich-input">
@@ -225,6 +239,10 @@
 </PageForm>
 
 <style lang="scss">
+
+	h2 {
+		padding-bottom: 1rem;
+	}
 	.bottombar {
 		display: flex;
 		align-items: center;
@@ -327,6 +345,8 @@
 				color: var(--color-text-primary);
 			}
 		}
+
+
 
 		section {
 			display: grid;

@@ -6,6 +6,7 @@
 	import { goto } from '$app/navigation';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
 	import { notificationStore } from '../../../../stores/notification';
+	import Banner from "$lib/components/blocks/Banner.svelte";
 
 	async function verifyGoogleLogin(request: { credential: string }): Promise<void> {
 		try {
@@ -31,17 +32,19 @@
 				ux_mode: 'popup',
 				callback: verifyGoogleLogin
 			});
+
 			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
 			console.log(googleAuthBtn);
 			if (googleAuthBtn) {
+
 				google.accounts.id.renderButton(googleAuthBtn, {
-					width: '400',
-					theme: 'filled_black',
-					size: 'large',
-					type: 'standard',
+					width: 300,
+					theme: 'outline', type: "standard",
 					text: 'continue_with',
 					shape: 'square'
 				});
+				google.accounts.id.prompt();
+
 			}
 		}
 	});
@@ -53,14 +56,25 @@
 			<h2>Sign In</h2>
 		</div>
 
+
+
 		<div class="auth-wrapper">
+			<Banner
+					title="Portal is in testing phase"
+					description="Login is limited to only certain users. If you are testing the portal message one of the admins to get access."
+					links={[]}
+
+			/>
 			<div class="social-auth">
+
 				<Info>
 					<p>Currently only allow Google sign in. We will add more ways to sign in soon.</p>
 				</Info>
+
 				<div class="rich-input">
 					<button class="google" id="googleBtn" type="button">
-						<div id={'signinDiv'} />
+
+						<div id={'signinDiv'}></div>
 					</button>
 				</div>
 			</div>

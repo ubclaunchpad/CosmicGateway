@@ -2,6 +2,7 @@ import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import { PUBLIC_USERS_API_URI } from '$env/static/public';
 import { writable } from 'svelte/store';
+import {getRolesAndScopes} from "./scopes";
 const stored = browser ? localStorage.token : null;
 export const token = writable(stored || null);
 
@@ -40,6 +41,7 @@ export const fetchUser = async (userToken: string) => {
 		if (browser) {
 			userStore.set(user);
 			token.set(userToken);
+			await getRolesAndScopes(user.id)
 		}
 	} else {
 		throw new Error('Failed to fetch user');
