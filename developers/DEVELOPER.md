@@ -10,7 +10,9 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-
+*NOTE*: the app uses environment variables that are configured in the `.env` file. You can create a `.env` file in the root of the project and add the following variables:
+`PUBLIC_USERS_API_URI=<INSERT_VAR_NAME>`
+```
 ## Building
 
 To create a production version of your app:
