@@ -34,6 +34,7 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
+		padding: 1rem;
 	}
 
 	.main-page {
@@ -45,7 +46,6 @@
 		overflow: scroll;
 		flex: 1;
 		height: 100%;
-		padding: 0.5rem;
 	}
 
 	#side-content {

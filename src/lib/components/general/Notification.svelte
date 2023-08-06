@@ -2,8 +2,22 @@
 	import type { INotification } from '$lib/types/INotification';
 	import { fly } from 'svelte/transition';
 	import { notificationStore } from '../../../stores/notification';
+	import Icon from '$lib/components/general/Icon.svelte';
+	import InfoIcon from '$lib/components/general/icons/InfoIcon.svelte';
+	import CheckedIcon from '$lib/components/general/icons/CheckedIcon.svelte';
+	import AlertIcon from '$lib/components/general/icons/AlertIcon.svelte';
+	import { onMount } from 'svelte';
 	let notification: INotification | undefined;
 	let width = 0;
+	let pageWidth: number;
+	const cutoff = 600;
+	$: isCompact = pageWidth < cutoff;
+	onMount(() => {
+		pageWidth = document.body.clientWidth;
+		window.addEventListener('resize', () => {
+			pageWidth = document.body.clientWidth;
+		});
+	});
 
 	notificationStore.subscribe((value) => {
 		notification = value;
@@ -12,38 +26,113 @@
 	$: if (notification) {
 		setTimeout(() => {
 			notificationStore.set(undefined);
-		}, notification.timeout || 5000);
-	}
-
-	const statusColours = {
-		info: '#2196f3',
-		success: '#4caf50',
-		warning: 'var(--color-bg-0)',
-		error: 'var(--color-bg-secondary)'
-	};
-
-	let color: string = statusColours.info;
-	$: if (notification) {
-		color = statusColours[notification.type];
+		}, notification.timeout || 4000);
 	}
 </script>
 
 {#if notification}
-	<div
-		class="notificaiton-wrapper"
-		in:fly|global={{ x: 1000, duration: 500 }}
-		out:fly|global={{ x: width, duration: 600 }}
-		bind:clientWidth={width}
-	>
-		<div class="notification" style={`background-color: ${color}`}>
-			<h2>{notification.title}</h2>
-			<p>{notification.message}</p>
+	{#if !isCompact}
+		<div
+			class="notification-wrapper"
+			in:fly|global={{ x: 500, duration: 500 }}
+			out:fly|global={{ x: width, duration: 500 }}
+			bind:clientWidth={width}
+		>
+			<div class="notification">
+				<div class="header">
+					<Icon>
+						{#if notification.type === 'info'}
+							<InfoIcon />
+						{:else if notification.type === 'success'}
+							<CheckedIcon />
+						{:else if notification.type === 'warning'}
+							<AlertIcon />
+						{:else if notification.type === 'error'}
+							<AlertIcon />
+						{/if}
+					</Icon>
+					<h2>{notification.title}</h2>
+				</div>
+
+				<p>{notification.message}</p>
+			</div>
 		</div>
-	</div>
+	{:else}
+		<div
+			class="notification-wrapper-top"
+			in:fly|global={{ y: '-200px', duration: 500 }}
+			out:fly|global={{ y: '-100px', duration: 500 }}
+		>
+			<div class="notification">
+				<div class="header">
+					<Icon>
+						{#if notification.type === 'info'}
+							<InfoIcon />
+						{:else if notification.type === 'success'}
+							<CheckedIcon />
+						{:else if notification.type === 'warning'}
+							<AlertIcon />
+						{:else if notification.type === 'error'}
+							<AlertIcon />
+						{/if}
+					</Icon>
+					<h2>{notification.title}</h2>
+				</div>
+
+				<p>{notification.message}</p>
+			</div>
+		</div>
+	{/if}
 {/if}
 
 <style lang="scss">
-	.notificaiton-wrapper {
+	.notification {
+		display: flex;
+		flex-direction: column;
+		border-radius: var(--border-radius-medium);
+		padding: 0.7rem 1rem;
+		border: 1px solid var(--color-bg-0);
+		background-color: var(--color-bg-3);
+
+		.header {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			padding-bottom: 0.9rem;
+			column-gap: 0.4rem;
+
+			:global(svg) {
+				width: 1.6rem;
+				height: 1.6rem;
+				stroke-width: 1.7px;
+				stroke: var(--color-bg-primary);
+			}
+		}
+		h2 {
+			margin: 0;
+			font-size: 1rem;
+			//padding-bottom: 0.5rem;
+		}
+		p {
+			margin: 0;
+			padding-left: 1.5rem;
+			font-size: 0.8rem;
+		}
+	}
+
+	.notification-wrapper-top {
+		position: fixed;
+		top: 0;
+		right: 50%;
+		transform: translateX(50%);
+		min-width: 400px;
+		width: 100%;
+		max-width: 700px;
+		height: 100px;
+		padding: 1rem;
+		z-index: 10000;
+	}
+	.notification-wrapper {
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -53,21 +142,5 @@
 		height: 100px;
 		padding: 1rem;
 		z-index: 10000;
-		.notification {
-			display: flex;
-			flex-direction: column;
-			border-radius: 4px;
-			padding: 1rem;
-			box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-			h2 {
-				margin: 0;
-				font-size: 0.9rem;
-				padding-bottom: 0.5rem;
-			}
-			p {
-				margin: 0;
-				font-size: 0.8rem;
-			}
-		}
 	}
 </style>

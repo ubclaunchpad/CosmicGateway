@@ -14,9 +14,9 @@ Cosmic-Gateway is Launch pad's central clien-facing codebase. It serves as the c
 
 ## Contributing
 
-- [Contributing Guide](./CONTRIBUTING.md)
-- [Developer Guide](./developers/DEVELOPER.md)
-- [Code of Conduct](./CODE_OF_CONDUCT.md)
+- [Contributing Guide](/CONTRIBUTING.md)
+- [Developer Guide](/developers/DEVELOPER.md)
+- [Code of Conduct](/CODE_OF_CONDUCT.md)
 
 ## Roadmap
 

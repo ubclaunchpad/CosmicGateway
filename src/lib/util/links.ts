@@ -9,6 +9,7 @@ const SLACK_LINK = '';
 const STRATEGY_EMAIL = '//strategy@ubclaunchpad.com';
 const DEV_EMAIL = 'dev@ubclaunchpad.com';
 const TEAM_EMAIL = 'team@ubclaunchpad.com';
+const DOCS_LINK = 'https://docs.ubclaunchpad.com';
 
 export {
 	INSTAGRAM_LINK,
@@ -21,5 +22,6 @@ export {
 	SLACK_LINK,
 	STRATEGY_EMAIL,
 	DEV_EMAIL,
-	TEAM_EMAIL
+	TEAM_EMAIL,
+	DOCS_LINK
 };

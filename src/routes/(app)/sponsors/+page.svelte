@@ -1,5 +1,26 @@
 <script>
-	import InProgress from '$lib/components/blocks/InProgress.svelte';
+    import MainPage from "$lib/components/layouts/MainPage.svelte";
 </script>
 
-<InProgress title="Main page" description="This page is still in progress." />
+
+<MainPage>
+    <div slot="main">
+    <h1>Launch Pad Sponsors</h1>
+
+    </div>
+
+</MainPage>
+
+
+
+<style lang="scss">
+    .cards {
+        display: flex;
+        grid-gap: 1rem;
+      justify-content: center;
+
+    }
+
+</style>
+
+

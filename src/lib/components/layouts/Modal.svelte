@@ -18,8 +18,8 @@
 	{#if type === 'side'}
 		<div class="modal-wrapper side" out:fade|global={{ duration: 300, easing: sineOut }}>
 			<div
-				in:fly|global={{ x: 400, duration: 300, easing: sineOut }}
-				out:fly|global={{ x: 500, duration: 300, easing: sineOut }}
+				in:fly|global={{ x: 400, duration: 400, easing: sineOut }}
+				out:fly|global={{ x: 400, duration: 400, easing: sineOut }}
 				class="modal"
 			>
 				<div class="topbar">
@@ -29,7 +29,6 @@
 						</Icon></button
 					>
 					<h3>{title}</h3>
-					<div />
 				</div>
 				<slot name="modal-content" />
 				<slot name="bottom-bar" />
@@ -49,7 +48,6 @@
 						</Icon></button
 					>
 					<h3>{title}</h3>
-					<div />
 				</div>
 				<slot name="modal-content" />
 				<slot name="bottom-bar" />
@@ -74,12 +72,13 @@
 		&.side {
 			justify-content: flex-end;
 			align-items: center;
+			padding: 0.4rem;
 			.modal {
 				width: 400px;
 				max-width: 100%;
 				height: 100%;
 				max-height: 100%;
-				border-radius: 0rem;
+				border-radius: var(--border-radius-small);
 			}
 		}
 		:global(svg) {
@@ -91,8 +90,8 @@
 
 	.modal {
 		background-color: var(--color-bg-1);
-		padding: 0rem;
-		border-radius: 0.3rem;
+		padding: 0;
+		border-radius: var(--border-radius-small);
 		width: 100%;
 		max-width: 750px;
 		height: 100%;
@@ -101,6 +100,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		box-shadow: var(--box-shadow-sm);
 
 		:global(.modal-content) {
 			flex: 1;
@@ -112,12 +112,13 @@
 			justify-content: space-between;
 			align-items: center;
 			width: 100%;
-			padding: 0.5rem 1rem;
+			padding: 0.9rem 1rem;
 			border-bottom: 1px solid var(--color-border-1);
-			background-color: var(--color-bg-primary-faded);
+			// background-color: var(--color-bg-primary-faded);
 
 			h3 {
 				font-size: 1rem;
+				font-weight: 600;
 			}
 
 			button {

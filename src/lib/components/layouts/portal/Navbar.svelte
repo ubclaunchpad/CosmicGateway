@@ -2,12 +2,16 @@
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { HomeIcon, UsersIcon, BookClosedIcon, SettingsIcon } from '$lib/components/general/icons';
 	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
-	import { signout } from '../../../../stores/auth';
-	import { createEventDispatcher } from 'svelte';
+	import {signout} from '../../../../stores/auth';
+	import {createEventDispatcher} from 'svelte';
+	import { DOCS_LINK } from '$lib/util/links';
+	import {userScopes} from "../../../../stores/scopes";
+	import ArchiveIcon from "$lib/components/general/icons/ArchiveIcon.svelte";
 	const dispatch = createEventDispatcher();
 	function triggerNavEffect() {
-		dispatch('navigate');
+		dispatch('navigate', {});
 	}
+	$: scopes = $userScopes;
 </script>
 
 <div class="navigation-panel">
@@ -18,7 +22,7 @@
 					<Icon>
 						<HomeIcon />
 					</Icon>
-					Portal
+					Dashboard
 				</a>
 			</li>
 			<li>
@@ -35,7 +39,7 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/docs" target="_blank" on:click={triggerNavEffect}>
+				<a href={DOCS_LINK} target="_blank" on:click={triggerNavEffect}>
 					<Icon>
 						<BookClosedIcon />
 					</Icon>
@@ -46,6 +50,19 @@
 					</Icon>
 				</a>
 			</li>
+			<li>
+				<a target="_blank" on:click={triggerNavEffect}>
+					<Icon>
+						<ArchiveIcon />
+					</Icon>
+
+					<p>Projects</p>
+					<Icon>
+						<ExternalLinkIcon />
+					</Icon>
+				</a>
+			</li>
+
 		</ul>
 	</nav>
 
@@ -53,14 +70,16 @@
 		<button on:click={signout}>Sign out</button>
 		<nav>
 			<ul>
-				<li>
-					<a href="/portal/admin" on:click={triggerNavEffect}>
-						<Icon>
-							<SettingsIcon />
-						</Icon>
-						<p>Admin</p>
-					</a>
-				</li>
+				{#if scopes.has('admin:read') || scopes.has('admin:write')}
+								<li>
+									<a href="/portal/admin" on:click={triggerNavEffect}>
+										<Icon>
+											<SettingsIcon />
+										</Icon>
+										<p>Admin</p>
+									</a>
+								</li>
+							{/if}
 				<li>
 					<a href="/portal/account" on:click={triggerNavEffect}>
 						<Icon>
