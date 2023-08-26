@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-    <script  nonce="%sveltekit.nonce%" src="https://accounts.google.com/gsi/client" ></script>
+	<script nonce="%sveltekit.nonce%" src="https://accounts.google.com/gsi/client"></script>
 </svelte:head>
 
 <slot />

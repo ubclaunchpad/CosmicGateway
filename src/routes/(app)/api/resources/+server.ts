@@ -6,11 +6,11 @@ interface IDict<T> {
 	label: T;
 }
 
- let listOfFaculties: IDict<string>[] = [];
- let listOfSpecializations: IDict<string>[] = [];
- let listOfStandings: IDict<string>[] = [];
- let listOfRoles: IDict<string>[] = [];
- let outOfSync = true;
+let listOfFaculties: IDict<string>[] = [];
+let listOfSpecializations: IDict<string>[] = [];
+let listOfStandings: IDict<string>[] = [];
+let listOfRoles: IDict<string>[] = [];
+let outOfSync = true;
 let isUpdating = false; // Lock variable
 
 export const GET = async () => {

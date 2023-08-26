@@ -60,7 +60,7 @@
 				'Content-Type': 'application/json'
 			}
 		});
-		roles =  await response.json();
+		roles = await response.json();
 	}
 
 	async function getUserInfo(refresh = false) {
@@ -137,23 +137,22 @@
 			<Loader width={'100%'} height={'100%'} />
 		{:else}
 			{#if !editView}
-			<section class="top grid-row">
-			<h2>{editView ? '' : user.pref_name}</h2>
+				<section class="top grid-row">
+					<h2>{editView ? '' : user.pref_name}</h2>
 
-			<section class="attribute role">
-				{#await getRoles()}
-					<p></p>
-				{:then _}
-					<p>
-						{roles.map(role => role.label).join(', ')}
-					</p>
-				{:catch error}
-					<p>{error.message}</p>
-				{/await}
-
-			</section>
-			</section>
-				{/if}
+					<section class="attribute role">
+						{#await getRoles()}
+							<p />
+						{:then _}
+							<p>
+								{roles.map((role) => role.label).join(', ')}
+							</p>
+						{:catch error}
+							<p>{error.message}</p>
+						{/await}
+					</section>
+				</section>
+			{/if}
 
 			<section class="grid-row">
 				{#if editView}
@@ -197,10 +196,7 @@
 						<input bind:value={user.username} />
 					{/if}
 				</section>
-
 			</section>
-
-
 
 			<h3>Background</h3>
 
@@ -294,7 +290,6 @@
 
 		h2 {
 			font-size: 1rem;
-
 		}
 
 		h3 {
@@ -308,7 +303,6 @@
 			column-gap: 0.5rem;
 			flex-wrap: wrap;
 
-
 			> section {
 				flex: 1;
 			}
@@ -317,7 +311,6 @@
 				flex-direction: row;
 				align-items: center;
 				justify-content: space-between;
-
 			}
 		}
 

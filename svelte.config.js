@@ -21,8 +21,8 @@ const config = {
 		}),
 		csp: {
 			directives: {
-				'script-src': ['self', 'https://accounts.google.com/gsi/client'],
-			},
+				'script-src': ['self', 'https://accounts.google.com/gsi/client']
+			}
 			// reportOnly: {
 			// 	'script-src': ['self', 'https://accounts.google.com/gsi/client'],
 			// 	'frame-src': ['self', 'https://accounts.google.com/gsi/'],
