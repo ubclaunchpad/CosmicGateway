@@ -1,5 +1,4 @@
 import adapter from '@sveltejs/adapter-cloudflare';
-import { mdsvex } from 'mdsvex';
 import sveltePreprocess from 'svelte-preprocess';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -39,10 +38,6 @@ const config = {
 				// if none is defined.
 			}
 		}),
-		mdsvex({
-			extensions: ['.md'],
-			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
-		})
 	]
 };
 

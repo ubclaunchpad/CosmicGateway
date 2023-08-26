@@ -16,8 +16,8 @@
 		{#if show}
 			<div
 				class="content"
-				in:slide={{ y: 100, duration: 500 }}
-				out:slide={{ y: 100, duration: 500 }}
+				in:slide|global={{ y: 100, duration: 500 }}
+				out:slide|global={{ y: 100, duration: 500 }}
 			>
 				<section class="roles">
 					<div>

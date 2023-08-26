@@ -80,7 +80,7 @@
 </div>
 <div class="roles">
 	{#each roles as role}
-		<div in:fade={{ delay: 500 }} out:fade class="wrapper">
+		<div in:fade|global={{ delay: 500 }} out:fade|global class="wrapper">
 			<RoleCell {role} />
 		</div>
 	{/each}
