@@ -1,10 +1,11 @@
 <script lang="ts">
-	import developerIcon from '$lib/components/general/icons/illustrations/developerRole.svg';
-	import designerIcon from '$lib/components/general/icons/illustrations/designerRole.svg';
-	import designLeadIcon from '$lib/components/general/icons/illustrations/designLeadRole.svg';
-	import coPresidentIcon from '$lib/components/general/icons/illustrations/CopresRole.svg';
-	import techLeadRoleIcon from '$lib/components/general/icons/illustrations/techLeadRole.svg';
-	import strategyRoleIcon from '$lib/components/general/icons/illustrations/strategyRole.svg';
+	const developerIcon ='src/lib/components/general/icons/illustrations/developerRole.svg';
+	const designerIcon = 'src/lib/components/general/icons/illustrations/designerRole.svg';
+	const designLeadIcon = 'src/lib/components/general/icons/illustrations/designLeadRole.svg';
+	const coPresidentIcon = 'src/lib/components/general/icons/illustrations/CopresRole.svg';
+	const techLeadRoleIcon = 'src/lib/components/general/icons/illustrations/techLeadRole.svg';
+	const strategyRoleIcon = 'src/lib/components/general/icons/illustrations/strategyRole.svg';
+
 	import { fade } from 'svelte/transition';
 	import type { IRoleComponent } from '$lib/types/types';
 	import {
