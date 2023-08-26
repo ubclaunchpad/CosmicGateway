@@ -1,5 +1,5 @@
 <script lang="ts">
-	const developerIcon ='src/lib/components/general/icons/illustrations/developerRole.svg';
+	const developerIcon = 'src/lib/components/general/icons/illustrations/developerRole.svg';
 	const designerIcon = 'src/lib/components/general/icons/illustrations/designerRole.svg';
 	const designLeadIcon = 'src/lib/components/general/icons/illustrations/designLeadRole.svg';
 	const coPresidentIcon = 'src/lib/components/general/icons/illustrations/CopresRole.svg';
@@ -16,7 +16,7 @@
 		DESIGN_LEAD_ROLE_LINK,
 		TECH_LEAD_ROLE_LINK
 	} from '$lib/util/links';
-	import RoleCell from "$lib/components/home/RoleCell.svelte";
+	import RoleCell from '$lib/components/home/RoleCell.svelte';
 
 	const roles: IRoleComponent[] = [
 		{

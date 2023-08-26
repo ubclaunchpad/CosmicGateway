@@ -78,9 +78,7 @@
 			</div>
 		</section>
 		<section>
-
 			<NewsletterSection />
-
 		</section>
 	</div>
 
