@@ -1,13 +1,13 @@
 <script lang="ts">
-	import TeamWorkflow from '$lib/components/home/TeamWorkflow.svelte';
 	import HomeFooter from '$lib/components/home/HomeFooter.svelte';
-	import StatsSection from '$lib/components/home/StatsSection.svelte';
 	import NewsletterSection from '$lib/components/home/NewsletterSection.svelte';
-	import RoleSection from '$lib/components/home/RoleSection.svelte';
 	import Navbar from '$lib/components/home/Navbar.svelte';
 	import rocket from '$lib/assets/temp3.png';
-	import Sponsors from '$lib/components/home/Sponsors.svelte';
-	let scrollY = 0;
+	import OpportunitySection from '$lib/components/home/OpportunitySection.svelte';
+	import { blur, fly } from 'svelte/transition';
+	import AnimateWrapper from '$lib/components/general/AnimateWrapper.svelte';
+	import { backOut } from 'svelte/easing';
+	import SponsorSection from '$lib/components/home/SponsorSection.svelte';
 </script>
 
 <svelte:head>
@@ -18,91 +18,57 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
-<svelte:window bind:scrollY />
+
 <div class="page">
 	<Navbar />
 	<div id="bg1" />
-
 	<div class="landing">
 		<div class="landing-content">
 			<div class="intro">
-				<h1 id="about">UBC Launch Pad</h1>
-				<span>
-					<span class="annotate">A student-run software engineering team</span> devoted to building software
-					projects in a collaborative and professional environment
+				<AnimateWrapper>
+					<h1 in:blur={{ delay: 0, duration: 1000 }}>UBC Launch Pad</h1>
+				</AnimateWrapper>
+				<span in:blur={{ delay: 0, duration: 1000 }}>
+					A student-run software engineering team devoted to building software projects in a
+					collaborative and professional environment
 				</span>
 			</div>
 
 			<div class="hero">
-				<img src={rocket} alt="hero" />
+				<AnimateWrapper>
+					<img
+						src={rocket}
+						alt="hero"
+						in:fly={{
+							y: 100,
+							delay: 300,
+							easing: backOut
+						}}
+					/>
+				</AnimateWrapper>
 			</div>
 		</div>
 	</div>
-	<section />
 	<div class="content">
-		<!--		<StatsSection />-->
-		<section id="opportunities">
-			<RoleSection />
-		</section>
-		<section>
-			<div class="header">
-				<h3>Collaboration</h3>
-				<p>
-					At our core we value <span class="annotate"
-						>building foundational relationships and collaborating</span
-					> with each other
-				</p>
-			</div>
-			<div class="details-row">
-				<div>
-					<TeamWorkflow />
-				</div>
-
-				<p />
-			</div>
-		</section>
-		<section>
-			<section id="sponsors-and-partners">
-				<div class="header">
-					<h3>Sponsors and Partners</h3>
-					<p>
-						We actively work with companies and non-profits to build software that aims to
-						<span class="annotate">solve real-world problems</span>
-					</p>
-				</div>
-
-				<div class="details-row">
-					<div>
-						<Sponsors />
-					</div>
-
-					<p />
-				</div>
-				<div class="header">
-					<p>
-						These are some of the benefits of partnering with us.
-						<span class="annotate">Contact us for more information</span>
-					</p>
-				</div>
-			</section>
-			<NewsletterSection />
-		</section>
+		<OpportunitySection />
+		<SponsorSection />
+		<NewsletterSection />
 	</div>
-
 	<HomeFooter />
 </div>
 
 <style lang="scss">
 	:global(*) {
 		font-family: 'Exo', sans-serif;
+		z-index: 3;
 	}
 
 	:global(.annotate) {
-		text-decoration: underline wavy #95b8ff;
-		-webkit-text-decoration: underline wavy #95b8ff; /* Safari, older versions of Chrome */
-		-moz-text-decoration: underline wavy #95b8ff; /* Firefox */
-		-o-text-decoration: underline wavy #95b8ff; /* Opera */
-		-ms-text-decoration: underline wavy #95b8ff;
+		text-decoration: underline solid #95b8ff;
+		-webkit-text-decoration: underline solid #95b8ff; /* Safari, older versions of Chrome */
+		-moz-text-decoration: underline solid #95b8ff; /* Firefox */
+		-o-text-decoration: underline solid #95b8ff; /* Opera */
+		-ms-text-decoration: underline solid #95b8ff;
 	}
 
 	.landing {
@@ -111,7 +77,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		min-height: 90svh;
+		min-height: 100svh;
 		max-height: 100svh;
 		width: 100svw;
 		flex: 1;
@@ -125,16 +91,22 @@
 		align-items: center;
 		width: 100svw;
 		height: 100%;
-		overflow: visible;
+		//overflow: visible;
 		position: relative;
 		flex: 1;
+
+		overflow: hidden;
 
 		.intro {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			align-items: flex-start;
+			align-items: center;
 			padding: 1rem;
+			flex: 1;
+			:global(*) {
+				z-index: 3;
+			}
 
 			h1 {
 				font-size: 3rem;
@@ -149,12 +121,13 @@
 			}
 
 			span {
-				font-size: 1.5rem;
+				font-size: 1.7rem;
 				font-weight: 400;
-				color: rgba(206, 206, 206, 0.81);
-				text-align: left;
+				color: rgb(201, 201, 201);
+				text-align: center;
 				max-width: 550px;
 				z-index: 3;
+				backdrop-filter: blur(10px);
 			}
 		}
 
@@ -167,15 +140,13 @@
 			height: 100%;
 			z-index: 2;
 			overflow: hidden;
+			flex: 1;
+			position: absolute;
 
 			img {
 				object-fit: contain;
 				z-index: 2;
 				width: 100%;
-			}
-
-			@media screen and (max-width: 1200px) {
-				position: absolute;
 			}
 		}
 	}
@@ -206,40 +177,6 @@
 		align-items: center;
 		flex: 1;
 		overflow: hidden;
-	}
-
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 1rem 0 3rem;
-		max-width: 1200px;
-		width: 100%;
-		:global(p) {
-			font-size: 1.8rem;
-			font-weight: 400;
-			color: #cecece;
-			text-align: center;
-			max-width: 800px;
-		}
-	}
-
-	:global(.header) {
-		max-width: 750px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 1em;
-		:global(h3) {
-			font-size: 1.4rem;
-			font-weight: 600;
-			color: #cecece;
-			margin-bottom: 1.5rem;
-			text-transform: uppercase;
-			z-index: 3;
-		}
 	}
 
 	.page {

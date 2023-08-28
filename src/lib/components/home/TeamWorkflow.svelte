@@ -2,50 +2,54 @@
 	import teamDiscussion from '$lib/components/general/icons/illustrations/team.svg';
 	import feedbackAndIteration from '$lib/components/general/icons/illustrations/feedbackAndIteration.svg';
 	import developmentAndDesign from '$lib/components/general/icons/illustrations/developmentAndDesign.svg';
+	import AnimateWrapper from '$lib/components/general/AnimateWrapper.svelte';
+	import { fade } from 'svelte/transition';
 </script>
 
-<section>
-	<div>
-		<div class="img-wrapper">
-			<img src={teamDiscussion} alt="logo" />
-		</div>
+<AnimateWrapper>
+	<section in:fade={{ delay: 500, duration: 1000 }} out:fade>
 		<div>
-			<h1>Discussion</h1>
-			<p>
-				Weekly meetings to go over their progress and build together Gathering ideas and narrowing
-				down project scope UX research around the problem space
-			</p>
+			<div class="img-wrapper">
+				<img src={teamDiscussion} alt="logo" />
+			</div>
+			<div>
+				<h1>Discussion</h1>
+				<p>
+					Weekly meetings to go over their progress and build together. Gathering ideas and
+					narrowing down project scope. UX research around the problem space
+				</p>
+			</div>
 		</div>
-	</div>
 
-	<div>
-		<div class="img-wrapper">
-			<img src={developmentAndDesign} alt="logo" />
-		</div>
 		<div>
-			<h1>Development and Design</h1>
+			<div class="img-wrapper">
+				<img src={developmentAndDesign} alt="logo" />
+			</div>
+			<div>
+				<h1>Development and Design</h1>
 
-			<p>
-				Developer and designer collaboration to build the product Building product is sprint cycles
-				Implementing developer pipelines and design systems
-			</p>
+				<p>
+					Developer and designer collaboration to build the product. Implementing developer
+					pipelines and design systems
+				</p>
+			</div>
 		</div>
-	</div>
 
-	<div>
-		<div class="img-wrapper">
-			<img src={feedbackAndIteration} alt="logo" />
-		</div>
 		<div>
-			<h1>Feedback and Reiteration</h1>
+			<div class="img-wrapper">
+				<img src={feedbackAndIteration} alt="logo" />
+			</div>
+			<div>
+				<h1>Feedback and Reiteration</h1>
 
-			<p>
-				Collecting feedback from users and stakeholders Reiterating on the product based on feedback
-				Releasing new versions of the product
-			</p>
+				<p>
+					Collecting feedback from users and stakeholders. Reiterating on the product based on
+					feedback. Releasing new versions of the product
+				</p>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</AnimateWrapper>
 
 <style lang="scss">
 	section {

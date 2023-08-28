@@ -3,52 +3,58 @@
 	import sponsorDiscovery from '$lib/components/general/icons/illustrations/sponsor-discovery.svg';
 	import sponsorAccess from '$lib/components/general/icons/illustrations/sponsor-access.svg';
 	import sponsorDevelopment from '$lib/components/general/icons/illustrations/sponsor-development.svg';
+	import AnimateWrapper from '$lib/components/general/AnimateWrapper.svelte';
+	import { fade } from 'svelte/transition';
 </script>
 
-<section>
-	<div>
-		<div class="img-wrapper">
-			<img src={sponsorDiscovery} alt="logo" />
-		</div>
+<AnimateWrapper>
+	<section in:fade={{ delay: 500, duration: 1000 }} out:fade>
 		<div>
-			<h1>Product Discovery</h1>
-			<p>Introduce product, platform, API to project teams</p>
+			<div class="img-wrapper">
+				<img src={sponsorDiscovery} alt="logo" />
+			</div>
+			<div>
+				<h1>Product Discovery</h1>
+				<p>Introduce product, platform, API to project teams</p>
+			</div>
 		</div>
-	</div>
 
-	<div>
-		<div class="img-wrapper">
-			<img src={sponsorAccess} alt="logo" />
-		</div>
 		<div>
-			<h1>Exclusive Access</h1>
+			<div class="img-wrapper">
+				<img src={sponsorAccess} alt="logo" />
+			</div>
+			<div>
+				<h1>Exclusive Access</h1>
 
-			<p>Access members’ resumes, GitHub, contact info, and more</p>
+				<p>Access members’ resumes, GitHub, contact info, and more</p>
+			</div>
 		</div>
-	</div>
 
-	<div>
-		<div class="img-wrapper">
-			<img src={sponsorDevelopment} alt="logo" />
-		</div>
 		<div>
-			<h1>Dedicated Development</h1>
+			<div class="img-wrapper">
+				<img src={sponsorDevelopment} alt="logo" />
+			</div>
+			<div>
+				<h1>Dedicated Development</h1>
 
-			<p>Work with a dedicated team of developers and designers to build or improve your product</p>
+				<p>
+					Work with a dedicated team of developers and designers to build or improve your product
+				</p>
+			</div>
 		</div>
-	</div>
 
-	<div>
-		<div class="img-wrapper">
-			<img src={sponsorPromotion} alt="logo" />
-		</div>
 		<div>
-			<h1>Promotion</h1>
+			<div class="img-wrapper">
+				<img src={sponsorPromotion} alt="logo" />
+			</div>
+			<div>
+				<h1>Promotion</h1>
 
-			<p>Personalized shout-out at workshops and techtalks</p>
+				<p>Personalized shout-out at workshops and techtalks</p>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</AnimateWrapper>
 
 <style lang="scss">
 	section {

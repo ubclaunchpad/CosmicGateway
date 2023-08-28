@@ -1,8 +1,8 @@
 <nav>
 	<ul>
-		<li><a href="#about">About</a></li>
+		<li><a href="#">About</a></li>
 		<li><a href="#opportunities">Opportunities</a></li>
-		<li><a href="#sponsors-and-partners">Sponsors and Partners</a></li>
+		<li><a href="#sponsors">Sponsors and Partners</a></li>
 		<li><a href="#contact">Contact</a></li>
 	</ul>
 </nav>

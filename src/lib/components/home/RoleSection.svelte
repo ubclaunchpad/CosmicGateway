@@ -17,6 +17,7 @@
 		TECH_LEAD_ROLE_LINK
 	} from '$lib/util/links';
 	import RoleCell from '$lib/components/home/RoleCell.svelte';
+	import AnimateWrapper from '$lib/components/general/AnimateWrapper.svelte';
 
 	const roles: IRoleComponent[] = [
 		{
@@ -33,7 +34,7 @@
 		},
 
 		{
-			title: 'Strategy & Operations',
+			title: 'Strategy Coordinator',
 			anchorLink: STRATEGY_ROLE_LINK,
 			image: strategyRoleIcon,
 			description:
@@ -62,25 +63,19 @@
 		}
 	];
 	let scrollY = 0;
-	let divH = 0;
-	// $: if (divH != 0) console.log(divH.getBoundingClientRect().top);
 </script>
 
 <svelte:window bind:scrollY />
-<div class="header" bind:this={divH}>
-	<h3>Opportunities</h3>
-	<p>
-		We are looking for student <span class="annotate">passionate about tech</span>, who are
-		interested in building projects that will help the community.
-	</p>
-</div>
+
 <div class="roles">
-	{#each roles as role}
-		<div in:fade|global={{ delay: 500 }} out:fade|global class="wrapper">
-			<RoleCell {role}>
-				<img src={role.image} alt="logo" />
-			</RoleCell>
-		</div>
+	{#each roles as role, i}
+		<AnimateWrapper>
+			<div in:fade={{ delay: 500 * i, duration: 1000 }} out:fade class="wrapper">
+				<RoleCell {role}>
+					<img src={role.image} alt="logo" />
+				</RoleCell>
+			</div>
+		</AnimateWrapper>
 	{/each}
 </div>
 
