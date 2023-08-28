@@ -1,10 +1,10 @@
 <script lang="ts">
-	const developerIcon = 'src/lib/components/general/icons/illustrations/developerRole.svg';
-	const designerIcon = 'src/lib/components/general/icons/illustrations/designerRole.svg';
-	const designLeadIcon = 'src/lib/components/general/icons/illustrations/designLeadRole.svg';
-	const coPresidentIcon = 'src/lib/components/general/icons/illustrations/CopresRole.svg';
-	const techLeadRoleIcon = 'src/lib/components/general/icons/illustrations/techLeadRole.svg';
-	const strategyRoleIcon = 'src/lib/components/general/icons/illustrations/strategyRole.svg';
+	import developerIcon from '$lib/components/general/icons/illustrations/developerRole.svg';
+	import designerIcon from '$lib/components/general/icons/illustrations/designerRole.svg';
+	import designLeadIcon from '$lib/components/general/icons/illustrations/designLeadRole.svg';
+	import coPresidentIcon from '$lib/components/general/icons/illustrations/CopresRole.svg';
+	import techLeadRoleIcon from '$lib/components/general/icons/illustrations/techLeadRole.svg';
+	import strategyRoleIcon from '$lib/components/general/icons/illustrations/strategyRole.svg';
 
 	import { fade } from 'svelte/transition';
 	import type { IRoleComponent } from '$lib/types/types';
@@ -72,7 +72,7 @@
 
 <svelte:window bind:scrollY />
 <div class="header" bind:this={divH}>
-	<h3>Opportunities</h3>
+	<h3 id="opportunities">Opportunities</h3>
 	<p>
 		We are looking for passionate students who are interested in building projects that will help
 		the community
@@ -81,7 +81,9 @@
 <div class="roles">
 	{#each roles as role}
 		<div in:fade|global={{ delay: 500 }} out:fade|global class="wrapper">
-			<RoleCell {role} />
+			<RoleCell {role}>
+				<img src={role.image} alt="logo" />
+			</RoleCell>
 		</div>
 	{/each}
 </div>

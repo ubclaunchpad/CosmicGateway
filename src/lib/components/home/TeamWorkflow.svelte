@@ -61,9 +61,11 @@
 		> div {
 			flex: 1;
 			padding: 1rem;
-			border-radius: var(--border-radius-small);
 			flex-direction: column;
 			display: flex;
+			background-color: var(--color-black-2);
+
+			border-radius: var(--border-radius-large);
 
 			@media (max-width: 850px) {
 				flex-direction: row;

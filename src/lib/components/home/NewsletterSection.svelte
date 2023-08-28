@@ -2,7 +2,7 @@
 	const newsletterURI = 'https://buttondown.email/api/emails/embed-subscribe/ubclaunchpad';
 </script>
 
-<div class="wrapper">
+<div id="contact" class="wrapper">
 	<div class="newsletter">
 		<h3>Keep In Touch</h3>
 

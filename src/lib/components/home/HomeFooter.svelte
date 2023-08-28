@@ -5,7 +5,6 @@
 		GITHUB_LINK,
 		INSTAGRAM_LINK,
 		LINKEDIN_LINK,
-		SLACK_LINK,
 		STRATEGY_EMAIL,
 		TEAM_EMAIL
 	} from '$lib/util/links';
@@ -17,12 +16,6 @@
 			<p>Resources</p>
 			<a href={DOCS_LINK} target="_blank" referrerpolicy="no-referrer">Documentation</a>
 			<a href={GITHUB_LINK} target="_blank" referrerpolicy="no-referrer">Github</a>
-		</section>
-
-		<section>
-			<p>Members</p>
-			<a href="/">Launch Pad Portal (in progress)</a>
-			<a href={SLACK_LINK} target="_blank" referrerpolicy="no-referrer">Slack</a>
 		</section>
 		<section>
 			<p>Contact</p>
@@ -41,21 +34,18 @@
 
 <style lang="scss">
 	.grid {
-		max-width: 1200px;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		grid-gap: 1rem;
-		grid-auto-flow: dense;
+		display: flex;
+		flex-direction: row;
 		width: 100%;
-		justify-content: space-around;
-		height: 100%;
-		padding: 1rem 2rem;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		max-width: fit-content;
 	}
 
 	section {
 		display: flex;
 		flex-direction: column;
-
+		width: 300px;
 		p {
 			font-weight: 600;
 			font-size: 1.2rem;
@@ -71,7 +61,7 @@
 	}
 
 	footer {
-		background-color: var(--color-bg-0);
+		background-color: var(--color-black);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

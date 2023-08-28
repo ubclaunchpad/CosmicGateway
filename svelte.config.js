@@ -15,17 +15,17 @@ const config = {
 				include: ['/*'],
 				exclude: ['<all>']
 			}
-		}),
-		csp: {
-			directives: {
-				'script-src': ['self', 'https://accounts.google.com/gsi/client']
-			}
-			// reportOnly: {
-			// 	'script-src': ['self', 'https://accounts.google.com/gsi/client'],
-			// 	'frame-src': ['self', 'https://accounts.google.com/gsi/'],
-			// 	'connect-src': ['self', 'https://accounts.google.com/gsi/'],
-			// }
-		}
+		})
+		// csp: {
+		// 	directives: {
+		// 		'script-src': ['self', 'https://accounts.google.com/gsi/client']
+		// 	}
+		// 	// reportOnly: {
+		// 	// 	'script-src': ['self', 'https://accounts.google.com/gsi/client'],
+		// 	// 	'frame-src': ['self', 'https://accounts.google.com/gsi/'],
+		// 	// 	'connect-src': ['self', 'https://accounts.google.com/gsi/'],
+		// 	// }
+		// }
 	},
 
 	preprocess: [

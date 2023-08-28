@@ -15,7 +15,7 @@
 		</a>
 	</div>
 	<div class="role-img">
-		<img src={role.image} alt="logo" />
+		<slot />
 	</div>
 
 	<div class="role-dsc">
@@ -37,7 +37,7 @@
 		}
 	}
 
-	.role-section {
+	:global(.role-section) {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 2fr 2fr;
@@ -45,17 +45,10 @@
 		height: 350px;
 		padding: 1rem;
 		color: var(--color-text-2);
-		background-color: #0c0c0c;
 		text-decoration: none;
-		border-radius: var(--border-radius-large);
-		//.img-wrapper {
-		//	display: flex;
-		//	justify-content: center;
-		//	align-items: center;
-		//	width: 100%;
-		//	//height: 100%;
-		//}
-		img {
+		background-color: var(--color-black-2);
+
+		:global(img) {
 			//background-color: red;
 			height: 180px;
 			max-width: 100%;

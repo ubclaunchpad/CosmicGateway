@@ -1,5 +1,7 @@
 html[data-theme='dark'] {
 	--color-black: #000000;
+	--color-black-1: #0c0c0c;
+	--color-black-2: #0e0e0e;
 
 	// Background colours
 	--color-bg-0: #1c1c1e;
@@ -10,7 +12,7 @@ html[data-theme='dark'] {
 	--color-bg-5: #454556;
 
 	--color-bg-0-faded: #1c1c1e9f;
-	--color-bg-primary: #7566ff;
+	--color-bg-primary: #809cff;
 	--color-bg-primary-faded: rgba(114, 101, 231, 0.65);
 
 	// Text colours
