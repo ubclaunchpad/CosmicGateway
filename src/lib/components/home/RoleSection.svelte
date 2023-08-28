@@ -23,15 +23,13 @@
 			title: 'Developer',
 			anchorLink: DEVELOPER_ROLE_LINK,
 			image: developerIcon,
-			description:
-				'As a developer, you will be working with other developers and designers to build a project for 4-8 months!'
+			description: 'Develop intricate and complex projects for the club and the community'
 		},
 		{
 			title: 'Designer',
 			anchorLink: DESIGNER_ROLE_LINK,
 			image: designerIcon,
-			description:
-				'As a designer, you will create the visual identity of the project and work with developers to build a project for 4-8 months!'
+			description: 'Create the visual identity of the project and the club'
 		},
 
 		{
@@ -39,15 +37,14 @@
 			anchorLink: STRATEGY_ROLE_LINK,
 			image: strategyRoleIcon,
 			description:
-				'As a strategy & operations member, you will be working with other members to help with the internal operations of the club and help with the strategy of the club.'
+				'Contribute to the internal operations of the club and plan the future of the club'
 		},
 
 		{
 			title: 'Tech Lead',
 			anchorLink: TECH_LEAD_ROLE_LINK,
 			image: techLeadRoleIcon,
-			description:
-				'As a tech lead, you will lead a team of developers and designers to build a project for 4-8 months!'
+			description: 'Lead a team of developers and designers to build a project for 4-8 months'
 		},
 
 		{
@@ -55,14 +52,13 @@
 			anchorLink: DESIGN_LEAD_ROLE_LINK,
 			image: designLeadIcon,
 			description:
-				'As a design lead, you will lead a team of designers and developers to build a project for 4-8 months!'
+				'Lead and mentor designers of all levels and work with the tech lead to realized projects'
 		},
 		{
 			title: 'Co-president',
 			anchorLink: CO_PRESIDENT_ROLE_LINK,
 			image: coPresidentIcon,
-			description:
-				'As a co-president, you will lead the club and help with the internal operations of the club.'
+			description: 'Plan, organize and lead the club to success'
 		}
 	];
 	let scrollY = 0;
@@ -72,10 +68,10 @@
 
 <svelte:window bind:scrollY />
 <div class="header" bind:this={divH}>
-	<h3 id="opportunities">Opportunities</h3>
+	<h3>Opportunities</h3>
 	<p>
-		We are looking for passionate students who are interested in building projects that will help
-		the community
+		We are looking for student <span class="annotate">passionate about tech</span>, who are
+		interested in building projects that will help the community.
 	</p>
 </div>
 <div class="roles">
@@ -105,38 +101,8 @@
 		}
 
 		.wrapper {
-			//border: 1px dashed var(--color-border-2);
 			padding: 1.2rem;
-			//padding: 1.2rem;
-
-			//&:nth-child(1) {
-			//	border-top: none;
-			//	border-right: none;
-			//}
-			//
-			//&:nth-child(2) {
-			//	border-top: none;
-			//}
-			//
-			//&:nth-child(3) {
-			//	border-top: none;
-			//	border-left: none;
-			//}
-			//
-			//&:nth-child(4) {
-			//	border: none;
-			//}
-			//
-			//&:nth-child(5) {
-			//	border-bottom: none;
-			//	border-top: none;
-			//}
-			//
-			//&:nth-child(6) {
-			//	border-bottom: none;
-			//	border-top: none;
-			//	border-left: none;
-			//}
+			width: 100%;
 		}
 	}
 </style>

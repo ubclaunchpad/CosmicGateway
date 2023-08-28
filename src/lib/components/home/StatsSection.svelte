@@ -30,7 +30,7 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		background-color: var(--color-bg-1);
+		background-color: var(--color-black-2);
 		border-top: 1px solid var(--color-border-1);
 		border-bottom: 1px solid var(--color-border-1);
 		padding: 2rem 0.5rem;

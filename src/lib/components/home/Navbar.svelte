@@ -2,6 +2,7 @@
 	<ul>
 		<li><a href="#about">About</a></li>
 		<li><a href="#opportunities">Opportunities</a></li>
+		<li><a href="#sponsors-and-partners">Sponsors and Partners</a></li>
 		<li><a href="#contact">Contact</a></li>
 	</ul>
 </nav>
@@ -20,6 +21,10 @@
 		backdrop-filter: blur(7px);
 		-webkit-backdrop-filter: blur(7px);
 		border-bottom: 1px solid rgba(44, 44, 44, 0.42);
+
+		@media (max-width: 768px) {
+			display: none;
+		}
 
 		ul {
 			display: flex;

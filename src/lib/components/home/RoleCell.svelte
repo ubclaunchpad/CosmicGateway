@@ -19,7 +19,6 @@
 	</div>
 
 	<div class="role-dsc">
-		<!--		<img src={role.image} alt="logo" />-->
 		<p>{role.description}</p>
 	</div>
 </a>
@@ -30,7 +29,8 @@
 		flex-direction: row;
 		gap: 0.4rem;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
+		height: 3rem;
 
 		p {
 			text-align: center;
@@ -42,14 +42,14 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 2fr 2fr;
 		width: 100%;
-		height: 350px;
+		height: 300px;
 		padding: 1rem;
 		color: var(--color-text-2);
 		text-decoration: none;
 		background-color: var(--color-black-2);
+		border-radius: var(--border-radius-xlarge);
 
 		:global(img) {
-			//background-color: red;
 			height: 180px;
 			max-width: 100%;
 		}

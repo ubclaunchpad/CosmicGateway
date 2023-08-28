@@ -20,7 +20,7 @@
 		<section>
 			<p>Contact</p>
 			<a href={STRATEGY_EMAIL}>General Inquiries</a>
-			<a href={TEAM_EMAIL}>Sponsorship and Partners</a>
+			<a href={TEAM_EMAIL}>Sponsorship</a>
 		</section>
 
 		<section>
@@ -45,10 +45,11 @@
 	section {
 		display: flex;
 		flex-direction: column;
-		width: 300px;
+		width: 13rem;
+
 		p {
 			font-weight: 600;
-			font-size: 1.2rem;
+			font-size: 1rem;
 			margin-bottom: 1rem;
 			color: var(--color-text-2);
 		}
