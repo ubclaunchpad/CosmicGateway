@@ -72,7 +72,6 @@
 		&.side {
 			justify-content: flex-end;
 			align-items: center;
-			padding: 0.4rem;
 			.modal {
 				width: 400px;
 				max-width: 100%;

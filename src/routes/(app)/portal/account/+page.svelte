@@ -99,16 +99,16 @@
 				</section>
 
 				<section class="account-section integration">
-					<h2></h2>
+					<h2 />
 
-<!--					<section class="section-content">-->
-<!--						<Info>-->
-<!--							<p>-->
-<!--								Manage your integrations with external services. You can revoke access to any of-->
-<!--								these at any time.-->
-<!--							</p>-->
-<!--						</Info>-->
-<!--					</section>-->
+					<!--					<section class="section-content">-->
+					<!--						<Info>-->
+					<!--							<p>-->
+					<!--								Manage your integrations with external services. You can revoke access to any of-->
+					<!--								these at any time.-->
+					<!--							</p>-->
+					<!--						</Info>-->
+					<!--					</section>-->
 				</section>
 
 				<section class="account-section account">

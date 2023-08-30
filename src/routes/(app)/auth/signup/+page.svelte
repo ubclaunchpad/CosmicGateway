@@ -10,7 +10,7 @@
 	import { notificationStore } from '../../../../stores/notification';
 	import PageForm from '$lib/components/layouts/PageForm.svelte';
 	import type { IFaculty, ISpecialization, IStanding } from '$lib/types/User';
-	import Banner from "$lib/components/blocks/Banner.svelte";
+	import Banner from '$lib/components/blocks/Banner.svelte';
 	let googleAuthUser: GoogleAuthUser | undefined;
 	$: googleConnected = $token !== null && $token !== undefined;
 	let listOfFaculties: IFaculty = [];
@@ -129,18 +129,13 @@
 	<SectionForm>
 		<div slot="header">
 			<h2>Sign up</h2>
-
-
-
 		</div>
 
 		<Banner
-				title="Portal is in testing phase"
-				description="Sign up is limited to only certain users. If you are testing the portal message one of the admins to get access."
-				links={[]}
-
+			title="Portal is in testing phase"
+			description="Sign up is limited to only certain users. If you are testing the portal message one of the admins to get access."
+			links={[]}
 		/>
-
 
 		<Info>
 			<p>
@@ -149,8 +144,6 @@
 				>
 			</p>
 		</Info>
-
-
 
 		<form method="POST">
 			<div class="rich-input">
@@ -239,7 +232,6 @@
 </PageForm>
 
 <style lang="scss">
-
 	h2 {
 		padding-bottom: 1rem;
 	}
@@ -345,8 +337,6 @@
 				color: var(--color-text-primary);
 			}
 		}
-
-
 
 		section {
 			display: grid;

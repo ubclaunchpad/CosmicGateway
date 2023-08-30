@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ResourceViewModal from '$lib/components/admin/ResourceViewModal.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-    import RoleOverview from "$lib/components/admin/RoleOverview.svelte";
+	import RoleOverview from '$lib/components/admin/RoleOverview.svelte';
 	let showResources = false;
-	let resourcesType = 'roles'
+	let resourcesType = 'roles';
 </script>
 
 <ResourceViewModal
@@ -19,45 +19,41 @@
 		<h1>Admin</h1>
 
 		<div class="cards">
-
 			<div class="card-sm">
-                <h3>User Attributes</h3>
+				<h3>User Attributes</h3>
 				<div class="button-list">
 					<button
 						on:click={() => {
-							resourcesType= 'roles';
+							resourcesType = 'roles';
 							showResources = true;
 						}}>Roles</button
 					>
 					<button
-                            on:click={() => {
-							resourcesType = 'standings'
+						on:click={() => {
+							resourcesType = 'standings';
 							showResources = true;
-						}}
-                    >Standings</button>
+						}}>Standings</button
+					>
 					<button
-
-                            on:click={() => {
-								resourcesType = 'faculties'
+						on:click={() => {
+							resourcesType = 'faculties';
 							showResources = true;
-						}}
-                    >Faculties</button>
+						}}>Faculties</button
+					>
 					<button
-                            on:click={() => {
-								resourcesType = 'specializations'
+						on:click={() => {
+							resourcesType = 'specializations';
 							showResources = true;
-						}}
-                    >Specializations</button>
+						}}>Specializations</button
+					>
 				</div>
 			</div>
 
-            <div class="card-lg">
-                <h3>Role Overview</h3>
-                <RoleOverview/>
-            </div>
+			<div class="card-lg">
+				<h3>Role Overview</h3>
+				<RoleOverview />
+			</div>
 		</div>
-
-
 	</div>
 </MainPage>
 

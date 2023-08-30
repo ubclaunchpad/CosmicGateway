@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {userScopes} from "../../../../stores/scopes";
+	import { userScopes } from '../../../../stores/scopes';
 	let querying = true;
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
@@ -19,10 +19,10 @@
 		userFieldVisibilityMapper
 	} from '$lib/types/User';
 	import { token } from '../../../../stores/auth';
-	import MemberViewModal from "$lib/components/members/MemberViewModal.svelte";
+	import MemberViewModal from '$lib/components/members/MemberViewModal.svelte';
 	let users: IUser[] = [];
 	let shownUser: IUser | null = null;
-	$: scopes = $userScopes
+	$: scopes = $userScopes;
 	onMount(() => {
 		fetchUsers();
 	});
@@ -42,8 +42,8 @@
 	};
 
 	const showUser = (user: IUser) => {
-		shownUser = user
-	}
+		shownUser = user;
+	};
 </script>
 
 <MainPage>
@@ -88,22 +88,19 @@
 					<tbody>
 						{#each users as user}
 							<tr>
-								<td
-									>
-
-									{#if scopes.has("admin:read")}
+								<td>
+									{#if scopes.has('admin:read')}
 										<button
-												on:click={() => {
-													showUser(user)
-												}}
-											>
+											on:click={() => {
+												showUser(user);
+											}}
+										>
 											<Icon>
 												<ExpandIcon />
 											</Icon>
 										</button>
 									{/if}
-
-									</td>
+								</td>
 								{#each Object.entries(user) as [key, value]}
 									{#if userFieldVisibilityMapper(key)}
 										<td>
@@ -121,16 +118,14 @@
 </MainPage>
 
 {#if shownUser != null}
-<MemberViewModal
-	on:modalevent={() => {
-		shownUser = null;
-	}}
-	isOpen={shownUser != null}
-	referenceUser={shownUser}
-/>
+	<MemberViewModal
+		on:modalevent={() => {
+			shownUser = null;
+		}}
+		isOpen={shownUser != null}
+		referenceUser={shownUser}
+	/>
 {/if}
-
-
 
 <style lang="scss">
 	.header {

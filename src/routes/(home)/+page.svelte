@@ -1,323 +1,187 @@
 <script lang="ts">
-	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import logo from '$lib/assets/logo.png';
-	import background from '$lib/assets/background.jpeg';
-	import Icon from '$lib/components/general/Icon.svelte';
-	import GithubIcon from '$lib/components/general/icons/GithubIcon.svelte';
-	import FacebookIcon from '$lib/components/general/icons/FacebookIcon.svelte';
-	import InstagramIcon from '$lib/components/general/icons/InstagramIcon.svelte';
-	import LinkedInIcon from '$lib/components/general/icons/LinkedInIcon.svelte';
-	import { onMount } from 'svelte';
-	import { FACEBOOK_LINK, GITHUB_LINK, INSTAGRAM_LINK, LINKEDIN_LINK } from '$lib/util/links';
-	import StarFilledIcon from '$lib/components/general/icons/decorative/StarFilledIcon.svelte';
-	const newsletterURI = 'https://buttondown.email/api/emails/embed-subscribe/ubclaunchpad';
-	const subscribe = () => {
-		animate();
-	};
-
-	let stars: NodeListOf<SVGElement> = {} as NodeListOf<SVGElement>;
-
-	onMount(() => {
-		stars =
-			document.querySelector('.stars')?.querySelectorAll('svg') || ({} as NodeListOf<SVGElement>);
-	});
-
-	const animate = () => {
-		stars.forEach((star) => {
-			star.classList.add('twirl');
-		});
-	};
+	import HomeFooter from '$lib/components/home/HomeFooter.svelte';
+	import NewsletterSection from '$lib/components/home/NewsletterSection.svelte';
+	import Navbar from '$lib/components/home/Navbar.svelte';
+	import rocket from '$lib/assets/temp3.png';
+	import OpportunitySection from '$lib/components/home/OpportunitySection.svelte';
+	import { blur, fly } from 'svelte/transition';
+	import AnimateWrapper from '$lib/components/general/AnimateWrapper.svelte';
+	import { backOut } from 'svelte/easing';
+	import SponsorSection from '$lib/components/home/SponsorSection.svelte';
 </script>
 
-<MainPage>
-	<div class="landing" slot="main">
-		<img src={background} alt="logo" width="360px" />
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet"
+	/>
+</svelte:head>
 
-		<div class="stars">
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-			<StarFilledIcon />
-		</div>
+<div class="page">
+	<Navbar />
+	<div id="bg1" />
+	<div class="landing">
+		<div class="landing-content">
+			<div class="intro">
+				<AnimateWrapper>
+					<h1 in:blur={{ delay: 0, duration: 1000 }}>UBC Launch Pad</h1>
+				</AnimateWrapper>
+				<span in:blur={{ delay: 0, duration: 1000 }}>
+					A student-run software engineering team devoted to building software projects in a
+					collaborative and professional environment
+				</span>
+			</div>
 
-		<div class="content">
-			<nav>
-				<div class="logo">
-					<a href="/">
-						<img src={logo} alt="logo" width="36px" />
-					</a>
-
-					<h2>UBC Launch Pad</h2>
-				</div>
-
-				<div class="icons">
-					<a href={FACEBOOK_LINK} target="_blank">
-						<Icon width={'1.7rem'}>
-							<FacebookIcon />
-						</Icon>
-					</a>
-					<a href={GITHUB_LINK} target="_blank">
-						<Icon width={'1.7rem'}>
-							<GithubIcon />
-						</Icon>
-					</a>
-					<a href={INSTAGRAM_LINK} target="_blank">
-						<Icon width={'1.7rem'}>
-							<InstagramIcon />
-						</Icon>
-					</a>
-
-					<a href={LINKEDIN_LINK} target="_blank">
-						<Icon width={'1.7rem'}>
-							<LinkedInIcon />
-						</Icon>
-					</a>
-				</div>
-			</nav>
-
-			<div class="coming-soon">
-				<h1>Coming Soon</h1>
-				<p>
-					Sign up for our newsletter to be the first to know about recruitment, events and when our
-					new website launches
-				</p>
-
-				<form method="post" action={newsletterURI} on:submit={subscribe}>
-					<input type="email" name="email" id="bd-email" placeholder="Enter your email" />
-					<button type="submit" value="Subscribe">Subscribe</button>
-				</form>
+			<div class="hero">
+				<AnimateWrapper>
+					<img
+						src={rocket}
+						alt="hero"
+						in:fly={{
+							y: 100,
+							delay: 300,
+							easing: backOut
+						}}
+					/>
+				</AnimateWrapper>
 			</div>
 		</div>
 	</div>
-</MainPage>
+	<div class="content">
+		<OpportunitySection />
+		<SponsorSection />
+		<NewsletterSection />
+	</div>
+	<HomeFooter />
+</div>
 
 <style lang="scss">
-	@keyframes twirl {
-		0% {
-			fill: #ffffff4e;
-			transform: scale(1);
-		}
-
-		50% {
-			transform: scale(1.3) rotate(150deg);
-			fill: #ffffffe3;
-		}
-
-		100% {
-			fill: #ffffff4e;
-			transform: scale(1) rotate(360deg);
-		}
+	:global(*) {
+		font-family: 'Exo', sans-serif;
+		z-index: 3;
 	}
 
-	:global(.twirl) {
-		animation: twirl 1s ease-in-out;
-		animation-iteration-count: 1;
-		animation-fill-mode: forwards;
+	:global(.annotate) {
+		text-decoration: underline solid #95b8ff;
+		-webkit-text-decoration: underline solid #95b8ff; /* Safari, older versions of Chrome */
+		-moz-text-decoration: underline solid #95b8ff; /* Firefox */
+		-o-text-decoration: underline solid #95b8ff; /* Opera */
+		-ms-text-decoration: underline solid #95b8ff;
 	}
+
 	.landing {
 		color: var(--color-text-2);
 		display: flex;
 		flex-direction: column;
-		padding: 0;
-		height: 100svh;
-		overflow: hidden;
+		justify-content: center;
+		align-items: center;
+		min-height: 100svh;
+		max-height: 100svh;
+		width: 100svw;
+		flex: 1;
+		position: relative;
+	}
+	.landing-content {
+		color: var(--color-text-2);
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100svw;
+		height: 100%;
+		//overflow: visible;
 		position: relative;
 		flex: 1;
 
-		.stars {
-			position: fixed;
-			height: 100%;
-			width: 100%;
+		overflow: hidden;
 
-			:global(svg) {
-				stroke-width: 2px;
-				position: absolute;
-				animation: twirl 5s linear;
-				animation-iteration-count: infinite;
-				animation-fill-mode: both;
-				width: 1em;
-				opacity: 0.8;
-
-				&:nth-child(odd) {
-					animation-direction: reverse;
-					animation-duration: 8s;
-				}
-
-				&:nth-child(1) {
-					left: 10%;
-					top: 40%;
-				}
-
-				&:nth-child(2) {
-					left: 20%;
-					top: 60%;
-				}
-
-				&:nth-child(3) {
-					left: 30%;
-					top: 30%;
-				}
-
-				&:nth-child(5) {
-					left: 20%;
-					top: 90%;
-				}
-
-				&:nth-child(6) {
-					left: 60%;
-					top: 20%;
-				}
-
-				&:nth-child(7) {
-					left: 30%;
-					top: 80%;
-				}
-
-				&:nth-child(8) {
-					left: 70%;
-					top: 40%;
-				}
-
-				&:nth-child(9) {
-					left: 80%;
-					top: 60%;
-				}
-
-				&:nth-child(10) {
-					left: 90%;
-					top: 30%;
-				}
-
-				&:nth-child(11) {
-					left: 50%;
-					top: 5%;
-				}
-
-				&:nth-child(12) {
-					left: 95%;
-					top: 20%;
-				}
-
-				&:nth-child(13) {
-					left: 97%;
-					top: 2%;
-				}
-
-				&:nth-child(14) {
-					left: 85%;
-					top: 10%;
-				}
-			}
-		}
-
-		> img {
-			width: 100%;
-			height: 100%;
-			position: fixed;
-			top: 0;
-			left: 0;
-			opacity: 0.5;
-		}
-
-		.content {
-			width: 100%;
-			height: 100%;
-			z-index: 2;
-		}
-
-		.coming-soon {
+		.intro {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
 			align-items: center;
-			width: 100%;
-			flex: 1;
-			row-gap: 2rem;
 			padding: 1rem;
+			flex: 1;
+			:global(*) {
+				z-index: 3;
+			}
 
 			h1 {
-				font-size: 5em;
-				font-weight: bolder;
-				color: var(--color-text-2);
-				opacity: 0.8;
-			}
-
-			p {
-				max-width: 650px;
-				font-size: 1.2em;
+				font-size: 3rem;
+				font-weight: 600;
 				text-align: left;
-				width: fit-content;
-				opacity: 0.8;
+				margin-bottom: 1rem;
+				z-index: 3;
+				padding: 1rem;
+				vertical-align: middle;
+				height: 10rem;
+				text-transform: uppercase;
 			}
 
-			form {
-				display: flex;
-				justify-content: flex-start;
-				column-gap: 0.5rem;
-				color: var(--color-text-1);
-
-				input {
-					background-color: var(--color-bg-0-faded);
-					padding: 0.8rem 1rem;
-					width: 300px;
-				}
-
-				button {
-					background-color: var(--color-bg-primary-faded);
-					padding: 0.5rem 1rem;
-					border-radius: var(--border-radius-medium);
-					color: var(--color-text-1);
-					font-weight: bold;
-				}
+			span {
+				font-size: 1.7rem;
+				font-weight: 400;
+				color: rgb(201, 201, 201);
+				text-align: center;
+				max-width: 550px;
+				z-index: 3;
+				backdrop-filter: blur(10px);
 			}
 		}
 
-		nav {
+		.hero {
+			margin: 0;
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0 1rem;
-			width: 100%;
-			height: 4rem;
+			justify-content: flex-start;
+			align-items: flex-start;
+			height: 100%;
+			z-index: 2;
+			overflow: hidden;
+			flex: 1;
+			position: absolute;
 
-			.icons {
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				column-gap: 0.5rem;
-
-				:global(svg) {
-					stroke-width: 1px;
-					stroke: var(--color-bg-2);
-					stroke-opacity: 0.7;
-				}
-			}
-
-			.logo {
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				column-gap: 0.5rem;
-
-				h2 {
-					font-size: 1.2rem;
-				}
+			img {
+				object-fit: contain;
+				z-index: 2;
+				width: 100%;
 			}
 		}
+	}
+
+	#bg1 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100svw;
+		height: 100svh;
+		background-color: hsla(0, 0%, 5%, 1);
+		background-image: radial-gradient(at 66% 17%, hsla(227, 92%, 17%, 0.14) 0px, transparent 50%),
+			radial-gradient(at 80% 50%, hsla(340, 0%, 0%, 1) 0px, transparent 50%),
+			radial-gradient(at 21% 30%, hsla(219, 50%, 54%, 0.4) 0px, transparent 50%),
+			radial-gradient(at 56% 91%, hsla(240, 0%, 0%, 1) 0px, transparent 50%),
+			radial-gradient(at 18% 8%, hsla(240, 100%, 24%, 0.56) 0px, transparent 50%),
+			radial-gradient(at 30% 98%, hsla(0, 0%, 0%, 0.91) 0px, transparent 50%),
+			radial-gradient(at 20% 66%, hsla(201, 42%, 28%, 0.47) 0px, transparent 50%);
+		opacity: 0.9;
+	}
+	.content {
+		width: 100%;
+		height: 100%;
+		min-height: 100svh;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		flex: 1;
+		overflow: hidden;
+	}
+
+	.page {
+		width: 100svw;
+		min-height: 100svh;
+		background-color: var(--color-black-1);
 	}
 </style>

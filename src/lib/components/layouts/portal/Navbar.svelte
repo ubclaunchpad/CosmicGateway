@@ -2,11 +2,11 @@
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { HomeIcon, UsersIcon, BookClosedIcon, SettingsIcon } from '$lib/components/general/icons';
 	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
-	import {signout} from '../../../../stores/auth';
-	import {createEventDispatcher} from 'svelte';
+	import { signout } from '../../../../stores/auth';
+	import { createEventDispatcher } from 'svelte';
 	import { DOCS_LINK } from '$lib/util/links';
-	import {userScopes} from "../../../../stores/scopes";
-	import ArchiveIcon from "$lib/components/general/icons/ArchiveIcon.svelte";
+	import { userScopes } from '../../../../stores/scopes';
+	import ArchiveIcon from '$lib/components/general/icons/ArchiveIcon.svelte';
 	const dispatch = createEventDispatcher();
 	function triggerNavEffect() {
 		dispatch('navigate', {});
@@ -51,7 +51,7 @@
 				</a>
 			</li>
 			<li>
-				<a target="_blank" on:click={triggerNavEffect}>
+				<a href="/projects" target="_blank" on:click={triggerNavEffect}>
 					<Icon>
 						<ArchiveIcon />
 					</Icon>
@@ -62,7 +62,6 @@
 					</Icon>
 				</a>
 			</li>
-
 		</ul>
 	</nav>
 
@@ -71,15 +70,15 @@
 		<nav>
 			<ul>
 				{#if scopes.has('admin:read') || scopes.has('admin:write')}
-								<li>
-									<a href="/portal/admin" on:click={triggerNavEffect}>
-										<Icon>
-											<SettingsIcon />
-										</Icon>
-										<p>Admin</p>
-									</a>
-								</li>
-							{/if}
+					<li>
+						<a href="/portal/admin" on:click={triggerNavEffect}>
+							<Icon>
+								<SettingsIcon />
+							</Icon>
+							<p>Admin</p>
+						</a>
+					</li>
+				{/if}
 				<li>
 					<a href="/portal/account" on:click={triggerNavEffect}>
 						<Icon>

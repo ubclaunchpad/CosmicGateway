@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Modal from '../layouts/Modal.svelte';
-	import RoleManagementModal from "$lib/components/admin/RoleManagementModal.svelte";
-	import AttributeManagement from "$lib/components/admin/AttributeManagement.svelte";
+	import RoleManagementModal from '$lib/components/admin/RoleManagementModal.svelte';
+	import AttributeManagement from '$lib/components/admin/AttributeManagement.svelte';
 	export let isOpen: boolean;
 	export let type;
 	let res;
@@ -19,7 +19,7 @@
 
 <Modal title={'Manage Resources'} on:modalevent isModalOpen={isOpen} type="center">
 	<div class="modal-content" slot="modal-content">
-		{#if type === "roles"}
+		{#if type === 'roles'}
 			<RoleManagementModal />
 		{:else}
 			<AttributeManagement attrEndpointName={type} />
@@ -34,7 +34,6 @@
 </Modal>
 
 <style lang="scss">
-
 	footer {
 		display: flex;
 		flex-direction: row;

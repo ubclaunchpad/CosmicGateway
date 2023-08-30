@@ -1,8 +1,5 @@
 import adapter from '@sveltejs/adapter-cloudflare';
-import { mdsvex } from 'mdsvex';
 import sveltePreprocess from 'svelte-preprocess';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -18,17 +15,17 @@ const config = {
 				include: ['/*'],
 				exclude: ['<all>']
 			}
-		}),
-		csp: {
-			directives: {
-				'script-src': ['self', 'https://accounts.google.com/gsi/client'],
-			},
-			// reportOnly: {
-			// 	'script-src': ['self', 'https://accounts.google.com/gsi/client'],
-			// 	'frame-src': ['self', 'https://accounts.google.com/gsi/'],
-			// 	'connect-src': ['self', 'https://accounts.google.com/gsi/'],
-			// }
-		}
+		})
+		// csp: {
+		// 	directives: {
+		// 		'script-src': ['self', 'https://accounts.google.com/gsi/client']
+		// 	}
+		// 	// reportOnly: {
+		// 	// 	'script-src': ['self', 'https://accounts.google.com/gsi/client'],
+		// 	// 	'frame-src': ['self', 'https://accounts.google.com/gsi/'],
+		// 	// 	'connect-src': ['self', 'https://accounts.google.com/gsi/'],
+		// 	// }
+		// }
 	},
 
 	preprocess: [
@@ -38,10 +35,6 @@ const config = {
 				// svelte-preprocess automatically adds it to `includePaths`
 				// if none is defined.
 			}
-		}),
-		mdsvex({
-			extensions: ['.md'],
-			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
 		})
 	]
 };

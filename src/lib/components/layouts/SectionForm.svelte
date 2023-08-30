@@ -1,4 +1,3 @@
-
 <section class="wrapper">
 	<div class="content">
 		<div class="header">
@@ -12,12 +11,12 @@
 	.wrapper {
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
 		background: var(--color-bg-0);
 		height: 100%;
 		width: 100%;
-		padding: 1rem;
+
 		row-gap: 1rem;
 		.header {
 			padding: 0.5rem;
@@ -38,13 +37,17 @@
 			align-items: flex-start;
 			height: 100%;
 			max-width: 100%;
-			width: 850px;
+			width: 700px;
 			padding: 1rem;
-			max-height: 850px;
+
 			background-color: var(--color-bg-2);
 			box-shadow: var(--box-shadow-small);
 			overflow-y: scroll;
 			border-radius: var(--border-radius-small);
+
+			@media screen and (max-width: 900px) {
+				width: 100%;
+			}
 		}
 	}
 </style>
