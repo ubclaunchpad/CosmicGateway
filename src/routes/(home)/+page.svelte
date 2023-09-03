@@ -17,6 +17,8 @@
 		href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 		rel="stylesheet"
 	/>
+	<script src="//embed.typeform.com/next/embed.js"></script>
+
 </svelte:head>
 
 <div class="page">
@@ -32,6 +34,16 @@
 					A student-run software engineering team devoted to building software projects in a
 					collaborative and professional environment
 				</span>
+				<button
+						class="apply-btn"
+						data-tf-slider="K0jsdGu4"
+						data-tf-position="right"
+						data-tf-opacity="100"
+						data-tf-iframe-props="title=Launch Pad Recruitment"
+						data-tf-transitive-search-params
+						data-tf-medium="snippet"
+				>We are recruiting! Apply by September 8, 2023
+				</button>
 			</div>
 
 			<div class="hero">
@@ -61,6 +73,34 @@
 	:global(*) {
 		font-family: 'Exo', sans-serif;
 		z-index: 3;
+	}
+
+	.apply-btn {
+		margin-top: 1rem;
+		background-color: var(--color-bg-primary);
+		border: none;
+		border-radius: 4px;
+		color: white;
+		cursor: pointer;
+		font-size: 15px;
+		font-weight: 500;
+		height: 40px;
+		letter-spacing: 0.5px;
+		line-height: 40px;
+		padding: 0 20px;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+		-webkit-appearance: none;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		margin-bottom: 1rem;
+		transition: background-color 0.25s ease-in-out;
+
+		&:hover {
+			background-color: var(--color-bg-secondary);
+		}
 	}
 
 	:global(.annotate) {
