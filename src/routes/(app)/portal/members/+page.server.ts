@@ -4,24 +4,24 @@ import { PUBLIC_USERS_API_URI } from '$env/static/public';
 import { token } from '../../../../stores/auth';
 
 export const load: Load = async () => {
-    let userToken;
+	let userToken;
 
-    token.subscribe((value) => {
-        userToken = value;
-    });
+	token.subscribe((value) => {
+		userToken = value;
+	});
 
-    const res = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
-        method: 'GET',
-        headers: {
-            Authorization: 'Bearer ' + userToken
-        }
-    });
+	const res = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
+		method: 'GET',
+		headers: {
+			Authorization: 'Bearer ' + userToken
+		}
+	});
 
-    const { users } = await res.json();
+	const { users } = await res.json();
 
-    if (res.ok) {
-        return { users };
-    }
+	if (res.ok) {
+		return { users };
+	}
 
-    throw error(404, 'Unable to fetch users');
+	throw error(404, 'Unable to fetch users');
 };

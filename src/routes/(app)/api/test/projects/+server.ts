@@ -1,8 +1,8 @@
 import { json } from '@sveltejs/kit';
 
 export const GET = async () => {
-    const obj: { projects: Object[] } = {
-        projects: [
+	const obj: { projects: Object[] } = {
+		projects: [
 			{
 				title: 'Project 1',
 				description:
@@ -42,7 +42,7 @@ export const GET = async () => {
 				]
 			}
 		]
-    }
+	};
 
-    return json(obj);
+	return json(obj);
 };

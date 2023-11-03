@@ -18,7 +18,6 @@
 		rel="stylesheet"
 	/>
 	<script src="//embed.typeform.com/next/embed.js"></script>
-
 </svelte:head>
 
 <div class="page">
@@ -35,14 +34,14 @@
 					collaborative and professional environment
 				</span>
 				<button
-						class="apply-btn"
-						data-tf-slider="K0jsdGu4"
-						data-tf-position="right"
-						data-tf-opacity="100"
-						data-tf-iframe-props="title=Launch Pad Recruitment"
-						data-tf-transitive-search-params
-						data-tf-medium="snippet"
-				>We are recruiting! Apply by September 8, 2023
+					class="apply-btn"
+					data-tf-slider="K0jsdGu4"
+					data-tf-position="right"
+					data-tf-opacity="100"
+					data-tf-iframe-props="title=Launch Pad Recruitment"
+					data-tf-transitive-search-params
+					data-tf-medium="snippet"
+					>We are recruiting! Apply by September 8, 2023
 				</button>
 			</div>
 
