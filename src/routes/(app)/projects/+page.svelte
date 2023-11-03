@@ -13,49 +13,9 @@
 	import ApplyModal from '$lib/components/projects/ApplyModal.svelte';
 	let projects = [];
 	let showApplyModal = false;
+	export let data;
 	const fetchProjects = async () => {
-		// const res = await fetch(`${PUBLIC_PROJECT_API_URI}/projects`);
-		// const data = (await res.json());
-		projects = [
-			{
-				title: 'Project 1',
-				description:
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl. Donec euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.',
-				start_date: '',
-				end_date: '',
-				status: 'In Development',
-				team_size: 5,
-				resources: [
-					{
-						type: 'Github',
-						link: 'https://github.com'
-					},
-					{
-						type: 'Website',
-						link: 'https://google.com'
-					}
-				]
-			},
-			{
-				title: 'Project rwgwglknmlkn1',
-				description:
-					'Lorem eflkemlknipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl. Donec euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.',
-				start_date: '',
-				end_date: '',
-				status: 'In Development',
-				team_size: 5,
-				resources: [
-					{
-						type: 'Github',
-						link: 'https://github.com'
-					},
-					{
-						type: 'Figma',
-						link: 'https://figma.com'
-					}
-				]
-			}
-		];
+		projects = data.projects;
 	};
 
 	onMount(async () => {
