@@ -23,21 +23,12 @@
 	let users: IUser[] = [];
 	let shownUser: IUser | null = null;
 	$: scopes = $userScopes;
+	export let data;
 	onMount(() => {
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
-		let userToken;
-		token.subscribe((value) => {
-			userToken = value;
-		});
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
-			method: 'GET',
-			headers: {
-				Authorization: 'Bearer ' + userToken
-			}
-		});
-		users = await response.json();
+		users = data.users;
 		querying = false;
 	};
 
