@@ -33,6 +33,14 @@
 					Members
 				</a>
 			</li>
+			<li>
+				<a href="/portal/teams" on:click={triggerNavEffect}>
+					<Icon>
+						<UsersIcon />
+					</Icon>
+					Teams
+				</a>
+			</li>
 		</ul>
 	</nav>
 
