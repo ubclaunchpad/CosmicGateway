@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import ArrowRightIcon from '$lib/components/general/icons/ArrowRightIcon.svelte';
 import { onMount } from 'svelte';
@@ -16,35 +17,75 @@ import { onMount } from 'svelte';
 
     function handleClick(teamName: string) {
     // Handle the click event
-    console.log(`Clicked on ${teamName}`);
-    // Here you could navigate to a team page or perform some other action
+    goto(`/teams/${teamName}`);
   }
   </script>
   <div class="teamsList">
     <h1>Teams</h1>
     <ul>
         {#each teams as team}
-      <li>
-        <button on:click={() => handleClick(team)}>
-            <div class="teamLabel">
-              <div class="labelContent">
-                <p class="teamName">{team}</p>
-                <p class="lastEdited">last edited 2 minutes ago</p>
-              </div>
-              <div class="arrowIcon">
-                <Icon>
-                    <ArrowRightIcon/>
-                  </Icon>
-              </div>
-            </div>
-          </button>
-        
-      </li>
-    {/each}
-      </ul>
-  </div>
+            <li>
+                <!-- Use the anchor tag for navigation and remove the button -->
+                <a href={`/teams/${team}`} class="teamItem">
+                    <div class="teamLabel">
+                        <div class="labelContent">
+                            <p class="teamName">{team}</p>
+                            <p class="lastEdited">last edited 2 minutes ago</p>
+                        </div>
+                        <div class="arrowIcon">
+                            <!-- Your existing icon component -->
+                            <Icon>
+                                <ArrowRightIcon/>
+                            </Icon>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        {/each}
+    </ul>
+</div>
   
   <style lang="scss">
+
+.teamItem {
+        display: block; /* To allow the entire area to be clickable */
+        width: 301px;
+        height: 361px;
+        background-color: rgb(234, 234, 234);
+        padding: 10px 20px;
+        border-radius: 31px;
+        margin-bottom: 0px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: left;
+        position: relative; /* Since we used to have position: relative on the li */
+        margin: 26.5px; /* Previously on li as well */
+
+        &:hover {
+            background-color: var(--color-bg-primary);
+        }
+
+        /* Since .teamLabel was inside button previously, 
+           ensure its styles are still appropriate */
+        .teamLabel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+            padding: 0 20px;
+            background-color: rgb(227, 225, 225);
+            border-bottom-left-radius: 31px;
+            border-bottom-right-radius: 31px;
+            box-sizing: border-box;
+            &:hover {
+                background-color: var(--color-bg-primary);
+            }
+        }
+    }
 
     .teamLabel {
         position: absolute;
