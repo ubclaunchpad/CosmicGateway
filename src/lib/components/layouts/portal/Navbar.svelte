@@ -121,11 +121,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		border-top: 1px solid var(--color-border-0);
-
-		&:last-child {
-			border-bottom: 1px solid var(--color-border-0);
-		}
 		ul {
 			border-bottom: 1px solid var(--color-bg-1);
 			display: flex;
