@@ -12,13 +12,10 @@ import { onMount } from 'svelte';
     })
 
     const fetchTeams = async () => {
+        console.log(data.teams);
         teams = data.teams
+        
     }
-
-    function handleClick(teamName: string) {
-    // Handle the click event
-    goto(`/teams/${teamName}`);
-  }
   </script>
   <div class="teamsList">
     <h1>Teams</h1>
@@ -26,7 +23,7 @@ import { onMount } from 'svelte';
         {#each teams as team}
             <li>
                 <!-- Use the anchor tag for navigation and remove the button -->
-                <a href={`/teams/${team}`} class="teamItem">
+                <a href="/portal/teams/{team}" class="teamItem">
                     <div class="teamLabel">
                         <div class="labelContent">
                             <p class="teamName">{team}</p>
@@ -128,22 +125,7 @@ import { onMount } from 'svelte';
         fill: black;
         stroke: black;
     }
-
-    button {
-        width: 301px;
-        height: 361px;
-        background-color: rgb(234, 234, 234);
-        padding: 10px 20px;
-        border-radius: 31px;
-        margin-bottom: 0px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        text-align: left;
-
-        &:hover {
-            background-color: var(--color-bg-primary);
-        }
-    }
+   
     
     h1 {
         margin-bottom: 0;
