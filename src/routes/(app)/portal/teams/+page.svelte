@@ -22,7 +22,6 @@ import { onMount } from 'svelte';
     <ul>
         {#each teams as team}
             <li>
-                <!-- Use the anchor tag for navigation and remove the button -->
                 <a href="/portal/teams/{team}" class="teamItem">
                     <div class="teamLabel">
                         <div class="labelContent">
@@ -30,7 +29,6 @@ import { onMount } from 'svelte';
                             <p class="lastEdited">last edited 2 minutes ago</p>
                         </div>
                         <div class="arrowIcon">
-                            <!-- Your existing icon component -->
                             <Icon>
                                 <ArrowRightIcon/>
                             </Icon>
@@ -56,14 +54,12 @@ import { onMount } from 'svelte';
         transition: background-color 0.3s;
         text-align: left;
         position: relative; /* Since we used to have position: relative on the li */
-        margin: 26.5px; /* Previously on li as well */
+        margin: 26.5px;
 
         &:hover {
             background-color: var(--color-bg-primary);
         }
 
-        /* Since .teamLabel was inside button previously, 
-           ensure its styles are still appropriate */
         .teamLabel {
             position: absolute;
             bottom: 0;
@@ -78,28 +74,7 @@ import { onMount } from 'svelte';
             border-bottom-left-radius: 31px;
             border-bottom-right-radius: 31px;
             box-sizing: border-box;
-            &:hover {
-                background-color: var(--color-bg-primary);
-            }
-        }
-    }
-
-    .teamLabel {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 65px;
-        padding: 0 20px;
-        background-color: rgb(227, 225, 225);
-        border-bottom-left-radius: 31px;
-        border-bottom-right-radius: 31px;
-        box-sizing: border-box;
-        &:hover {
-            background-color: --color-bg-primary;
+            
         }
     }
 
@@ -109,7 +84,7 @@ import { onMount } from 'svelte';
     }
 
     .teamName {
-        font-weight: bold;
+        font-weight: regular;
         margin: 0;
     }
 
@@ -142,14 +117,7 @@ import { onMount } from 'svelte';
         overflow-y: auto;
     }
 
-    ul {
-        list-style: none;
-    }
-
-    li {
-        position: relative;
-        margin: 26.5px;
-    }
+    
     
   </style>
   
