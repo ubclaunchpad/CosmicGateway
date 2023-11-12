@@ -1,6 +1,6 @@
 <script>
-	import '../styles.scss';
-	import '../variables.scss';
+	// import '../styles.scss';
+	// import '../variables.scss';
 	import Notification from '$lib/components/general/Notification.svelte';
 </script>
 
