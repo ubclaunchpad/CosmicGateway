@@ -48,38 +48,38 @@
 		}
 	});
 </script>
-
 <PageForm>
 	<SectionForm>
 		<div slot="header">
-			<h2>Sign In</h2>
+			<h2 class="text-2xl font-bold">Sign in</h2>
 		</div>
 
-		<div class="auth-wrapper">
+		<div class="flex flex-col gap-4 w-full h-full p-4">
 			<Banner
-				title="Portal is in testing phase"
+				title="Portal is in development"
 				description="Login is limited to only certain users. If you are testing the portal message one of the admins to get access."
 				links={[]}
 			/>
-			<div class="social-auth">
-				<Info>
-					<p>Currently only allow Google sign in. We will add more ways to sign in soon.</p>
-				</Info>
+			<Info>
+				<p>Currently only allow Google sign in. We will add more ways to sign in soon.</p>
+			</Info>
+			<div class="flex flex-col gap-4 w-full h-full ">
+				
 
-				<div class="rich-input">
-					<button class="google" id="googleBtn" type="button">
+				<div class="flex items-center justify-center w-full border-b border-gray-300">
+					<button class="flex items-center justify-center w-full p-2 text-gray-800 text-sm font-medium cursor-pointer transition-all duration-200 ease-in-out" id="googleBtn" type="button">
 						<div id={'signinDiv'} />
 					</button>
 				</div>
 			</div>
 		</div>
-		<Info
-			><p>
+		<Info>
+			<p>
 				Having issues signing in? <span>
 					<a href="mailto:strategy@ubclaunchpad.com">email us</a>
 				</span>
-			</p></Info
-		>
+			</p>
+		</Info>
 		<Info>
 			<p>
 				Don't have an account? <a href="/auth/signup">Sign up</a>
@@ -87,87 +87,3 @@
 		</Info>
 	</SectionForm>
 </PageForm>
-
-<style lang="scss">
-	.auth-wrapper {
-		display: flex;
-		justify-content: flex-start;
-		align-items: flex-start;
-		flex-direction: column;
-		row-gap: 1rem;
-		width: 100%;
-		height: 100%;
-		padding: 1rem;
-		.social-auth {
-			display: flex;
-			justify-content: flex-start;
-			align-items: flex-start;
-			flex-direction: column;
-			row-gap: 1rem;
-			width: 100%;
-			height: 100%;
-			padding: 1rem;
-
-			.rich-input {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex-direction: row;
-				width: 100%;
-				border-bottom: 1px solid var(--color-border-1);
-				button {
-					display: flex;
-
-					width: 100%;
-
-					justify-content: center;
-					align-items: center;
-					flex-direction: row;
-					padding: 0.5rem;
-
-					color: var(--color-text-1);
-
-					font-size: 0.8rem;
-					font-weight: 500;
-					cursor: pointer;
-					transition: all 0.2s ease-in-out;
-
-					&:disabled {
-						cursor: not-allowed;
-						opacity: 0.5;
-					}
-				}
-
-				button {
-					background: none;
-				}
-				#googleBtn {
-					padding: 1rem;
-					overflow: hidden;
-					border: 1px solid transparent;
-				}
-			}
-			button {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex-direction: row;
-				gap: 1rem;
-				width: 100%;
-				padding: 0.5rem 1rem;
-				border-radius: 0.5rem;
-				background: var(--color-bg-3);
-				color: var(--color-text-1);
-				border: 2px solid var(--color-bg-primary);
-				font-size: 1rem;
-				font-weight: 500;
-				cursor: pointer;
-				transition: all 0.2s ease-in-out;
-				&:disabled {
-					cursor: not-allowed;
-					opacity: 0.5;
-				}
-			}
-		}
-	}
-</style>
