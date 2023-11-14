@@ -1,63 +1,22 @@
 <script>
-    export let data;
-
+	export let data;
 </script>
 
+<h1>{data.title}</h1>
+<div class="container flex flex-row gap-6 w-full p- border border-black">
+	<div class="flex flex-col w-1/2 gap-6">
+		<div class="bg-gray-300 h-1/2 rounded-lg px-4">
+			<!-- Content for the first box -->
+		</div>
+		<div class="bg-gray-300 h-1/2 rounded-lg px-4">
+			<!-- Content for the first box -->
+		</div>
+	</div>
 
-<div>
-    <h1>{data.title}</h1>
-    <div class="container">
-        <div class="leftColumn">
-            <div class="mediumBox">
-
-            </div>
-            <div class="mediumBox">
-
-            </div>
-        </div>
-        <div class="rightColumn">
-            <div class="members">
-
-            </div>
-        </div>
-    </div>
+	<div class="bg-gray-300 w-1/2 h-screen rounded-lg px-4">
+		<!-- Content for the second box -->
+	</div>
 </div>
 
 <style lang="scss">
-    
-    .container {
-        display: flex;
-        border: solid black 2px;
-        
-    }
-
-    .leftColumn {
-        
-    }
-
-    .rightColumn {
-       
-    }
-
-    .mediumBox {
-        border: solid black 2px;
-        width: 586px;
-        height: 368px;
-        background-color: rgb(227, 227, 227);
-        margin: 20px;
-        border-radius: 12px;
-    }
-
-    .members {
-        border: solid black 2px;
-        width: 586px;
-        height: 100%;
-        background-color: rgb(227, 227, 227);
-        margin: 20px;
-        border-radius: 12px;
-    }
-
-    
-    
-    
 </style>
