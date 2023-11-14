@@ -19,7 +19,6 @@
 	import { fetcher } from '$lib/util/fetcher';
 	import { token } from '../../../stores/auth';
 	import { notificationStore } from '../../../stores/notification';
-	import Dropdown from '$lib/components/layouts/Dropdown.svelte';
 	import RoleViewModal from '$lib/components/members/RoleViewModal.svelte';
 	import MemberInfoSection from '$lib/components/members/MemberInfoSection.svelte';
 

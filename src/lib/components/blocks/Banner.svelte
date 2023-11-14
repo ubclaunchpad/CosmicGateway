@@ -7,21 +7,21 @@
 	export let type = 0;
 </script>
 
-<div class="wrapper">
+<div class="w-full ">
 	{#each Array(type) as _}
 		<div />
 	{/each}
-	<div class="welcome">
-		<div class="title">
+	<div class="flex flex-col justify-start items-start w-full h-full gap-4 rounded shadow-sm p-4 border border-gray-200 bg-gray-100">
+		<div class="flex flex-row gap-4 items-center">
 			<h3>{title}</h3>
 		</div>
 		<p>
 			{description}
 		</p>
-		<div class="refs">
+		<div class="flex flex-1 h-full flex-col w-full items-end justify-end gap-4">
 			{#each links as link}
-				<a href={link.link} target="_blank">
-					<p>{link.text}</p>
+				<a href={link.link} target="_blank" class="flex flex-row justify-between items-center bg-transparent gap-2 py-1 px-0 border-b border-gray-300 transition-all duration-200 ease-in-out transform hover:scale-105">
+					<p class="text-sm font-medium text-gray-800">{link.text}</p>
 					<Icon>
 						<ArrowRightIcon />
 					</Icon>
@@ -30,95 +30,3 @@
 		</div>
 	</div>
 </div>
-
-<style lang="scss">
-	.wrapper {
-		width: 100%;
-		flex: 0;
-		height: 100%;
-	}
-	.welcome {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		width: 100%;
-		height: 100%;
-		gap: 1rem;
-		border-radius: var(--border-radius-medium);
-		box-shadow: var(--box-shadow-small);
-		padding: 1rem;
-		.refs {
-			display: flex;
-			flex: 1;
-			height: 100%;
-			flex-direction: column;
-			width: 100%;
-			align-items: flex-end;
-			justify-content: flex-end;
-			row-gap: 1rem;
-
-			a {
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
-				background-color: transparent;
-				column-gap: 0.5rem;
-				padding: 0 0 0.3rem;
-				text-decoration: none;
-				border-bottom: 1px solid var(--color-text-0);
-				transition: all 0.2s ease-in-out;
-				&:hover {
-					transform: scale(1.05);
-				}
-
-				p {
-					font-size: 0.8rem;
-					font-weight: 500;
-					color: var(--color-text-0);
-				}
-			}
-		}
-
-		&:nth-child(1) {
-			background: linear-gradient(
-				to bottom right,
-				var(--color-bg-primary-faded),
-				var(--color-bg-primary)
-			);
-		}
-
-		&:nth-child(2) {
-			background: linear-gradient(
-				to top right,
-				var(--color-bg-secondary-faded),
-				var(--color-bg-secondary)
-			);
-		}
-
-		&:nth-child(3) {
-			background: linear-gradient(
-				to top right,
-				var(--color-bg-tertiary-faded),
-				var(--color-bg-tertiary)
-			);
-		}
-
-		> p {
-			// max-width: 750px;
-			padding: 1rem;
-			font-size: 1rem;
-			font-weight: 500;
-			color: var(--color-text-0);
-			z-index: 2;
-		}
-
-		.title {
-			display: flex;
-			flex-direction: row;
-			column-gap: 10px;
-			align-items: center;
-		}
-	}
-</style>
