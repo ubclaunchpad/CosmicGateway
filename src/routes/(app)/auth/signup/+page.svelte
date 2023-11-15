@@ -128,11 +128,11 @@
 <PageForm>
 	<SectionForm>
 		<div slot="header">
-			<h2>Sign up</h2>
+			<h2 class="text-2xl font-bold">Sign up</h2>
 		</div>
 
 		<Banner
-			title="Portal is in testing phase"
+			title="Portal is in development"
 			description="Sign up is limited to only certain users. If you are testing the portal message one of the admins to get access."
 			links={[]}
 		/>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import './variables.scss';
-	import './styles.scss';
+	// import './variables.scss';
+	// import './styles.scss';
 </script>
 
 <div class="page">

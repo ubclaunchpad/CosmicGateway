@@ -16,10 +16,9 @@
 		width: 100%;
 		height: 100svh;
 		overflow: hidden;
-		background: var(--color-bg-0);
 		padding: 0;
-
 		.page {
+
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-start;
