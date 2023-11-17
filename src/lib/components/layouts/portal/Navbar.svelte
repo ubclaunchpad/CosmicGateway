@@ -130,6 +130,7 @@
 			align-items: center;
 			width: 100%;
 			transition: all 0.3s ease-in-out;
+			list-style-type: none;
 
 			.nav-li-group {
 				padding: 0.7rem 0.6rem;
