@@ -108,7 +108,7 @@
 	</div>
 </MainPage>
 
-{#if shownUser != null}
+<!-- {#if shownUser != null}
 	<MemberViewModal
 		on:modalevent={() => {
 			shownUser = null;
@@ -116,7 +116,7 @@
 		isOpen={shownUser != null}
 		referenceUser={shownUser}
 	/>
-{/if}
+{/if} -->
 
 <style lang="scss">
 	.header {
