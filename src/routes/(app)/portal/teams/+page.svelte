@@ -18,28 +18,30 @@
 	};
 </script>
 
-<div class="teamsList">
-	<h1>Teams</h1>
-	<ul>
-		{#each teams as team}
-			<li>
-				<a href="/portal/teams/{team}" class="teamItem">
-					<div class="teamLabel">
-						<div class="labelContent">
-							<p class="teamName">{team}</p>
-							<p class="lastEdited">last edited 2 minutes ago</p>
+<MainPage>
+	<div slot="main" class="teamsList">
+		<h1 class="px-6 text-2xl">Teams</h1>
+		<ul>
+			{#each teams as team}
+				<li>
+					<a href="/portal/teams/{team}" class="teamItem">
+						<div class="teamLabel">
+							<div class="labelContent">
+								<p class="teamName">{team}</p>
+								<p class="lastEdited">last edited 2 minutes ago</p>
+							</div>
+							<div class="arrowIcon">
+								<Icon>
+									<ArrowRightIcon />
+								</Icon>
+							</div>
 						</div>
-						<div class="arrowIcon">
-							<Icon>
-								<ArrowRightIcon />
-							</Icon>
-						</div>
-					</div>
-				</a>
-			</li>
-		{/each}
-	</ul>
-</div>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
+</MainPage>
 
 <style lang="scss">
 	.teamItem {
