@@ -32,5 +32,5 @@
 	<main class={"flex-1 flex flex-col justify-between items-start overflow-hidden"}>
 		<slot />
 	</main>
-</div>
+	</div>
 </div>
