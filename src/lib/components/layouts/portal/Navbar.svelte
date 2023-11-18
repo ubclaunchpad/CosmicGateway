@@ -7,6 +7,7 @@
 	let links = [
 		{ url: '/portal', icon: HomeIcon, text: 'Dashboard' },
 		{ url: '/portal/members', icon: UsersIcon, text: 'Members' },
+		{ url: '/portal/teams', icon: UsersIcon, text: 'Teams' },
 		{ url: '/portal/resources', icon: ResourcesIcon, text: 'Resources' },
 		{ url: '/portal/account', icon: SettingsIcon, text: 'Settings' }
 		// Add more links as needed

@@ -43,7 +43,7 @@
 
 <style lang="scss">
 	.teamItem {
-		display: block; /* To allow the entire area to be clickable */
+		display: block;
 		width: 301px;
 		height: 361px;
 		background-color: rgb(234, 234, 234);
@@ -53,7 +53,7 @@
 		cursor: pointer;
 		transition: background-color 0.3s;
 		text-align: left;
-		position: relative; /* Since we used to have position: relative on the li */
+		position: relative;
 		margin: 26.5px;
 
 		&:hover {
@@ -93,7 +93,6 @@
 	}
 
 	.arrowIcon {
-		// use a proper arrow icon here
 		font-size: 1.2em;
 		color: black;
 		fill: black;
