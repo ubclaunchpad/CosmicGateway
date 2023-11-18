@@ -1,12 +1,12 @@
 <script>
 	import Icon from '$lib/components/general/Icon.svelte';
-	import { HomeIcon, UsersIcon, BookClosedIcon, SettingsIcon } from '$lib/components/general/icons';
+	import { HomeIcon, UsersIcon, SettingsIcon, ResourcesIcon } from '$lib/components/general/icons';
+	import logo from '$lib/assets/logo.png';
 	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
 	import { signout } from '../../../../stores/auth';
 	import { createEventDispatcher } from 'svelte';
 	import { DOCS_LINK } from '$lib/util/links';
 	import { userScopes } from '../../../../stores/scopes';
-	import ArchiveIcon from '$lib/components/general/icons/ArchiveIcon.svelte';
 	const dispatch = createEventDispatcher();
 	function triggerNavEffect() {
 		dispatch('navigate', {});
@@ -16,8 +16,12 @@
 
 <div class="navigation-panel">
 	<nav>
+		<div class="navigation-panel-header">
+			<img src={logo} alt="logo" width="24px" />
+			Launch Pad Hub
+		</div>
 		<ul>
-			<li>
+			<li class="nav-li">
 				<a href="/portal" on:click={triggerNavEffect}>
 					<Icon>
 						<HomeIcon />
@@ -25,7 +29,7 @@
 					Dashboard
 				</a>
 			</li>
-			<li>
+			<li class="nav-li">
 				<a href="/portal/members" on:click={triggerNavEffect}>
 					<Icon>
 						<UsersIcon />
@@ -33,63 +37,42 @@
 					Members
 				</a>
 			</li>
-		</ul>
-	</nav>
-
-	<nav>
-		<ul>
-			<li>
-				<a href={DOCS_LINK} target="_blank" on:click={triggerNavEffect}>
+			<li class="nav-li-group">
+				<div class="nav-li-group-title">
 					<Icon>
-						<BookClosedIcon />
+						<ResourcesIcon />
 					</Icon>
-
-					<p>Docs</p>
-					<Icon>
-						<ExternalLinkIcon />
-					</Icon>
-				</a>
-			</li>
-			<li>
-				<a href="/projects" target="_blank" on:click={triggerNavEffect}>
-					<Icon>
-						<ArchiveIcon />
-					</Icon>
-
-					<p>Projects</p>
-					<Icon>
-						<ExternalLinkIcon />
-					</Icon>
-				</a>
-			</li>
-		</ul>
-	</nav>
-
-	<div class="bottom">
-		<button on:click={signout}>Sign out</button>
-		<nav>
-			<ul>
-				{#if scopes.has('admin:read') || scopes.has('admin:write')}
-					<li>
-						<a href="/portal/admin" on:click={triggerNavEffect}>
+					Resources
+				</div>
+				<ul class="nav-li-group-ul">
+					<li class="nav-li">
+						<a href={DOCS_LINK} target="_blank" on:click={triggerNavEffect}>		
+							<p>Documentation</p>
 							<Icon>
-								<SettingsIcon />
+								<ExternalLinkIcon />
 							</Icon>
-							<p>Admin</p>
 						</a>
 					</li>
-				{/if}
-				<li>
-					<a href="/portal/account" on:click={triggerNavEffect}>
-						<Icon>
-							<SettingsIcon />
-						</Icon>
-						<p>Settings</p>
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
+					<li class="nav-li">
+						<a href="/projects" target="_blank" on:click={triggerNavEffect}>		
+							<p>Projects</p>
+							<Icon>
+								<ExternalLinkIcon />
+							</Icon>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="nav-li">
+				<a href="/portal/account" on:click={triggerNavEffect}>
+					<Icon>
+						<SettingsIcon />
+					</Icon>
+					<p>Settings</p>
+				</a>
+			</li>
+		</ul>
+	</nav>
 </div>
 
 <style lang="scss">
@@ -102,6 +85,16 @@
 		flex-direction: column;
 		justify-content: flex-start;
 		color: var(--color-text-1);
+
+		&-header {
+			display: flex;
+			align-items: center;
+			gap: 0.7rem;
+			font-size: 1.15rem;
+			margin-bottom: 1rem;
+			font-weight: bold;
+			padding: 0.5rem 0.4rem;
+		}
 	}
 	.bottom {
 		display: flex;
@@ -128,11 +121,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		border-top: 1px solid var(--color-border-0);
-
-		&:last-child {
-			border-bottom: 1px solid var(--color-border-0);
-		}
 		ul {
 			border-bottom: 1px solid var(--color-bg-1);
 			display: flex;
@@ -142,16 +130,43 @@
 			align-items: center;
 			width: 100%;
 			transition: all 0.3s ease-in-out;
+			list-style-type: none;
 
-			li {
+			.nav-li-group {
+				padding: 0.7rem 0.6rem;
+				width: 100%;
+				border-radius: 10px;
+
+
+				&-title {
+					margin-bottom: 0.8rem;
+					font-size: 0.8rem;
+					display: flex;
+					stroke: black;
+					color: var(--color-text-1);
+					// stroke-width: 2px;
+					column-gap: 1rem;
+				}
+
+				&-ul {
+					row-gap: 0rem;
+
+					li {
+						padding: 0.25rem;
+						margin-left: 1rem;
+					}
+				}
+			}
+
+			.nav-li {
 				padding: 0.7rem 0.6rem;
 				width: 100%;
 				border-radius: 10px;
 				display: flex;
 				transition: all 0.2s ease-in-out;
-				stroke: var(--color-text-0);
-				color: var(--color-text);
-				stroke-width: 2px;
+				stroke: black;
+				color: var(--color-text-1);
+				// stroke-width: 2px;
 				justify-content: center;
 				align-items: center;
 
@@ -164,7 +179,7 @@
 					display: flex;
 					justify-content: flex-start;
 					align-items: center;
-					column-gap: 0.8rem;
+					column-gap: 1rem;
 					font-size: 0.8rem;
 					width: 100%;
 					font-weight: 500;
@@ -175,7 +190,7 @@
 					}
 				}
 				&:hover {
-					background-color: var(--color-bg-2);
+					background-color: rgb(247, 245, 249);
 				}
 			}
 		}
