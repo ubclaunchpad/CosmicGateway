@@ -37,6 +37,14 @@
 					Members
 				</a>
 			</li>
+			<li class="nav-li">
+				<a href="/portal/teams" on:click={triggerNavEffect}>
+					<Icon>
+						<UsersIcon />
+					</Icon>
+					Teams
+				</a>
+			</li>
 			<li class="nav-li-group">
 				<div class="nav-li-group-title">
 					<Icon>
@@ -46,7 +54,7 @@
 				</div>
 				<ul class="nav-li-group-ul">
 					<li class="nav-li">
-						<a href={DOCS_LINK} target="_blank" on:click={triggerNavEffect}>		
+						<a href={DOCS_LINK} target="_blank" on:click={triggerNavEffect}>
 							<p>Documentation</p>
 							<Icon>
 								<ExternalLinkIcon />
@@ -54,7 +62,7 @@
 						</a>
 					</li>
 					<li class="nav-li">
-						<a href="/projects" target="_blank" on:click={triggerNavEffect}>		
+						<a href="/projects" target="_blank" on:click={triggerNavEffect}>
 							<p>Projects</p>
 							<Icon>
 								<ExternalLinkIcon />
@@ -136,7 +144,6 @@
 				padding: 0.7rem 0.6rem;
 				width: 100%;
 				border-radius: 10px;
-
 
 				&-title {
 					margin-bottom: 0.8rem;
