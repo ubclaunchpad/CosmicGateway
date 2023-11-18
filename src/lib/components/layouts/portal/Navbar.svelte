@@ -144,7 +144,7 @@
 					display: flex;
 					stroke: black;
 					color: var(--color-text-1);
-					stroke-width: 2px;
+					// stroke-width: 2px;
 					column-gap: 1rem;
 				}
 
@@ -166,7 +166,7 @@
 				transition: all 0.2s ease-in-out;
 				stroke: black;
 				color: var(--color-text-1);
-				stroke-width: 2px;
+				// stroke-width: 2px;
 				justify-content: center;
 				align-items: center;
 
@@ -190,7 +190,7 @@
 					}
 				}
 				&:hover {
-					background-color: var(--color-bg-2);
+					background-color: rgb(247, 245, 249);
 				}
 			}
 		}
