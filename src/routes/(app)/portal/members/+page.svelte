@@ -37,70 +37,73 @@
 	};
 </script>
 
-  <MainPage>
-	<div slot="main" class=" flex flex-col gap-6  ">
-	  <div class="flex justify-between items-center w-full h-full ">
-		<h1 class="text-3xl pb-1">Members</h1>
-		
+<MainPage>
+	<div slot="main" class=" flex flex-col gap-6">
+		<div class="flex justify-between items-center w-full h-full">
+			<h1 class="text-3xl pb-1">Members</h1>
+		</div>
 
-	  </div>
+		<input
+			type="text"
+			placeholder="Search members"
+			class="border border-gray-200 bg-gray-100 h-10 px-5 pr-16 rounded-md text-sm focus:outline-none"
+		/>
 
-	  <input type="text" placeholder="Search members" class="border border-gray-200 bg-gray-100 h-10 px-5 pr-16 rounded-md text-sm focus:outline-none " />
+		<div
+			class="flex justify-start w-full overflow-scroll overflow-y-auto rounded border-gray-200 border"
+		>
+			{#if querying}
+				<Loader height={'100%'} width={'100%'} />
+			{:else}
+				<table
+					class="w-full text-left border-collapse table-auto divide-y divide-gray-200 overflow-scroll"
+				>
+					<thead class="">
+						<tr>
+							<th />
+							{#each Object.keys(users[0]) as key}
+								{#if userFieldVisibilityMapper(key)}
+									<th class="px-3 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+										>{userFieldLabelMapper(key)}</th
+									>
+								{/if}
+							{/each}
+						</tr>
+					</thead>
 
-  
-	  <div class="flex justify-start w-full overflow-scroll overflow-y-auto rounded border-gray-200 border ">
-		{#if querying}
-		  <Loader height={'100%'} width={'100%'} />
-		{:else}
-		  <table class="w-full text-left border-collapse table-auto  divide-y divide-gray-200 overflow-scroll">
-			<thead class="">
-			  <tr>
-				<th />
-				{#each Object.keys(users[0]) as key}
-				  {#if userFieldVisibilityMapper(key)}
-					<th class="px-3 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">{userFieldLabelMapper(key)}</th>
-				  {/if}
-				{/each}
-			  </tr>
-			</thead>
-	  
-			<tbody class=" divide-y divide-gray-200">
-			  {#each users as user}
-				<tr>
-				  <td>
-					{#if scopes.has('admin:read')}
-					  <button
-						on:click={() => {
-						  showUser(user);
-						}}
-					  >
-						<Icon>
-						  <ExpandIcon />
-						</Icon>
-					  </button>
-					{/if}
-				  </td>
-				  {#each Object.entries(user) as [key, value]}
-					{#if userFieldVisibilityMapper(key)}
-					  <td class="px-6 py-4 whitespace-nowrap">
-						{userFieldMapper(key, value)}
-					  </td>
-					{/if}
-				  {/each}
-				</tr>
-			  {/each}
-			</tbody>
-		  </table>
-		{/if}
-	  </div>
-
+					<tbody class=" divide-y divide-gray-200">
+						{#each users as user}
+							<tr>
+								<td>
+									{#if scopes.has('admin:read')}
+										<button
+											on:click={() => {
+												showUser(user);
+											}}
+										>
+											<Icon>
+												<ExpandIcon />
+											</Icon>
+										</button>
+									{/if}
+								</td>
+								{#each Object.entries(user) as [key, value]}
+									{#if userFieldVisibilityMapper(key)}
+										<td class="px-6 py-4 whitespace-nowrap">
+											{userFieldMapper(key, value)}
+										</td>
+									{/if}
+								{/each}
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			{/if}
+		</div>
 	</div>
+</MainPage>
 
-
-
-  </MainPage>
-  
-  <!-- {#if shownUser != null}
+<!-- {#if shownUser != null}
 	<MemberViewModal
 	  on:modalevent={() => {
 		shownUser = null;

@@ -21,8 +21,16 @@
 			<p>Currently only allow Google sign in. We will add more ways to sign in soon.</p>
 		</Info>
 		<div class="flex flex-col items-center justify-center space-y-8 w-full h-full p-4">
-			<a href="./auth/signin" class="w-60 text-center py-2 bg-gray-100 rounded text-black font-semibold transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">Sign in</a>
-			<a href="./auth/signup" class="w-60 text-center py-2 bg-gray-100 rounded text-black font-semibold transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">Sign up</a>
+			<a
+				href="./auth/signin"
+				class="w-60 text-center py-2 bg-gray-100 rounded text-black font-semibold transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"
+				>Sign in</a
+			>
+			<a
+				href="./auth/signup"
+				class="w-60 text-center py-2 bg-gray-100 rounded text-black font-semibold transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"
+				>Sign up</a
+			>
 		</div>
 		<Info>
 			<p>

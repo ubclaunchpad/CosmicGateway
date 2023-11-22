@@ -19,21 +19,15 @@
 <div class="for-you">
 	<h1 class="header-text">&#x1F44B; Welcome back {name}</h1>
 	<Info>
-		<div class="placeholder">
-			Slack Integration
-		</div>
+		<div class="placeholder">Slack Integration</div>
 	</Info>
 
 	<div class="row">
 		<Info>
-			<div class="placeholder">
-				TODO
-			</div>
+			<div class="placeholder">TODO</div>
 		</Info>
 		<Info>
-			<div class="placeholder">
-				Calendar
-			</div>
+			<div class="placeholder">Calendar</div>
 		</Info>
 	</div>
 </div>
@@ -59,7 +53,7 @@
 	}
 
 	.placeholder {
-			height: 8rem;
+		height: 8rem;
 	}
 	.for-you {
 		display: flex;

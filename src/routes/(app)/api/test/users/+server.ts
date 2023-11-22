@@ -64,22 +64,22 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  },
-			  {
+			},
+			{
 				id: 881709496070406146,
 				first_name: 'John',
 				last_name: 'Doe',
@@ -89,22 +89,22 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  },
-			  {
+			},
+			{
 				id: 881709496070406146,
 				first_name: 'John',
 				last_name: 'Doe',
@@ -114,22 +114,22 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  },
-			  {
+			},
+			{
 				id: 881709496070406145,
 				first_name: 'Mike',
 				last_name: 'Roberts',
@@ -189,22 +189,22 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  },
-			  {
+			},
+			{
 				id: 881709496070406146,
 				first_name: 'John',
 				last_name: 'Doe',
@@ -214,22 +214,22 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  },
-			  {
+			},
+			{
 				id: 881709496070406146,
 				first_name: 'John',
 				last_name: 'Doe',
@@ -239,22 +239,22 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  },
-			  {
+			},
+			{
 				id: 881709496070406146,
 				first_name: 'John',
 				last_name: 'Doe',
@@ -264,23 +264,22 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  }
-			  ,
-			  {
+			},
+			{
 				id: 881709496070406146,
 				first_name: 'John',
 				last_name: 'Doe',
@@ -290,22 +289,21 @@ export const GET = async () => {
 				updated_at: '2023-09-29T21:03:16.349Z',
 				resume_link: 'www.example.com',
 				faculty: {
-				  id: 881038255263285249,
-				  label: 'Science'
+					id: 881038255263285249,
+					label: 'Science'
 				},
 				standing: {
-				  id: 881038255380070401,
-				  label: '4th year'
+					id: 881038255380070401,
+					label: '4th year'
 				},
 				specialization: {
-				  id: 881038255685632001,
-				  label: 'CPSC'
+					id: 881038255685632001,
+					label: 'CPSC'
 				},
 				roles: [],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003'
-			  }
-			
+			}
 		]
 	};
 

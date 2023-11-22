@@ -48,6 +48,7 @@
 		}
 	});
 </script>
+
 <PageForm>
 	<SectionForm>
 		<div slot="header">
@@ -63,11 +64,13 @@
 			<Info>
 				<p>Currently only allow Google sign in. We will add more ways to sign in soon.</p>
 			</Info>
-			<div class="flex flex-col gap-4 w-full h-full ">
-				
-
+			<div class="flex flex-col gap-4 w-full h-full">
 				<div class="flex items-center justify-center w-full border-b border-gray-300">
-					<button class="flex items-center justify-center w-full p-2 text-gray-800 text-sm font-medium cursor-pointer transition-all duration-200 ease-in-out" id="googleBtn" type="button">
+					<button
+						class="flex items-center justify-center w-full p-2 text-gray-800 text-sm font-medium cursor-pointer transition-all duration-200 ease-in-out"
+						id="googleBtn"
+						type="button"
+					>
 						<div id={'signinDiv'} />
 					</button>
 				</div>

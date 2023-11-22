@@ -1,10 +1,7 @@
 export const load = ({ params }) => {
-  const id = params.id
+	const id = params.id;
 
-
-
-
-  return {
-    id: id
-  }
-}
+	return {
+		id: id
+	};
+};
