@@ -179,7 +179,9 @@ module.exports = {
   
       },
       bg: {
-        100: "F7F5F9"
+        50: "#FFFFFF",
+        100: "#F7F5F9",
+        200: "#F7F5F9"
       },
       gray: {
         100: "#F7F5F9",

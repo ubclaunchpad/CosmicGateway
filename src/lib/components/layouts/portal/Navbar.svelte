@@ -2,204 +2,113 @@
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { HomeIcon, UsersIcon, SettingsIcon, ResourcesIcon } from '$lib/components/general/icons';
 	import logo from '$lib/assets/logo.png';
-	import ExternalLinkIcon from '$lib/components/general/icons/ExternalLinkIcon.svelte';
 	import { signout } from '../../../../stores/auth';
 	import { createEventDispatcher } from 'svelte';
 	import { DOCS_LINK } from '$lib/util/links';
-	import { userScopes } from '../../../../stores/scopes';
+	import VerticalDotsIcon from '$lib/components/general/icons/VerticalDotsIcon.svelte';
 	const dispatch = createEventDispatcher();
 	function triggerNavEffect() {
 		dispatch('navigate', {});
 	}
-	$: scopes = $userScopes;
+	let dropdownOpen = false;
+
+
+	const links = [
+		{
+			name: 'Dashboard',
+			icon: HomeIcon,
+			link: '/portal',
+		},
+		{
+			name: 'Documentation',
+			icon: ResourcesIcon,
+			link: DOCS_LINK
+		},
+		{
+			name: 'Members',
+			icon: UsersIcon,
+			link: '/portal/members',
+		},
+		{
+			name: 'Teams',
+			icon: UsersIcon,
+			link: '/portal/teams',
+		},
+		{
+			name: 'Settings',
+			icon: SettingsIcon,
+			link: '/portal/account',
+		
+		}
+	]
 </script>
 
-<div class="navigation-panel">
-	<nav>
-		<div class="navigation-panel-header">
-			<img src={logo} alt="logo" width="24px" />
-			Launch Pad Hub
+<div class="h-full pt-14 flex flex-col">
+	<nav class="flex flex-col gap-4 justify-start items-center h-full transition-all duration-300 flex-1">
+	  <div class="flex items-center gap-2 text-lg mb-4 font-bold  w-full px-3">
+		<img src={logo} alt="logo" width="24px" />
+		Launch Pad
+	  </div>
+	  <ul class=" flex flex-col gap-4 justify-start items-center w-full transition-all h-full duration-300 px-4">
+		{#each links as link }
+		<li class="p-2 w-full rounded flex justify-center items-center transition-all duration-200 hover:bg-gray-100">
+
+			<a href={link.link} on:click={triggerNavEffect} class="flex items-center gap-2 w-full">
+				<Icon>
+					<svelte:component this={link.icon} />
+				</Icon>
+				{link.name}
+			</li>
+			{/each}
+	  </ul>
+	  <div class="flex flex-row justify-between items-center w-full border-t border-gray-200 p-2">
+		<ul class="flex justify-start  items-center flex-grow">
+			<li>
+				<div class="relative inline-block text-left">
+					<div>
+					  <button
+					   type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-2 py-1 text-sm font-semibold text-gray-900  " >
+						<div class="circle-icon p-0 m-0 h-0 bg-gray-200 "></div>
+					  </button>
+					</div>
+				  
+				  </div>
+			</li>
+			
+		</ul>	
+
+		<div class="relative inline-block text-left ">
+		<div>
+
+
+		<button class="flex items-center gap-2 "  id="menu-button" aria-expanded="true" aria-haspopup="true" on:click={() => dropdownOpen = !dropdownOpen}>
+			<VerticalDotsIcon />
+
+		</button>
 		</div>
-		<ul>
-			<li class="nav-li">
-				<a href="/portal" on:click={triggerNavEffect}>
-					<Icon>
-						<HomeIcon />
-					</Icon>
-					Dashboard
-				</a>
-			</li>
-			<li class="nav-li">
-				<a href="/portal/members" on:click={triggerNavEffect}>
-					<Icon>
-						<UsersIcon />
-					</Icon>
-					Members
-				</a>
-			</li>
-			<li class="nav-li">
-				<a href="/portal/teams" on:click={triggerNavEffect}>
-					<Icon>
-						<UsersIcon />
-					</Icon>
-					Teams
-				</a>
-			</li>
-			<li class="nav-li-group">
-				<div class="nav-li-group-title">
-					<Icon>
-						<ResourcesIcon />
-					</Icon>
-					Resources
-				</div>
-				<ul class="nav-li-group-ul">
-					<li class="nav-li">
-						<a href={DOCS_LINK} target="_blank" on:click={triggerNavEffect}>
-							<p>Documentation</p>
-							<Icon>
-								<ExternalLinkIcon />
-							</Icon>
-						</a>
-					</li>
-					<li class="nav-li">
-						<a href="/projects" target="_blank" on:click={triggerNavEffect}>
-							<p>Projects</p>
-							<Icon>
-								<ExternalLinkIcon />
-							</Icon>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li class="nav-li">
-				<a href="/portal/account" on:click={triggerNavEffect}>
-					<Icon>
-						<SettingsIcon />
-					</Icon>
-					<p>Settings</p>
-				</a>
-			</li>
-		</ul>
+
+		{#if dropdownOpen}
+		<div class="absolute right-0 bottom-full mb-2 w-40 origin-bottom-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+			<div class="py-1" role="none">
+				<a href="/profile" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">View Profile</a>
+			</div>
+			<div class="py-1" role="none">
+				<button class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6" on:click={() => signout()}>Sign out</button>
+			</div>
+		</div>
+	{/if}
+		
+	</div>
+	  </div>
 	</nav>
-</div>
+  </div>
+
 
 <style lang="scss">
-	.navigation-panel {
-		top: 0;
-		left: 0;
-		height: 100%;
-		padding: 10px;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		color: var(--color-text-1);
+    .circle-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
 
-		&-header {
-			display: flex;
-			align-items: center;
-			gap: 0.7rem;
-			font-size: 1.15rem;
-			margin-bottom: 1rem;
-			font-weight: bold;
-			padding: 0.5rem 0.4rem;
-		}
-	}
-	.bottom {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		flex: 1;
-		row-gap: 1rem;
-
-		button {
-			background-color: var(--color-bg-1);
-			color: var(--color-text-1);
-			border: 1px solid var(--color-border-1);
-			border-radius: var(--border-radius-medium);
-			padding: 0.5rem 1rem;
-			&:hover {
-				background-color: var(--color-bg-2);
-			}
-		}
-	}
-
-	nav {
-		padding: 0.5rem 0;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		ul {
-			border-bottom: 1px solid var(--color-bg-1);
-			display: flex;
-			flex-direction: column;
-			row-gap: 1rem;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			transition: all 0.3s ease-in-out;
-			list-style-type: none;
-
-			.nav-li-group {
-				padding: 0.7rem 0.6rem;
-				width: 100%;
-				border-radius: 10px;
-
-				&-title {
-					margin-bottom: 0.8rem;
-					font-size: 0.8rem;
-					display: flex;
-					stroke: black;
-					color: var(--color-text-1);
-					// stroke-width: 2px;
-					column-gap: 1rem;
-				}
-
-				&-ul {
-					row-gap: 0rem;
-
-					li {
-						padding: 0.25rem;
-						margin-left: 1rem;
-					}
-				}
-			}
-
-			.nav-li {
-				padding: 0.7rem 0.6rem;
-				width: 100%;
-				border-radius: 10px;
-				display: flex;
-				transition: all 0.2s ease-in-out;
-				stroke: black;
-				color: var(--color-text-1);
-				// stroke-width: 2px;
-				justify-content: center;
-				align-items: center;
-
-				:global(svg) {
-					width: 18px;
-					height: 18px;
-				}
-				a {
-					text-decoration: none;
-					display: flex;
-					justify-content: flex-start;
-					align-items: center;
-					column-gap: 1rem;
-					font-size: 0.8rem;
-					width: 100%;
-					font-weight: 500;
-					color: var(--color-text-1);
-
-					p {
-						flex: 1;
-					}
-				}
-				&:hover {
-					background-color: rgb(247, 245, 249);
-				}
-			}
-		}
-	}
 </style>

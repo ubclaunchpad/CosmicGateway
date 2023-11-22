@@ -129,6 +129,10 @@ export const userFieldVisibilityMapper = <K extends keyof IUser>(key: K): boolea
 	switch (key) {
 		case 'created_at':
 		case 'updated_at':
+		case 'username':
+		case 'resume_link':
+		case 'first_name':
+		case 'roles':
 		case 'id':
 			return false;
 		default:

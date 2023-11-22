@@ -18,18 +18,19 @@
 	const collapseNav = () => {
 		if (!collapse) collapse = true;
 	};
+
+
 </script>
 
 <div id="page" class="flex flex-col justify-start items-start overflow-hidden h-screen">
-	<TopNavBar />
+	<!-- <TopNavBar /> -->
+	
     <div class="flex flex-row w-full h-full">
-	<aside class="relative w-56 h-full bg-100 z-10 border-r-2 border-r-gray-200">
-		<div class={`content flex-1 w-60 max-w-full transition-all duration-${transitionDuration}`}>
-			<Navbar on:navigate={collapseNav} />
-		</div>
+	<aside class="relative w-56 h-full bg-100 z-10">
+		<Navbar on:navigate={collapseNav} />
 	</aside>
 
-	<main class={"flex-1 flex flex-col justify-between items-start overflow-hidden"}>
+	<main class={"flex-1 flex flex-col justify-between items-start overflow-scroll h-full bg-bg-100 "}>
 		<slot />
 	</main>
 	</div>
