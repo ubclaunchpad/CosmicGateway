@@ -1,43 +1,83 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Info from '$lib/components/blocks/Info.svelte';
-	import SectionForm from '$lib/components/layouts/SectionForm.svelte';
-	import { userStore } from '../../../stores/auth';
+	import logo from '$lib/assets/logo.png';
+	import { fetchUser, userStore } from '../../../stores/auth';
 	import { goto } from '$app/navigation';
-	import PageForm from '$lib/components/layouts/PageForm.svelte';
+	import { notificationStore } from '../../../stores/notification';
+	import MakerLaunchIcon from '$lib/components/general/icons/MakerLaunchIcon.svelte';
+
+	async function verifyGoogleLogin(request: { credential: string }): Promise<void> {
+		try {
+			await fetchUser(request.credential);
+			goto('/portal');
+		} catch (e) {
+			notificationStore.set({
+				title: 'Cannot sign in',
+				message: (e as Error).message,
+				type: 'error'
+			});
+			console.log(e);
+		}
+	}
+
 	onMount(async () => {
 		if ($userStore !== undefined) {
 			goto('/portal');
 		}
+
+		if (google) {
+			google.accounts.id.initialize({
+				client_id: '1008030581052-4p078no9tkl28689oakraltpk3clju2r.apps.googleusercontent.com',
+				ux_mode: 'popup',
+				callback: verifyGoogleLogin
+			});
+
+			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
+			console.log(googleAuthBtn);
+			if (googleAuthBtn) {
+				google.accounts.id.renderButton(googleAuthBtn, {
+					width: 300,
+					theme: 'outline',
+					type: 'standard',
+					text: 'continue_with',
+					shape: 'square'
+				});
+				google.accounts.id.prompt();
+			}
+		}
 	});
 </script>
 
-<PageForm>
-	<SectionForm>
-		<div slot="header" class="text-2xl font-bold">
-			<h2>UBC Launch Pad Portal</h2>
+<div class="h-screen flex flex-col">
+	<header class="flex items-center">
+		<img src={logo} alt="Logo" class="h-8 w-8 mr-2" />
+		<span class="font-semibold text-xl tracking-tight">Launch Pad Hub</span>
+	</header>
+	<div class="flex flex-1">
+		<div class="flex-1 flex justify-center items-center">
+			<div class="flex flex-col gap-6 w-full max-w-md p-4">
+				<h1 class="font-bold text-3xl">Sign in</h1>
+
+				<div class="flex items-center flex-grow">
+					<button
+						class="flex w-full text-gray-800 text-sm font-medium cursor-pointer transition-all duration-200 ease-in-out"
+						id="googleBtn"
+						type="button"
+					>
+						<div id={'signinDiv'} />
+					</button>
+				</div>
+
+				<div>
+					Don't have an account yet?
+					<a href="/auth/signup">
+						<strong><u>Sign up</u></strong>
+					</a>
+				</div>
+			</div>
 		</div>
-		<Info>
-			<p>Currently only allow Google sign in. We will add more ways to sign in soon.</p>
-		</Info>
-		<div class="flex flex-col items-center justify-center space-y-8 w-full h-full p-4">
-			<a
-				href="./auth/signin"
-				class="w-60 text-center py-2 bg-gray-100 rounded text-black font-semibold transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"
-				>Sign in</a
-			>
-			<a
-				href="./auth/signup"
-				class="w-60 text-center py-2 bg-gray-100 rounded text-black font-semibold transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"
-				>Sign up</a
-			>
+		<div class="flex-1 sm:flex justify-center items-center pr-16 sm:pr-32 hidden">
+			<MakerLaunchIcon />
 		</div>
-		<Info>
-			<p>
-				Having issues? <span>
-					<a href="mailto:strategy@ubclaunchpad.com" class="hover:underline">email us</a>
-				</span>
-			</p>
-		</Info>
-	</SectionForm>
-</PageForm>
+	</div>
+</div>
