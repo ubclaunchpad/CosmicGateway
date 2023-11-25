@@ -4,54 +4,53 @@ export const GET = async () => {
 	const obj: { teams: any[] } = {
 		teams: [
 			{
-				name: "🪐 Cosmic Gateway",
+				name: '🪐 Cosmic Gateway',
 				year: 2023,
-				color: "#937CAA",
-				status: "in progress"
+				color: '#937CAA',
+				status: 'in progress'
 			},
 			{
-				name: "🍏 Nom Appetite",
+				name: '🍏 Nom Appetite',
 				year: 2023,
-				color: "#A5C77A",
-				status: "in progress"
+				color: '#A5C77A',
+				status: 'in progress'
 			},
 			{
-				name: " 📄 ClassSync",
+				name: ' 📄 ClassSync',
 				year: 2023,
-				color: "#DBC8B2",
-				status: "in progress"
+				color: '#DBC8B2',
+				status: 'in progress'
 			},
 			{
-				name: "🔵 BlueNav",
+				name: '🔵 BlueNav',
 				year: 2023,
-				color: "#0865D8",
-				status: "in progress"
+				color: '#0865D8',
+				status: 'in progress'
 			},
 			{
-				name: "🍣 Team5",
+				name: '🍣 Team5',
 				year: 2023,
-				color: "#F3747B",
-				status: "in progress"
+				color: '#F3747B',
+				status: 'in progress'
 			},
 			{
-				name: "🧋 Team6",
+				name: '🧋 Team6',
 				year: 2023,
-				color: "#C9995F",
-				status: "in progress"
+				color: '#C9995F',
+				status: 'in progress'
 			},
 			{
-				name: "🍣 Team7",
+				name: '🍣 Team7',
 				year: 2023,
-				color: "#809CFF",
-				status: "in progress"
+				color: '#809CFF',
+				status: 'in progress'
 			},
 			{
-				name: "🍣 Team8",
+				name: '🍣 Team8',
 				year: 2023,
-				color: "#3F3356",
-				status: "in progress"
+				color: '#3F3356',
+				status: 'in progress'
 			}
-	
 		]
 	};
 
