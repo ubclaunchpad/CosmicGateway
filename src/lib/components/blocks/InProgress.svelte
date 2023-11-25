@@ -3,29 +3,11 @@
 	export let description: string;
 </script>
 
-<div class="wrapper">
-	<h3>
+<div class="flex flex-col justify-center items-center w-full h-full space-y-4 text-gray-500">
+	<h3 class="text-lg font-bold">
 		{title}
 	</h3>
-	<p>{description}</p>
+	<p class="text-sm">
+		{description}
+	</p>
 </div>
-
-<style>
-	.wrapper {
-		display: flex;
-		width: 100%;
-		height: 100%;
-		flex-direction: column;
-		justify-content: center;
-		flex-wrap: wrap;
-		align-items: center;
-		row-gap: 1rem;
-		color: var(--color-text-2);
-	}
-
-	h3 {
-		display: flex;
-		column-gap: 10px;
-		align-items: center;
-	}
-</style>

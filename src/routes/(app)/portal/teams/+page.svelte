@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import Icon from '$lib/components/general/Icon.svelte';
-	import ArrowRightIcon from '$lib/components/general/icons/ArrowRightIcon.svelte';
+	import TeamIconTemplate from '$lib/components/general/icons/TeamIconTemplate.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import { onMount } from 'svelte';
+	let year = "All";
+	let years = ["All", "2023", "2022", "2021", "2020"]; // temporary
 	let teams: string[] = [];
-
 	export let data;
 
 	onMount(() => {
@@ -13,106 +12,53 @@
 	});
 
 	const fetchTeams = async () => {
-		console.log(data.teams);
 		teams = data.teams;
 	};
+
 </script>
 
 <MainPage>
 	<div slot="main" class="teamsList">
-		<h1 class="px-6 text-2xl">Teams</h1>
-		<ul>
+		<div class="flex justify-between items-center py-3  mb-3">
+			<input type="text" placeholder="Search" class="w-80 rounded-md px-4 py-2" />
+			<button class="bg-primary-500 text-white rounded-lg px-4 py-2">
+				New Team
+			</button>
+			</div>
+
+		<div class="flex justify-between items-center p-3 bg-bg-50 rounded-lg mb-4 border-gray-200 border">
+			<h1 class="text-2xl ">Teams</h1>
+			<div class="flex gap-16 justify-center items-center">
+		
+				{#each years as y}
+				<button class={`rounded-lg px-4 py-2 ${year === y ? 'text-white bg-black' : 'text-black bg-transparent'}`} on:click={() => year = y}>{y}</button>
+				{/each}
+
+			</div>
+			
+		</div>
+		
+		<ul class="gap-8 gap-y-16 flex flex-wrap justify-center items-center pt-10">
 			{#each teams as team}
-				<li>
-					<a href="/portal/teams/{team}" class="teamItem">
-						<div class="teamLabel">
-							<div class="labelContent">
-								<p class="teamName">{team}</p>
-								<p class="lastEdited">last edited 2 minutes ago</p>
-							</div>
-							<div class="arrowIcon">
-								<Icon>
-									<ArrowRightIcon />
-								</Icon>
-							</div>
+				<li class="flex flex-col justify-center items-center bg-bg-50 rounded-lg shadow-sm relative border border-gray-200 pt-32 pb-10 w-64 h-80 ">
+					<div class={`w-36 h-36 rounded-full flex justify-center items-center absolute top-0 transform -translate-x-1/2 -translate-y-1/4 left-1/2 border-2 border-bg-50`} style={`background-color: ${team.color}`}>
+
+							<TeamIconTemplate />
+					
+					</div>
+					<div class="flex gap-2 justify-center items-center w-36 h-36 rounded-full py-2 ">
+						<p class="p-1 px-2 bg-[#1A051D] rounded-full text-sm text-white"
+						>{team.status}</p>
+						<p class="p-1 px-2 bg-[#1a051d8f] rounded-full text-sm text-white">
+							{team.year}</p>
 						</div>
+					<h3>{team.name}</h3>
+					<a href="/portal/teams/{team}" class="bg-primary-500 rounded-lg px-4 py-2 text-white mt-4">
+						View Team
+		
 					</a>
 				</li>
 			{/each}
 		</ul>
 	</div>
 </MainPage>
-
-<style lang="scss">
-	.teamItem {
-		display: block;
-		width: 301px;
-		height: 361px;
-		background-color: rgb(234, 234, 234);
-		padding: 10px 20px;
-		border-radius: 31px;
-		margin-bottom: 0px;
-		cursor: pointer;
-		transition: background-color 0.3s;
-		text-align: left;
-		position: relative;
-		margin: 26.5px;
-
-		&:hover {
-			background-color: var(--color-bg-primary);
-		}
-
-		.teamLabel {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			height: 65px;
-			padding: 0 20px;
-			background-color: rgb(227, 225, 225);
-			border-bottom-left-radius: 31px;
-			border-bottom-right-radius: 31px;
-			box-sizing: border-box;
-		}
-	}
-
-	.labelContent {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.teamName {
-		font-weight: regular;
-		margin: 0;
-	}
-
-	.lastEdited {
-		font-size: 0.8em;
-		margin: 0;
-	}
-
-	.arrowIcon {
-		font-size: 1.2em;
-		color: black;
-		fill: black;
-		stroke: black;
-	}
-
-	h1 {
-		margin-bottom: 0;
-	}
-
-	ul {
-		display: flex;
-		flex-wrap: wrap;
-		list-style: none;
-	}
-
-	.teamsList {
-		width: 100%;
-		overflow-y: auto;
-	}
-</style>
