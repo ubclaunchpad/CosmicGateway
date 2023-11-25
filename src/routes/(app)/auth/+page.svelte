@@ -76,7 +76,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex-1 sm:flex justify-center items-center pr-16 sm:pr-32 hidden">
+		<div class="sm:flex w-full h-full flex-1 justify-center items-center pr-32 hidden">
 			<MakerLaunchIcon />
 		</div>
 	</div>
