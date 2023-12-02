@@ -15,19 +15,21 @@
 </script>
 
 {#if isModalOpen}
-	{#if type === 'side'}
-		<div class="modal-wrapper side" out:fade|global={{ duration: 300, easing: sineOut }}>
+	{#if type === 'side' || true}
+		<div
+			class="modal-wrapper side bg-[#00000033]
+		"
+			out:fade|global={{ duration: 300, easing: sineOut }}
+		>
 			<div
 				in:fly|global={{ x: 400, duration: 400, easing: sineOut }}
 				out:fly|global={{ x: 400, duration: 400, easing: sineOut }}
-				class="modal"
+				class="modal bg-bg-50 border-l-2 border-red-200"
 			>
 				<div class="topbar">
-					<button on:click={sayHello}
-						><Icon>
-							<CloseIcon />
-						</Icon></button
-					>
+					<button on:click={sayHello}>
+						<CloseIcon />
+					</button>
 					<h3>{title}</h3>
 				</div>
 				<slot name="modal-content" />
@@ -64,7 +66,6 @@
 		z-index: 1000;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -88,9 +89,7 @@
 	}
 
 	.modal {
-		background-color: var(--color-bg-1);
 		padding: 0;
-		border-radius: var(--border-radius-small);
 		width: 100%;
 		max-width: 750px;
 		height: 100%;
@@ -99,7 +98,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		box-shadow: var(--box-shadow-sm);
 
 		:global(.modal-content) {
 			flex: 1;
@@ -112,7 +110,6 @@
 			align-items: center;
 			width: 100%;
 			padding: 0.9rem 1rem;
-			border-bottom: 1px solid var(--color-border-1);
 			// background-color: var(--color-bg-primary-faded);
 
 			h3 {
@@ -136,7 +133,6 @@
 			row-gap: 1rem;
 			width: 100%;
 			padding: 1rem 1rem;
-			border-top: 1px solid var(--color-bg-1);
 			align-items: center;
 		}
 	}

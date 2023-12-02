@@ -20,7 +20,7 @@
 		}
 	}
 
-	onMount(async () => {
+	onMount(() => {
 		if ($userStore !== undefined) {
 			goto('/portal');
 		}
@@ -29,14 +29,15 @@
 			google.accounts.id.initialize({
 				client_id: '1008030581052-4p078no9tkl28689oakraltpk3clju2r.apps.googleusercontent.com',
 				ux_mode: 'popup',
-				callback: verifyGoogleLogin
+				callback: verifyGoogleLogin,
+				cancel_on_tap_outside: false,
+				itp_support: true,
+				context: 'signin'
 			});
 
 			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
-			console.log(googleAuthBtn);
 			if (googleAuthBtn) {
 				google.accounts.id.renderButton(googleAuthBtn, {
-					width: 300,
 					theme: 'outline',
 					type: 'standard',
 					text: 'continue_with',
@@ -48,8 +49,8 @@
 	});
 </script>
 
-<div class="h-screen flex flex-col">
-	<header class="flex items-center">
+<div class="h-screen flex flex-col bg-bg-100">
+	<header class="flex items-center p-2">
 		<img src={logo} alt="Logo" class="h-8 w-8 mr-2" />
 		<span class="font-semibold text-xl tracking-tight">Launch Pad Hub</span>
 	</header>
@@ -60,7 +61,7 @@
 
 				<div class="flex items-center flex-grow">
 					<button
-						class="flex w-full text-gray-800 text-sm font-medium cursor-pointer transition-all duration-200 ease-in-out"
+						class="flex w-46 text-gray-800 text-sm font-medium cursor-pointer transition-all duration-200 ease-in-out"
 						id="googleBtn"
 						type="button"
 					>

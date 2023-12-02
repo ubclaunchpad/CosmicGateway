@@ -7,20 +7,20 @@
 	export let type = 0;
 </script>
 
-<div class="w-full">
+<div class="w-full h-full flex flex-col justify-start items-start gap-4">
 	{#each Array(type) as _}
 		<div />
 	{/each}
 	<div
-		class="flex flex-col justify-start items-start w-full h-full gap-4 rounded shadow-sm p-4 border border-gray-200 bg-gray-100"
+		class="flex flex-col justify-start items-start w-full h-full gap-4 rounded-lg p-4 border border-gray-200 bg-bg-50"
 	>
-		<div class="flex flex-row gap-4 items-center">
-			<h3>{title}</h3>
+		<div class="flex flex-row gap-2 items-center">
+			<h3 class="text-md text-gray-800">{title}</h3>
 		</div>
-		<p>
+		<p class="text-gray-500 text-sm">
 			{description}
 		</p>
-		<div class="flex flex-1 h-full flex-col w-full items-end justify-end gap-4">
+		<div class="flex flex-1 h-full flex-col w-full items-end justify-end gap-2">
 			{#each links as link}
 				<a
 					href={link.link}

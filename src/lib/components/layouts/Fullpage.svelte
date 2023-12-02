@@ -24,9 +24,7 @@
 	<!-- <TopNavBar /> -->
 
 	<div class="flex flex-row w-full h-full">
-		<aside class="relative w-56 h-full bg-100 z-10">
-			<Navbar on:navigate={collapseNav} />
-		</aside>
+		<Navbar on:navigate={collapseNav} />
 
 		<main
 			class={'flex-1 flex flex-col justify-between items-start overflow-scroll h-full bg-bg-100 '}
@@ -35,3 +33,17 @@
 		</main>
 	</div>
 </div>
+
+<style lang="scss">
+	:global(body) {
+		-ms-overflow-style: none;
+
+		/* For Firefox */
+		scrollbar-width: none;
+
+		/* For Chrome, Safari, Opera */
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+</style>
