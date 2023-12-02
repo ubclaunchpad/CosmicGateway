@@ -1,169 +1,33 @@
 <script lang="ts">
+	import VerticalDotsIcon from '$lib/components/general/icons/VerticalDotsIcon.svelte';
 	import ProjectStatusIndicator from './ProjectStatusIndicator.svelte';
-	import {
-		FigmaIcon,
-		GithubIcon,
-		LinkIcon,
-		YoutubeIcon,
-		AsterickIcon
-	} from '$lib/components/general/icons';
-	import ProjectModal from '$lib/components/projects/ProjectModal.svelte';
-	export let project;
-	let showProject = false;
-	const resourceIconMapper = {
-		Github: GithubIcon,
-		Figma: FigmaIcon,
-		Link: LinkIcon,
-		Other: AsterickIcon,
-		Website: LinkIcon,
-		Youtube: YoutubeIcon
-	};
+	export let project: any;
 </script>
 
-<div class="project">
-	<div class="project-content">
-		<div class="topbar">
-			<h3>{project.title}</h3>
+<div class="shadow-md h-40 p-8 bg-bg-50 rounded-lg">
+	<div class="flex items-center mb-6 justify-between">
+		<div class="flex gap-8 items-center">
+			<h2 class="text-xl">{project.name}</h2>
 			<ProjectStatusIndicator status={project.status} />
 		</div>
-		<div class="info">
-			<p>{project.description}</p>
-		</div>
 
-		<div class="resources">
-			{#if !project.resources}
-				<p>No resources available</p>
-			{:else}
-				{#each project.resources as resource}
-					<a href={resource.link} target="_blank">
-						<svelte:component this={resourceIconMapper[resource.type]} />
-						<p>{resource.type}</p>
-					</a>
-				{/each}
-			{/if}
+		<button class="flex items-center gap-2">
+			<VerticalDotsIcon />
+		</button>
+	</div>
+	<div class="flex gap-12 text-slate-300 text-sm">
+		<div>
+			<p class="mb-1">Project Manager</p>
+			<div class="bg-slate-300 p-4 rounded-full w-fit"></div>
 		</div>
-		<div class="refs">
-			<!--			<button-->
-			<!--				on:click={() => {-->
-			<!--					showProject = true;-->
-			<!--					console.log('ss');-->
-			<!--				}}-->
-			<!--			>-->
-			<!--				<p>Learn more</p>-->
-			<!--			</button>-->
+		<div>
+			<p class="mb-1">Members</p>
+			<div class="relative">
+				<div class="absolute bg-slate-300 p-4 rounded-full w-fit"></div>
+				<div class="absolute bg-slate-400 p-4 rounded-full w-fit left-4"></div>
+				<div class="absolute bg-slate-500 p-4 rounded-full w-fit left-8"></div>
+			  </div>
+
 		</div>
 	</div>
 </div>
-
-<ProjectModal
-	{project}
-	on:modalevent={(e) => {
-		showProject = false;
-	}}
-	isOpen={showProject}
-/>
-
-<style lang="scss">
-	.project {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		position: relative;
-		height: 15rem;
-		width: 100%;
-		transition: all 0.3s ease-in-out;
-		border-radius: 4px;
-		border: 1px solid var(--color-border-2);
-		background-color: var(--color-bg-2);
-		&:hover {
-			box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
-		}
-		//.banner {
-		//	height: 40%;
-		//	width: 100%;
-		//	position: absolute;
-		//	top: 0;
-		//	left: 0;
-		//	z-index: 3;
-		//	opacity: 0.4;
-		//	//background: linear-gradient(to top right, var(--color-bg-3), var(--color-bg-primary));
-		//}
-
-		.project-content {
-			padding: 1rem 2rem;
-		}
-		h3 {
-			font-size: 0.9rem;
-			font-weight: 600;
-			color: var(--color-text-0);
-			width: fit-content;
-		}
-
-		.topbar {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			width: 100%;
-			row-gap: 10px;
-			padding: 0 0 10px;
-			h3 {
-				font-size: 1rem;
-				font-weight: 600;
-				color: var(--color-text-1);
-				width: fit-content;
-			}
-		}
-
-		.info {
-			p {
-				border-bottom: 1px solid var(--color-bg-1);
-				border-top: 1px solid var(--color-bg-1);
-				display: block; /* or inline-block */
-				text-overflow: ellipsis;
-				word-wrap: break-word;
-				overflow: hidden;
-				height: 6rem;
-				padding: 0.3rem 0;
-				text-overflow: ellipsis;
-				display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 1; /* number of lines to show */
-			}
-		}
-
-		p {
-			font-size: 0.8rem;
-			font-weight: 500;
-			color: var(--color-text-1);
-		}
-
-		.resources {
-			display: flex;
-			flex-direction: row;
-			justify-content: flex-start;
-			align-items: center;
-			flex-wrap: nowrap;
-			overflow-x: scroll;
-			gap: 10px;
-			padding: 10px 0;
-			a {
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				gap: 5px;
-				text-decoration: none;
-				color: var(--color-text-1);
-				font-size: 0.6rem;
-				padding: 0.3rem;
-				border-radius: var(--border-radius-small);
-				border: 1px solid transparent;
-				background-color: var(--color-bg-1);
-				&:hover {
-					border-color: var(--color-border-2);
-				}
-			}
-		}
-	}
-</style>
