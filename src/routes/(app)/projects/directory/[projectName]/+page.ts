@@ -10,5 +10,3 @@ export async function load({ params }: { params: { projectName: string } }) {
 		id
 	};
 }
-
-export const prerender = false;

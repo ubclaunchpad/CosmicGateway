@@ -4,6 +4,7 @@
 <main>
 	<div class="page">
 		<slot />
+		<slot name="sidebar" />
 	</div>
 </main>
 

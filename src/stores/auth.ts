@@ -30,20 +30,37 @@ export interface IUserMeta {
 
 export const userStore = writable<IUserMeta | undefined>(undefined);
 export const fetchUser = async (userToken: string) => {
-	const response = await fetch(`${PUBLIC_USERS_API_URI}/users/me`, {
-		method: 'GET',
-		headers: {
-			Authorization: 'Bearer ' + userToken
+	try {
+		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/me`, {
+			method: 'GET',
+			headers: {
+				Authorization: 'Bearer ' + userToken
+			}
+		});
+		if (response.status === 200) {
+			const user = (await response.json()) as IUserMeta;
+			if (browser) {
+				userStore.set(user);
+				token.set(userToken);
+				// await getRolesAndScopes(user.id);
+			}
 		}
-	});
-	if (response.status === 200) {
-		const user = (await response.json()) as IUserMeta;
-		if (browser) {
-			userStore.set(user);
-			token.set(userToken);
-			await getRolesAndScopes(user.id);
+	} catch (e) {
+		const responseTest = await fetch(`api/test/users/me`, {
+			method: 'GET',
+			headers: {
+				Authorization: 'Bearer ' + userToken
+			}
+		});
+
+		if (responseTest.status === 200) {
+			const user = (await responseTest.json()) as IUserMeta;
+			if (browser) {
+				userStore.set(user);
+				token.set(userToken);
+			}
+		} else {
+			await signout();
 		}
-	} else {
-		throw new Error('Failed to fetch user');
 	}
 };
