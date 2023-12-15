@@ -18,7 +18,7 @@ const config = {
 		}),
 		csp: {
 			directives: {
-				'script-src': ['self', 'https://accounts.google.com/gsi/client']
+				'script-src': ['self', 'https://accounts.google.com/gsi/client', 'embed.typeform.com/next/embed.js']
 			}
 		}
 	},
