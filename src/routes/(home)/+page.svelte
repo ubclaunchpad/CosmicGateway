@@ -34,14 +34,14 @@
 					collaborative and professional environment
 				</span>
 				<button
-						class="apply-btn"
-						data-tf-slider="ICda8O8x"
-						data-tf-position="right"
-						data-tf-opacity="100"
-						data-tf-iframe-props="title=Launch Pad Term 2 Recruitment"
-						data-tf-transitive-search-params
-						data-tf-medium="snippet">
-						We are recruiting! Apply by December 31, 2023
+					class="apply-btn"
+					data-tf-slider="ICda8O8x"
+					data-tf-position="right"
+					data-tf-opacity="100"
+					data-tf-iframe-props="title=Launch Pad Term 2 Recruitment"
+					data-tf-transitive-search-params						
+					data-tf-medium="snippet">
+					We are recruiting! Apply byDecember 31, 2023
 				</button>
 			</div>
 
