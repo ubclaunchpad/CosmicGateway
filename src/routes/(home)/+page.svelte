@@ -17,7 +17,7 @@
 		href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 		rel="stylesheet"
 	/>
-	<!-- <script src="//embed.typeform.com/next/embed.js"></script> -->
+	<script src="//embed.typeform.com/next/embed.js"></script>
 </svelte:head>
 
 <div class="page">
@@ -33,16 +33,16 @@
 					A student-run software engineering team devoted to building software projects in a
 					collaborative and professional environment
 				</span>
-				<!-- <button
-					class="apply-btn"
-					data-tf-slider="K0jsdGu4"
-					data-tf-position="right"
-					data-tf-opacity="100"
-					data-tf-iframe-props="title=Launch Pad Recruitment"
-					data-tf-transitive-search-params
-					data-tf-medium="snippet"
-					>We are recruiting! Apply by September 8, 2023
-				</button> -->
+				<button
+						class="apply-btn"
+						data-tf-slider="ICda8O8x"
+						data-tf-position="right"
+						data-tf-opacity="100"
+						data-tf-iframe-props="title=Launch Pad Term 2 Recruitment"
+						data-tf-transitive-search-params
+						data-tf-medium="snippet">
+						We are recruiting! Apply by December 31, 2023
+				</button>
 			</div>
 
 			<div class="hero">
