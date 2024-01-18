@@ -78,7 +78,7 @@
 			});
 
 			if (response.ok) {
-				await goto('/portal');
+				await goto('/');
 			} else {
 				const body = await response.json();
 				notificationStore.update(() => {

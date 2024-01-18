@@ -1,8 +1,8 @@
 <script>
-	import '../styles.scss';
-	import '../markdown.scss';
-	import Notification from '$lib/components/general/Notification.svelte';
+	import Fullpage from '$lib/components/layouts/Fullpage.svelte';
+	import './styles.scss';
 </script>
 
-<slot />
-<Notification />
+<Fullpage>
+	<slot />
+</Fullpage>

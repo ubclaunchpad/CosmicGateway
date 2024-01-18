@@ -1,6 +1,6 @@
 import { PUBLIC_USERS_API_URI } from '$env/static/public';
 import { error, type Load } from '@sveltejs/kit';
-import { token } from '../../../../stores/auth';
+import { token } from '../../../stores/auth';
 
 export const load: Load = async () => {
 	let userToken;

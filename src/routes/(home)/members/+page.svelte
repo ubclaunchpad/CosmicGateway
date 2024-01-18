@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { userScopes } from '../../../../stores/scopes';
+	import { userScopes } from '../../../stores/scopes';
 	let querying = true;
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
@@ -18,7 +18,7 @@
 		userFieldLabelMapper,
 		userFieldVisibilityMapper
 	} from '$lib/types/User';
-	import { token } from '../../../../stores/auth';
+	import { token } from '../../../stores/auth';
 	import MemberViewModal from '$lib/components/members/MemberViewModal.svelte';
 	let users: IUser[] = [];
 	let shownUser: IUser | null = null;
