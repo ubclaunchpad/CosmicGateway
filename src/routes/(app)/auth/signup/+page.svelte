@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
-	import jwt_decode from 'jwt-decode';
+	import { jwtDecode } from 'jwt-decode';
 	import { onMount } from 'svelte';
 	import type { GoogleAuthUser } from '$lib/types/googleAuth.js';
 	import logo from '$lib/assets/logo.png';
@@ -33,7 +33,7 @@
 	};
 
 	function verifyGoogleLogin(request: { credential: string }): void {
-		googleAuthUser = jwt_decode(request.credential) as GoogleAuthUser;
+		googleAuthUser = jwtDecode(request.credential) as GoogleAuthUser;
 		firstName = googleAuthUser.given_name;
 		lastName = googleAuthUser.family_name;
 		prefName = googleAuthUser.given_name;
@@ -43,7 +43,7 @@
 
 	function fillOutFields() {
 		if ($token) {
-			googleAuthUser = jwt_decode($token) as GoogleAuthUser;
+			googleAuthUser = jwtDecode($token) as GoogleAuthUser;
 			firstName = googleAuthUser.given_name;
 			lastName = googleAuthUser.family_name;
 			prefName = googleAuthUser.given_name;

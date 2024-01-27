@@ -33,5 +33,6 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"jwt-decode": "^4.0.0"
 	}
 }
