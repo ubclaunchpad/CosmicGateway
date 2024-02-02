@@ -11,7 +11,7 @@
 	async function verifyGoogleLogin(request: { credential: string }): Promise<void> {
 		try {
 			await fetchUser(request.credential);
-			goto('/portal');
+			goto('/');
 		} catch (e) {
 			notificationStore.set({
 				title: 'Cannot sign in',
@@ -24,7 +24,7 @@
 
 	onMount(async () => {
 		if ($userStore !== undefined) {
-			goto('/portal');
+			goto('/');
 		}
 		if (google) {
 			google.accounts.id.initialize({

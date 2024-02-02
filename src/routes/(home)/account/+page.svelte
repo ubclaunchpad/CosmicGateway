@@ -4,7 +4,7 @@
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import ProfileView from '$lib/components/portal/profile/ProfileView.svelte';
 	import { STRATEGY_EMAIL } from '$lib/util/links';
-	import { userStore, signout, token } from '../../../../stores/auth';
+	import { userStore, signout, token } from '../../../stores/auth';
 	import { getUserInfo, type IUser } from '$lib/types/User';
 	import { onMount } from 'svelte';
 	import { fetcher } from '$lib/util/fetcher';
