@@ -16,7 +16,7 @@
 		{
 			name: 'Dashboard',
 			icon: HomeIcon,
-			link: '/portal'
+			link: '/'
 		},
 		{
 			name: 'Documentation',
@@ -26,22 +26,22 @@
 		{
 			name: 'Members',
 			icon: UsersIcon,
-			link: '/portal/members'
+			link: '/members'
 		},
 		{
 			name: 'Teams',
 			icon: UsersIcon,
-			link: '/portal/teams'
+			link: '/teams'
 		},
 		{
 			name: 'Settings',
 			icon: SettingsIcon,
-			link: '/portal/account'
+			link: '/account'
 		},
 		{
 			name: 'Admin',
 			icon: SettingsIcon,
-			link: '/portal/admin'
+			link: '/admin'
 		}
 	];
 
