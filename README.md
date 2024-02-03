@@ -1,6 +1,6 @@
 # Launch Pad's Cosmic-Gateway
 
-Cosmic-Gateway is Launch pad's central clien-facing codebase. It serves as the club's landing website, docs/resources, and new internal user portal for members and recruitment.
+Cosmic-Gateway is Launch pad's central client-facing codebase. It serves as the club's landing website, docs/resources, and new internal user portal for members and recruitment.
 
 ## Features
 
