@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store';
 import { PUBLIC_USERS_API_URI } from '$env/static/public';
 import type { IRole } from '$lib/types/User';
+import { writable } from 'svelte/store';
 
 export const userRoles = writable<IRole[]>([]);
 export const userScopes = writable<Set<string>>(new Set());

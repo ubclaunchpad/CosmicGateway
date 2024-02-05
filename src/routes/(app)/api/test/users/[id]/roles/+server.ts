@@ -1,4 +1,4 @@
-import type { IDict, IRole } from '$lib/types/User';
+import type { IRole } from '$lib/types/User';
 import { json } from '@sveltejs/kit';
 
 export const GET = async () => {

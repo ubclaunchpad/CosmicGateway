@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
-	import Info from '$lib/components/blocks/Info.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import ProfileView from '$lib/components/portal/profile/ProfileView.svelte';
 	import { STRATEGY_EMAIL } from '$lib/util/links';
@@ -9,10 +8,25 @@
 	import { onMount } from 'svelte';
 	import { fetcher } from '$lib/util/fetcher';
 	import Loader from '$lib/components/blocks/Loader.svelte';
+	import { sidePanel } from '../../../stores/sidepanel';
+
 	let isOnEdit = false;
 	let updating = false;
 	let updateProfile: () => Promise<void>;
 	let user: IUser;
+
+	$: {
+		if (user) {
+			sidePanel.set({
+				component: ProfileView,
+				props: { referenceUser: user, id: user.id, editView: isOnEdit, bind: updateProfile },
+				open: true
+			});
+		} else {
+			sidePanel.set({ component: null, props: {}, open: true });
+		}
+	}
+
 	onMount(() => {
 		if ($userStore && 'id' in $userStore) {
 			getUserInfo($userStore.id).then((res) => {
@@ -68,35 +82,7 @@
 			<Loader width={'100%'} height={'100%'} />
 		{:else}
 			<div class="account-group">
-				<section class="account-section profile">
-					<div class="header">
-						<h2>Profile</h2>
-						<div class="buttons">
-							{#if isOnEdit}
-								<button
-									on:click={() => {
-										isOnEdit = false;
-									}}>Cancel</button
-								>
-								<button
-									on:click={() => {
-										modifyProfile();
-									}}>Save</button
-								>
-							{:else}
-								<button
-									on:click={() => {
-										isOnEdit = true;
-									}}>Edit</button
-								>
-							{/if}
-						</div>
-					</div>
-
-					{#if user}
-						<ProfileView referenceUser={user} id={user.id} editView={isOnEdit} bind:updateProfile />
-					{/if}
-				</section>
+				<section class="account-section profile"></section>
 
 				<section class="account-section integration">
 					<h2 />
@@ -111,7 +97,7 @@
 					<!--					</section>-->
 				</section>
 
-				<section class="account-section account">
+				<!-- <section class="account-section account">
 					<h2>Account</h2>
 
 					<section class="section-content">
@@ -130,7 +116,7 @@
 							</div>
 						</form>
 					</section>
-				</section>
+				</section> -->
 			</div>
 		{/if}
 	</div>

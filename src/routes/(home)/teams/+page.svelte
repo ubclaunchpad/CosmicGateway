@@ -57,10 +57,7 @@
 						</p>
 					</div>
 					<h3>{team.name}</h3>
-					<a
-						href="/teams/{team}"
-						class="bg-primary-500 rounded-lg px-4 py-2 text-white mt-4"
-					>
+					<a href="/teams/{team}" class="bg-primary-500 rounded-lg px-4 py-2 text-white mt-4">
 						View Team
 					</a>
 				</li>
