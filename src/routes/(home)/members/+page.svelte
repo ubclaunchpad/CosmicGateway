@@ -1,26 +1,15 @@
 <script lang="ts">
 	import { userScopes } from '../../../stores/scopes';
 	let querying = true;
-	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import Icon from '$lib/components/general/Icon.svelte';
-	import {
-		ExpandIcon,
-		FilterIcon,
-		OrderIcon,
-		VerticalDotsIcon
-	} from '$lib/components/general/icons';
+	import { SearchIcon } from '$lib/components/general/icons';
 	import Loader from '$lib/components/blocks/Loader.svelte';
-	import {
-		userFieldMapper,
-		type IUser,
-		userFieldLabelMapper,
-		userFieldVisibilityMapper
-	} from '$lib/types/User';
-	import { token } from '../../../stores/auth';
-	import MemberViewModal from '$lib/components/members/MemberViewModal.svelte';
+	import { userFieldMapper, type IUser, userFieldLabelMapper } from '$lib/types/User';
+	import DataTable from '$lib/components/members/DataTable.svelte';
+	import type { Column } from '$lib/types/Column';
 	let users: IUser[] = [];
+	let columns: Column[] = [];
 	let shownUser: IUser | null = null;
 	$: scopes = $userScopes;
 	export let data;
@@ -28,12 +17,39 @@
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
-		users = data.users;
+		users = data.users
+			.map((user: IUser) => {
+				return { full_name: user.first_name + ' ' + user.last_name, ...user };
+			})
+			.slice(0, 8);
 		querying = false;
+
+		columns = [
+			{
+				field: 'full_name',
+				header: userFieldLabelMapper('full_name' as keyof IUser)
+			},
+			{
+				field: 'roles',
+				header: userFieldLabelMapper('roles' as keyof IUser)
+			},
+			{
+				field: 'teams',
+				header: userFieldLabelMapper('teams' as keyof IUser)
+			},
+			{
+				field: 'email',
+				header: userFieldLabelMapper('email' as keyof IUser)
+			}
+		];
 	};
 
-	const showUser = (user: IUser) => {
-		shownUser = user;
+	const getUserField = (key: string, value: string) => {
+		return userFieldMapper(key as keyof IUser, value);
+	};
+
+	const handleRowClicked = (e: CustomEvent) => {
+		console.log(e.detail.data);
 	};
 </script>
 
@@ -43,72 +59,40 @@
 			<h1 class="text-3xl pb-1">Members</h1>
 		</div>
 
-		<input
-			type="text"
-			placeholder="Search members"
-			class="border border-gray-200 bg-gray-100 h-10 px-5 pr-16 rounded-md text-sm focus:outline-none"
-		/>
+		<div class="relative">
+			<SearchIcon
+				color="#401A051D"
+				customClasses="absolute top-1/2 transform -translate-y-1/2 left-3"
+			/>
+			<input
+				type="text"
+				placeholder="Search members"
+				class="w-full pl-10 py-2 px-4 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500"
+			/>
+		</div>
+
+		<div class="flex justify-between">
+			<div>
+				{users.length} recommended results
+			</div>
+			<div class="flex gap-20">
+				<div>Sort</div>
+				<div>Filter</div>
+			</div>
+		</div>
 
 		<div
-			class="flex justify-start w-full overflow-scroll overflow-y-auto rounded border-gray-200 border"
+			class="flex flex-col items-center justify-start gap-5 w-full overflow-scroll overflow-y-auto overflow-x-visible rounded-md drop-shadow-lg border-gray-200 border border-solid"
 		>
 			{#if querying}
 				<Loader height={'100%'} width={'100%'} />
 			{:else}
-				<table
-					class="w-full text-left border-collapse table-auto divide-y divide-gray-200 overflow-scroll"
-				>
-					<thead class="">
-						<tr>
-							<th />
-							{#each Object.keys(users[0]) as key}
-								{#if userFieldVisibilityMapper(key)}
-									<th class="px-3 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
-										>{userFieldLabelMapper(key)}</th
-									>
-								{/if}
-							{/each}
-						</tr>
-					</thead>
-
-					<tbody class=" divide-y divide-gray-200">
-						{#each users as user}
-							<tr>
-								<td>
-									{#if scopes.has('admin:read')}
-										<button
-											on:click={() => {
-												showUser(user);
-											}}
-										>
-											<Icon>
-												<ExpandIcon />
-											</Icon>
-										</button>
-									{/if}
-								</td>
-								{#each Object.entries(user) as [key, value]}
-									{#if userFieldVisibilityMapper(key)}
-										<td class="px-6 py-4 whitespace-nowrap">
-											{userFieldMapper(key, value)}
-										</td>
-									{/if}
-								{/each}
-							</tr>
-						{/each}
-					</tbody>
-				</table>
+				<DataTable data={users} {columns} let:prop={data} on:rowClicked={handleRowClicked}>
+					<div>
+						{getUserField(data.column.field, data.row[data.column.field])}
+					</div>
+				</DataTable>
 			{/if}
 		</div>
 	</div>
 </MainPage>
-
-<!-- {#if shownUser != null}
-	<MemberViewModal
-	  on:modalevent={() => {
-		shownUser = null;
-	  }}
-	  isOpen={shownUser != null}
-	  referenceUser={shownUser}
-	/>
-  {/if} -->

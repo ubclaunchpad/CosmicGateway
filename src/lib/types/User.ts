@@ -7,6 +7,7 @@ export interface IUser {
 	id: number;
 	first_name: string;
 	last_name: string;
+	full_name?: string;
 	pref_name: string;
 	resume_link?: string;
 	email: string;
@@ -18,6 +19,7 @@ export interface IUser {
 	created_at: string;
 	updated_at: string;
 	member_since: string | undefined;
+	teams?: any[];
 }
 
 export interface IRole extends IDict<string> {
@@ -120,6 +122,8 @@ export const userFieldMapper = <K extends keyof IUser>(key: K, value: IUser[K]):
 			return (value as { label: string }).label;
 		case 'roles':
 			return (value as IRole[]).map((role: { label: string }) => role.label).join(', ');
+		case 'teams':
+			return (value as any[]).map((team: { name: string }) => team.name).join(', ');
 		default:
 			return value as string;
 	}
@@ -132,8 +136,13 @@ export const userFieldVisibilityMapper = <K extends keyof IUser>(key: K): boolea
 		case 'username':
 		case 'resume_link':
 		case 'first_name':
-		case 'roles':
 		case 'id':
+		case 'last_name':
+		case 'pref_name':
+		case 'specialization':
+		case 'faculty':
+		case 'standing':
+		case 'member_since':
 			return false;
 		default:
 			return true;
@@ -164,7 +173,9 @@ export const userFieldLabelMapper = <K extends keyof IUser>(key: K): string => {
 			return 'Last Name';
 		case 'roles':
 			return 'Roles';
+		case 'full_name':
+			return 'Full Name';
 		default:
-			return key as string;
+			return key.charAt(0).toUpperCase() + key.slice(1);
 	}
 };

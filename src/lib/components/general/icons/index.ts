@@ -56,6 +56,7 @@ import CircledDoodle from './doodles/CircledDoodle.svelte';
 import FilterIcon from './FilterIcon.svelte';
 import StarFilledIcon from './decorative/StarFilledIcon.svelte';
 import ResourcesIcon from './ResourcesIcon.svelte';
+import SearchIcon from './SearchIcon.svelte';
 
 export {
 	HomeIcon,
@@ -115,5 +116,6 @@ export {
 	ApplicationsIcon,
 	FilterIcon,
 	StarFilledIcon,
-	ResourcesIcon
+	ResourcesIcon,
+	SearchIcon,
 };
