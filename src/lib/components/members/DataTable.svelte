@@ -16,12 +16,11 @@
 </script>
 
 <div class="overflow-x-auto w-full">
-	<table class="table table-pin-rows table-zebra bg-white">
+	<table class="table table-pin-rows">
 		<thead>
 			<tr>
 				{#each columns as column}
-					<th
-						class="border-b border-gray-200 border-solid py-3 px-4 text-xl text-gray-500 font-normal"
+					<th class="border-b border-gray-200 border-solid py-3 px-4 text-xl text-black font-medium"
 						>{column.header}</th
 					>
 				{/each}
@@ -29,7 +28,10 @@
 		</thead>
 		<tbody>
 			{#each data as row}
-				<tr class="hover hover:cursor-pointer" on:click={() => handleClick(row)}>
+				<tr
+					class="bg-[#E9E9E9] hover:cursor-pointer hover:bg-[#3F3356] hover:text-white"
+					on:click={() => handleClick(row)}
+				>
 					{#each columns as column}
 						<td class="w-1/4 border-b border-gray-200 border-solid py-4 px-4 whitespace-nowrap">
 							<slot prop={{ row, column }} />

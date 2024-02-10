@@ -82,7 +82,7 @@
 		</div>
 
 		<div
-			class="flex flex-col items-center justify-start gap-5 w-full overflow-scroll overflow-y-auto overflow-x-visible rounded-md drop-shadow-lg border-gray-200 border border-solid"
+			class="flex flex-col items-center justify-start gap-5 w-full overflow-scroll overflow-y-auto overflow-x-visible rounded-md border-gray-200 border border-solid"
 		>
 			{#if !users || users.length === 0}
 				<Loader height={'100%'} width={'100%'} />
