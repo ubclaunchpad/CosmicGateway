@@ -56,7 +56,6 @@ import VerticalDotsIcon from './VerticalDotsIcon.svelte';
 import YoutubeIcon from './YoutubeIcon.svelte';
 import SortIcon from './SortIcon.svelte';
 import StarFilledIcon from './decorative/StarFilledIcon.svelte';
-import SearchIcon from './SearchIcon.svelte';
 import CircledDoodle from './doodles/CircledDoodle.svelte';
 import SearchIcon from './SearchIcon.svelte';
 
@@ -113,13 +112,12 @@ export {
 	SaveIcon,
 	SettingsIcon,
 	SquareIcon,
-	SortIcon,
-	SearchIcon,
-	StarFilledIcon,
 	StarIcon,
 	UsersIcon,
 	VerticalDotsIcon,
 	YoutubeIcon,
+	SortIcon,
+	StarFilledIcon,
 	ResourcesIcon,
 	SearchIcon,
 };
