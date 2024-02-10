@@ -30,7 +30,7 @@
 			{#each data as row}
 				<div class="py-2 px-4 first:mt-2 last:mb-6">
 					<tr
-						class="flex rounded-md bg-[#E9E9E9] hover:cursor-pointer hover:bg-[#3F3356] hover:text-white"
+						class="flex rounded-md bg-[#E9E9E9] text-[#454545] hover:cursor-pointer hover:bg-[#3F3356] hover:text-white"
 						on:click={() => handleClick(row)}
 					>
 						{#each columns as column}
