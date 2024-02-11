@@ -1,4 +1,4 @@
-import { token, fetchUser } from '../../../../stores/auth';
+import { fetchUser, token } from '../../../../stores/auth';
 
 export const load = async () => {
 	let userToken;
