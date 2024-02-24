@@ -9,7 +9,7 @@
 
 	const links = [
 		{
-			name: 'Dashboard',
+			name: 'Home',
 			icon: HomeIcon,
 			link: '/'
 		},
@@ -31,7 +31,9 @@
 	];
 </script>
 
-<nav class={`flex flex-col gap-4 justify-start items-center transition-all duration-300  h-fit pb-4`}>
+<nav
+	class={`flex flex-col gap-4 justify-start items-center transition-all duration-300  h-fit pb-4`}
+>
 	<ul class=" flex flex-col gap-4 justify-start items-center w-full transition-all duration-300">
 		{#each links as link}
 			<li class="w-full rounded flex justify-center items-center hover:bg-gray-100 text-sm">
