@@ -1,25 +1,23 @@
-import { PUBLIC_USERS_API_URI } from '$env/static/public';
+import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
 import { error, type Load } from '@sveltejs/kit';
-import { token } from '../../../stores/auth';
+// import { token } from '../../../stores/auth';
 
 export const load: Load = async () => {
-	let userToken;
-	token.subscribe((value) => {
-		userToken = value;
+	// let userToken;
+	// token.subscribe((value) => {
+	// 	userToken = value;
+	// });
+
+	const res = await fetch(`${PUBLIC_TEAMS_API_URI}/teams`, {
+		method: 'GET'
+		// headers: {
+		// 	Authorization: 'Bearer ' + userToken
+		// }
 	});
 
-	const res = await fetch(`${PUBLIC_USERS_API_URI}/teams`, {
-		method: 'GET',
-		headers: {
-			Authorization: 'Bearer ' + userToken
-		}
-	});
-
-	const { teams } = await res.json();
-
+	const teams = await res.json();
 	if (res.ok) {
-		return { teams };
+		return { teams: teams };
 	}
-
 	throw error(404, 'Unable to fetch users');
 };

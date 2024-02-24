@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Info from '$lib/components/blocks/Info.svelte';
-import MainPage from '$lib/components/layouts/MainPage.svelte';
+	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import { onMount } from 'svelte';
 	let teams: string[] = [];
 	export let data;
@@ -17,7 +17,8 @@ import MainPage from '$lib/components/layouts/MainPage.svelte';
 	<div slot="main" class="content flex flex-col gap-6">
 		<Info>
 			<p>
-				This section is under construction. You can navigate to other sections using the navigation bar.
+				This section is under construction. You can navigate to other sections using the navigation
+				bar.
 			</p>
 		</Info>
 	</div>
