@@ -10,12 +10,25 @@
 	import type { Column } from '$lib/types/Column';
 	import { sidePanel } from '../../../stores/sidepanel';
 	import MemberSideView from '$lib/components/members/MemberSideView.svelte';
+	import { userStore } from '../../../stores/auth';
+	import { getUserInfo } from '$lib/types/User';
+	let adminView = false;
 	let users: IUser[] = [];
 	let columns: Column[] = [];
 	let shownUser: IUser | null = null;
 	$: scopes = $userScopes;
 	export let data;
 	onMount(() => {
+		if ($userStore && 'id' in $userStore) {
+			getUserInfo($userStore.id).then((res: IUser) => {
+				res.roles.forEach((role) => {
+					if (role.scopes.includes('admin')) {
+						adminView = true;
+					}
+				});
+			});
+		}
+
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
@@ -51,11 +64,9 @@
 	};
 
 	const handleRowClicked = (e: CustomEvent) => {
-		console.log(e.detail.data);
-
 		sidePanel.set({
 			component: MemberSideView,
-			props: { user: e.detail.data as IUser },
+			props: { user: e.detail.data as IUser, adminView },
 			open: true
 		});
 	};

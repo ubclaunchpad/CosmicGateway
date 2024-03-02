@@ -23,7 +23,11 @@ export const GET = async () => {
 			id: 881038255685632001,
 			label: 'CPSC'
 		},
-		roles: [],
+		roles: [{
+			id: 1,
+			scopes: ['admin'],
+			label: 'admin',
+		}],
 		username: 'lbj',
 		member_since: 'Sept 1, 2003'
 	};

@@ -2,6 +2,7 @@
 	import type { IUser } from '$lib/types/User';
 	import { userFieldMapper } from '$lib/types/User';
 	export let user: IUser;
+	export let adminView: boolean;
 </script>
 
 <div>
@@ -12,7 +13,12 @@
 		<div class="w-40 h-40 bg-gray-200 rounded-md">placeholder</div>
 	</div>
 
-	<h1 class="text-2xl font-bold mb-6">{user.full_name}</h1>
+	<div class="flex justify-between mb-6">
+		<h1 class="text-2xl font-bold">{user.full_name}</h1>
+		{#if adminView}
+			<button class="text-blue-600 underline">Edit</button>
+		{/if}
+	</div>
 
 	<div class="flex flex-col gap-4">
 		<div class="flex flex-col gap-2">
@@ -32,7 +38,12 @@
 		</div>
 
 		<div class="flex flex-col gap-2">
-			<h3 class="text-lg font-semibold">Contact Information</h3>
+			<div class="flex justify-between">
+				<h3 class="text-lg font-semibold">Contact Information</h3>
+				{#if adminView}
+					<button class="text-blue-600 underline">Edit</button>
+				{/if}
+			</div>
 			<div>
 				<span class="font-semibold">Email:</span>
 				{user.email}
@@ -42,7 +53,12 @@
 		<div class="w-full border-b"></div>
 
 		<div class="flex flex-col gap-2">
-			<h3 class="text-lg font-semibold">Student Status</h3>
+			<div class="flex justify-between">
+				<h3 class="text-lg font-semibold">Student Status</h3>
+				{#if adminView}
+					<button class="text-blue-600 underline">Edit</button>
+				{/if}
+			</div>
 			<div class="text-sm">
 				<span class="font-semibold">Faculty:</span>
 				{userFieldMapper('faculty', user.faculty)}
@@ -58,7 +74,12 @@
 		</div>
 
 		<div class="flex flex-col gap-2">
-			<h3 class="text-lg font-semibold">Health Information</h3>
+			<div class="flex justify-between">
+				<h3 class="text-lg font-semibold">Health Information</h3>
+				{#if adminView}
+					<button class="text-blue-600 underline">Edit</button>
+				{/if}
+			</div>
 			<div class="text-sm">
 				<span class="font-semibold">Dietary:</span>
 				N/A
@@ -70,7 +91,7 @@
 		</div>
 
 		<a href="#">
-			<h3 class="text-lg font-semibold underline">Resume Link</h3>
+			<h3 class="text-blue-600 text-lg font-semibold underline">Resume Link</h3>
 		</a>
 	</div>
 </div>
