@@ -8,6 +8,8 @@
 	import { userFieldMapper, type IUser, userFieldLabelMapper } from '$lib/types/User';
 	import DataTable from '$lib/components/members/DataTable.svelte';
 	import type { Column } from '$lib/types/Column';
+	import { sidePanel } from '../../../stores/sidepanel';
+	import MemberSideView from '$lib/components/members/MemberSideView.svelte';
 	let users: IUser[] = [];
 	let columns: Column[] = [];
 	let shownUser: IUser | null = null;
@@ -50,6 +52,12 @@
 
 	const handleRowClicked = (e: CustomEvent) => {
 		console.log(e.detail.data);
+
+		sidePanel.set({
+			component: MemberSideView,
+			props: { user: e.detail.data as IUser },
+			open: true
+		});
 	};
 </script>
 
@@ -62,7 +70,7 @@
 		<div class="relative mb-4">
 			<SearchIcon
 				color="#401A051D"
-				customClasses="absolute top-1/2 transform -translate-y-1/2 left-3"
+				customClasses="w-4 absolute top-1/2 transform -translate-y-1/2 left-3"
 			/>
 			<input
 				type="text"
