@@ -2,7 +2,6 @@ import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
 import type { Load } from '@sveltejs/kit';
 
 export const load: Load = async ({ params }) => {
-
 	if (!params.team) {
 		return {
 			status: 404,

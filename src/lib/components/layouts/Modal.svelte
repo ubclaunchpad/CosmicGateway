@@ -15,7 +15,7 @@
 </script>
 
 {#if isModalOpen}
-	{#if type === 'side' || true}
+	{#if type === 'side'}
 		<div
 			class="modal-wrapper side bg-[#00000033]
 		"

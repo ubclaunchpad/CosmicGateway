@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { modalPanel } from '../../../../stores/modal';
+	import DocModal from '../wiki/docModal.svelte';
+
 	export let documents: {
 		title: string;
 		tags: string[];
@@ -66,6 +69,7 @@
 			update_at: new Date().toISOString()
 		}
 	];
+	let isOpen = false;
 </script>
 
 <div class="flex flex-col gap-6 flex-1">
@@ -74,14 +78,17 @@
 			<h2 class="card-title">Recent Documents</h2>
 			<div class="flex overflow-x-scroll space-x-4 pt-4 w-full">
 				{#each documents as document}
-					<div
+					<button
+						on:click={() => {
+							modalPanel.set({
+								component: DocModal,
+								open: true,
+								props: {}
+							});
+						}}
 						class="flex shadow-sm flex-col bg-neutral-50 rounded-lg border border-base-300 carousel-item h-52 w-52"
 					>
-						<!-- {document.title} -->
-						<!-- {document.tags}
-                        {document.area}
-                        {document.update_at} -->
-					</div>
+					</button>
 				{/each}
 			</div>
 		</div>

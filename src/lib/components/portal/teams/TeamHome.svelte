@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { Team } from '$lib/types/types';
+	import { modalPanel } from '../../../../stores/modal';
 	import LinkRow from './LinkRow.svelte';
 	import TeamAnnouncements from './TeamAnnouncements.svelte';
+	import ModalTest from './modalTest.svelte';
 	export let team: Team;
 </script>
 
@@ -13,6 +15,17 @@
 		</div>
 	</div>
 
+	<button
+		on:click={() => {
+			modalPanel.set({
+				component: ModalTest,
+				open: true,
+				props: {}
+			});
+		}}
+		class="flex shadow-sm flex-col bg-neutral-50 rounded-lg border border-base-300 carousel-item h-52 w-52"
+	>
+	</button>
 	<div class="flex gap-6 flex-1 flex-col xl:flex-row">
 		<TeamAnnouncements {team} />
 	</div>

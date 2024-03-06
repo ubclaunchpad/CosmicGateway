@@ -7,7 +7,6 @@ export const load: Load = async () => {
 	// token.subscribe((value) => {
 	// 	userToken = value;
 	// });
-
 	const res = await fetch(`${PUBLIC_TEAMS_API_URI}/teams`, {
 		method: 'GET'
 		// headers: {

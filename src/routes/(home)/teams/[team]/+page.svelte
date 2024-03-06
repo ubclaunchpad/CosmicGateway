@@ -6,12 +6,18 @@
 	import TeamSettings from '$lib/components/portal/teams/TeamSettings.svelte';
 	import TeamWiki from '$lib/components/portal/teams/TeamWiki.svelte';
 	import type { Team } from '$lib/types/types.js';
+	import { sidePanel } from '../../../../stores/sidepanel.js';
 	export let data;
 	let team = data.team as Team;
+	sidePanel.set({
+		open: false,
+		component: null,
+		props: {}
+	});
 	let tabs = [
 		{ title: 'Dashboard', content: TeamHome, props: { team: team } },
-		// { title: 'Team', content: TeamProjects, props: {} },
-		// { title: 'Wiki', content: TeamWiki, props: {} },
+		{ title: 'Team', content: TeamProjects, props: {} },
+		{ title: 'Wiki', content: TeamWiki, props: {} },
 		{ title: 'Settings', content: TeamSettings, props: { team: team } }
 	];
 </script>

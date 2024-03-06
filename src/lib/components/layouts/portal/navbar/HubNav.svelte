@@ -18,11 +18,11 @@
 			icon: UsersIcon,
 			link: '/members'
 		},
-		{
-			name: 'Teams',
-			icon: UsersIcon,
-			link: '/teams'
-		},
+		// {
+		// 	name: 'Teams',
+		// 	icon: UsersIcon,
+		// 	link: '/teams'
+		// },
 		{
 			name: 'Settings',
 			icon: SettingsIcon,
