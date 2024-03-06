@@ -26,8 +26,7 @@
 				<div class="absolute bg-slate-300 p-4 rounded-full w-fit"></div>
 				<div class="absolute bg-slate-400 p-4 rounded-full w-fit left-4"></div>
 				<div class="absolute bg-slate-500 p-4 rounded-full w-fit left-8"></div>
-			  </div>
-
+			</div>
 		</div>
 	</div>
 </div>

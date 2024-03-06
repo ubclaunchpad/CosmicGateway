@@ -10,6 +10,9 @@
 	};
 </script>
 
-<div class="text-white rounded-3xl w-fit px-4 py-0 h-fit flex items-center text-sm" style="background-color: {statusColourMapper[status]}">
+<div
+	class="text-white rounded-3xl w-fit px-4 py-0 h-fit flex items-center text-sm"
+	style="background-color: {statusColourMapper[status]}"
+>
 	<p>{status}</p>
 </div>

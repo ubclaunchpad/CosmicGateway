@@ -1,69 +1,75 @@
 <script lang="ts">
-	import TeamIconTemplate from '$lib/components/general/icons/TeamIconTemplate.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import { onMount } from 'svelte';
-	let year = 'All';
-	let years = ['All', '2023', '2022', '2021', '2020']; // temporary
-	let teams: string[] = [];
+	import type { Team } from '$lib/types/types.js';
+	import { fade } from 'svelte/transition';
+	import { sidePanel } from '../../../stores/sidepanel.js';
+	import NewTeamPanel from '$lib/components/portal/teams/newTeamPanel.svelte';
+	import Icon from '$lib/components/general/Icon.svelte';
+	import PlusCircle from '$lib/components/general/icons/PlusCircle.svelte';
+	let teams: Team[] = [];
 	export let data;
-
-	onMount(() => {
-		fetchTeams();
+	$: teams = data.teams;
+	sidePanel.set({
+		open: false,
+		component: null,
+		props: {}
 	});
 
-	const fetchTeams = async () => {
-		teams = data.teams;
-	};
+	async function newTeamPanelProvider() {
+		sidePanel.set({
+			open: true,
+			component: NewTeamPanel,
+			props: {}
+		});
+	}
 </script>
 
 <MainPage>
 	<div slot="main" class="teamsList">
-		<div class="flex justify-between items-center py-3 mb-3">
-			<input type="text" placeholder="Search" class="w-80 rounded-md px-4 py-2" />
-			<button class="bg-primary-500 text-white rounded-lg px-4 py-2"> New Team </button>
-		</div>
-
-		<div
-			class="flex justify-between items-center p-3 bg-bg-50 rounded-lg mb-4 border-gray-200 border"
-		>
+		<div class="flex gap-4 items-center p-2">
 			<h1 class="text-2xl">Teams</h1>
-			<div class="flex gap-16 justify-center items-center">
-				{#each years as y}
-					<button
-						class={`rounded-lg px-4 py-2 ${
-							year === y ? 'text-white bg-black' : 'text-black bg-transparent'
-						}`}
-						on:click={() => (year = y)}>{y}</button
-					>
-				{/each}
-			</div>
+			<button class=" btn-circle w-6 h-6 p-0" on:click={newTeamPanelProvider}
+				><Icon width={'100%'}>
+					<PlusCircle />
+				</Icon></button
+			>
 		</div>
-
-		<ul class="gap-8 gap-y-16 flex flex-wrap justify-center items-center pt-10">
+		<ul class="gap-4 flex flex-wrap justify-start items-center pt-10 flex-col">
 			{#each teams as team}
-				<li
-					class="flex flex-col justify-center items-center bg-bg-50 rounded-lg shadow-sm relative border border-gray-200 pt-32 pb-10 w-64 h-80"
+				<a
+					transition:fade|global={{ duration: 300 }}
+					class="card flex bg-base-100 border border-base-200 rounded-md shadow-sm max-h-60 overflow-hidden flex-row w-full"
+					href={`/teams/${team.label}-${team.id}`}
 				>
+					<img src={team.image_link} class="  object-cover flex-1 max-w-xs sm:w-xs" alt="cover" />
 					<div
-						class={`w-36 h-36 rounded-full flex justify-center items-center absolute top-0 transform -translate-x-1/2 -translate-y-1/4 left-1/2 border-2 border-bg-50`}
-						style={`background-color: ${team.color}`}
+						class="card-body z-50 pointer-events-none py-4 justify-start items-start flex flex-col flex-2"
 					>
-						<TeamIconTemplate />
-					</div>
-					<div class="flex gap-2 justify-center items-center w-36 h-36 rounded-full py-2">
-						<p class="p-1 px-2 bg-[#1A051D] rounded-full text-sm text-white">{team.status}</p>
-						<p class="p-1 px-2 bg-[#1a051d8f] rounded-full text-sm text-white">
-							{team.year}
+						<p class="h-10 flex-0">
+							<span class="badge text-sm badge-lg rounded-full">
+								{#if team.meta_data.status}
+									{team.meta_data.status}
+								{:else}
+									No status
+								{/if}
+							</span>
 						</p>
+						<h2 class="card-title">{team.label}</h2>
+
+						<p class="py-2 text-sm overflow-ellipsis w-full flex flex-col flex-1">
+							{team.description}
+						</p>
+						<div class="flex gap-4">
+							{#if team.meta_data.terms}
+								{#each team.meta_data.terms as term}
+									<span class="badge badge-md rounded-full bg-opacity-80">{term}</span>
+								{/each}
+							{:else}
+								<span class="badge badge-md rounded-full bg-opacity-80">No terms</span>
+							{/if}
+						</div>
 					</div>
-					<h3>{team.name}</h3>
-					<a
-						href="/teams/{team}"
-						class="bg-primary-500 rounded-lg px-4 py-2 text-white mt-4"
-					>
-						View Team
-					</a>
-				</li>
+				</a>
 			{/each}
 		</ul>
 	</div>

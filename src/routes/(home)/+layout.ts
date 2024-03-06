@@ -1,7 +1,7 @@
-import { token, fetchUser } from '../../stores/auth';
 import { redirect } from '@sveltejs/kit';
+import { fetchUser, token } from '../../stores/auth';
 
-export const load = async () => {
+export const load = async ({ params }) => {
 	let userToken;
 	token.subscribe((value) => {
 		userToken = value;
