@@ -13,7 +13,7 @@
 
 	async function deleteAnnouncement() {
 		sidePanel.set({ open: false, component: null, props: {} });
-		const res = await fetch(`${PUBLIC_TEAMS_API_URI}/announcements/${announcement.id}`, {
+		const res = await fetch(`${PUBLIC_TEAMS_API_URI}/posts/${announcement.id}`, {
 			method: 'DELETE'
 		});
 
@@ -32,9 +32,9 @@
 		<div
 			transition:slide
 			class={` w-full bg-[#F9F9F9]  flex flex-col rounded-lg border p-0 
-                        ${
-													announcement.level === 'pinned' ? 'border-neutral-300' : 'border-base-200'
-												}
+                  
+													 'border-base-200'
+												
                         `}
 		>
 			<div class="card-body p-3">

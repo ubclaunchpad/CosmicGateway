@@ -14,15 +14,14 @@
 
 	export let team: Team;
 	let announcements: Announcement[] = [];
-	let sideOpen = false;
 	$: sidePanel.set({
-		open: sideOpen,
+		open: false,
 		component: null,
 		props: {}
 	});
 
 	onMount(async () => {
-		const res = await fetch(`${PUBLIC_TEAMS_API_URI}/announcements?teamid=${team.id}`, {});
+		const res = await fetch(`${PUBLIC_TEAMS_API_URI}/posts?teamid=${team.id}`, {});
 		const data = await res.json();
 		announcements = [...data];
 	});
@@ -32,7 +31,7 @@
 	<div class="card w-full bg-base-100 rounded-lg border border-base-200">
 		<div class="card-body">
 			<div class="header flex justify-between items-center">
-				<h2 class="card-title">Announcements</h2>
+				<h2 class="card-title">Posts</h2>
 				<div class="flex gap-4 justify-end"></div>
 			</div>
 
@@ -40,14 +39,13 @@
 				<NewAnnouncement teamid={team.id} />
 				{#each announcements as announcement}
 					<button
-						transition:slide|global
+						transition:slide
 						class={` w-full bg-[#F9F9F9] rounded-lg border p-0 hover:shadow-sm hover:border-base-300
-                        ${announcement.level === 'pinned' ? 'border-neutral-300' : 'border-base-200'}
+                        ${announcement.status === 'pinned' ? 'border-neutral-300' : 'border-base-200'}
                         `}
 						on:click={() => {
-							sideOpen = true;
 							sidePanel.set({
-								open: sideOpen,
+								open: true,
 								component: AnnouncementPanel,
 								props: { announcement: announcement }
 							});
@@ -82,8 +80,13 @@
 							<div class="pl-7">
 								<p class="text-sm w-full items-start text-left">{announcement.contents.body}</p>
 							</div>
-						</div>
-					</button>
+							<div class="  rounded-t-lg flex justify-end gap-3 w-full">
+								<p class="text-sm max-w-fit flex-0">
+									{announcement.author}
+								</p>
+							</div>
+						</div></button
+					>
 				{/each}
 			</div>
 		</div>
