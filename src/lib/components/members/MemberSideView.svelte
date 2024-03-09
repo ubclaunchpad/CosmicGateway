@@ -1,8 +1,19 @@
 <script lang="ts">
 	import type { IUser } from '$lib/types/User';
 	import { userFieldMapper } from '$lib/types/User';
+	import { modalPanel } from '../../../stores/modal';
+	import EditMemberModal from './EditMemberModal.svelte';
+
 	export let user: IUser;
 	export let adminView: boolean;
+
+	const onEdit = (e: Event) => {
+		modalPanel.set({
+			component: EditMemberModal,
+			props: { user: user },
+			open: true
+		});
+	};
 </script>
 
 <div>
@@ -16,7 +27,7 @@
 	<div class="flex justify-between mb-6">
 		<h1 class="text-2xl font-bold">{user.full_name}</h1>
 		{#if adminView}
-			<button class="text-blue-600 underline">Edit</button>
+			<button class="text-blue-600 underline" on:click={onEdit}>Edit</button>
 		{/if}
 	</div>
 
@@ -41,7 +52,7 @@
 			<div class="flex justify-between">
 				<h3 class="text-lg font-semibold">Contact Information</h3>
 				{#if adminView}
-					<button class="text-blue-600 underline">Edit</button>
+					<button class="text-blue-600 underline" on:click={onEdit}>Edit</button>
 				{/if}
 			</div>
 			<div>
@@ -56,7 +67,7 @@
 			<div class="flex justify-between">
 				<h3 class="text-lg font-semibold">Student Status</h3>
 				{#if adminView}
-					<button class="text-blue-600 underline">Edit</button>
+					<button class="text-blue-600 underline" on:click={onEdit}>Edit</button>
 				{/if}
 			</div>
 			<div class="text-sm">
@@ -77,7 +88,7 @@
 			<div class="flex justify-between">
 				<h3 class="text-lg font-semibold">Health Information</h3>
 				{#if adminView}
-					<button class="text-blue-600 underline">Edit</button>
+					<button class="text-blue-600 underline" on:click={onEdit}>Edit</button>
 				{/if}
 			</div>
 			<div class="text-sm">
