@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import Loader from '$lib/components/blocks/Loader.svelte';
 	import {
@@ -27,7 +27,7 @@
 	let hide = false;
 	let changedFields = {};
 	$: if (user && referenceUser) {
-		changedFields = getChangedFields(referenceUser, user);
+		changedFields = {}
 	}
 	$: if (editView) {
 		fetchFormDetails();
@@ -37,20 +37,20 @@
 		user = structuredClone(referenceUser);
 	}
 
-	function getChangedFields(originalRef: IUser, modifiedRef: IUser) {
-		const originalFields: IUserPatchRequest = UserRequestMapper(originalRef);
-		const modifiedFields: IUserPatchRequest = UserRequestMapper(modifiedRef);
-		const changedFields: IUserPatchRequest = {};
+	// function getChangedFields(originalRef: IUser, modifiedRef: IUser) {
+	// 	const originalFields: IUserPatchRequest = UserRequestMapper(originalRef);
+	// 	const modifiedFields: IUserPatchRequest = UserRequestMapper(modifiedRef);
+	// 	const changedFields: IUserPatchRequest = {};
 
-		for (const key in originalFields) {
-			const fieldKey = key as keyof IUserPatchRequest;
-			if (JSON.stringify(originalFields[fieldKey]) !== JSON.stringify(modifiedFields[fieldKey])) {
-				const partialkey = key as keyof IUserPatchRequest;
-				changedFields[partialkey] = modifiedFields[fieldKey];
-			}
-		}
-		return changedFields;
-	}
+	// 	for (const key in originalFields) {
+	// 		const fieldKey = key as keyof IUserPatchRequest;
+	// 		if (JSON.stringify(originalFields[fieldKey]) !== JSON.stringify(modifiedFields[fieldKey])) {
+	// 			const partialkey = key as keyof IUserPatchRequest;
+	// 			changedFields[partialkey] = modifiedFields[fieldKey];
+	// 		}
+	// 	}
+	// 	return changedFields;
+	// }
 
 	async function getRoles() {
 		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${id}/roles`, {
@@ -364,4 +364,7 @@
 			}
 		}
 	}
-</style>
+</style> -->
+
+
+<h1 class="text-3xl pb-1">Profile</h1>

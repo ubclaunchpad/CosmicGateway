@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { HomeIcon, UsersIcon, SettingsIcon } from '$lib/components/general/icons';
+	import GridIcon from '$lib/components/general/icons/GridIcon.svelte';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	function triggerNavEffect() {
@@ -18,11 +19,11 @@
 			icon: UsersIcon,
 			link: '/members'
 		},
-		// {
-		// 	name: 'Teams',
-		// 	icon: UsersIcon,
-		// 	link: '/teams'
-		// },
+		{
+			name: 'Teams',
+			icon: GridIcon,
+			link: '/teams'
+		},
 		{
 			name: 'Settings',
 			icon: SettingsIcon,

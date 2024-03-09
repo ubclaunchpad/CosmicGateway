@@ -15,6 +15,7 @@ export type Team = {
 	meta_data: {
 		[key: string]: any;
 	};
+	team_terms: number[];
 };
 
 export type Announcement = {
@@ -27,24 +28,24 @@ export type Announcement = {
 	created_at: string;
 	updated_at: string;
 	type: AnnouncementType;
-	level: AnnouncementLevel;
+	status: AnnouncementStatus;
 };
 
 export const ANNOUNCEMENT_TYPES = {
 	ANNOUNCEMENT: 'announcement',
 	// DISCUSSION: 'discussion',
-	// POST: 'post',
+	POST: 'post',
 	// POLL: 'poll',
 	UPDATE: 'update',
 	// QUESTION: 'question',
 	EVENT: 'event'
 } as const;
 
-export const ANNOUNCEMENT_LEVELS = {
-	NORMAL: 'normal',
+export const ANNOUNCEMENT_STATUS = {
+	DEFAULT: 'default',
 	PINNED: 'pinned'
 } as const;
 
 type ObjectValues<T> = T[keyof T];
 export type AnnouncementType = ObjectValues<typeof ANNOUNCEMENT_TYPES>;
-export type AnnouncementLevel = ObjectValues<typeof ANNOUNCEMENT_LEVELS>;
+export type AnnouncementStatus = ObjectValues<typeof ANNOUNCEMENT_STATUS>;

@@ -2,11 +2,14 @@
 	import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { PinIcon } from '$lib/components/general/icons';
-	import { ANNOUNCEMENT_LEVELS, ANNOUNCEMENT_TYPES, type Announcement } from '$lib/types/types';
+	import { ANNOUNCEMENT_STATUS, ANNOUNCEMENT_TYPES, type Announcement } from '$lib/types/types';
 	import { slide } from 'svelte/transition';
 	import { sidePanel } from '../../../../stores/sidepanel';
 	import PlusCircle from '$lib/components/general/icons/PlusCircle.svelte';
 	import XIcon from '$lib/components/general/icons/XIcon.svelte';
+	import { fetcher } from '$lib/util/fetcher';
+	import { token } from '../../../../stores/auth';
+	import Button from '$lib/components/general/Button.svelte';
 	let newAnnouncement: Partial<Announcement> | undefined = undefined;
 	export let teamid: number;
 
@@ -27,37 +30,34 @@
 				contents: {
 					body: ''
 				},
-				type: 'announcement',
-				level: 'normal'
+				type: 'post',
+				status: 'default'
 			};
 		}
 	}
 
 	async function postAnnouncement() {
-		const res = await fetch(`${PUBLIC_TEAMS_API_URI}/announcements`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(newAnnouncement)
+		const m = await fetcher({
+			URI: `${PUBLIC_TEAMS_API_URI}/posts`,
+			requestInit: {
+				method: 'POST',
+				body: JSON.stringify(newAnnouncement),
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer  ${$token}`
+				}
+			}
 		});
 
-		const data = await res.json();
-
-		if (res.ok) {
+		if (m.status === 200) {
 			newAnnouncement = undefined;
 		} else {
-			console.error(data);
+			console.error(m.status, m.statusText);
 		}
 	}
 </script>
 
-<div
-	class={`w-full  rounded-lg border border-dashed border-base-200 p-0 hover:shadow-sm hover:border-base-300 ${
-		newAnnouncement ? 'bg-[#fefefe]' : 'bg-[#fefefe]'
-	}
-                        `}
->
+<div class={`w-full  rounded-lg border border-dashed border-base-200 p-0  bg-[#fefefe]`}>
 	<div class={`card-body p-3 gap-2`}>
 		<div class="  rounded-t-lg flex items-center gap-3">
 			{#if newAnnouncement}
@@ -89,8 +89,13 @@
 		{#if newAnnouncement}
 			<div
 				class=" h-fit border border-base-200 rounded-lg overflow-hidden"
-				in:slide|global={{ duration: 300, axis: 'y' }}
+				in:slide={{ duration: 300, axis: 'y' }}
 			>
+				<textarea
+					class="text-sm flex w-full bg-inherit resize-none h-40 rounded-lg p-2"
+					bind:value={newAnnouncement.contents.body}
+				></textarea>
+
 				<div class=" h-fit flex p-2 gap-2 w-full justify-end">
 					<select
 						class="text-sm p-1 flex w-32 border border-base-200 resize-auto max-h-40 rounded-md"
@@ -102,23 +107,16 @@
 					</select>
 					<select
 						class="text-sm p-1 flex w-32 border border-base-200 resize-auto max-h-40 rounded-md"
-						bind:value={newAnnouncement.level}
+						bind:value={newAnnouncement.status}
 					>
-						{#each Object.values(ANNOUNCEMENT_LEVELS) as level}
-							<option class="bg-base-200" value={level}>{level}</option>
+						{#each Object.values(ANNOUNCEMENT_STATUS) as status}
+							<option class="bg-base-200" value={status}>{status}</option>
 						{/each}
 					</select>
 				</div>
-				<textarea
-					class="text-sm flex w-full bg-inherit resize-none h-40 rounded-lg p-2"
-					bind:value={newAnnouncement.contents.body}
-				></textarea>
 			</div>
 			<div class="flex items-center justify-end flex-1 gap-3">
-				<button
-					class="border border-base-200 text-sm px-3 rounded-md shadow-none w-fit"
-					on:click={postAnnouncement}>Post</button
-				>
+				<Button on:click={postAnnouncement}>Post</Button>
 			</div>
 		{/if}
 	</div>

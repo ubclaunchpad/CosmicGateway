@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { userScopes } from '../../../stores/scopes';
 	let querying = true;
-	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
@@ -20,6 +19,7 @@
 	} from '$lib/types/User';
 	import { token } from '../../../stores/auth';
 	import MemberViewModal from '$lib/components/members/MemberViewModal.svelte';
+	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	let users: IUser[] = [];
 	let shownUser: IUser | null = null;
 	$: scopes = $userScopes;
@@ -28,9 +28,18 @@
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
-		users = data.users;
-		querying = false;
+		
+		const res = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
+		method: 'GET',
+		headers: {
+			Authorization: 'Bearer ' + $token
+		}
+	});
+	const data = await res.json();
+	users = data.data;
 	};
+
+	
 
 	const showUser = (user: IUser) => {
 		shownUser = user;
@@ -52,7 +61,7 @@
 		<div
 			class="flex justify-start w-full overflow-scroll overflow-y-auto rounded border-gray-200 border"
 		>
-			{#if querying}
+			{#if !users || users.length === 0}
 				<Loader height={'100%'} width={'100%'} />
 			{:else}
 				<table

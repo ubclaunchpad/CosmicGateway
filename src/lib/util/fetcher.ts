@@ -39,7 +39,7 @@ export async function fetcher<T>(request: IFetchRequest<T>) {
 				};
 				notificationStore.set({ ...notification });
 			}
-			throw new Error(responseInfo.message);
+			return responseInfo;
 		}
 	} catch (e) {
 		console.warn(e);

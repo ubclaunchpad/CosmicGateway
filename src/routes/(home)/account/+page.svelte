@@ -9,28 +9,24 @@
 	import { fetcher } from '$lib/util/fetcher';
 	import Loader from '$lib/components/blocks/Loader.svelte';
 	import { sidePanel } from '../../../stores/sidepanel';
+	import Button from '$lib/components/general/Button.svelte';
 
 	let isOnEdit = false;
 	let updating = false;
 	let updateProfile: () => Promise<void>;
 	let user: IUser;
 
-	$: {
-		if (user) {
-			sidePanel.set({
-				component: ProfileView,
-				props: { referenceUser: user, id: user.id, editView: isOnEdit, bind: updateProfile },
-				open: true
-			});
-		} else {
-			sidePanel.set({ component: null, props: {}, open: true });
-		}
-	}
+	sidePanel.set({ component: null, props: {}, open: true });
 
 	onMount(() => {
 		if ($userStore && 'id' in $userStore) {
 			getUserInfo($userStore.id).then((res) => {
 				user = res;
+				sidePanel.set({
+					component: ProfileView,
+					props: { referenceUser: user, id: user.id, editView: isOnEdit, bind: updateProfile },
+					open: true
+				});
 			});
 		}
 	});
@@ -78,6 +74,9 @@
 <MainPage>
 	<div slot="main" class="content">
 		<h1>Settings</h1>
+		<Button on:click={signout} class="w-1/2">
+			Sign out
+		</Button>
 		{#if updating}
 			<Loader width={'100%'} height={'100%'} />
 		{:else}

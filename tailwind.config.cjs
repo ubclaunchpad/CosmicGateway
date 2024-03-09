@@ -1,4 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+
+const primary = {
+	50: '#EEF0FF',
+	100: '#DDE0FF',
+	200: '#BBC1FF',
+	300: '#98A3FF',
+	400: '#7684FF',
+	500: '#5465FF',
+	600: '#4352D5',
+	700: '#323EAA',
+	800: '#222B80',
+	900: '#111755'
+};
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	presets: [],
@@ -51,7 +64,10 @@ module.exports = {
 		backdropOpacity: ({ theme }) => theme('opacity'),
 		backdropSaturate: ({ theme }) => theme('saturate'),
 		backdropSepia: ({ theme }) => theme('sepia'),
-		backgroundColor: ({ theme }) => theme('colors'),
+		backgroundColor: ({ theme }) => ({
+			...theme('colors'),
+			primary: primary
+		}),
 		backgroundImage: {
 			none: 'none',
 			'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
@@ -93,8 +109,7 @@ module.exports = {
 		},
 		borderColor: ({ theme }) => ({
 			...theme('colors'),
-			DEFAULT: theme('colors.gray.200', 'currentColor'),
-			primary: '#0061fe'
+			primary: primary
 		}),
 		borderOpacity: ({ theme }) => theme('opacity'),
 		borderRadius: {

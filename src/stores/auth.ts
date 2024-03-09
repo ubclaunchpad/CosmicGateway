@@ -5,6 +5,14 @@ import { writable } from 'svelte/store';
 const stored = browser ? localStorage.token : null;
 export const token = writable(stored || null);
 
+
+if (browser) {
+	console.log('stored', stored);
+	if (stored) {
+		token.set(stored);
+	}
+}
+
 export const setLocalToken = (value: string | undefined) => {
 	if (browser) {
 		if (!value) return localStorage.removeItem('token');
@@ -30,6 +38,7 @@ export interface IUserMeta {
 export const userStore = writable<IUserMeta | undefined>(undefined);
 export const fetchUser = async (userToken: string) => {
 	try {
+		token.set(userToken);
 		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/me`, {
 			method: 'GET',
 			headers: {
@@ -41,6 +50,8 @@ export const fetchUser = async (userToken: string) => {
 			if (browser) {
 				userStore.set(user);
 				token.set(userToken);
+				console.log('user', user);
+				console.log('userToken', userToken);
 				// await getRolesAndScopes(user.id);
 			}
 		}
