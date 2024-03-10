@@ -29,32 +29,31 @@
 	}
 </script>
 
-<div class="flex flex-col gap-2 w-full">
+<div class="flex flex-col gap-2 w-full flex-1">
 	<h1 class="pt-6 text-lg font-bold">New Team</h1>
-
-	<form class="bg-base-100 py-4 rounded-xl w-full max-w-md flex flex-col flex-1 min-w-[600px]">
+	<form class=" py-4 rounded-xl w-full max-w-md flex flex-col flex-1 min-w-[600px]">
 		<div class="flex flex-col flex-1 gap-4 w-full pb-10">
 			<div class="form-control w-full">
 				<label for="teamName" class="label">
-					<span class="label-text">Team Name</span>
+					<span class="label-text dark:text-neutral-200">Team Name</span>
 				</label>
 				<input
 					id="teamName"
 					type="text"
 					placeholder="Enter team name"
-					class="input input-bordered"
+					class="p-2 dark:bg-neutral-700 rounded"
 					bind:value={newTeam.label}
 				/>
 			</div>
 
 			<div class="form-control">
 				<label for="description" class="label">
-					<span class="label-text">Description</span>
+					<span class="label-text dark:text-neutral-200">Description</span>
 				</label>
 				<textarea
 					id="description"
 					placeholder="Enter team description"
-					class="textarea textarea-bordered resize-none h-24 w-full
+					class="textarea textarea-bordered resize-none h-24 w-full p-2 dark:bg-neutral-700 rounded
 				"
 					bind:value={newTeam.description}
 				></textarea>
@@ -62,31 +61,31 @@
 
 			<div class="form-control">
 				<label for="imageUrl" class="label">
-					<span class="label-text">Image URL</span>
+					<span class="label-text dark:text-neutral-200">Image URL</span>
 				</label>
 				<input
 					id="imageUrl"
 					type="text"
 					placeholder="Enter image URL"
-					class="input input-bordered"
+					class="p-2 dark:bg-neutral-700 rounded"
 					bind:value={newTeam.image_link}
 				/>
 			</div>
 
 			<div class="form-control">
 				<label for="termYear" class="label">
-					<span class="label-text">Term Year</span>
+					<span class="label-text dark:text-neutral-200">Term Year</span>
 				</label>
 				<input
 					id="termYear"
 					type="number"
 					placeholder="Enter term year"
-					class="input input-bordered"
+					class="p-2 dark:bg-neutral-700 rounded"
 					bind:value={newTeam.term_year}
 				/>
 			</div>
 
-			<Button class="text-md" on:click={createTeam}>Create Team</Button>
+			<Button class="text-md w-full" on:click={createTeam}>Create Team</Button>
 		</div>
 	</form>
 </div>

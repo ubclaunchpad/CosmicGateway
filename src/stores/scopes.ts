@@ -17,7 +17,6 @@ export const getRolesAndScopes = async (id: number) => {
 		const roles = (await response.json()) as IRole[];
 		userRoles.set(roles);
 		const scopes = new Set<string>();
-		console.log(roles);
 		roles.forEach((role) => {
 			role.scopes.forEach((scope) => {
 				scopes.add(scope);

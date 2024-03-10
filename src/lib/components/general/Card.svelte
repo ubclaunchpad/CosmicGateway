@@ -1,7 +1,9 @@
 <script lang="ts">
 </script>
 
-<div class={`card w-full bg-base-100 rounded-lg border border-base-200 ${$$props.class}`}>
+<div
+	class={`card w-full dark:bg-neutral-800 bg-base-100 rounded-lg border border-base-200 dark:border-neutral-800 ${$$props.class}`}
+>
 	<div class="card-body">
 		{#if $$slots.title}
 			<div class=" flex justify-between items-center pb-4">

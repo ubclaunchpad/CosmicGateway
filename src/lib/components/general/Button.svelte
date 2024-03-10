@@ -15,7 +15,7 @@
 
 	const btnStyles = {
 		primary:
-			' text-white min-w-16 w-fit px-2 py-1 border bg-primary-500 rounded text-sm hover:bg-primary-200'
+			' text-white min-w-16 w-fit px-2 py-1 border bg-primary-500 rounded text-sm hover:bg-primary-200 dark:border-primary-500'
 	};
 </script>
 

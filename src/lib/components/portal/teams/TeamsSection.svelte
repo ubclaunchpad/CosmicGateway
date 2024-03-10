@@ -17,7 +17,6 @@
 		const data = (await res.json()) as Team[];
 		const teamsByYears: { [key: number]: Team[] } = {};
 		for (const team of data) {
-			console.log(team);
 			for (const year of team.team_terms) {
 				if (!teamsByYears[year]) {
 					teamsByYears[year] = [];
@@ -26,7 +25,6 @@
 			}
 		}
 		teams = teamsByYears;
-		console.log(teams);
 	};
 
 	fetchTeams();

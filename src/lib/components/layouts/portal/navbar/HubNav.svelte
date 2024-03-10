@@ -35,9 +35,12 @@
 <nav
 	class={`flex flex-col gap-4 justify-start items-center transition-all duration-300  h-fit pb-4`}
 >
-	<ul class=" flex flex-col gap-4 justify-start items-center w-full transition-all duration-300">
+	<ul class=" flex flex-col gap-1 justify-start items-center w-full transition-all duration-300">
 		{#each links as link}
-			<li class="w-full rounded flex justify-center items-center hover:bg-gray-100 text-sm">
+			<li
+				class="w-full rounded flex justify-center items-center py-2 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-neutral-700 dark:hover:text-neutral-200
+			text-sm"
+			>
 				<a
 					href={link.link}
 					on:click={triggerNavEffect}

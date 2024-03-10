@@ -28,18 +28,15 @@
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
-		
 		const res = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
-		method: 'GET',
-		headers: {
-			Authorization: 'Bearer ' + $token
-		}
-	});
-	const data = await res.json();
-	users = data.data;
+			method: 'GET',
+			headers: {
+				Authorization: 'Bearer ' + $token
+			}
+		});
+		const data = await res.json();
+		users = data.data;
 	};
-
-	
 
 	const showUser = (user: IUser) => {
 		shownUser = user;

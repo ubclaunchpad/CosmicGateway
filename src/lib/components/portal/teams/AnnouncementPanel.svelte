@@ -8,6 +8,7 @@
 	import LocationIcon from '$lib/components/general/icons/LocationIcon.svelte';
 	import SmileIcon from '$lib/components/general/icons/SmileIcon.svelte';
 	import { sidePanel } from '../../../../stores/sidepanel';
+	import Button from '$lib/components/general/Button.svelte';
 
 	export let announcement: Announcement;
 
@@ -31,11 +32,8 @@
 	<div class="flex flex-col gap-6 pt-5 flex-1">
 		<div
 			transition:slide
-			class={` w-full bg-[#F9F9F9]  flex flex-col rounded-lg border p-0 
-                  
-													 'border-base-200'
-												
-                        `}
+			class={`w-full bg-[#F9F9F9] rounded-lg border p-0 hover:shadow-sm hover:border-base-300 dark:hover:border-neutral-800
+				dark:bg-neutral-700 dark:border-neutral-800 border-base-200 `}
 		>
 			<div class="card-body p-3">
 				<div class="  rounded-t-lg flex items-center gap-3">
@@ -71,6 +69,6 @@
 	</div>
 	<div class="flex gap-6 flex-row">
 		<!-- <button class="btn text-sm flex-1 border">Edit</button> -->
-		<button class="btn text-sm flex-1 border" on:click={deleteAnnouncement}>Delete</button>
+		<Button class="text-sm flex-1 " on:click={deleteAnnouncement}>Delete</Button>
 	</div>
 </div>

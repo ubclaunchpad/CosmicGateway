@@ -16,7 +16,6 @@
 				message: (e as Error).message,
 				type: 'error'
 			});
-			console.log(e);
 		}
 	}
 
