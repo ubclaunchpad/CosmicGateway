@@ -68,8 +68,6 @@
 					<p>Settings page is under construction</p>
 				</div>
 			</Card>
-
-			
 		</div>
 	</div>
 </MainPage>

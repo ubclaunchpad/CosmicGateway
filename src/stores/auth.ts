@@ -34,7 +34,6 @@ export interface IUserMeta {
 	first_name: string;
 	last_name: string;
 	pref_name: string;
-
 }
 
 export const userStore = writable<IUserMeta | undefined>(undefined);
