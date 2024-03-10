@@ -23,7 +23,7 @@
 
 {#if !isMobile}
 	<aside
-		class="relative bg-100 z-10 w-[240px] flex flex-col overflow-hidden dark:bg-neutral-800"
+		class="relative bg-100 z-10 w-[240px] flex flex-col overflow-hidden dark:bg-neutral-900"
 		transition:slide={{ duration: 300, axis: 'x' }}
 	>
 		<div class=" p-5 pt-10 flex flex-col flex-1">

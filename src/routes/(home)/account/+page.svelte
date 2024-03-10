@@ -69,9 +69,7 @@
 				</div>
 			</Card>
 
-			<div class="flex gap-4 items-center justify-between p-2">
-				<Button on:click={toggleTheme} class="w-1/2">Toggle Theme</Button>
-			</div>
+			
 		</div>
 	</div>
 </MainPage>

@@ -33,7 +33,7 @@
 		<div
 			transition:slide
 			class={`w-full bg-[#F9F9F9] rounded-lg border p-0 hover:shadow-sm hover:border-base-300 dark:hover:border-neutral-800
-				dark:bg-neutral-700 dark:border-neutral-800 border-base-200 `}
+				dark:bg-neutral-800 dark:border-neutral-800 border-base-200 `}
 		>
 			<div class="card-body p-3">
 				<div class="  rounded-t-lg flex items-center gap-3">

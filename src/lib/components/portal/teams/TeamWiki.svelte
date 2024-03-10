@@ -86,7 +86,7 @@
 							props: {}
 						});
 					}}
-					class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-700 rounded-lg border border-base-300 carousel-item h-52 w-52 dark:border-neutral-800"
+					class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 carousel-item h-52 w-52 dark:border-neutral-800"
 				>
 				</button>
 			{/each}
@@ -99,20 +99,20 @@
 		<div class="flex overflow-x-scroll space-x-4 pt-4" slot="content">
 			{#each documents as document}
 				<div
-					class="flex flex-col overflow-y-scroll gap-2 bg-base-100 border border-base-200 rounded-md min-w-[500px] shadow-sm h-96 dark:border-neutral-800 dark:bg-neutral-700"
+					class="flex flex-col overflow-y-scroll gap-2 bg-base-100 border border-base-200 rounded-md min-w-[500px] shadow-sm h-96 dark:border-neutral-700 dark:bg-neutral-800"
 				>
 					<h3
-						class="sticky top-0 bg-neutral-50 p-2 py-3 border-b border-base-200 text-md dark:bg-neutral-700 dark:border-neutral-600"
+						class="sticky top-0 bg-neutral-50 p-2 py-3 border-b border-base-200 text-md dark:bg-neutral-800 dark:border-neutral-700"
 					>
 						Onboarding
 					</h3>
-					<p class="p-3 py-1 text-sm border-b border-base-200 dark:border-neutral-600">
+					<p class="p-3 py-1 text-xs border-b border-base-200 dark:border-neutral-800 text-neutral-300">
 						This collection contains all the documents related to onboarding new employees.
 					</p>
-					<div class="flex flex-col w-full divide-y divide-base-200 dark:divide-neutral-600">
+					<div class="flex flex-col w-full divide-y border-t border-base-200 divide-base-200 dark:divide-neutral-700 dark:border-t-neutral-700 px-2">
 						{#each documents as document}
 							<div
-								class="flex shadow-none text-sm flex-col bg-base-100 p-2 carousel-item dark:bg-neutral-700"
+								class="flex shadow-none text-sm flex-col bg-base-100 p-2 carousel-item dark:bg-neutral-800"
 							>
 								{document.title}
 							</div>
