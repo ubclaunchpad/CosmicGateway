@@ -4,13 +4,14 @@
 	import { marked } from 'marked'; // For Markdown to HTML
 	import { onMount } from 'svelte';
 
-	let initialMarkdownContent = '##This is some example marked content.';
+
+	// TODO - Marked extension for tiptap - when saving to DB
+	let initialMarkdownContent = '# Example Markdown Text This is a paragraph in Markdown. ## Subheading';
 	let initialHTMLContent;
 	/**
 	 * @type {Editor}
 	 */
 	let editor;
-
 	//   export async function load({ params }) {
 	//     const { id } = params;
 
@@ -23,7 +24,7 @@
 	//       }
 	//     };
 	//   }
-
+		
 	onMount(async () => {
 		//   const response = await fetch("./README.md");
 		//   if (response.ok) {
