@@ -34,7 +34,6 @@
 			});
 
 			const googleAuthBtn = document.getElementById('signinDiv') as HTMLDivElement;
-			console.log(googleAuthBtn);
 			if (googleAuthBtn) {
 				google.accounts.id.renderButton(googleAuthBtn, {
 					width: 300,

@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Card from '$lib/components/general/Card.svelte';
 	import type { Team } from '$lib/types/types';
-	import { sidePanel } from '../../../../stores/sidepanel';
 	export let team: Team;
 	let members: any = [];
 
@@ -9,13 +9,13 @@
 	};
 </script>
 
-<div class="card w-full bg-base-100 rounded-lg border border-base-200">
-	<div class="card-body">
-		<div class="header flex justify-between items-center pb-4">
-			<h2 class="card-title">Members</h2>
-			<div class="flex gap-4 justify-end"></div>
-		</div>
+<Card>
+	<div class="header flex justify-between items-center pb-4" slot="title">
+		<h2 class="card-title">Members</h2>
+		<div class="flex gap-4 justify-end"></div>
+	</div>
 
+	<div class="" slot="content">
 		{#if members.length === 0}
 			<div class="flex justify-center items-center h-40">
 				<p class="text-neutral-500 text-center">No members yet</p>
@@ -46,4 +46,4 @@
 			</div>
 		{/if}
 	</div>
-</div>
+</Card>

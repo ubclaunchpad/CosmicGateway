@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Team } from '$lib/types/types';
-	import LinkRow from './LinkRow.svelte';
 	import TeamAnnouncements from './TeamAnnouncements.svelte';
 	export let team: Team;
 </script>

@@ -6,7 +6,10 @@
 	import { page } from '$app/stores';
 </script>
 
-<div id="page" class="flex flex-col justify-start items-start overflow-hidden h-screen">
+<div
+	id="page"
+	class="flex flex-col justify-start items-start overflow-hidden h-screen dark:text-white dark:border-neutral-800"
+>
 	{#if $modalPanel && $modalPanel.component}
 		<div
 			class={`fixed bg-[#ececec33] h-[100vh] w-[100vw] z-20 top-0 left-0 flex justify-center items-center p-10`}
@@ -19,7 +22,7 @@
 			></button>
 
 			<div
-				class="flex flex-col z-40 gap-6 max-w-4xl bg-white rounded-md p-5 relative shadow-xl max-h-full overflow-scroll"
+				class="flex flex-col z-40 gap-6 max-w-4xl bg-white dark:bg-neutral-800 rounded-md p-5 relative shadow-xl max-h-full overflow-scroll dark:bg-gray-800"
 				in:blur={{ duration: 300, easing: quintOut }}
 			>
 				{#if $modalPanel.component}

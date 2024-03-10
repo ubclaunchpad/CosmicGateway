@@ -15,7 +15,7 @@ const primary = {
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	presets: [],
-	darkMode: 'media', // or 'class'
+	darkMode: 'selector',
 	plugins: [require('daisyui')],
 	daisyui: {
 		themes: true, // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]

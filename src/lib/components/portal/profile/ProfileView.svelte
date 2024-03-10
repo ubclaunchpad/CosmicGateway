@@ -366,5 +366,4 @@
 	}
 </style> -->
 
-
 <h1 class="text-3xl pb-1">Profile</h1>
