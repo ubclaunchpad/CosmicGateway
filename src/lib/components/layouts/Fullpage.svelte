@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Navbar from './portal/navbar/Navbar.svelte';
 	import { modalPanel } from '../../../stores/modal';
-	import { blur } from 'svelte/transition';
+	import { blur, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { page } from '$app/stores';
 </script>
@@ -17,13 +17,13 @@
 			in:blur={{ duration: 400, easing: quintOut }}
 		>
 			<button
-				class="fixed z-30 w-full h-full bg-[#00000033]"
+				class="fixed z-30 w-full h-full bg-[#00000033] dark:bg-[#000000be]"
 				on:click={() => modalPanel.set({ component: null, open: false, props: {} })}
 			></button>
 
 			<div
-				class="flex flex-col z-40 gap-6 max-w-4xl bg-white dark:bg-neutral-800 rounded-md p-5 relative shadow-xl max-h-full overflow-scroll dark:bg-gray-800"
-				in:blur={{ duration: 300, easing: quintOut }}
+				class="flex flex-col z-40 gap-6 max-w-4xl bg-white dark:bg-neutral-900 rounded-md p-5 relative shadow-xl max-h-full overflow-scroll dark:bg-gray-800"
+				in:scale={{ duration: 300, easing: quintOut }}
 			>
 				{#if $modalPanel.component}
 					<svelte:component this={$modalPanel.component} {...$modalPanel.props} />
@@ -35,7 +35,6 @@
 		<Navbar />
 		{#key $page.url.pathname}
 			<main
-				in:blur={{ duration: 500, easing: quintOut }}
 				id="main-page"
 				class={'flex-1 flex flex-col justify-between items-start overflow-scroll h-full bg-bg-100 fade-in'}
 			>

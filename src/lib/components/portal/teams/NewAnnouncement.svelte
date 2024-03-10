@@ -58,7 +58,7 @@
 </script>
 
 <div
-	class={`w-full  rounded-lg border  border-base-200 p-0  bg-[#fefefe] 	dark:bg-neutral-700 dark:border-neutral-800`}
+	class={`w-full  rounded-lg border  border-base-200 p-0  bg-[#fefefe] 	dark:bg-neutral-800 dark:border-neutral-800`}
 >
 	<div class={`card-body p-3 gap-2`}>
 		<div class="  rounded-t-lg flex items-center gap-3">
@@ -100,7 +100,7 @@
 
 				<div class=" h-fit flex p-2 gap-2 w-full justify-end">
 					<select
-						class="text-sm p-1 flex w-32 border border-base-200 dark:border-neutral-600 resize-auto max-h-40 rounded-md dark:bg-neutral-600"
+						class="text-sm p-1 flex w-32 border border-base-200 dark:border-neutral-600 resize-auto max-h-40 rounded-md dark:bg-neutral-700"
 						bind:value={newAnnouncement.type}
 					>
 						{#each Object.values(ANNOUNCEMENT_TYPES) as type}
@@ -108,7 +108,7 @@
 						{/each}
 					</select>
 					<select
-						class="text-sm p-1 flex w-32 border border-base-200 dark:border-neutral-600 resize-auto max-h-40 rounded-md dark:bg-neutral-600"
+						class="text-sm p-1 flex w-32 border border-base-200 dark:border-neutral-600 resize-auto max-h-40 rounded-md dark:bg-neutral-700"
 						bind:value={newAnnouncement.status}
 					>
 						{#each Object.values(ANNOUNCEMENT_STATUS) as status}

@@ -1,24 +1,36 @@
 <script lang="ts">
 	import Card from '$lib/components/general/Card.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-
+	import { userStore } from '../../stores/auth';
 	function greeting() {
 		const date = new Date();
 		const hours = date.getHours();
 		if (hours < 12) {
-			return '☀️ Good Morning ';
+			return '☀️ Good Morning';
 		} else if (hours < 18) {
 			return '⛅ Good Afternoon';
 		} else {
 			return '🌙 Good Evening';
 		}
 	}
+
+	const colors = {
+		gray: 'bg-base-100 dark:bg-neutral-800',
+		yellow: 'bg-yellow-100 dark:bg-yellow-700',
+		red: 'bg-red-100 dark:bg-red-700',
+		green: 'bg-green-100 dark:bg-green-700',
+		teal: 'bg-teal-100 dark:bg-teal-700',
+		pink: 'bg-pink-100 dark:bg-pink-700',
+	};
+
+	let noteColor = localStorage.getItem('quickNoteColor') || 'yellow';
+	let showColors = false;
 </script>
 
 <MainPage>
 	<div slot="main" class="content flex flex-col gap-6 items-center">
 		<section class="flex flex-col gap-6 w-full justify-center items-center pb-5">
-			<h1 class="text-2xl font-bold">{greeting()}</h1>
+			<h1 class="text-2xl font-bold">{`${greeting()}, ${$userStore?.pref_name}`}</h1>
 		</section>
 
 		<div class="flex gap-6 w-full flex-col max-w-5xl items-center">
@@ -27,11 +39,6 @@
 					<div class="flex justify-center items-center h-40 w-full">
 						<p class="text-neutral-500 text-center">No teams yet</p>
 					</div>
-					<!-- {#each Array(6) as _}
-						<div class=" flex-shrink-0 flex gap-4 items-center w-40 h-40 bg-gray-100 rounded-lg">
-						</div>
-
-					{/each} -->
 				</div>
 			</Card>
 
@@ -43,12 +50,42 @@
 					</div>
 				</Card>
 
-				<Card class="bg-yellow-100 w-full h-96">
-					<h1 class="text-sm font-bold" slot="title">Quick Notes</h1>
+				<Card class={`w-full h-96 ${colors[noteColor]}`}>
+					
+					<div class="flex w-full justify-between items-center" slot="title">
+						<h1 class="text-sm font-bold w-full" >Quick Notes</h1>
+						<div class="flex gap-2 w-full h-6 justify-end items-center" on:mouseenter={() => showColors = true} on:mouseleave={() => showColors = false}>
+				
+							{#if showColors}
+							{#each Object.entries(colors) as [color, value]}
+								<button class={`w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-600 ${value}`}
+								on:click={() => {
+									if (typeof window !== 'undefined' && window.localStorage) {
+										localStorage.setItem('quickNoteColor', color);
+										noteColor = color;
+									}
+								}
+								}>
+								</button>								
+							{/each}
+							{:else}
+								<button class={`w-4 h-4 rounded-full border border-neutral-300 dark:border-neutral-600 ${colors[noteColor]}`}></button>
+							{/if}
+						
+						</div>
+
+					</div>
+
 					<textarea
+					   on:change={(e) => {
+						if (typeof window !== 'undefined' && window.localStorage) {
+							localStorage.setItem('quickNote', e.target.value );
+						}
+					   }}
 						slot="content"
-						class="w-full text-sm h-full resize-none overflow-scroll border border-dashed border-transparent bg-transparent p-1 focus:outline-none focus:border-gray-200 px-2 rounded-md"
-						placeholder="Type here..."
+						class="w-full text-sm h-full resize-none overflow-scroll border  border-transparent bg-transparent p-1 focus:outline-none focus:border-transparent px-2 rounded-md"
+						placeholder={'Write a quick note'}
+						value={localStorage.getItem('quickNote') || ''}
 					/>
 				</Card>
 			</div>

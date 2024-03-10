@@ -17,7 +17,7 @@
 	<div role="tablist" class="w-full justify-end flex items-end">
 		<h1 class="p-3 text-2xl text-bold flex-1">{title}</h1>
 		<div
-			class="flex bg-[#f9f9f9] h-fit w-fit border border-b-0 border-base-200 rounded-t-lg overflow-hidden dark:bg-neutral-700 dark:border-neutral-800"
+			class="flex bg-[#f9f9f9] h-fit w-fit border border-b-0 border-base-200 rounded-t-lg overflow-hidden dark:bg-neutral-800 dark:border-neutral-800"
 		>
 			{#each tabs as tab, i}
 				<button

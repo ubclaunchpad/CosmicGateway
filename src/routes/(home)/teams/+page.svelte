@@ -5,6 +5,7 @@
 	import { modalPanel } from '../../../stores/modal.js';
 	import Button from '$lib/components/general/Button.svelte';
 	import TeamsSection from '$lib/components/portal/teams/TeamsSection.svelte';
+	import Card from '$lib/components/general/Card.svelte';
 
 	async function newTeamPanelProvider() {
 		modalPanel.set({
@@ -21,6 +22,18 @@
 			<h1 class="text-2xl font-bold">Teams</h1>
 			<Button class=" " on:click={newTeamPanelProvider}>New Team</Button>
 		</div>
+
+
+		<div class="flex flex-col gap-4 items-center justify-between p-2">
+			<Card>
+				<div class="flex flex-col gap-6 flex-1" slot="content">
+					<p>This page will show all the teams at Launch Pad</p>
+				</div>
+			</Card>
+
+			
+		</div>
+		
 
 		<TeamsSection />
 	</div>
