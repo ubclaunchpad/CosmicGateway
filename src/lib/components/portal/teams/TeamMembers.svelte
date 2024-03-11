@@ -4,6 +4,9 @@
 	import type { Team } from '$lib/types/types';
 	import { onMount } from 'svelte';
 	import { token } from '../../../../stores/auth';
+	import Button from '$lib/components/general/Button.svelte';
+	import { modalPanel } from '../../../../stores/modal';
+	import NewMemberModal from './NewMemberModal.svelte';
 	export let team: Team;
 	let members: any[] | undefined = undefined;
 
@@ -23,9 +26,26 @@
 </script>
 
 <Card>
-	<div class="header flex justify-between items-center pb-4" slot="title">
+	<div class="header flex justify-between items-center pb-4 w-full" slot="title">
 		<h2 class="card-title">Members</h2>
-		<div class="flex gap-4 justify-end"></div>
+		<div class="flex gap-4 justify-end">
+			<Button
+				type="button"
+				color="primary"
+				size="sm"
+				rounded="md"
+				on:click={() => {
+					modalPanel.set({
+						open: true,
+						component: NewMemberModal,
+						props: { teamid: team.id}
+					});
+				}}
+			>
+				
+				Add Member
+			</Button>
+		</div>
 	</div>
 
 	<div class="" slot="content">
