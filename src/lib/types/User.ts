@@ -119,11 +119,11 @@ export const userFieldMapper = <K extends keyof IUser>(key: K, value: IUser[K]):
 		case 'faculty':
 		case 'standing':
 		case 'specialization':
-			return (value as { label: string }).label;
+			return value ? (value as { label: string }).label : '';
 		case 'roles':
-			return (value as IRole[]).map((role: { label: string }) => role.label).join(', ');
+			return value ? (value as IRole[]).map((role: { label: string }) => role.label).join(', ') : '';
 		case 'teams':
-			return (value as any[]).map((team: { name: string }) => team.name).join(', ');
+			return value ? (value as any[]).map((team: { name: string }) => team.name).join(', ') : '';
 		default:
 			return value as string;
 	}

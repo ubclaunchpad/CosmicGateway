@@ -29,8 +29,19 @@ export const GET = async () => {
 			label: 'admin',
 		}],
 		username: 'lbj',
-		member_since: 'Sept 1, 2003'
+		member_since: 'Sept 1, 2003',
+		teams: [
+			{
+				name: '🍏 Nom Appetite',
+				year: 2023,
+				color: '#A5C77A',
+				status: 'in progress'
+			},
+		]
 	};
+
+	// timeout to simulate a slow network
+	await new Promise((resolve) => setTimeout(resolve, 1500));
 
 	return json(obj);
 };

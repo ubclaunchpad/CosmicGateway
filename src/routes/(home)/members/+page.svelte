@@ -66,7 +66,7 @@
 	const handleRowClicked = (e: CustomEvent) => {
 		sidePanel.set({
 			component: MemberSideView,
-			props: { user: e.detail.data as IUser, adminView },
+			props: { adminView, userID: e.detail.data.id },
 			open: true
 		});
 	};
@@ -107,7 +107,7 @@
 		</div>
 
 		<div
-			class="flex flex-col items-center justify-start gap-5 w-full overflow-scroll overflow-y-auto overflow-x-visible rounded-lg border-gray-200 border border-solid"
+			class="flex flex-col items-center justify-start gap-5 w-full overflow-y-auto overflow-x-visible rounded-lg border-gray-200 border border-solid"
 		>
 			{#if !users || users.length === 0}
 				<Loader height={'100%'} width={'100%'} />

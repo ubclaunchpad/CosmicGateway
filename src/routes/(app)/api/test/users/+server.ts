@@ -2,10 +2,10 @@ import type { IUser } from '$lib/types/User';
 import { json } from '@sveltejs/kit';
 
 export const GET = async () => {
-	const obj: { users: IUser[] } = {
-		users: [
+	const obj: { data: IUser[] } = {
+		data: [
 			{
-				id: 881709496070406145,
+				id: 1,
 				first_name: 'Mike',
 				last_name: 'Roberts',
 				pref_name: 'Mikert',
@@ -42,7 +42,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406145,
+				id: 2,
 				first_name: 'Lebron',
 				last_name: 'James',
 				pref_name: 'Lebron',
@@ -79,7 +79,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406146,
+				id: 3,
 				first_name: 'John',
 				last_name: 'Doe',
 				pref_name: 'John',
@@ -116,7 +116,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406146,
+				id: 4,
 				first_name: 'John',
 				last_name: 'Doe',
 				pref_name: 'John',
@@ -153,7 +153,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406146,
+				id: 5,
 				first_name: 'John',
 				last_name: 'Doe',
 				pref_name: 'John',
@@ -190,7 +190,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406145,
+				id: 6,
 				first_name: 'Mike',
 				last_name: 'Roberts',
 				pref_name: 'Mikert',
@@ -227,7 +227,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406145,
+				id: 7,
 				first_name: 'Lebron',
 				last_name: 'James',
 				pref_name: 'Lebron',
@@ -264,7 +264,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406146,
+				id: 8,
 				first_name: 'John',
 				last_name: 'Doe',
 				pref_name: 'John',
@@ -301,7 +301,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406146,
+				id: 9,
 				first_name: 'John',
 				last_name: 'Doe',
 				pref_name: 'John',
@@ -338,7 +338,7 @@ export const GET = async () => {
 				]
 			},
 			{
-				id: 881709496070406146,
+				id: 10,
 				first_name: 'John',
 				last_name: 'Doe',
 				pref_name: 'John',

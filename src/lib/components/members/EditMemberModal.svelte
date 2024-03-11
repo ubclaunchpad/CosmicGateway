@@ -47,6 +47,17 @@
 				/>
 			</div>
 
+			<div>
+				<label for="email" class="text-lg">Email</label>
+				<input
+					type="email"
+					class="w-full py-1 px-4 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500"
+					name="email"
+					id="email"
+					bind:value={user.email}
+				/>
+			</div>
+
 			<div class="flex flex-col">
 				<label for="club_role" class="text-lg">Club Role</label>
 				<select
@@ -77,7 +88,7 @@
 				</select>
 			</div>
 
-			<div class="flex justify-end gap-4">
+			<div class="flex justify-end gap-4 mt-5">
 				<button class="border border-black rounded-lg py-1 px-3">Cancel</button>
 				<button class="bg-green-500 text-white font-bold py-1 px-4 rounded-lg">Save Changes</button>
 			</div>
