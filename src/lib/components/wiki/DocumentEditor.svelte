@@ -7,13 +7,12 @@
 	import Heading from '@tiptap/extension-heading';
 	import Paragraph from '@tiptap/extension-paragraph';
 	import Text from '@tiptap/extension-text';
-    import './styles.css';
+	// import './styles.css';
 	export let area;
-    export let id;
+	export let id;
 
-	let initialMarkdownContent =
-		`**Example** Markdown Text This is a paragraph in Markdown. Subheading. 
-		## Heading 1`;
+	let initialMarkdownContent = `**Example** Markdown Text This is a paragraph in Markdown. Subheading. 
+		\n## Heading 1`;
 	/**
 	 * @type {Editor}
 	 */
@@ -34,13 +33,13 @@
 			content: initialMarkdownContent,
 			editorProps: {
 				attributes: {
-					class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none'
+					class: 'w-full prose dark:!prose-invert !w-full h-full max-w-none outline-none'
 				}
 			}
 		});
 	});
 </script>
 
-<div class="flex flex-col gap-6 flex-1 w-full h-full min-h-[90svh]">
+<div class="flex flex-col gap-6 flex-1 h-full min-h-[60svh] dark:bg-neutral-900 w-full">
 	<EditorContent {editor} />
 </div>

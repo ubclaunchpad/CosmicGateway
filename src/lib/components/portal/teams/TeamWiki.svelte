@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Card from '$lib/components/general/Card.svelte';
-	import DocumentEditor from '$lib/components/wiki/DocumentEditor.svelte';
+	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
 	import { modalPanel } from '../../../../stores/modal';
-	import DocModal from '../wiki/docModal.svelte';
 
 	export let documents: {
 		title: string;
@@ -82,9 +81,9 @@
 				<button
 					on:click={() => {
 						modalPanel.set({
-							component: DocumentEditor,
+							component: DocumentModal,
 							open: true,
-							props: {area: 'admin', id: 'test'}
+							props: { area: 'admin', id: 'test' }
 						});
 					}}
 					class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 carousel-item h-52 w-52 dark:border-neutral-800"
@@ -107,10 +106,14 @@
 					>
 						Onboarding
 					</h3>
-					<p class="p-3 py-1 text-xs border-b border-base-200 dark:border-neutral-800 text-neutral-300">
+					<p
+						class="p-3 py-1 text-xs border-b border-base-200 dark:border-neutral-800 text-neutral-300"
+					>
 						This collection contains all the documents related to onboarding new employees.
 					</p>
-					<div class="flex flex-col w-full divide-y border-t border-base-200 divide-base-200 dark:divide-neutral-700 dark:border-t-neutral-700 px-2">
+					<div
+						class="flex flex-col w-full divide-y border-t border-base-200 divide-base-200 dark:divide-neutral-700 dark:border-t-neutral-700 px-2"
+					>
 						{#each documents as document}
 							<div
 								class="flex shadow-none text-sm flex-col bg-base-100 p-2 carousel-item dark:bg-neutral-800"
