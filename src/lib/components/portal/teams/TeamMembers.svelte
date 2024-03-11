@@ -38,11 +38,10 @@
 					modalPanel.set({
 						open: true,
 						component: NewMemberModal,
-						props: { teamid: team.id}
+						props: { teamid: team.id }
 					});
 				}}
 			>
-				
 				Add Member
 			</Button>
 		</div>

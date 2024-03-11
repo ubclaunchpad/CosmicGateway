@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Card from '$lib/components/general/Card.svelte';
 	import DocumentEditor from '$lib/components/wiki/DocumentEditor.svelte';
+	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
 	import { modalPanel } from '../../../../stores/modal';
 	import DocModal from '../wiki/docModal.svelte';
 
@@ -82,9 +83,9 @@
 				<button
 					on:click={() => {
 						modalPanel.set({
-							component: DocumentEditor,
+							component: DocumentModal,
 							open: true,
-							props: {area: 'admin', id: 'test'}
+							props: { area: 'admin', id: 'test' }
 						});
 					}}
 					class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 carousel-item h-52 w-52 dark:border-neutral-800"

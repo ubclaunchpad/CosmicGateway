@@ -2,6 +2,7 @@
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { HomeIcon, UsersIcon, SettingsIcon } from '$lib/components/general/icons';
 	import GridIcon from '$lib/components/general/icons/GridIcon.svelte';
+	import OpenBook from '$lib/components/general/icons/OpenBook.svelte';
 	import UsersListIcon from '$lib/components/general/icons/UsersListIcon.svelte';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
@@ -30,6 +31,11 @@
 			name: 'Teams',
 			icon: GridIcon,
 			link: '/teams'
+		},
+		{
+			name: 'Wiki',
+			icon: OpenBook,
+			link: '/wiki'
 		},
 		{
 			name: 'Settings',
