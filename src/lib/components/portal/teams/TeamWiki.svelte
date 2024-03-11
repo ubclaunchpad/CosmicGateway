@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Card from '$lib/components/general/Card.svelte';
-	import DocumentEditor from '$lib/components/wiki/DocumentEditor.svelte';
 	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
 	import { modalPanel } from '../../../../stores/modal';
-	import DocModal from '../wiki/docModal.svelte';
 
 	export let documents: {
 		title: string;
