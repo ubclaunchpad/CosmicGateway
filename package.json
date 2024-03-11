@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"jwt-decode": "^4.0.0",
 		"@tiptap/extension-blockquote": "^2.2.4",
 		"@tiptap/extension-code": "^2.2.4",
 		"@tiptap/extension-code-block": "^2.2.4",
@@ -44,7 +45,6 @@
 		"@tiptap/extension-heading": "^2.2.4",
 		"@tiptap/starter-kit": "^2.2.4",
 		"install": "^0.13.0",
-		"jwt-decode": "^4.0.0",
 		"marked": "^12.0.1",
 		"svelte-tiptap": "^1.1.2",
 		"tiptap-markdown": "^0.8.9"
