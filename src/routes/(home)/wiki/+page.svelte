@@ -4,8 +4,6 @@
 	import { modalPanel } from '../../../stores/modal';
 	import Button from '$lib/components/general/Button.svelte';
 	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
-
-	let isOpen = false;
 </script>
 
 <MainPage>
