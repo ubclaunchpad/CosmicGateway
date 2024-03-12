@@ -28,6 +28,11 @@ module.exports = {
 		themeRoot: ':root' // The element that receives theme color CSS variables
 	},
 	theme: {
+		extend: {
+			borderRadius: {
+				inherit: "inherit"
+			  },
+		},
 		accentColor: ({ theme }) => ({
 			...theme('colors'),
 			auto: 'auto'
