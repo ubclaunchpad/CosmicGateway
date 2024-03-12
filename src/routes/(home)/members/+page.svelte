@@ -73,7 +73,7 @@
 </script>
 
 <MainPage>
-	<div slot="main" class=" flex flex-col">
+	<div slot="main" class="flex flex-col">
 		<div class="flex justify-between items-center w-full h-full mb-4 font-bold">
 			<h1 class="text-3xl pb-1 pl-0">Members</h1>
 		</div>
