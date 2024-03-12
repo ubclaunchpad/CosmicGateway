@@ -48,16 +48,16 @@ import ResourcesIcon from './ResourcesIcon.svelte';
 import RocketIcon from './RocketIcon.svelte';
 import RouteIcon from './RouteIcon.svelte';
 import SaveIcon from './SaveIcon.svelte';
+import SearchIcon from './SearchIcon.svelte';
 import SettingsIcon from './SettingsIcon.svelte';
+import SortIcon from './SortIcon.svelte';
 import SquareIcon from './SquareIcon.svelte';
 import StarIcon from './StarIcon.svelte';
 import UsersIcon from './UsersIcon.svelte';
 import VerticalDotsIcon from './VerticalDotsIcon.svelte';
 import YoutubeIcon from './YoutubeIcon.svelte';
-import SortIcon from './SortIcon.svelte';
 import StarFilledIcon from './decorative/StarFilledIcon.svelte';
 import CircledDoodle from './doodles/CircledDoodle.svelte';
-import SearchIcon from './SearchIcon.svelte';
 
 export {
 	AlertIcon,
@@ -107,17 +107,17 @@ export {
 	PaperClipIcon,
 	PinIcon,
 	ProfileIcon,
+	ResourcesIcon,
 	RocketIcon,
 	RouteIcon,
 	SaveIcon,
+	SearchIcon,
 	SettingsIcon,
+	SortIcon,
 	SquareIcon,
+	StarFilledIcon,
 	StarIcon,
 	UsersIcon,
 	VerticalDotsIcon,
-	YoutubeIcon,
-	SortIcon,
-	StarFilledIcon,
-	ResourcesIcon,
-	SearchIcon,
+	YoutubeIcon
 };

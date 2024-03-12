@@ -1,4 +1,4 @@
 export interface Column {
-    field: string;
-    header: string;
-};
+	field: string;
+	header: string;
+}

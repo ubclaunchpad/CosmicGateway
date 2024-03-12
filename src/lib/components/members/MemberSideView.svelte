@@ -31,7 +31,7 @@
 		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/${userID}`, {
 			method: 'GET',
 			headers: {
-				Authorization: 'Bearer ' +  $token
+				Authorization: 'Bearer ' + $token
 			}
 		});
 		user = await response.json();
@@ -102,9 +102,9 @@
 		</div>
 	{:else}
 		<div class="border-b pb-2 pt-5 border-b-neutral-200 dark:border-b-neutral-800">
-					<h2 class="text-lg font-bold">Profile</h2>
+			<h2 class="text-lg font-bold">Profile</h2>
 		</div>
-		<div class="flex w-full py-4 pb-6 items-center justify-center ">
+		<div class="flex w-full py-4 pb-6 items-center justify-center">
 			<div class="w-48 h-48 bg-neutral-100 rounded dark:bg-neutral-800"></div>
 		</div>
 
@@ -116,7 +116,6 @@
 		</div>
 
 		<div class="w-full border-t border-t-neutral-200 dark:border-t-neutral-800 pb-2"></div>
-
 
 		<div class="flex flex-col gap-4 pt-2">
 			<div class="flex flex-col gap-2">
@@ -143,7 +142,7 @@
 				{/if} -->
 				</div>
 				<div class="text-sm">
-					<span class="font-semibold ">Email:</span>
+					<span class="font-semibold">Email:</span>
 					{user.email}
 				</div>
 			</div>

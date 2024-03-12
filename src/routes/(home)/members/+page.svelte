@@ -33,12 +33,12 @@
 	});
 	const fetchUsers = async () => {
 		const res = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
-		method: 'GET',
-		headers: {
-			Authorization: 'Bearer ' + $token
-		}
-	});
-	const result = await res.json();
+			method: 'GET',
+			headers: {
+				Authorization: 'Bearer ' + $token
+			}
+		});
+		const result = await res.json();
 		users = result.data
 			.map((user: IUser) => {
 				return { full_name: user.first_name + ' ' + user.last_name, ...user };
@@ -93,7 +93,7 @@
 			<input
 				type="text"
 				placeholder="Search members"
-				class="w-full pl-10 py-2 px-4 text-sm rounded  focus:outline-none focus:border-blue-500  dark:bg-neutral-900"
+				class="w-full pl-10 py-2 px-4 text-sm rounded focus:outline-none focus:border-blue-500 dark:bg-neutral-900"
 			/>
 		</div>
 
