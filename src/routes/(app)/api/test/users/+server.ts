@@ -25,11 +25,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'Other'
 				},
-				roles: [{
-					id: 1,
-					scopes: ['admin'],
-					label: 'admin',
-				}],
+				roles: [
+					{
+						id: 1,
+						scopes: ['admin'],
+						label: 'admin'
+					}
+				],
 				username: 'olti',
 				member_since: 'Sept 20, 2023',
 				teams: [
@@ -38,7 +40,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#937CAA',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -62,11 +64,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 1,
-					scopes: ['admin'],
-					label: 'admin',
-				}],
+				roles: [
+					{
+						id: 1,
+						scopes: ['admin'],
+						label: 'admin'
+					}
+				],
 				username: 'lbj',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -75,7 +79,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#937CAA',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -99,11 +103,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 1,
-					scopes: ['admin'],
-					label: 'admin',
-				}],
+				roles: [
+					{
+						id: 1,
+						scopes: ['admin'],
+						label: 'admin'
+					}
+				],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -112,7 +118,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -136,11 +142,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 2,
-					scopes: ['member'],
-					label: 'developer',
-				}],
+				roles: [
+					{
+						id: 2,
+						scopes: ['member'],
+						label: 'developer'
+					}
+				],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -149,7 +157,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -173,11 +181,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 2,
-					scopes: ['member'],
-					label: 'developer',
-				}],
+				roles: [
+					{
+						id: 2,
+						scopes: ['member'],
+						label: 'developer'
+					}
+				],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -186,7 +196,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -210,11 +220,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'Other'
 				},
-				roles: [{
-					id: 2,
-					scopes: ['member'],
-					label: 'developer',
-				}],
+				roles: [
+					{
+						id: 2,
+						scopes: ['member'],
+						label: 'developer'
+					}
+				],
 				username: 'olti',
 				member_since: 'Sept 20, 2023',
 				teams: [
@@ -223,7 +235,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -247,11 +259,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 3,
-					scopes: ['member'],
-					label: 'designer',
-				}],
+				roles: [
+					{
+						id: 3,
+						scopes: ['member'],
+						label: 'designer'
+					}
+				],
 				username: 'lbj',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -260,7 +274,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -284,11 +298,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 3,
-					scopes: ['member'],
-					label: 'designer',
-				}],
+				roles: [
+					{
+						id: 3,
+						scopes: ['member'],
+						label: 'designer'
+					}
+				],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -297,7 +313,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -321,11 +337,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 3,
-					scopes: ['member'],
-					label: 'designer',
-				}],
+				roles: [
+					{
+						id: 3,
+						scopes: ['member'],
+						label: 'designer'
+					}
+				],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -334,7 +352,7 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
 			},
 			{
@@ -358,11 +376,13 @@ export const GET = async () => {
 					id: 881038255685632001,
 					label: 'CPSC'
 				},
-				roles: [{
-					id: 3,
-					scopes: ['member'],
-					label: 'designer',
-				}],
+				roles: [
+					{
+						id: 3,
+						scopes: ['member'],
+						label: 'designer'
+					}
+				],
 				username: 'johndoe',
 				member_since: 'Sept 1, 2003',
 				teams: [
@@ -371,9 +391,9 @@ export const GET = async () => {
 						year: 2023,
 						color: '#A5C77A',
 						status: 'in progress'
-					},
+					}
 				]
-			},
+			}
 		]
 	};
 

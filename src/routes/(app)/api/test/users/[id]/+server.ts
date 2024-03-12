@@ -23,11 +23,13 @@ export const GET = async () => {
 			id: 881038255685632001,
 			label: 'CPSC'
 		},
-		roles: [{
-			id: 1,
-			scopes: ['admin'],
-			label: 'admin',
-		}],
+		roles: [
+			{
+				id: 1,
+				scopes: ['admin'],
+				label: 'admin'
+			}
+		],
 		username: 'lbj',
 		member_since: 'Sept 1, 2003',
 		teams: [
@@ -36,7 +38,7 @@ export const GET = async () => {
 				year: 2023,
 				color: '#A5C77A',
 				status: 'in progress'
-			},
+			}
 		]
 	};
 
