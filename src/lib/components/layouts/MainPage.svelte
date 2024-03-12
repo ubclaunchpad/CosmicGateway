@@ -1,26 +1,27 @@
 <script lang="ts">
 	import { sidePanel } from '../../../stores/sidepanel';
-	let panel;
-	sidePanel.subscribe((value) => {
-		panel = value;
-	});
+	if ($sidePanel.component) {
+		sidePanel.set({
+			open: false,
+			component: null,
+			props: {}
+		});
+	}
 </script>
 
-<div class="h-full overflow-scroll flex w-full">
-	<div class="relative flex-col overflow-scroll flex-1 h-full px-14 py-8">
+<div class="h-full overflow-scroll flex w-full dark:bg-neutral-950" id="main-page">
+	<div class="relative flex-col overflow-scroll flex-1 h-full px-4 py-8">
 		<slot name="main" class="content" />
 	</div>
 
-	{#if panel && panel.component}
+	{#if $sidePanel && $sidePanel.component}
 		<div
-			class={`flex flex-col gap-6 ${panel.open ? 'w-96' : 'w-10'} bg-white rounded-xl p-5 relative slider overflow-scroll`}
-			transition:slide={{ duration: 300, axis: 'x', easing: quintOut }}
+			class={`flex flex-col gap-6 ${$sidePanel.open ? 'w-96' : 'w-10'} bg-white dark:bg-neutral-950 rounded-l-sm p-5 relative slider
+			border-l border-neutral-200 dark:border-neutral-800
+			`}
+			id="side-panel"
 		>
-			<!-- <button on:click={() => sidePanel.update((prev) => ({...prev, open: !prev.open}))} class=" z-30 w-4 h-10 left-0 bg-white p-2 rounded-full  overflow-hidden absolute  border border-gray-500 top-1/2 transform -translate-y-1/2 -translate-x-1/2">
-				
-				<div></div>
-			</button> -->
-			{#if panel.component}
+			{#if $sidePanel.component}
 				<svelte:component this={$sidePanel.component} {...$sidePanel.props} />
 			{/if}
 		</div>
