@@ -10,29 +10,36 @@
 	import type { Column } from '$lib/types/Column';
 	import { sidePanel } from '../../../stores/sidepanel';
 	import MemberSideView from '$lib/components/members/MemberSideView.svelte';
-	import { userStore } from '../../../stores/auth';
+	import { token, userStore } from '../../../stores/auth';
 	import { getUserInfo } from '$lib/types/User';
+	import { PUBLIC_USERS_API_URI } from '$env/static/public';
 	let adminView = false;
 	let users: IUser[] = [];
 	let columns: Column[] = [];
 	let shownUser: IUser | null = null;
 	$: scopes = $userScopes;
-	export let data;
 	onMount(() => {
-		if ($userStore && 'id' in $userStore) {
-			getUserInfo($userStore.id).then((res: IUser) => {
-				res.roles.forEach((role) => {
-					if (role.scopes.includes('admin')) {
-						adminView = true;
-					}
-				});
-			});
-		}
+		// if ($userStore && 'id' in $userStore) {
+		// 	getUserInfo($userStore.id).then((res: IUser) => {
+		// 		res.roles.forEach((role) => {
+		// 			if (role.scopes.includes('admin')) {
+		// 				adminView = true;
+		// 			}
+		// 		});
+		// 	});
+		// }
 
 		fetchUsers();
 	});
 	const fetchUsers = async () => {
-		users = data.users
+		const res = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
+		method: 'GET',
+		headers: {
+			Authorization: 'Bearer ' + $token
+		}
+	});
+	const result = await res.json();
+		users = result.data
 			.map((user: IUser) => {
 				return { full_name: user.first_name + ' ' + user.last_name, ...user };
 			})
