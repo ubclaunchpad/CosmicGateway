@@ -12,17 +12,17 @@
 >
 	{#if $modalPanel && $modalPanel.component}
 		<div
-			class={`fixed bg-[#ececec33] h-[100vh] w-[100vw] z-20 top-0 left-0 flex justify-center items-center p-10`}
+			class={`fixed bg-[#ececec33] h-[100vh] w-[100vw] z-30 top-0 left-0 flex justify-center items-center p-10`}
 			id="modal"
 			in:blur={{ duration: 400, easing: quintOut }}
 		>
 			<button
-				class="fixed z-30 w-full h-full bg-[#00000033] dark:bg-[#000000be]"
+				class="fixed z-40 w-full h-full bg-[#00000033] dark:bg-[#000000be]"
 				on:click={() => modalPanel.set({ component: null, open: false, props: {} })}
 			></button>
 
 			<div
-				class="flex flex-col z-40 gap-6 max-w-4xl bg-white dark:bg-neutral-900 rounded-md p-5 relative shadow-xl max-h-full overflow-scroll dark:bg-gray-800"
+				class="flex flex-col z-50 gap-6 max-w-4xl bg-white dark:bg-neutral-900 rounded-md p-5 relative shadow-xl max-h-full overflow-scroll dark:bg-gray-800"
 				in:scale={{ duration: 300, easing: quintOut }}
 			>
 				{#if $modalPanel.component}

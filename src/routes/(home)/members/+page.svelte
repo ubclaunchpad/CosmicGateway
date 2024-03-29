@@ -73,7 +73,7 @@
 	const handleRowClicked = (e: CustomEvent) => {
 		sidePanel.set({
 			component: MemberSideView,
-			props: { adminView, userID: e.detail.data.id },
+			props: { adminView, userID: e.detail.data.id, title: 'profile' },
 			open: true
 		});
 	};

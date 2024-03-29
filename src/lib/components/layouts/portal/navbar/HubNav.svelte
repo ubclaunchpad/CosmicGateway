@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/components/general/Icon.svelte';
-	import { HomeIcon, UsersIcon, SettingsIcon } from '$lib/components/general/icons';
+	import { HomeIcon, SettingsIcon } from '$lib/components/general/icons';
 	import GridIcon from '$lib/components/general/icons/GridIcon.svelte';
 	import OpenBook from '$lib/components/general/icons/OpenBook.svelte';
 	import UsersListIcon from '$lib/components/general/icons/UsersListIcon.svelte';
@@ -22,12 +22,6 @@
 			link: '/members'
 		},
 		{
-			name: 'Groups',
-			icon: UsersIcon,
-			link: '/groups'
-		},
-
-		{
 			name: 'Teams',
 			icon: GridIcon,
 			link: '/teams'
@@ -38,7 +32,7 @@
 			link: '/wiki'
 		},
 		{
-			name: 'Settings',
+			name: 'Account',
 			icon: SettingsIcon,
 			link: '/account'
 		}

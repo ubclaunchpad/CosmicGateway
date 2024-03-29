@@ -38,38 +38,20 @@ export interface IUserMeta {
 
 export const userStore = writable<IUserMeta | undefined>(undefined);
 export const fetchUser = async (userToken: string) => {
-	try {
-		token.set(userToken);
-		const response = await fetch(`${PUBLIC_USERS_API_URI}/users/me`, {
-			method: 'GET',
-			headers: {
-				Authorization: 'Bearer ' + userToken
-			}
-		});
-		if (response.status === 200) {
-			const user = (await response.json()) as IUserMeta;
-			if (browser) {
-				userStore.set(user);
-				token.set(userToken);
-				// await getRolesAndScopes(user.id);
-			}
+	token.set(userToken);
+	const response = await fetch(`${PUBLIC_USERS_API_URI}/users/me`, {
+		method: 'GET',
+		headers: {
+			Authorization: 'Bearer ' + userToken
 		}
-	} catch (e) {
-		const responseTest = await fetch(`api/test/users/me`, {
-			method: 'GET',
-			headers: {
-				Authorization: 'Bearer ' + userToken
-			}
-		});
-
-		if (responseTest.status === 200) {
-			const user = (await responseTest.json()) as IUserMeta;
-			if (browser) {
-				userStore.set(user);
-				token.set(userToken);
-			}
-		} else {
-			await signout();
+	});
+	if (response.status === 200) {
+		const user = (await response.json()) as IUserMeta;
+		if (browser) {
+			userStore.set(user);
+			token.set(userToken);
 		}
+	} else {
+		throw new Error(response.statusText);
 	}
 };

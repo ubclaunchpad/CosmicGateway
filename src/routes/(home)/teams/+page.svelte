@@ -22,13 +22,7 @@
 			<Button class=" " on:click={newTeamPanelProvider}>New Team</Button>
 		</div>
 
-		<div class="flex flex-col gap-4 items-center justify-between p-2">
-			<Card>
-				<div class="flex flex-col gap-6 flex-1" slot="content">
-					<p>This page will show all the teams at Launch Pad</p>
-				</div>
-			</Card>
-		</div>
+		<div class="flex flex-col gap-4 items-center justify-between p-2"></div>
 
 		<TeamsSection />
 	</div>

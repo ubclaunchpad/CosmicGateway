@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 	import { token, userStore } from '../../stores/auth';
 	import TeamCard from '$lib/components/portal/teams/TeamCard.svelte';
+	import { notificationStore } from '$stores/notification';
 	let teams: any[] | null = null;
 	function greeting() {
 		const date = new Date();
@@ -56,7 +57,7 @@
 
 		<div class="flex gap-6 w-full flex-col max-w-5xl items-center">
 			<Card class="w-full overflow-hidden">
-				<div slot="content" class=" flex w-full overflow-x-scroll gap-2 h-60 items-center">
+				<!-- <div slot="content" class=" flex w-full overflow-x-scroll gap-2 h-60 items-center">
 					{#if teams && teams.length > 0}
 						{#each teams as team}
 							<TeamCard {team} compact={true} />
@@ -68,7 +69,7 @@
 							</p>
 						</div>
 					{/if}
-				</div>
+				</div> -->
 			</Card>
 
 			<div class="flex gap-6 w-full items-center flex-col lg:flex-row">

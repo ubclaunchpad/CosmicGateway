@@ -1,23 +1,38 @@
 import type { Load } from '@sveltejs/kit';
 
 export const load: Load = async ({ params }) => {
-	// // status: 404,
-	// //     error: new Error('Invalid team name')
+	if (!params.area) {
+		return {
+			status: 404,
+			error: new Error('Invalid area name')
+		};
+	}
 
-	// const teamNameAndId = params.area.split('-');
+	if (!params.id) {
+		return {
+			status: 404,
+			error: new Error('Invalid doc id')
+		};
+	}
 
-	// // status: 404,
-	// //     error: new Error('Invalid team name')
+	const areaNameAndId = params.area.split('-');
+	const docNameAndId = params.id.split('-');
 
-	// const res = await fetch(`${PUBLIC_TEAMS_API_URI}/teams/${teamNameAndId[1]}`, {
-	//     method: 'GET'
-	// });
+	if (areaNameAndId.length !== 2 || docNameAndId.length !== 2) {
+		return {
+			status: 404,
+			error: new Error('Invalid name')
+		};
+	}
 
-	// const team = await res.json();
-
-	// team: team
 	return {
-		area: params.area,
-		id: params.id
+		area: {
+			id: areaNameAndId[1],
+			name: areaNameAndId[0]
+		},
+		doc: {
+			id: docNameAndId[1],
+			name: docNameAndId[0]
+		}
 	};
 };

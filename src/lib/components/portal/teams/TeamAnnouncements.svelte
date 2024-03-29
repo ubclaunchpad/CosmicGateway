@@ -15,11 +15,6 @@
 
 	export let team: Team;
 	let announcements: Announcement[] = [];
-	$: sidePanel.set({
-		open: false,
-		component: null,
-		props: {}
-	});
 
 	onMount(async () => {
 		const res = await fetch(`${PUBLIC_TEAMS_API_URI}/posts?teamid=${team.id}`, {});
@@ -42,7 +37,7 @@
 					sidePanel.set({
 						open: true,
 						component: AnnouncementPanel,
-						props: { announcement: announcement }
+						props: { announcement: announcement, title: announcement.title }
 					});
 				}}
 			>

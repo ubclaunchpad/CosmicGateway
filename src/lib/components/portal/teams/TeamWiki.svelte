@@ -1,7 +1,11 @@
 <script lang="ts">
+	import Button from '$lib/components/general/Button.svelte';
 	import Card from '$lib/components/general/Card.svelte';
+	import AreaCard from '$lib/components/wiki/AreaCard.svelte';
+	import CollectionPanel from '$lib/components/wiki/CollectionPanel.svelte';
 	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
 	import { modalPanel } from '../../../../stores/modal';
+	import { sidePanel } from '../../../../stores/sidepanel';
 
 	export let documents: {
 		title: string;
@@ -93,36 +97,35 @@
 		</div>
 	</Card>
 
-	<Card>
-		<h2 class="card-title" slot="title">Collections</h2>
+	<Card class=" ">
+		<h2 class="card-title sticky top-0" slot="title">Collections</h2>
 
-		<div class="flex overflow-x-scroll space-x-4 pt-4" slot="content">
+		<div
+			class="grid grid-rows-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-4"
+			slot="content"
+		>
 			{#each documents as document}
-				<div
-					class="flex flex-col overflow-y-scroll gap-2 bg-base-100 border border-base-200 rounded-md min-w-[500px] shadow-sm h-96 dark:border-neutral-700 dark:bg-neutral-800"
+				<button
+					on:click={() => {
+						sidePanel.set({
+							component: CollectionPanel,
+							open: true,
+							props: { area: 'admin', title: 'Onboarding Collection' }
+						});
+					}}
+					class="flex flex-col gap-2 bg-base-100 border border-base-200 rounded-md h-[120px] dark:border-neutral-800 dark:bg-neutral-800 items-start"
 				>
 					<h3
-						class="sticky top-0 bg-neutral-50 p-2 py-3 border-b border-base-200 text-md dark:bg-neutral-800 dark:border-neutral-700"
+						class="sticky top-0 bg-neutral-50 p-2 py-3 border-b border-base-200 text-md dark:bg-neutral-800 dark:border-neutral-700 w-full text-left"
 					>
 						Onboarding
 					</h3>
 					<p
-						class="p-3 py-1 text-xs border-b border-base-200 dark:border-neutral-800 text-neutral-300"
+						class="p-3 py-1 text-xs dark:border-neutral-800 dark:text-neutral-300 text-neutral-500 text-left line-clamp-3"
 					>
 						This collection contains all the documents related to onboarding new employees.
 					</p>
-					<div
-						class="flex flex-col w-full divide-y border-t border-base-200 divide-base-200 dark:divide-neutral-700 dark:border-t-neutral-700 px-2"
-					>
-						{#each documents as document}
-							<div
-								class="flex shadow-none text-sm flex-col bg-base-100 p-2 carousel-item dark:bg-neutral-800"
-							>
-								{document.title}
-							</div>
-						{/each}
-					</div>
-				</div>
+				</button>
 			{/each}
 		</div>
 	</Card>

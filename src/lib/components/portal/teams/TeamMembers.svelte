@@ -7,6 +7,8 @@
 	import Button from '$lib/components/general/Button.svelte';
 	import { modalPanel } from '../../../../stores/modal';
 	import NewMemberModal from './NewMemberModal.svelte';
+	import MemberSideView from '$lib/components/members/MemberSideView.svelte';
+	import { sidePanel } from '../../../../stores/sidepanel';
 	export let team: Team;
 	let members: any[] | undefined = undefined;
 
@@ -63,10 +65,11 @@
 				{#each members as member}
 					<button
 						on:click={() => {
-							// sidePanel.set({
-							// 	open: true,
-							// 	props: {}
-							// });
+							sidePanel.set({
+								open: true,
+								component: MemberSideView,
+								props: { userID: member.id, title: 'profile', user: member }
+							});
 						}}
 						class="flex p-2 hover:shadow-sm flex-col bg-neutral-50 rounded-2xl border border-base-300 h-32 w-32 dark:border-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-800"
 					>

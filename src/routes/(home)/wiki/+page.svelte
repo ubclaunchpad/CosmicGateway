@@ -4,6 +4,7 @@
 	import { modalPanel } from '../../../stores/modal';
 	import Button from '$lib/components/general/Button.svelte';
 	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
+	import AreaCard from '$lib/components/wiki/AreaCard.svelte';
 </script>
 
 <MainPage>
@@ -25,6 +26,8 @@
 				<!-- <Button class="">New Area</Button> -->
 			</div>
 		</div>
+		<AreaCard />
+
 		<Card>
 			<h2 class="card-title" slot="title">Recent Documents</h2>
 			<div class="flex overflow-x-scroll space-x-4 pt-4 w-full" slot="content">

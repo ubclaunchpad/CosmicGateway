@@ -41,7 +41,7 @@
 	const onEditInfo = (e: Event) => {
 		modalPanel.set({
 			component: EditMemberInfoModal,
-			props: { user: user },
+			props: { user: user, title: 'profile' },
 			open: true
 		});
 	};
@@ -49,7 +49,7 @@
 	const onEditStatus = (e: Event) => {
 		modalPanel.set({
 			component: EditMemberStatusModal,
-			props: { user: user },
+			props: { user: user, title: 'profile' },
 			open: true
 		});
 	};
@@ -101,9 +101,6 @@
 			</div>
 		</div>
 	{:else}
-		<div class="border-b pb-2 pt-5 border-b-neutral-200 dark:border-b-neutral-800">
-			<h2 class="text-lg font-bold">Profile</h2>
-		</div>
 		<div class="flex w-full py-4 pb-6 items-center justify-center">
 			<div class="w-48 h-48 bg-neutral-100 rounded dark:bg-neutral-800"></div>
 		</div>
