@@ -22,7 +22,7 @@ export async function fetcher<T>(request: IFetchRequest<T>) {
 			if (request.notifySuccess) {
 				const notification: INotification = {
 					title: 'Success!',
-					message: 'Your request was successful',
+					message: responseInfo.message || 'Request was successful',
 					type: 'success',
 					...request.notifySuccess
 				};

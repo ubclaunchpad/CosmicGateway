@@ -5,6 +5,10 @@
 	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
 	import { sidePanel } from '$stores/sidepanel';
 	import { PUBLIC_WIKI_API_URI } from '$env/static/public';
+	import { modalPanel } from '$stores/modal.js';
+	import NewDocument from '$lib/components/wiki/NewDocument.svelte';
+	import { token } from '$stores/auth';
+	import { fade } from 'svelte/transition';
 	export let data;
 	let area = {
 		name: data.name,
@@ -13,7 +17,12 @@
 		documents: []
 	};
 	const getAreas = async () => {
-		const res = await fetch(`${PUBLIC_WIKI_API_URI}/areas/${data.id}`);
+		const res = await fetch(`${PUBLIC_WIKI_API_URI}/areas/${data.id}`, {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${$token}`
+			}
+		});
 		const area = await res.json();
 		return area;
 	};
@@ -31,15 +40,13 @@
 				<Button
 					class=""
 					on:click={() => {
-						sidePanel.set({
-							component: DocumentModal,
+						modalPanel.set({
+							component: NewDocument,
 							open: true,
-							props: { area: 'admin', id: 'test' }
+							props: { area: { id: area.id, name: area.name } }
 						});
 					}}>New Document</Button
 				>
-
-				<!-- <Button class="">New Area</Button> -->
 			</div>
 		</div>
 
@@ -65,10 +72,11 @@
 					{/each}
 				</div>
 				<div class="flex flex-col gap-2 w-full">
-					{#each area.documents as document}
+					{#each area.documents as document, i}
 						<a
 							href="/wiki/{area.name}-{area.id}/{document.title}-{document.id}"
 							class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 carousel-item h-fit w-full dark:border-neutral-800 p-2"
+							transition:fade={{ duration: 200, delay: 0 + i * 50 }}
 						>
 							<div class="flex sm:flex-col md:flex-row items-center justify-center flex-1 w-full">
 								<h3 class="text-md font-medium flex-1 text-left">{document.title}</h3>
