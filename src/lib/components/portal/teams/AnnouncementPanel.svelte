@@ -1,16 +1,13 @@
 <script lang="ts">
 	import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
-	import Icon from '$lib/components/general/Icon.svelte';
-	import UsersIcon from '$lib/components/general/icons/UsersIcon.svelte';
 	import type { Announcement } from '$lib/types/types';
-	import { slide } from 'svelte/transition';
-	import AnnouncementIcon from '$lib/components/general/icons/AnnouncementIcon.svelte';
-	import LocationIcon from '$lib/components/general/icons/LocationIcon.svelte';
-	import SmileIcon from '$lib/components/general/icons/SmileIcon.svelte';
+	import { blur, fade, fly, scale, slide } from 'svelte/transition';
 	import { sidePanel } from '../../../../stores/sidepanel';
-	import Button from '$lib/components/general/Button.svelte';
+	import AnnouncementCard from './AnnouncementCard.svelte';
+	import NewAnnouncement from './NewAnnouncement.svelte';
 
 	export let announcement: Announcement;
+	let announcementThread: Announcement[] = [];
 
 	async function deleteAnnouncement() {
 		sidePanel.set({ open: false, component: null, props: {} });
@@ -26,49 +23,49 @@
 			console.error(data);
 		}
 	}
+
+	async function getAnnouncementThread() {
+		announcementThread = [announcement, announcement, announcement, announcement, announcement];
+	}
+
+	getAnnouncementThread();
 </script>
 
-<div class="flex gap-6 flex-1 flex-col">
-	<div class="flex flex-col gap-6 pt-5 flex-1">
-		<div
-			transition:slide
-			class={`w-full bg-[#F9F9F9] rounded-lg border p-0 hover:shadow-sm hover:border-base-300 dark:hover:border-neutral-800
-				dark:bg-neutral-800 dark:border-neutral-800 border-base-200 `}
-		>
-			<div class="card-body p-3">
-				<div class="  rounded-t-lg flex items-center gap-3">
-					<Icon>
-						{#if announcement.type === 'announcement'}
-							<AnnouncementIcon />
-						{:else if announcement.type === 'event'}
-							<LocationIcon />
-						{:else if announcement.type === 'update'}
-							<SmileIcon />
-						{:else}
-							<UsersIcon />
-						{/if}
-					</Icon>
-
-					<h3 class="card-title text-sm flex-1">{announcement.title}</h3>
-				</div>
-				<div class="pl-7">
-					<p class="text-sm">{announcement.contents.body}</p>
-				</div>
-
-				<div
-					class="flex items
-                                -center justify-between w-full pt-3 pl-7"
-				>
-					<p class="text-sm max-w-fit flex-0"></p>
-					<p class="text-sm max-w-fit flex-0">
-						{new Date(announcement.updated_at).toLocaleDateString()}
-					</p>
-				</div>
-			</div>
+<div class="flex gap-6 flex-col relative">
+	<AnnouncementCard {announcement} />
+	<div
+		class="w-1 h-full flex flex-col flex-1 absolute top-0 left-4 bg-neutral-100 rounded-full dark:bg-neutral-800"
+	></div>
+	<div class="flex flex-col gap-1">
+		{#if announcementThread.length > 0}
+			{#each announcementThread as announcement, i}
+				{#key announcement.id}
+					<div
+						class="flex justify-center items-center relative w-full pl-8"
+						in:blur={{ duration: 600, delay: i * 100 }}
+					>
+						<!-- <div class="h-1 z-10 flex flex-col flex-1 absolute w-1/2 top-6 left-4 bg-neutral-200 rounded-full rounded-tr-none">
+				</div> -->
+						<svg class="h-12 w-12 top-0 absolute left-4" viewBox="0 0 32 32">
+							<path
+								fill="none"
+								stroke-width="3"
+								d="M10,20 a12,12 0 0,1 -10,-10"
+								class="stroke-current text-neutral-100 dark:text-neutral-800"
+							>
+							</path>
+						</svg>
+						<AnnouncementCard {announcement} />
+					</div>
+				{/key}
+			{/each}
+		{/if}
+		<div class="flex justify-center items-center relative w-full pl-8">
+			<NewAnnouncement teamid={2} />
 		</div>
 	</div>
-	<div class="flex gap-6 flex-row">
-		<!-- <button class="btn text-sm flex-1 border">Edit</button> -->
-		<Button class="text-sm flex-1 " on:click={deleteAnnouncement}>Delete</Button>
-	</div>
+	<!-- <div class="flex gap-6 flex-row"> -->
+	<!-- <button class="btn text-sm flex-1 border">Edit</button> -->
+	<!-- <Button class="text-sm flex-1 " on:click={deleteAnnouncement}>Delete</Button> -->
+	<!-- </div> -->
 </div>

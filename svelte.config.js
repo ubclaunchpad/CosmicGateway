@@ -16,6 +16,13 @@ const config = {
 				exclude: ['<all>']
 			}
 		}),
+		alias: {
+			$components: './src/components',
+			$lib: './src/lib',
+			$stores: './src/stores',
+			$utils: './src/utils'
+		},
+
 		csp: {
 			directives: {
 				'script-src': [

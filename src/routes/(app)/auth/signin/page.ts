@@ -1,3 +1,4 @@
+import { redirect } from '@sveltejs/kit';
 import { fetchUser, token } from '../../../../stores/auth';
 
 export const load = async () => {
@@ -9,7 +10,7 @@ export const load = async () => {
 		try {
 			await fetchUser(userToken);
 		} catch (e) {
-			console.log(e);
+			throw redirect(300, '/sign-in');
 		}
 	}
 	return {};

@@ -13,13 +13,6 @@
 	let newAnnouncement: Partial<Announcement> | undefined = undefined;
 	export let teamid: number;
 
-	let sideOpen = false;
-	$: sidePanel.set({
-		open: sideOpen,
-		component: null,
-		props: {}
-	});
-
 	function newAnnouncementHandler() {
 		if (newAnnouncement) {
 			newAnnouncement = undefined;

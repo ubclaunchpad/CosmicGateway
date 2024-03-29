@@ -10,8 +10,10 @@ export const load = async ({ params }) => {
 		throw redirect(307, '/auth');
 	} else {
 		try {
+			console.log('fetchUser', userToken);
 			await fetchUser(userToken);
 		} catch (e) {
+			console.error(e);
 			throw redirect(307, '/auth');
 		}
 	}
