@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { IUser } from '$lib/types/User';
+	import type { IDict, IUser } from '$lib/types/User';
 	import { userFieldMapper } from '$lib/types/User';
 	import { modalPanel } from '../../../stores/modal';
 	import EditMemberInfoModal from './EditMemberModal.svelte';
@@ -11,14 +11,20 @@
 	export let adminView: boolean;
 
 	let user: IUser = {
+		id: 0,
 		first_name: '',
+		last_name: '',
+		pref_name: '',
 		member_since: '',
 		roles: [],
 		teams: [],
 		email: '',
-		faculty: '',
-		specialization: '',
-		standing: ''
+		faculty: {} as IDict<string>,
+		specialization: {} as IDict<string>,
+		standing: {} as IDict<string>,
+		created_at: '',
+		updated_at: '',
+		username: '',
 	};
 	let loading: boolean = false;
 
@@ -57,16 +63,15 @@
 
 <div>
 	{#if loading}
-		<div class="border-b py-1">
-			<div class="skeleton w-40 h-5"></div>
-		</div>
-		<div class="flex w-full my-4 items-center justify-center">
-			<div class="skeleton w-40 h-40"></div>
+		<div class="flex w-full py-4 pb-6 items-center justify-center">
+			<div class="skeleton w-48 h-48"></div>
 		</div>
 
 		<div class="flex justify-between mb-6">
 			<div class="skeleton h-6 w-2/3"></div>
 		</div>
+
+		<div class="w-full border-t border-t-neutral-200 dark:border-t-neutral-800 pb-2"></div>
 
 		<div class="flex flex-col gap-4">
 			<div class="flex flex-col gap-2">
@@ -85,7 +90,7 @@
 				</div>
 			</div>
 
-			<div class="w-full border-b"></div>
+			<div class="w-full border-b border-b-neutral-200 dark:border-b-neutral-800"></div>
 
 			<div class="flex flex-col gap-2">
 				<div class="skeleton h-5 w-2/3 mb-2"></div>
@@ -108,7 +113,7 @@
 		<div class="flex justify-between pb-2">
 			<h1 class="text-lg font-medium">{user.first_name}</h1>
 			{#if adminView}
-				<button class="text-primary-400 underline" on:click={onEditInfo}>Edit</button>
+				<button class="text-blue-600 underline" on:click={onEditInfo}>Edit</button>
 			{/if}
 		</div>
 
@@ -173,7 +178,7 @@
 				<div class="flex justify-between">
 					<h3 class="text-md font-semibold">Health Information</h3>
 					{#if adminView}
-						<button class="text-primary-500 underline" on:click={onEditInfo}>Edit</button>
+						<button class="text-blue-600 underline" on:click={onEditInfo}>Edit</button>
 					{/if}
 				</div>
 				<div class="text-sm">
