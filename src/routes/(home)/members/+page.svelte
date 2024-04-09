@@ -71,9 +71,14 @@
 	};
 
 	const handleRowClicked = (e: CustomEvent) => {
+		const userID = e.detail.data.id;
+		if ($userStore && 'id' in $userStore) {
+			adminView = adminView || $userStore?.id === userID;
+		}
+
 		sidePanel.set({
 			component: MemberSideView,
-			props: { adminView, userID: e.detail.data.id, title: 'profile' },
+			props: { adminView, userID, title: 'profile' },
 			open: true
 		});
 	};
