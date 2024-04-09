@@ -19,7 +19,6 @@ const config = {
 			$lib: './src/lib',
 			$stores: './src/stores',
 			$utils: './src/utils',
-			"@/*": "./src/lib/*",
 		},
 
 		csp: {
