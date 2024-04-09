@@ -1,6 +1,17 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
-	import { DiscordIcon, FigmaIcon, GithubIcon, LinkIcon, MediumIcon, YoutubeIcon } from './icons';
+	import {
+		DiscordIcon,
+		FigmaIcon,
+		GithubIcon,
+		LinkIcon,
+		MediumIcon,
+		YoutubeIcon,
+		EmailIcon,
+		InstagramIcon,
+		LinkedInIcon,
+		FacebookIcon
+	} from './icons';
 	export let domain: string;
 
 	function resourcesIconMapper(domain: string) {
@@ -15,6 +26,14 @@
 				return GithubIcon;
 			case 'figma':
 				return FigmaIcon;
+			case 'email':
+				return EmailIcon;
+			case 'instagram':
+				return InstagramIcon;
+			case 'linkedin':
+				return LinkedInIcon;
+			case 'facebook':
+				return FacebookIcon;
 			default:
 				return LinkIcon;
 		}

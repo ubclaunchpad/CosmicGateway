@@ -17,6 +17,7 @@ import DiscordIcon from './DiscordIcon.svelte';
 import DraggableIcon from './DraggableIcon.svelte';
 import DribbbleIcon from './DribbbleIcon.svelte';
 import EditIcon from './EditIcon.svelte';
+import EmailIcon from './EmailIcon.svelte';
 import ExpandIcon from './ExpandIcon.svelte';
 import ExternalLinkIcon from './ExternalLinkIcon.svelte';
 import EyeIcon from './EyeIcon.svelte';
@@ -80,6 +81,7 @@ export {
 	DraggableIcon,
 	DribbbleIcon,
 	EditIcon,
+	EmailIcon,
 	ExpandIcon,
 	ExternalLinkIcon,
 	EyeIcon,

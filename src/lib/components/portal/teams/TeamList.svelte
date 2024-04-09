@@ -1,27 +1,34 @@
 <script lang="ts">
+	import Card from '$lib/components/general/Card.svelte';
 	import type { Team } from '$lib/types/types';
 	import { fade } from 'svelte/transition';
-	import TeamCard from './TeamCard.svelte';
-	export let year: number;
 	export let teams: Team[] | null = null;
 </script>
 
-<div class="flex flex-col gap-3 p-2">
-	<h2 class="pl-2 text-lg font-bold">{year}</h2>
-	<div class=" justify-start items-center gap-4 flex flex-row overflow-scroll w-full">
-		{#if teams === null}
-			{#each Array(5) as _}
-				<div
-					transition:fade={{ duration: 300 }}
-					class="card flex bg-base-100 border border-base-200 rounded h-48 w-48 overflow-hidden flex-col"
+<Card class="w-full h-96 max-w-96">
+	<h1 class="text-sm font-bold" slot="title">Your Teams</h1>
+	<div class="flex justify-center items-center flex-1 overflow-scroll" slot="content">
+		<div class="flex flex-col gap-3 overflow-hidden flex-1">
+			{#if teams !== null}
+				<ul
+					class=" justify-start items-center gap-0 flex flex-col overflow-scroll w-full border-neutral-100 border-b divide-y divide-neutral-100 dark:border-neutral-800 dark:divide-neutral-800"
 				>
-					<div class="skeleton h-full w-72"></div>
-				</div>
-			{/each}
-		{:else}
-			{#each teams as team}
-				<TeamCard {team} />
-			{/each}
-		{/if}
+					{#each teams as team}
+						<li
+							transition:fade={{ duration: 300 }}
+							class="flex py-2 overflow-hidden w-full justify-between items-center text-neutral-600 dark:text-neutral-200"
+						>
+							<a
+								href={`/teams/${team.label}-${team.id}`}
+								class="flex text-sm w-full justify-between items-center underline text-neutral-600 dark:text-neutral-200 underline-offset-4 hover:text-primary-400 dark:hover:text-primary-300"
+							>
+								{team.label}
+							</a>
+							<span class="text-xs text-neutral-500 dark:text-neutral-400">{team.team_terms}</span>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
 	</div>
-</div>
+</Card>
