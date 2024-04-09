@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
-	import Input from '$lib/components/common/input/input.svelte';
+	import { Input } from '$lib/components/common/input';
 	import Button from '$lib/components/general/Button.svelte';
 	import TextArea from '$lib/components/general/TextArea.svelte';
 	import { fetcher } from '$lib/util/fetcher';
