@@ -24,7 +24,7 @@
 		standing: {} as IDict<string>,
 		created_at: '',
 		updated_at: '',
-		username: '',
+		username: ''
 	};
 	let loading: boolean = false;
 
