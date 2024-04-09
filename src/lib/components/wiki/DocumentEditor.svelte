@@ -9,8 +9,26 @@
 	import Text from '@tiptap/extension-text';
 	import { PUBLIC_WIKI_API_URI } from '$env/static/public';
 	// import './styles.css';
+	import DocumentInfoSide from '$lib/components/wiki/DocumentInfoSide.svelte';
+	import { sidePanel } from '$stores/sidepanel';
+
+	let html = '<h1>Document Content</h1>';
+	onMount(() => {
+		sidePanel.set({
+			component: DocumentInfoSide,
+			props: { title: 'Details', dom: html },
+			open: true
+		});
+	});
 	export let area;
 	export let id;
+
+	$: html &&
+		sidePanel.set({
+			component: DocumentInfoSide,
+			props: { title: 'Details', dom: html },
+			open: true
+		});
 
 	let document = {
 		name: 'Document Name',
@@ -43,6 +61,10 @@
 					class:
 						'w-full prose dark:!prose-invert !w-full h-full  outline-none w-full h-full min-h-20 min-w-[600px] max-w-full '
 				}
+			},
+
+			onUpdate: ({ editor }) => {
+				html = editor.getHTML();
 			}
 		});
 	});
@@ -84,5 +106,6 @@
 			Clear
 		</button>
 	</div>
+	<!-- <DocumentInfoSide dom={html} /> -->
 	<EditorContent {editor} />
 </div>

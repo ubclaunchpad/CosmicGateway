@@ -2,7 +2,7 @@
 	import type { Team } from '$lib/types/types';
 	import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
 	import { token } from '../../../../stores/auth.js';
-	import TeamList from './TeamList.svelte';
+	import TeamGrid from './TeamGrid.svelte';
 
 	let teams: { [key: number]: Team[] } = {};
 
@@ -32,6 +32,6 @@
 
 <div class="flex flex-col gap-3 p-2">
 	{#each Object.entries(teams) as [year, val]}
-		<TeamList teams={val} year={Number(year)} />
+		<TeamGrid teams={val} year={Number(year)} />
 	{/each}
 </div>

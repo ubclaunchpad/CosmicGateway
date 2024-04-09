@@ -31,6 +31,9 @@ module.exports = {
 		extend: {
 			borderRadius: {
 				inherit: 'inherit'
+			},
+			colors: {
+				primary: primary
 			}
 		},
 		accentColor: ({ theme }) => ({
@@ -191,19 +194,6 @@ module.exports = {
 			fuchsia: colors.fuchsia,
 			pink: colors.pink,
 			rose: colors.rose,
-			// Custom colors
-			primary: {
-				50: '#f2f8ff',
-				100: '#e6f1ff',
-				200: '#bfdbfe',
-				300: '#99c5fe',
-				400: '#4d9bfe',
-				500: '#655C78',
-				600: '#0058e6',
-				700: '#003c99',
-				800: '#002d73',
-				900: '#001e4d'
-			},
 			bg: {
 				50: '#FFFFFF',
 				100: '#F7F5F9',

@@ -1,5 +1,15 @@
-<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<svg
+	width="24"
+	height="24"
+	viewBox="0 0 24 24"
+	xmlns="http://www.w3.org/2000/svg"
+	stroke="currentColor"
+	fill="currentColor"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+>
 	<path
+		stroke-linecap="round"
 		fill-rule="evenodd"
 		clip-rule="evenodd"
 		d="M11.3872 2H15.2103C17.2769 2 18.9522 3.6753 18.9522 5.74189C18.9522 7.80849 17.2769 9.48379 15.2103 9.48379H11.3872V2ZM12.6128 3.22569V8.2581H15.2103C16.6 8.2581 17.7265 7.13156 17.7265 5.74189C17.7265 4.35224 16.6 3.22569 15.2103 3.22569H12.6128Z"
