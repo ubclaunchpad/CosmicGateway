@@ -16,7 +16,7 @@
 </script>
 
 <Card class={`w-full h-96 flex-2 ${colors[noteColor]}`}>
-	<div class="flex w-full justify-between items-center" slot="title">
+	<div class="flex w-full justify-between items-center h-full" slot="title">
 		<h1 class="text-sm font-bold w-full">Quick Notes</h1>
 		<div
 			class="flex gap-2 w-full h-6 justify-end items-center"

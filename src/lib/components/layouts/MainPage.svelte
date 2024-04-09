@@ -36,11 +36,11 @@
 	}
 </script>
 
-<div class="h-full overflow-scroll flex w-full dark:bg-neutral-950" id="main-page">
-	<div class="relative flex-col overflow-scroll flex-1 h-full px-4 py-1">
-		<div
+<div class=" overflow-scroll flex flex-1 w-full dark:bg-neutral-950 h-full" id="main-page">
+	<div class="relative flex-col overflow-scroll flex-1 h-screen px-4 py-7">
+		<!-- <div
 			id="breadcrumb"
-			class="flex gap-2 items-center p-2 border-neutral-200 dark:border-neutral-800"
+			class="flex gap-2 items-center p-2 border-neutral-200 dark:border-neutral-800 h-10"
 		>
 			{#each breadcrumb as crumb}
 				<a
@@ -53,8 +53,8 @@
 					<span class="text-neutral-500 dark:text-neutral-400"> &rsaquo; </span>
 				{/if}
 			{/each}
-		</div>
-		<slot name="main" class="content" />
+		</div> -->
+		<slot name="main" />
 	</div>
 
 	{#if $sidePanel && $sidePanel.component}

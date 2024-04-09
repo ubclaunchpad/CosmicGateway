@@ -45,11 +45,12 @@
 		{#each areas as area}
 			<a
 				href={`/wiki/${area.name}-${area.id}`}
-				class="flex p-3 shadow-sm flex-col items-center bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 h-56 w-56 dark:border-neutral-800 flex-shrink-0"
+				class="flex p-3 shadow-sm flex-col items-center bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 h-32 w-56 dark:border-neutral-800 flex-shrink-0"
 			>
 				<div class="flex flex-col items-center justify-center flex-1">
 					<h3 class="text-lg font-bold flex-1 text-center flex items-center">{area.name}</h3>
-					<p class="text-sm text-neutral-500 dark:text-neutral-400">
+					<p class="text-xs text-neutral-500 dark:text-neutral-400">30 documents</p>
+					<p class="text-xs text-neutral-500 dark:text-neutral-400">
 						Last updated: {new Date(area.updatedat).toLocaleDateString()}
 					</p>
 				</div>

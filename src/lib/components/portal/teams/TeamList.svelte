@@ -5,7 +5,7 @@
 	export let teams: Team[] | null = null;
 </script>
 
-<Card class="w-full h-96 max-w-96">
+<Card class="w-full h-96 md:max-w-96">
 	<h1 class="text-sm font-bold" slot="title">Your Teams</h1>
 	<div class="flex justify-center items-center flex-1 overflow-scroll" slot="content">
 		<div class="flex flex-col gap-3 overflow-hidden flex-1">

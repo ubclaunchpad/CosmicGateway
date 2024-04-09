@@ -9,6 +9,8 @@
 	import NewDocument from '$lib/components/wiki/NewDocument.svelte';
 	import { token } from '$stores/auth';
 	import { fade } from 'svelte/transition';
+	import FolderIcon from '$lib/components/general/icons/FolderIcon.svelte';
+	import FileIcon from '$lib/components/general/icons/FileIcon.svelte';
 	export let data;
 	let area = {
 		name: data.name,
@@ -36,51 +38,61 @@
 	<div class="flex flex-col gap-6 flex-1" slot="main">
 		<div class="flex gap-4 items-center justify-between p-2">
 			<h1 class="text-2xl font-bold">{area.name}</h1>
-			<div class="flex gap-4">
-				<Button
-					class=""
-					on:click={() => {
-						modalPanel.set({
-							component: NewDocument,
-							open: true,
-							props: { area: { id: area.id, name: area.name } }
-						});
-					}}>New Document</Button
-				>
-			</div>
+			<div class="flex gap-4"></div>
 		</div>
 
-		<Card>
-			<div class="flex overflow-x-scroll space-x-4 w-full" slot="content">
-				<p class="text-neutral-500 dark:text-neutral-400 text-center w-full">
-					At the moment, all documents within an area are viewable by all users. In the future, we
-					will add the ability to restrict access to certain areas.
-				</p>
-			</div>
-		</Card>
+		<Card class="flex flex-col gap-6 w-full h-full">
+			<div class="flex flex-col gap-6 w-full h-full" slot="content">
+				<div class="flex gap-4 items-center w-full justify-end">
+					<div class="flex w-full justify-end gap-4">
+						<Button
+							class=""
+							on:click={() => {
+								modalPanel.set({
+									component: NewDocument,
+									open: true,
+									props: { area: { id: area.id, name: area.name } }
+								});
+							}}>Create Document</Button
+						>
+					</div>
+				</div>
 
-		<Card>
-			<div class="flex flex-col gap-6 w-full" slot="content">
-				<div class="flex overflow-x-scroll gap-2 w-full">
+				<div class="flex flex-col gap-2 w-full">
 					{#each area.areas as subfolder}
 						<a
 							href="/wiki/{subfolder.name}-{subfolder.id}"
-							class="flex p-2 px-4 shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 carousel-item h-fit w-fit dark:border-neutral-800 justify-center items-center"
-						>
-							{subfolder.name}
-						</a>
-					{/each}
-				</div>
-				<div class="flex flex-col gap-2 w-full">
-					{#each area.documents as document, i}
-						<a
-							href="/wiki/{area.name}-{area.id}/{document.title}-{document.id}"
-							class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 carousel-item h-fit w-full dark:border-neutral-800 p-2"
+							class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 h-fit w-full dark:border-neutral-800 p-2"
 							transition:fade={{ duration: 200, delay: 0 + i * 50 }}
 						>
 							<div class="flex sm:flex-col md:flex-row items-center justify-center flex-1 w-full">
-								<h3 class="text-md font-medium flex-1 text-left">{document.title}</h3>
-								<p class="text-sm text-neutral-500 dark:text-neutral-400">
+								<div
+									class="flex items-center justify-center w-8 h-8 bg-primary-500 dark:bg-primary-400 rounded-full"
+								>
+									<FolderIcon />
+									<h3 class="text-md font-medium flex-1 text-left">{subfolder.name}</h3>
+								</div>
+								<!-- <p class="text-sm text-neutral-500 dark:text-neutral-400">
+							Last updated: {new Date(subfolder.updatedat).toLocaleDateString()}
+						</p> -->
+							</div>
+						</a>
+					{/each}
+					{#each area.documents as document, i}
+						<a
+							href="/wiki/{area.name}-{area.id}/{document.title}-{document.id}"
+							class="flex shadow-sm flex-col bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 h-fit w-full dark:border-neutral-800 p-2"
+							transition:fade={{ duration: 200, delay: 0 + i * 50 }}
+						>
+							<div
+								class="flex sm:flex-col md:flex-row items-center justify-center flex-1 w-full text-neutral-600 dark:text-neutral-300"
+							>
+								<div class="flex items-center justify-center w-full gap-3">
+									<FileIcon />
+									<h3 class="text-md font-medium flex-1 text-left">{document.title}</h3>
+								</div>
+
+								<p class="text-xs text-neutral-500 dark:text-neutral-400 flex-shrink-0">
 									Last updated: {new Date(document.updatedat).toLocaleDateString()}
 								</p>
 							</div>

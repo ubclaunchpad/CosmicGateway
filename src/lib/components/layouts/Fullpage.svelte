@@ -8,7 +8,7 @@
 
 <div
 	id="page"
-	class="flex flex-col justify-start items-start overflow-hidden h-screen dark:text-white dark:border-neutral-800"
+	class="flex flex-col justify-start items-start overflow-hidden max-h-screen h-screen dark:text-white dark:border-neutral-800"
 >
 	{#if $modalPanel && $modalPanel.component}
 		<div
@@ -31,12 +31,12 @@
 			</div>
 		</div>
 	{/if}
-	<div class="flex flex-row w-full h-full">
+	<div class="flex flex-row w-full flex-1 max-h-screen h-screen">
 		<Navbar />
 		{#key $page.url.pathname}
 			<main
 				id="main-page"
-				class={'flex-1 flex flex-col justify-between items-start overflow-scroll h-full bg-bg-100 fade-in'}
+				class={'flex-1 flex flex-col justify-between items-start   bg-bg-100 fade-in'}
 			>
 				<slot />
 			</main>
