@@ -10,8 +10,6 @@
 	import { PUBLIC_WIKI_API_URI } from '$env/static/public';
 	import { fetcher } from '$lib/util/fetcher';
 	export let area;
-	export let showInfo = false;
-
 	export let id;
 	let draft = '';
 	let document = {};
@@ -37,7 +35,7 @@
 			editorProps: {
 				attributes: {
 					class:
-						'w-full p-2 px-6   prose dark:!prose-invert  flex flex-col flex-1 outline-none w-full  min-h-20 min-w-[800px] max-w-[1000px] '
+						'w-full p-2 px-6   prose dark:!prose-invert  py-5 outline-none w-full  min-h-20 min-w-[800px] max-w-[1000px] '
 				}
 			},
 
@@ -95,32 +93,10 @@
 			Clear
 		</button>
 	</div>
-	<!-- <DocumentInfoSide dom={html} /> -->
 	<div class=" h-full flex-1 flex flex-row w-full p-1 gap-4 justify-around">
-		<div
-			class=" h-full flex-2 flex flex-row max-w-full w-fit doc-wrapper focus:shadow-md border bg-white border-neutral-200 rounded-lg overflow-hidden dark:bg-neutral-900 dark:border-neutral-800"
-		>
+		<div class=" h-full flex-2 flex flex-row max-w-full w-full doc-wrapper focus:shadow-md border bg-white border-neutral-200 rounded-lg overflow-hidden dark:bg-neutral-900 dark:border-neutral-800">
 			<EditorContent {editor} />
 		</div>
-		<!-- <div class=" flex-col gap-6  h-full sm:hidden xl:flex  xl:w-full flex-1 border-l p-4 border-neutral-200 dark:border-neutral-800 ">
-		<h3 class="text-md font-medium w-full">Info</h3>
-		<div class="flex flex-col gap-1 w-full flex-1 bg-neutral-50 p-2 rounded   text-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 text-xs">
-			<div class="flex flex-row gap-2 w-full border-b border-b-neutral-200 dark:border-neutral-700">
-				<h4 class="text-xs w-20">Created</h4>
-				<p class="">{
-					new Date(document.createdat).toLocaleDateString()
-				}</p>
-			</div>
-			<div class="flex flex-row gap-2 w-full border-b border-b-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
-				<h4 class=" w-20">Updated</h4>
-				<p class="">{
-					new Date(document.updatedat).toLocaleDateString()
-				}</p>
-			</div>	
-		</div>
-	
-
-</div> -->
 	</div>
 </div>
 

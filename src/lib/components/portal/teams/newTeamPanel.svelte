@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
 	import { Input } from '$lib/components/common/input';
+	import {Textarea} from '$lib/components/common/textarea';
 	import Button from '$lib/components/general/Button.svelte';
-	import TextArea from '$lib/components/general/TextArea.svelte';
+
 	import { fetcher } from '$lib/util/fetcher';
 
 	let newTeam = {
@@ -49,7 +50,7 @@
 					type="text"
 					placeholder="Enter team name"
 					class="p-2 dark:bg-neutral-700 rounded"
-					value={newTeam.label}
+					bind:value={newTeam.label}
 				/>
 			</div>
 
@@ -57,11 +58,11 @@
 				<label for="description" class="label">
 					<span class="label-text dark:text-neutral-200">Description</span>
 				</label>
-				<TextArea
+				<Textarea
 					id="description"
 					placeholder="Enter team description"
 					class="textarea textarea-bordered resize-none h-24 w-full p-2 dark:bg-neutral-700 rounded"
-					value={newTeam.description}
+					bind:value={newTeam.description}
 				/>
 			</div>
 
@@ -74,7 +75,7 @@
 					type="text"
 					placeholder="Enter image URL"
 					class="p-2 dark:bg-neutral-700 rounded"
-					value={newTeam.image_link}
+					bind:value={newTeam.image_link}
 				/>
 			</div>
 
@@ -87,7 +88,7 @@
 					type="number"
 					placeholder="Enter term year"
 					class="p-2 dark:bg-neutral-700 rounded"
-					value={newTeam.term_year}
+					bind:value={newTeam.term_year}
 				/>
 			</div>
 			<div class="flex justify-end w-full">
