@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { VariantProps } from 'tailwind-variants';
-	import { getEmblaContext } from './context.js';
-	import { cn } from '$lib/utils.js';
+	import { getEmblaContext } from './context';
+	import { cn } from '$lib/utils';
 	import Button from '$lib/components/general/Button.svelte';
 	import ArrowRightIcon from '$lib/components/general/icons/ArrowRightIcon.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';

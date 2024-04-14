@@ -1,4 +1,4 @@
-// import Root from './input.svelte';
+import Root from './Input.svelte';
 
 export type FormInputEvent<T extends Event = Event> = T & {
 	currentTarget: EventTarget & HTMLInputElement;
@@ -21,8 +21,7 @@ export type InputEvents = {
 	wheel: FormInputEvent<WheelEvent>;
 };
 
-// export {
-// 	//
-// 	// Root as Input,
-// 	// Root
-// };
+export {
+	Root as Input,
+	Root
+};
