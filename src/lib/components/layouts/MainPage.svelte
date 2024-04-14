@@ -36,8 +36,8 @@
 	}
 </script>
 
-<div class=" overflow-scroll flex flex-1 w-full dark:bg-neutral-950 h-full" id="main-page">
-	<div class="relative flex-col overflow-scroll flex-1 h-screen px-4 py-7">
+<div class=" overflow-hidden flex flex-1 w-full dark:bg-neutral-950 h-full" id="main-page">
+	<div class="relative flex-col overflow-y-scroll flex-1 h-screen px-2 md:py-7 md:px-4 py-2">
 		<!-- <div
 			id="breadcrumb"
 			class="flex gap-2 items-center p-2 border-neutral-200 dark:border-neutral-800 h-10"
@@ -57,7 +57,7 @@
 		<slot name="main" />
 	</div>
 
-	{#if $sidePanel && $sidePanel.component}
+	{#if $sidePanel && $sidePanel.open}
 		<div
 			class={`flex flex-col gap-2 ${$sidePanel.open ? 'w-96' : 'w-10'} bg-white dark:bg-neutral-950 rounded-l-sm   relative slider
 			border-l border-neutral-200 dark:border-neutral-800 max-h-100svh overflow-y-scroll

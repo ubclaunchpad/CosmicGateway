@@ -4,6 +4,12 @@
 	import { blur, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { page } from '$app/stores';
+	let isMobile = false;
+
+	window.addEventListener('resize', () => {
+		isMobile = window.innerWidth < 768;
+	});
+	$: isMobile = window.innerWidth < 768;
 </script>
 
 <div
@@ -31,12 +37,14 @@
 			</div>
 		</div>
 	{/if}
-	<div class="flex flex-row w-full flex-1 max-h-screen h-screen">
-		<Navbar />
+	<div
+		class={`flex flex-row w-full flex-1 max-h-screen h-screen relative dark:bg-neutral-950 bg-bg-100 ${isMobile ? ' flex-col-reverse' : ''}`}
+	>
+		<Navbar {isMobile} />
 		{#key $page.url.pathname}
 			<main
 				id="main-page"
-				class={'flex-1 flex flex-col justify-between items-start   bg-bg-100 fade-in'}
+				class={'flex-1 flex flex-col justify-between items-start overflow-hidden   fade-in'}
 			>
 				<slot />
 			</main>

@@ -2,11 +2,11 @@
 	import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
 	import Card from '$lib/components/general/Card.svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
-	import { onMount } from 'svelte';
-	import { token, userStore } from '../../stores/auth';
+	import { userStore } from '../../stores/auth';
 	import TeamList from '$lib/components/portal/teams/TeamList.svelte';
 	import QuickLinks from '$lib/components/dashboard/QuickLinks.svelte';
 	import QuickNotes from '$lib/components/dashboard/QuickNotes.svelte';
+	import { cachedSWR } from '$lib/util/fetcher';
 	let teams: any[] | null = null;
 	function greeting() {
 		const date = new Date();
@@ -20,22 +20,12 @@
 		}
 	}
 
-	const fetchUserTeams = async () => {
-		if (!$userStore || !$userStore.id) return;
+	// ?userid=${$userStore?.id}
+	const { data } = cachedSWR.useSWR(`${PUBLIC_TEAMS_API_URI}/teams`);
 
-		const res = await fetch(`${PUBLIC_TEAMS_API_URI}/teams?userid=${$userStore?.id}`, {
-			method: 'GET',
-			headers: {
-				Authorization: 'Bearer ' + token
-			}
-		});
-		const data = await res.json();
-		teams = data;
-	};
-
-	onMount(() => {
-		fetchUserTeams();
-	});
+	$: if ($data) {
+		teams = $data;
+	}
 </script>
 
 <MainPage>

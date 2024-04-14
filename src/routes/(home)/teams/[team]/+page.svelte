@@ -4,7 +4,7 @@
 	import TeamHome from '$lib/components/portal/teams/TeamHome.svelte';
 	import TeamProjects from '$lib/components/portal/teams/TeamProjects.svelte';
 	// import TeamSettings from '$lib/components/portal/teams/TeamSettings.svelte';
-	import TeamWiki from '$lib/components/portal/teams/TeamWiki.svelte';
+	// import TeamWiki from '$lib/components/portal/teams/TeamWiki.svelte';
 	import type { Team } from '$lib/types/types.js';
 	import { sidePanel } from '../../../../stores/sidepanel.js';
 	export let data;
@@ -16,8 +16,8 @@
 	});
 	let tabs = [
 		{ title: 'Dashboard', content: TeamHome, props: { team: team } },
-		{ title: 'Team', content: TeamProjects, props: { team: team } },
-		{ title: 'Wiki', content: TeamWiki, props: {} }
+		{ title: 'Team', content: TeamProjects, props: { team: team } }
+		// { title: 'Wiki', content: TeamWiki, props: {} }
 		// { title: 'Settings', content: TeamSettings, props: { team: team } }
 	];
 </script>

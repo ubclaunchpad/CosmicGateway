@@ -346,6 +346,7 @@ module.exports = {
 		},
 		fontFamily: {
 			sans: [
+				'Manrope',
 				'Nunito',
 				'Lato',
 				'ui-sans-serif',

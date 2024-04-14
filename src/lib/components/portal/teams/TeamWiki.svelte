@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/general/Button.svelte';
 	import Card from '$lib/components/general/Card.svelte';
-	import AreaCard from '$lib/components/wiki/AreaCard.svelte';
+	import AreaCard from '$lib/components/wiki/CollectionCard.svelte';
 	import CollectionPanel from '$lib/components/wiki/CollectionPanel.svelte';
 	import DocumentModal from '$lib/components/wiki/DocumentModal.svelte';
 	import { modalPanel } from '../../../../stores/modal';

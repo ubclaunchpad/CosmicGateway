@@ -5,6 +5,9 @@
 	import Button from '$lib/components/general/Button.svelte';
 	import AreaCard from '$lib/components/wiki/AreaCard.svelte';
 	import NewDocument from '$lib/components/wiki/NewDocument.svelte';
+	import CollectionCard from '$lib/components/wiki/CollectionCard.svelte';
+	import PlusCircle from '$lib/components/general/icons/PlusCircle.svelte';
+	import Icon from '$lib/components/general/Icon.svelte';
 </script>
 
 <MainPage>
@@ -12,16 +15,21 @@
 		<div class="flex gap-4 items-center justify-between p-2">
 			<h1 class="text-2xl font-bold">Wiki</h1>
 			<div class="flex gap-4">
-				<!-- <Button
-					class=""
+				<Button
+					class="flex gap-3 justify-center items-center rounded"
 					on:click={() => {
 						modalPanel.set({
 							component: NewDocument,
 							open: true,
-							props: { }
+							props: {}
 						});
-					}}>New Document</Button
-				> -->
+					}}
+				>
+					New
+					<Icon class={'w-9'}>
+						<PlusCircle />
+					</Icon>
+				</Button>
 			</div>
 		</div>
 		<AreaCard />

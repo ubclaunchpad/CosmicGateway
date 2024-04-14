@@ -9,12 +9,19 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "NodeNext",
-		"module": "NodeNext",
+		"moduleResolution": "node"
 	},
+	"include": [
+		"src/node_modules/@sveltejs/kit/types/global.d.ts",
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"node_modules/swrev/dist/*.d.ts",
+		"node_modules/svelte-swr/dist/types/*.d.ts"
+	],
 	"globals": {
 		"google": "readonly"
 	}
+
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
 	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes

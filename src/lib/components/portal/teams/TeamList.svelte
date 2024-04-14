@@ -9,7 +9,7 @@
 	<h1 class="text-sm font-bold" slot="title">Your Teams</h1>
 	<div class="flex justify-center items-start flex-1 overflow-scroll" slot="content">
 		<div class="flex flex-col gap-3 overflow-hidden flex-1">
-			{#if teams !== null}
+			{#if teams}
 				<ul
 					class=" justify-start items-center gap-0 flex flex-col overflow-scroll w-full border-neutral-100 border-b divide-y divide-neutral-100 dark:border-neutral-800 dark:divide-neutral-800"
 				>
@@ -24,7 +24,7 @@
 							>
 								{team.label}
 							</a>
-							<span class="text-xs text-neutral-500 dark:text-neutral-400">{team.team_terms}</span>
+							<span class="text-xs text-neutral-500 dark:text-neutral-400">{team.year}</span>
 						</li>
 					{/each}
 				</ul>

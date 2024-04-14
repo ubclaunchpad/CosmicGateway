@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { userScopes } from '../../../stores/scopes';
-	let querying = true;
-	import { onMount } from 'svelte';
 	import MainPage from '$lib/components/layouts/MainPage.svelte';
 	import { SearchIcon, SortIcon, FilterIcon } from '$lib/components/general/icons';
 	import Loader from '$lib/components/blocks/Loader.svelte';
@@ -10,62 +7,41 @@
 	import type { Column } from '$lib/types/Column';
 	import { sidePanel } from '../../../stores/sidepanel';
 	import MemberSideView from '$lib/components/members/MemberSideView.svelte';
-	import { token, userStore } from '../../../stores/auth';
-	import { getUserInfo } from '$lib/types/User';
+	import { userStore } from '../../../stores/auth';
 	import { PUBLIC_USERS_API_URI } from '$env/static/public';
+	import { cachedSWR } from '$lib/util/fetcher';
 	let adminView = false;
 	let users: IUser[] = [];
 	let columns: Column[] = [];
-	let shownUser: IUser | null = null;
-	$: scopes = $userScopes;
-	onMount(() => {
-		// if ($userStore && 'id' in $userStore) {
-		// 	getUserInfo($userStore.id).then((res: IUser) => {
-		// 		res.roles.forEach((role) => {
-		// 			if (role.scopes.includes('admin')) {
-		// 				adminView = true;
-		// 			}
-		// 		});
-		// 	});
-		// }
 
-		fetchUsers();
-	});
-	const fetchUsers = async () => {
-		const res = await fetch(`${PUBLIC_USERS_API_URI}/users`, {
-			method: 'GET',
-			headers: {
-				Authorization: 'Bearer ' + $token
-			}
-		});
-		const result = await res.json();
-		users = result.data
+	const { data, error } = cachedSWR.useSWR(PUBLIC_USERS_API_URI + '/users');
+
+	$: if ($data) {
+		users = $data.data
 			.map((user: IUser) => {
 				return { full_name: user.first_name + ' ' + user.last_name, ...user };
 			})
 			.slice(0, 10);
-		querying = false;
+	}
 
-		columns = [
-			{
-				field: 'pref_name',
-				header: userFieldLabelMapper('preferred name' as keyof IUser)
-			},
-			{
-				field: 'first_name',
-				header: userFieldLabelMapper('first name' as keyof IUser)
-			},
-			{
-				field: 'last_name',
-				header: userFieldLabelMapper('last name' as keyof IUser)
-			},
-			{
-				field: 'email',
-				header: userFieldLabelMapper('email' as keyof IUser)
-			}
-		];
-	};
-
+	columns = [
+		{
+			field: 'pref_name',
+			header: userFieldLabelMapper('preferred name' as keyof IUser)
+		},
+		{
+			field: 'first_name',
+			header: userFieldLabelMapper('first name' as keyof IUser)
+		},
+		{
+			field: 'last_name',
+			header: userFieldLabelMapper('last name' as keyof IUser)
+		},
+		{
+			field: 'email',
+			header: userFieldLabelMapper('email' as keyof IUser)
+		}
+	];
 	const getUserField = (key: string, value: string) => {
 		return userFieldMapper(key as keyof IUser, value);
 	};

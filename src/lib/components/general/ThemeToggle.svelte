@@ -19,13 +19,13 @@
 </script>
 
 <div
-	class="relative w-full flex justify-start items-center align-middle select-none transition duration-200 ease-in"
+	class="relative w-fit flex justify-center items-center align-middle select-none transition duration-200 ease-in"
 >
 	<button
 		name="toggle"
 		id="toggle"
 		on:click={toggleTheme}
-		class="flex w-6 h-6 rounded-full dark:bg-neutral-700 justify-center items-center cursor-pointer bg-neutral-200"
+		class="flex w-8 h-8 rounded-full dark:bg-neutral-700 justify-center items-center cursor-pointer bg-neutral-200"
 	>
 		<Icon>
 			{#if isDark}

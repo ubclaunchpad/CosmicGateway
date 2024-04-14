@@ -4,7 +4,6 @@
 	import { modalPanel } from '../../../stores/modal.js';
 	import Button from '$lib/components/general/Button.svelte';
 	import TeamsSection from '$lib/components/portal/teams/TeamsSection.svelte';
-	import Card from '$lib/components/general/Card.svelte';
 
 	async function newTeamPanelProvider() {
 		modalPanel.set({

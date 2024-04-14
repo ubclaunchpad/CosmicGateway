@@ -11,6 +11,11 @@
 	import MemberSideView from '$lib/components/members/MemberSideView.svelte';
 
 	// let updateProfile: () => Promise<void>;
+	sidePanel.set({
+		component: null,
+		props: {},
+		open: true
+	});
 	let user: IUser;
 	let authTokens: string;
 	onMount(() => {

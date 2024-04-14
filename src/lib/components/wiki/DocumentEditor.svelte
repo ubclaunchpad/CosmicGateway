@@ -35,7 +35,7 @@
 			editorProps: {
 				attributes: {
 					class:
-						'w-full p-2 px-6   prose dark:!prose-invert  py-5 outline-none w-full  min-h-20 min-w-[800px] max-w-[1000px] '
+						'w-full p-2 px-6   prose dark:!prose-invert  py-5 outline-none w-full  min-h-20 max-w-[900px] '
 				}
 			},
 
@@ -93,21 +93,28 @@
 			Clear
 		</button>
 	</div>
-	<div class=" h-full flex-1 flex flex-row w-full p-1 gap-4 justify-around">
-		<div class=" h-full flex-2 flex flex-row max-w-full w-full doc-wrapper focus:shadow-md border bg-white border-neutral-200 rounded-lg overflow-hidden dark:bg-neutral-900 dark:border-neutral-800">
+	<div class="  flex-1 flex flex-row w-full p-1 gap-4 justify-around">
+		<div
+			class=" relative flex flex-row w-fit doc-wrapper focus:shadow-md border bg-white border-neutral-200 rounded-lg overflow-hidden dark:bg-neutral-900 dark:border-neutral-800"
+		>
 			<EditorContent {editor} />
+			<div
+				class=" flex-col gap-4 p-4 max-w-[200px] border-l min-w-80 border-neutral-200 dark:border-neutral-800 top-0 hidden lg:flex"
+			>
+				<h1 class="text-xl font-bold">Info</h1>
+				<!-- <div class="prose dark:prose-invert" innerHTML={editor.storage.markdown.getHTML()}></div> -->
+			</div>
 		</div>
 	</div>
 </div>
 
 <style lang="scss">
-	:global(.doc-wrapper > div) {
+	:global(.doc-wrapper > div:first-child) {
 		overflow-y: auto;
 		overflow-x: hidden;
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		flex-shrink: 0;
 		align-items: center;
 	}
 </style>

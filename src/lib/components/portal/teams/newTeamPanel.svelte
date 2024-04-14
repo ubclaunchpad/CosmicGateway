@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_TEAMS_API_URI } from '$env/static/public';
-	import  Input from '$lib/components/common/input/Input.svelte';
+	import Input from '$lib/components/common/input/Input.svelte';
 	import Textarea from '$lib/components/common/textarea/Textarea.svelte';
 	import Button from '$lib/components/general/Button.svelte';
 	import { fetcher } from '$lib/util/fetcher';
@@ -11,8 +11,7 @@
 		meta_data: {
 			links: []
 		},
-		term_year: 2022,
-		image_link: ''
+		year: 2022
 	};
 
 	async function createTeam() {
@@ -66,19 +65,6 @@
 			</div>
 
 			<div class="form-control">
-				<label for="imageUrl" class="label">
-					<span class="label-text dark:text-neutral-200">Image URL</span>
-				</label>
-				<Input
-					id="imageUrl"
-					type="text"
-					placeholder="Enter image URL"
-					class="p-2 dark:bg-neutral-700 rounded"
-					bind:value={newTeam.image_link}
-				/>
-			</div>
-
-			<div class="form-control">
 				<label for="termYear" class="label">
 					<span class="label-text dark:text-neutral-200">Term Year</span>
 				</label>
@@ -87,7 +73,7 @@
 					type="number"
 					placeholder="Enter term year"
 					class="p-2 dark:bg-neutral-700 rounded"
-					bind:value={newTeam.term_year}
+					bind:value={newTeam.year}
 				/>
 			</div>
 			<div class="flex justify-end w-full">

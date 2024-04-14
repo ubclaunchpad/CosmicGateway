@@ -9,6 +9,7 @@
 	function triggerNavEffect() {
 		dispatch('navigate', {});
 	}
+	export let compact = false;
 
 	const links = [
 		{
@@ -37,6 +38,10 @@
 			link: '/account'
 		}
 	];
+
+	const expandedStyle = 'flex items-center gap-4 w-full justify-center';
+	const compactStyle =
+		'flex w-8 h-8 rounded-full dark:bg-neutral-700  p-1 justify-center items-center cursor-pointer bg-neutral-100';
 </script>
 
 <nav
@@ -51,12 +56,14 @@
 				<a
 					href={link.link}
 					on:click={triggerNavEffect}
-					class="flex items-center gap-4 w-full justify-center"
+					class={compact ? compactStyle : expandedStyle}
 				>
-					<Icon width="0.9rem">
+					<Icon>
 						<svelte:component this={link.icon} />
 					</Icon>
-					<span class="flex-1 line-clamp-1">{link.name}</span>
+					{#if !compact}
+						<span class="flex-1 line-clamp-1">{link.name}</span>
+					{/if}
 				</a>
 			</li>
 		{/each}

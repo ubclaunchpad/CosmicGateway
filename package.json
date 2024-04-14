@@ -46,10 +46,14 @@
 		"@tiptap/extension-heading": "^2.2.4",
 		"@tiptap/starter-kit": "^2.2.4",
 		"clsx": "^2.1.0",
+		"embla-carousel-svelte": "^8.0.2",
 		"install": "^0.13.0",
 		"jwt-decode": "^4.0.0",
 		"marked": "^12.0.1",
+		"sswr": "^2.1.0",
 		"svelte-tiptap": "^1.1.2",
+		"swrev": "^4.0.0",
+		"tailwind-variants": "^0.2.1",
 		"tiptap-markdown": "^0.8.9"
 	}
 }

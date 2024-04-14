@@ -19,7 +19,11 @@ export const load: Load = async ({ params }) => {
 	}
 
 	const res = await fetch(`${PUBLIC_TEAMS_API_URI}/teams/${teamNameAndId[1]}`, {
-		method: 'GET'
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
 	});
 
 	const team = await res.json();

@@ -15,7 +15,7 @@ export type Team = {
 	meta_data: {
 		[key: string]: any;
 	};
-	team_terms: number[];
+	year: number;
 };
 
 export type Announcement = {

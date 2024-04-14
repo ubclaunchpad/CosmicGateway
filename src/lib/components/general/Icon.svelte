@@ -1,8 +1,8 @@
 <script lang="ts">
-	export let width = '1rem';
+	import { cn } from '$lib/utils';
 </script>
 
-<div class="icon" style={`width: ${width}`}>
+<div class={cn(`icon w-4  inline-block justify-center items-center`, `${$$restProps.class}`)}>
 	<div class="icon-wrapper">
 		<slot />
 	</div>
