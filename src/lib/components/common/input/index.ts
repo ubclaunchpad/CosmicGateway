@@ -21,7 +21,4 @@ export type InputEvents = {
 	wheel: FormInputEvent<WheelEvent>;
 };
 
-export {
-	Root as Input,
-	Root
-};
+export { Root as Input, Root };

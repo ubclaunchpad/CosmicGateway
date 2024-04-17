@@ -5,10 +5,10 @@
 	const { data } = cachedSWR.useSWR(PUBLIC_WIKI_API_URI + '/areas');
 </script>
 
-<Card class="bg-transparent">
-	<div class="flex items-center gap-3 w-full p-2" slot="title">
+<Card class="bg-transparent dark:bg-transparent border-transparent dark:border-transparent">
+	<!-- <div class="flex items-center gap-3 w-full p-2" slot="title">
 		<h2 class="card-title m-0 p-0">Areas</h2>
-	</div>
+	</div> -->
 
 	<div class="flex overflow-x-scroll space-x-4 w-full justify-center bg-transparent" slot="content">
 		{#if !$data}
@@ -16,11 +16,13 @@
 				Loading...
 			</p>
 		{:else}
-			<div class="flex flex-row flex-wrap gap-4 w-full items-center">
+			<div
+				class="grid w-full grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+			>
 				{#each $data.data as area}
 					<a
 						href={`/wiki/${area.name}-${area.id}`}
-						class="flex py-3 shadow-sm flex-col items-center bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 min-h-56 min-w-56 dark:border-neutral-800 flex-shrink-0"
+						class="flex py-3 shadow-sm flex-col items-center bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-base-300 min-h-20 w-full dark:border-neutral-800 flex-shrink-0"
 					>
 						<div class="flex gap-3 flex-col items-center justify-center flex-1">
 							<!-- <Icon class="w-20 absolute">

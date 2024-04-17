@@ -15,9 +15,9 @@
 
 <div class="flex flex-col flex-1">
 	<div role="tablist" class="w-full justify-end flex items-end">
-		<h1 class="p-3 text-2xl text-bold flex-1">{title}</h1>
+		<h1 class="p-3 text-2xl font-bold flex-1">{title}</h1>
 		<div
-			class="flex bg-[#f9f9f9] h-fit w-fit border border-b-0 border-base-200 rounded-t-lg overflow-hidden dark:bg-neutral-800 dark:border-neutral-800"
+			class="flex bg-[#f9f9f9] max-h-10 h-full w-fit border border-b-0 border-neutral-200 rounded-t-md overflow-hidden dark:bg-neutral-800 dark:border-neutral-800"
 		>
 			{#each tabs as tab, i}
 				<button
@@ -34,7 +34,7 @@
 	</div>
 	<div
 		role=""
-		class="flex flex-col flex-1 border-base-200 rounded-lg p-3 border rounded-tr-none overflow-scroll dark:border-neutral-800"
+		class="flex flex-col flex-1 border-neutral-200 p-3 border-t rounded-tr-none overflow-scroll dark:border-neutral-800"
 	>
 		{#each tabs as tab, i}
 			{#if i === shownTab && tab.content}

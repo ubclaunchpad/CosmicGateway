@@ -1,15 +1,15 @@
 <script lang="ts">
 	import Navbar from './portal/navbar/Navbar.svelte';
 	import { modalPanel } from '../../../stores/modal';
-	import { blur, scale } from 'svelte/transition';
+	import { blur, fade, fly, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { page } from '$app/stores';
 	let isMobile = false;
 
 	window.addEventListener('resize', () => {
-		isMobile = window.innerWidth < 768;
+		isMobile = window.innerWidth < 568;
 	});
-	$: isMobile = window.innerWidth < 768;
+	$: isMobile = window.innerWidth < 568;
 </script>
 
 <div
@@ -41,13 +41,15 @@
 		class={`flex flex-row w-full flex-1 max-h-screen h-screen relative dark:bg-neutral-950 bg-bg-100 ${isMobile ? ' flex-col-reverse' : ''}`}
 	>
 		<Navbar {isMobile} />
-		{#key $page.url.pathname}
-			<main
-				id="main-page"
-				class={'flex-1 flex flex-col justify-between items-start overflow-hidden   fade-in'}
-			>
-				<slot />
-			</main>
-		{/key}
+		<div class="flex flex-col w-full bg-neutral-50 p-4 dark:bg-neutral-950">
+			{#key $page.url.pathname}
+				<main
+					id="main-page"
+					class={'flex-1  border rounded-lg shadow-sm flex flex-col  justify-between bg-bg-100 items-start overflow-hidden   fade-in border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900'}
+				>
+					<slot />
+				</main>
+			{/key}
+		</div>
 	</div>
 </div>

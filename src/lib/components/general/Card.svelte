@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { cn } from '$lib/utils';
+	const { class: classN, otherProps } = $$props;
 </script>
 
 <div
-	class={`card w-full dark:bg-neutral-900 bg-base-100 rounded-lg border border-base-200 dark:border-neutral-800 ${$$props.class} overflow-hidden`}
+	{...otherProps}
+	class={cn(
+		`card w-full dark:bg-[#1b1b1b] bg-neutral-50 rounded-md border border-neutral-200 dark:shadow-none dark:border-neutral-800 overflow-hidden`,
+		$$props.class
+	)}
 >
 	<div class={$$props.contentClass ? $$props.contentClass : 'p-4 flex flex-col gap-5 flex-1'}>
 		{#if $$slots.title}

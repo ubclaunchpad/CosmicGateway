@@ -8,6 +8,7 @@
 	import CollectionCard from '$lib/components/wiki/CollectionCard.svelte';
 	import PlusCircle from '$lib/components/general/icons/PlusCircle.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
+	import NewArea from '$lib/components/wiki/NewArea.svelte';
 </script>
 
 <MainPage>
@@ -16,17 +17,17 @@
 			<h1 class="text-2xl font-bold">Wiki</h1>
 			<div class="flex gap-4">
 				<Button
-					class="flex gap-3 justify-center items-center rounded"
+					class="flex gap-2 justify-center items-center rounded"
 					on:click={() => {
 						modalPanel.set({
-							component: NewDocument,
+							component: NewArea,
 							open: true,
 							props: {}
 						});
 					}}
 				>
 					New
-					<Icon class={'w-9'}>
+					<Icon class={'w-5'}>
 						<PlusCircle />
 					</Icon>
 				</Button>

@@ -34,21 +34,17 @@
 			<h1 class="text-2xl font-bold">{`${greeting()}, ${$userStore?.pref_name}`}</h1>
 		</section>
 
-		<div class="flex gap-6 w-full flex-col max-w-5xl items-center">
+		<div class="flex gap-6 w-full flex-col items-center">
 			<div class="flex gap-6 w-full items-center flex-col lg:flex-row overflow-hidden">
-				<Card class="w-fit h-96">
+				<TeamList {teams} />
+				<Card class="flex-1 h-96">
 					<div slot="content" class=" flex flex-wrap gap-2 w-fit"></div>
 				</Card>
-				<TeamList {teams} />
 			</div>
 			<div class="flex gap-6 w-full items-center flex-col lg:flex-row overflow-hidden">
-				<QuickLinks />
 				<QuickNotes />
+				<QuickLinks />
 			</div>
-
-			<Card class="w-fit">
-				<div slot="content" class=" flex flex-wrap gap-2 w-fit h-44"></div>
-			</Card>
 		</div>
 	</div>
 </MainPage>

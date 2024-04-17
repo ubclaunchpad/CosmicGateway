@@ -93,18 +93,23 @@
 			Clear
 		</button>
 	</div>
-	<div class="  flex-1 flex flex-row w-full p-1 gap-4 justify-around">
-		<div
-			class=" relative flex flex-row w-fit doc-wrapper focus:shadow-md border bg-white border-neutral-200 rounded-lg overflow-hidden dark:bg-neutral-900 dark:border-neutral-800"
-		>
-			<EditorContent {editor} />
+	<div class="flex flex-col gap-4 w-full h-full p-4">
+		<div class=" h-full flex-1 flex flex-row w-full p-1 gap-4 justify-around">
 			<div
-				class=" flex-col gap-4 p-4 max-w-[200px] border-l min-w-80 border-neutral-200 dark:border-neutral-800 top-0 hidden lg:flex"
+				class=" relative flex flex-row w-full doc-wrapper border-neutral-200 rounded-lg overflow-hidden dark:bg-neutral-900 dark:border-neutral-800"
 			>
-				<h1 class="text-xl font-bold">Info</h1>
-				<!-- <div class="prose dark:prose-invert" innerHTML={editor.storage.markdown.getHTML()}></div> -->
+				<EditorContent {editor} />
+				<div
+					class=" flex-col gap-4 p-4 max-w-[200px] border rounded-lg shadow-sm min-w-80 border-neutral-200 dark:border-neutral-800 top-0 hidden lg:flex"
+				>
+					<h1 class="text-xl font-medium">Info</h1>
+					<!-- <div class="prose dark:prose-invert" innerHTML={editor.storage.markdown.getHTML()}></div> -->
+				</div>
 			</div>
 		</div>
+		<footer class="p-4 w-full border-t border-neutral-200 dark:border-neutral-800">
+			<p class="text-xs text-neutral-500 dark:text-neutral-400"></p>
+		</footer>
 	</div>
 </div>
 

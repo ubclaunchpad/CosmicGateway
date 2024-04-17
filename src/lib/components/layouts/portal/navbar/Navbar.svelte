@@ -109,7 +109,7 @@
 	{/if}
 {:else}
 	<aside
-		class={`relative bg-100 z-10  border-r bg-neutral-50 dark:border-neutral-900 border-neutral-200 flex flex-col overflow-hidden dark:bg-neutral-900 flex-shrink-0 ${
+		class={`relative bg-100 z-10   bg-neutral-50 dark:border-neutral-900 border-neutral-200 flex flex-col overflow-hidden dark:bg-neutral-950 flex-shrink-0 ${
 			isCompact ? 'w-16' : 'w-60'
 		}`}
 		transition:slide={{ duration: 300, axis: 'x' }}
@@ -135,7 +135,7 @@
 			<div class="flex flex-col flex-1 overflow-hidden h-20 pt-3 border-gray-100">
 				<!-- <DirectoryNavigation /> -->
 			</div>
-			<ThemeToggle />
+			<ThemeToggle {isCompact} />
 		</div>
 	</aside>
 {/if}

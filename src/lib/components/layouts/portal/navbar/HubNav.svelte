@@ -22,10 +22,11 @@
 			icon: UsersListIcon,
 			link: '/members'
 		},
+
 		{
-			name: 'Teams',
+			name: 'Groups',
 			icon: GridIcon,
-			link: '/teams'
+			link: '/groups'
 		},
 		{
 			name: 'Wiki',
@@ -36,6 +37,11 @@
 			name: 'Account',
 			icon: SettingsIcon,
 			link: '/account'
+		},
+		{
+			name: 'Admin',
+			icon: SettingsIcon,
+			link: '/admin'
 		}
 	];
 

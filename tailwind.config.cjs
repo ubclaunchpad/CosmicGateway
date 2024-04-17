@@ -346,11 +346,15 @@ module.exports = {
 		},
 		fontFamily: {
 			sans: [
+				// 'Rubik',
+				'Exo',
+				// 'DM Sans',
 				'Manrope',
-				'Nunito',
+				// 'Nunito',
 				'Lato',
-				'ui-sans-serif',
+				'Helvetica Neue',
 				'system-ui',
+				'ui-sans-serif',
 				'sans-serif',
 				'"Apple Color Emoji"',
 				'"Segoe UI Emoji"',
